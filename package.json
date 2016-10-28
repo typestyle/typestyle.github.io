@@ -1,0 +1,22 @@
+{
+  "name": "typestyle.github.io",
+  "version": "0.0.0",
+  "description": "Website for TypeStyle",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm prune && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typestyle/typestyle.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typestyle/typestyle.github.io/issues"
+  },
+  "homepage": "https://github.com/typestyle/typestyle.github.io#readme",
+  "dependencies": {
+    "typestyle": "latest"
+  }
+}
