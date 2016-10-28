@@ -22,8 +22,12 @@
   },
   "homepage": "https://github.com/typestyle/typestyle.github.io#readme",
   "dependencies": {
+    "@types/react": "^0.14.43",
+    "@types/react-dom": "^0.14.18",
     "awesome-typescript-loader": "^2.2.4",
     "mocha": "^3.1.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "ts-node": "^1.6.1",
     "typescript": "^2.1.0-dev.20161028",
     "typestyle": "latest",
