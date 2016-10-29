@@ -27,7 +27,7 @@ ReactDOM.render(<cp.Content>
           Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
         </cp.P>
         <cp.P>
-          This guide is designed for the beginner and expert alike. Let us kick off with some CSS core concepts.
+          This guide is designed for the beginner and expert alike. Lets kick off with some CSS core concepts.
         </cp.P>
       </cp.Ps>
     </cp.PageSection>
