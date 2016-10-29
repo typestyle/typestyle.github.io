@@ -13,12 +13,6 @@ export const P = ({children}: {children?:any}) => {
   </p>;
 }
 
-export const Ps = ({children}: {children?:any}) => {
-  return <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
-    {children}
-  </div>;
-}
-
 export const H2 = ({children}: {children?:any}) => {
   return <h2 className={style({
     margin: '0px',

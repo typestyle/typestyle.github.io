@@ -37,8 +37,8 @@ type PageSectionProps = {
 export const PageSection = ({title, link, children}: PageSectionProps) => {
   return <gls.ContentVerticalMargined margin={15}>
     <txt.H2>{title}</txt.H2>
-    <gls.Content>
+    <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
       {children}
-    </gls.Content>
+    </div>
   </gls.ContentVerticalMargined>
 }
