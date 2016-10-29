@@ -30,6 +30,13 @@ ReactDOM.render(<cp.Content>
           This guide is designed for the beginner and expert alike. Lets kick off with some CSS core concepts.
         </cp.P>
       </cp.Ps>
+
+      {
+        /** 
+        <cp.MarkDown markdown={`This is a demo`} />
+         */
+      }
+      
     </cp.PageSection>
 
   </cp.ContentVerticalMargined>
