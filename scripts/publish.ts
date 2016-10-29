@@ -5,7 +5,7 @@ const path = require('path');
 const date = new Date();
 
 ghpages.publish(path.resolve(__dirname + '/../public'), {
-  message: `[ci skip] deployment (${date.getUTCFullYear()},${date.getUTCMonth()+1},${date.getUTCDate()},${date.getUTCHours()},${date.getUTCMinutes()})`,
+  message: `[ci skip] deployment (${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()}-${date.getUTCHours()}-${date.getUTCMinutes()})`,
 
   /** Branch */
   branch: 'master',

@@ -12,7 +12,7 @@
     "build:live": "webpack-dev-server --host 0.0.0.0 --hot --inline --no-info --content-base ./public --config ./webpack.config.js",
     "precommit": "npm test",
     "u": "npm install typestyle@latest --save-exact --save",
-    "publish": "ts-node ./scripts/publish.ts"
+    "publish": "npm test && ts-node ./scripts/publish.ts"
   },
   "repository": {
     "type": "git",
