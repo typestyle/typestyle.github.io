@@ -3,7 +3,8 @@
     "jsx": "react"
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./scripts/**/*"
   ],
   "compileOnSave": false
 }
