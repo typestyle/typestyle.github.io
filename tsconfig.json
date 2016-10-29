@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "include": [
+    "./src/**/*",
+    "./scripts/**/*"
+  ],
+  "compileOnSave": false
+}
