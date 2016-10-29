@@ -3,7 +3,7 @@ console.log("--running publish--");
 const ghpages = require('gh-pages');
 const path = require('path');
 
-ghpages.publish(__dirname, {
+ghpages.publish(path.resolve(__dirname + '/..'), {
   branch: 'master',
   repo: 'https://' + process.env.GH_TOKEN + '@github.com/typestyle/typestyle.github.io.git'
 }, (err) => {
