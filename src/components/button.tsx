@@ -28,10 +28,10 @@ export namespace ButtonStyles {
     color: colors.white,
     backgroundColor: colors.header,
     '&:hover': {
-      backgroundColor: colors.header,
+      backgroundColor: colors.headerHover,
     },
     '&:active': {
-      backgroundColor: colors.header,
+      backgroundColor: colors.headerHover,
     }
   });
 }

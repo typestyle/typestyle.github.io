@@ -5,8 +5,8 @@ import * as csx from 'typestyle/csx';
 export const colors = {
   white: 'white',
 
-  header: csx.rgb(0, 188, 212),
-  headerHover: csx.rgb(0, 188, 212)
+  header: 'rgb(0, 188, 212)',
+  headerHover: 'rgb(0, 207, 233)'
 }
 export const fontSizes = {
   buttonText: '15px',
