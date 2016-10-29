@@ -261,14 +261,7 @@ export const ContentHorizontalMargined = (props: MarginedProps) => {
 
   const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
 
-  const className = typestyle.style({
-    '&>*': {
-      marginRight: spacing
-    },
-    '&>*:last-child': {
-      marginRight: '0px',
-    }
-  });
+  const className = typestyle.style(csx.horizontallySpaced(spacing));
 
   return (
     <ContentHorizontal {...otherProps} className={className} data-comment="ContentHorizontalMargined">
@@ -327,14 +320,7 @@ export const ContentVerticalMargined = (props: MarginedProps) => {
 
   const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
 
-  const className = typestyle.style({
-    '&>*': {
-      marginBottom: spacing
-    },
-    '&>*:last-child': {
-      marginBottom: '0px',
-    }
-  });
+  const className = typestyle.style(csx.verticallySpaced(spacing));
 
   return (
     <ContentVertical {...otherProps} className={className} data-comment="ContentVerticalMargined">

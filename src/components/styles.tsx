@@ -6,7 +6,9 @@ export const colors = {
   white: 'white',
 
   header: 'rgb(0, 188, 212)',
-  headerHover: 'rgb(0, 207, 233)'
+  headerHover: 'rgb(0, 207, 233)',
+
+  text: '#555'
 }
 export const fontSizes = {
   buttonText: '15px',
