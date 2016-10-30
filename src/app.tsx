@@ -16,24 +16,18 @@ ReactDOM.render(<cp.Content>
         <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
       </cp.ContentVerticalCentered>
 
-      <cp.ContentVerticalCentered>
+      <cp.ContentVerticalCentered style={{color: cp.colors.text}}>
         This project is powered by github 🌟s, and they are much appreciated 🌹
       </cp.ContentVerticalCentered>
     </cp.ContentVerticalMargined>
 
     <cp.PageSection title={"The guide to maintainable CSS"} link="intro">
-      <cp.P>
-        Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
-      </cp.P>
-      <cp.P>
-        This guide is designed for the beginner and expert alike. Lets kick off with some CSS core concepts.
-      </cp.P>
+      <cp.MarkDown markdown={`
+Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
 
-      {
-        /** 
-        <cp.MarkDown markdown={`This is a demo`} />
-         */
-      }
+This guide is designed for the beginner and expert alike. Lets kick off with some CSS core concepts.
+      `.trim()}
+        />
 
     </cp.PageSection>
 
