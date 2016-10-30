@@ -16,6 +16,14 @@ namespace HeaderStyles {
       backgroundColor: colors.header,
       color: 'white'
     });
+  export const anchor = style({
+    color: colors.text,
+    textDecoration: 'none',
+    '&:hover': {
+      color: colors.text,
+      textDecoration: 'underline'
+    }
+  })
 }
 
 export const Header = () => {
@@ -36,7 +44,7 @@ type PageSectionProps = {
 }
 export const PageSection = ({title, link, children}: PageSectionProps) => {
   return <gls.ContentVerticalMargined margin={15}>
-    <txt.H2>{title}</txt.H2>
+    <a className={HeaderStyles.anchor} title="Permalink" href={"#"+link}><txt.H2 id={link}>{title}</txt.H2></a>
     <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
       {children}
     </div>
