@@ -5,7 +5,7 @@ setupPage('#root');
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
-
+import { renderRoutes } from './routing/router';
 
 const docs: {
   title: string
@@ -44,15 +44,7 @@ ReactDOM.render(<cp.Content>
       </cp.ContentVerticalCentered>
     </cp.ContentVerticalMargined>
 
-    {
-      docs.map(doc => {
-        return (
-          <cp.PageSection key={doc.link} title={doc.title} link={doc.link}>
-            <cp.MarkDown markdown={doc.content} />
-          </cp.PageSection>
-        );
-      })
-    }
+    {renderRoutes()}
 
   </cp.ContentVerticalMargined>
 
