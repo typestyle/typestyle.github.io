@@ -18,6 +18,25 @@ namespace MarkDownStyles {
 
 .${rootClass} p {
   margin: 0px;
+  line-height: 24px;
+}
+
+.${rootClass} h2 {
+  margin: 0px;
+}
+.${rootClass} h3 {
+  margin: 0px;
+}
+
+/** List styling */
+.${rootClass} ul {
+    margin: 0px;
+}
+.${rootClass} ul>* {
+  margin-bottom: 10px !important;
+}
+.${rootClass} ul>*:last-child {
+  margin-bottom: 0px !important;
 }
 
 .${rootClass} a {
@@ -28,8 +47,11 @@ namespace MarkDownStyles {
     color: white;
 }
 
-.${rootClass} ul {
-    margin: 0px;
+
+.${rootClass} code {
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #eee;
 }
   `);
 }

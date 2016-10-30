@@ -6,9 +6,27 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 
+
+const docs: {
+  title: string
+  link: string
+  content: string
+}[] = [
+    {
+      title: "The guide to maintainable CSS",
+      link: 'intro',
+      content: require('./docs/intro.md')
+    },
+    {
+      title: "Basic tips",
+      link: 'css',
+      content: require('./docs/css.md')
+    }
+  ];
+
 ReactDOM.render(<cp.Content>
   <cp.Header />
-  <cp.ContentVerticalMargined style={{ padding: '24px' }}>
+  <cp.ContentVerticalMargined style={{ padding: '10px' }}>
 
     {/** The github links */}
     <cp.ContentVerticalMargined>
@@ -16,20 +34,20 @@ ReactDOM.render(<cp.Content>
         <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
       </cp.ContentVerticalCentered>
 
-      <cp.ContentVerticalCentered style={{color: cp.colors.text}}>
+      <cp.ContentVerticalCentered style={{ color: cp.colors.text }}>
         This project is powered by github 🌟s, and they are much appreciated 🌹
       </cp.ContentVerticalCentered>
     </cp.ContentVerticalMargined>
 
-    <cp.PageSection title={"The guide to maintainable CSS"} link="intro">
-      <cp.MarkDown markdown={`
-Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
-
-This guide is designed for the beginner and expert alike. Lets kick off with some CSS core concepts.
-      `.trim()}
-        />
-
-    </cp.PageSection>
+    {
+      docs.map(doc => {
+        return (
+          <cp.PageSection key={doc.link} title={doc.title} link={doc.link}>
+            <cp.MarkDown markdown={doc.content} />
+          </cp.PageSection>
+        );
+      })
+    }
 
   </cp.ContentVerticalMargined>
 
