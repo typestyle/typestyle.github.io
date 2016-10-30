@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as marked from "marked";
-import escapeHtml = require("escape-html");
 import { style, cssRaw, classes } from 'typestyle';
 import * as csx from 'typestyle/csx';
 import { colors } from './styles';
@@ -80,7 +79,7 @@ export class MarkDown extends React.PureComponent<Props, {}> {
 /** Converts an html string to markdown */
 export function toHtml(markdown: string) {
   return (
-    marked(escapeHtml(markdown), { gfm: true })
+    marked(markdown, { gfm: true })
       // Move hrefs to target blank
       .replace(/a href=/g, "a target='_blank' href=")
       // don't want a trailing newline

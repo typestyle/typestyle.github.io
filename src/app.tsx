@@ -21,6 +21,11 @@ const docs: {
       title: "Basic tips",
       link: 'css',
       content: require('./docs/css.md')
+    },
+    {
+      title: "Page Setup",
+      link: 'page',
+      content: require('./docs/page.md')
     }
   ];
 
