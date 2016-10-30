@@ -30,6 +30,7 @@ namespace MarkDownStyles {
 /** List styling */
 .${rootClass} ul {
     margin: 0px;
+    margin-bottom: 20px !important;
 }
 .${rootClass} ul>* {
   margin-bottom: 10px !important;
@@ -39,18 +40,25 @@ namespace MarkDownStyles {
 }
 
 .${rootClass} a {
-    color: grey;
+  color: grey;
 }
 
 .${rootClass} a:hover {
-    color: white;
+  color: black;
 }
 
-
+/** Inline code */
 .${rootClass} code {
-    padding-left: 5px;
-    padding-right: 5px;
-    background: #eee;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: #eee;
+}
+
+/** Block code */
+.${rootClass} pre>code {
+  display: block;
+  padding: 10px;
+  background: #eee;
 }
   `);
 }
