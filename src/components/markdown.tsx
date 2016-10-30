@@ -70,7 +70,7 @@ interface Props { markdown: string }
 /**
  * Renders markdown
  */
-export class MarkDown extends React.PureComponent<Props, {}> {
+export class MarkDown extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

@@ -1,35 +1,45 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Router, Route } from 'react-router'
-import { hashHistory, docs } from './routes';
+import { Router, Route, hashHistory } from 'react-router'
 import * as cp from '../components';
 
+type Doc = {
+  title: string
+  link: string
+  content: string
+}
+
+const intro: Doc = {
+  title: "The guide to maintainable CSS",
+  link: '',
+  content: require('../docs/intro.md')
+};
+const css: Doc = {
+  title: "Basic tips",
+  link: 'css',
+  content: require('../docs/css.md')
+};
+const page: Doc = {
+  title: "Page Setup",
+  link: 'page',
+  content: require('../docs/page.md')
+};
+
 export function renderRoutes() {
+  const renderMarkdownRoute = (doc: Doc) => {
+    return <Route
+      path={'/'+doc.link}
+      component={() =>
+        <cp.PageSection title={doc.title} link={doc.link}>
+          <cp.MarkDown markdown={doc.content} />
+        </cp.PageSection>
+      } />
+  }
   const routes = (
     <Router history={hashHistory}>
-      {
-        /**
-        docs.map(doc => {
-          <Route
-            key={doc.link}
-            path={doc.link}
-            component={() =>
-              <cp.PageSection key={doc.link} title={doc.title} link={doc.link}>
-                <cp.MarkDown markdown={doc.content} />
-              </cp.PageSection>
-            } />
-        })
-         */
-      }
-
-      {/** Fallback */}
-      <Route
-        path={"/"}
-        component={() =>
-          <cp.PageSection key={docs[0].link} title={docs[0].title} link={docs[0].link}>
-            <cp.MarkDown markdown={docs[0].content} />
-          </cp.PageSection>
-        } />
+      {renderMarkdownRoute(intro)}
+      {renderMarkdownRoute(css)}
+      {renderMarkdownRoute(page)}
     </Router>
   );
 

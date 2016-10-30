@@ -7,28 +7,6 @@ import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
 
-const docs: {
-  title: string
-  link: string
-  content: string
-}[] = [
-    {
-      title: "The guide to maintainable CSS",
-      link: 'intro',
-      content: require('./docs/intro.md')
-    },
-    {
-      title: "Basic tips",
-      link: 'css',
-      content: require('./docs/css.md')
-    },
-    {
-      title: "Page Setup",
-      link: 'page',
-      content: require('./docs/page.md')
-    }
-  ];
-
 ReactDOM.render(<cp.Content>
   <cp.Header />
   <cp.ContentVerticalMargined style={{ padding: '10px' }}>
