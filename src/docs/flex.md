@@ -83,10 +83,8 @@ If the parent becomes bigger the `flex` children share all the space that remain
 
 Actually a flex child can decide a *flex scaling factor* (`csx.flex1`,`csx.flex2` ... `csx.flex12`) to divide up the remaining space. E.g. a 1:2 ratio can easily be achieved:
 
-```
-A: {flex1}
-B: {flex2}
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-scaling.png)
+
 The remainder space is divided into `3` (`1 + 2`) equal parts with `1` part going to a `A` and `2` parts going to `B`.
 
 ## Horizontal Example
