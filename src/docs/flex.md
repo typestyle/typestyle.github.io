@@ -6,6 +6,8 @@ We will look at `flex`ible children and `content` children. These concepts exist
 > A general purpose `csx.flexRoot` exists.
 
 ## Flex
+> A *flex* container `csx.flex` has the same size as its parent.
+
 Consider the following layout:
 
 ![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/flex-small.png)
@@ -18,9 +20,9 @@ The space taken by the child (content) is what is available to its children. No 
 
 Such a child is called *flex* (`csx.flex`).
 
-> A *flex* container has the same size as its parent.
-
 ## Content
+> A *content* (`csx.content`) child determines its size based on the size of its content
+
 In the previous example the child *flexed* into the parent. The only other concept we need for a child is that of *content*. **A *content* child determines its size based on the size of its content**. That is all the space it takes up in the parent. This is shown below where if the parent is too big the rest of the space is unused:
 
 ![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-unused.png)
@@ -29,7 +31,7 @@ If the parent is too small the content will overflow:
 
 ![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-overflow.png)
 
-> A *content* (`csx.content`) child determines its size based on the size of its content
+> If you want the parent flex container to scroll for content just mixin `csx.scroll`.
 
 ### Flex Direction
 
