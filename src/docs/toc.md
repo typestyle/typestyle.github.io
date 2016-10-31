@@ -2,4 +2,4 @@
 
 * [CSS Basics](#/css) 
 * [Page Setup (csx)](#/page)
-* [Flexbox](#/flex)
+* [Flexbox (csx)](#/flex)
