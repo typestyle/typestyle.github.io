@@ -3,38 +3,16 @@ Having well defined semantics of *how the layout will happen* is important for a
 ## Root
 We will look at `flex`ible children and `content` children. These concepts exist inside a *`root`*. The root is simply the *container* that is used as a point of reference for these children.
 
-In CSS flexbox the concept of `root` does not exist without combining it with the concept of *flex direction*. We will cover this after we look at `flex` and `content`.
-
-> A general purpose `csx.flexRoot` does exist which is just an alias for `csx.horizontal`.
+> A general purpose `csx.flexRoot` exists.
 
 ## Flex
 Consider the following layout:
 
-```
-------------------------------------
-|
-|
-|   CONTENT
-|
-|
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/flex-small.png)
 
-Here the content *takes up all the available space offered by the parent*.
+Here the content *takes up all the available space offered by the parent*. If the parent offers more space, the child takes it gladly.
 
-```
-------------------------------------
-|
-|
-|
-|
-|   CONTENT
-|
-|
-|
-|
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/flex-large.png)
 
 The space taken by the child (content) is what is available to its children. No more, no less.
 
@@ -43,46 +21,28 @@ Such a child is called *flex* (`csx.flex`).
 > A *flex* container has the same size as its parent.
 
 ## Content
-In the previous example the child *flexed* into the parent. The only other concept we need for a child is that of *content*. **A *content* child determines its size based on the size of its content**. That is all the space it takes up in the parent. This is shown below where if the parent is too big the rest of the space is unused
+In the previous example the child *flexed* into the parent. The only other concept we need for a child is that of *content*. **A *content* child determines its size based on the size of its content**. That is all the space it takes up in the parent. This is shown below where if the parent is too big the rest of the space is unused:
 
-```
-------------------------------------
-|
-|
-|   CONTENT
-|
-|
-------------------------------------
-|
-|   UNUSED
-|
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-unused.png)
+
 If the parent is too small the content will overflow:
 
-```
-------------------------------------
-|
-|
-|   CONTENT
-------------------------------------
-|   OVERFLOW
-|
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-overflow.png)
 
 > A *content* (`csx.content`) child determines its size based on the size of its content
 
 ### Flex Direction
+
+In CSS flexbox the concept of `root` does not exist without combining it with the concept of *flex direction*.
+
+> The general purpose `csx.flexRoot` is just an alias (more semantic name) for `csx.horizontal`.
+
 A root has a default *main axis* of `horizontal`. This is axis in which the children are layed out. In the *cross axis* the children are by default forced to `flex`.
 
 So there are really two roots:
 * `csx.horizontal`: Lays out children horizontally based on `content` and `flexes` them vertically.
 * `csx.vertical`: Lays out children vertically based on `content` and `flexes` them horizontally.
 [](TODO: screens would help here)
-
-Of-course the children can change the root's `content` and `flex` choice:
-* Main Axis: `content` is default. A child can choose to `flex` in the main axis.
-* Cross Axis: `flex` is default. If the child has an explicit size (`width` or `height` depending on flex direction) they are treated as `content`.
 
 # Children
 We've seen three types of containers : `root`, `flex`, `content`. The next step is to combine the `flex` and `content` children into a `root`.
