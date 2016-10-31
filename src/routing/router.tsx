@@ -24,6 +24,7 @@ const page: Doc = {
   link: 'page',
   content: require('../docs/page.md')
 };
+const toc: string = require('../docs/toc.md');
 
 export function renderRoutes() {
   const renderMarkdownRoute = (doc: Doc) => {
@@ -32,6 +33,8 @@ export function renderRoutes() {
       component={() =>
         <cp.PageSection title={doc.title} link={doc.link}>
           <cp.MarkDown markdown={doc.content} />
+          <hr/>
+          <cp.MarkDown markdown={toc} />
         </cp.PageSection>
       } />
   }

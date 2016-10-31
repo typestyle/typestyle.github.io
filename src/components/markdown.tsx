@@ -86,10 +86,30 @@ export class MarkDown extends React.Component<Props, {}> {
 
 /** Converts an html string to markdown */
 export function toHtml(markdown: string) {
+  /** Custom rendering */
+  const renderer = new marked.Renderer();
+
+  /** 
+   * Target blank external links
+   * https://github.com/chjj/marked/pull/451
+   **/
+  renderer.link = function(href, title, text) {
+    var external, newWindow, out;
+    external = /^https?:\/\/.+$/.test(href);
+    newWindow = external || title === 'newWindow';
+    out = "<a href=\"" + href + "\"";
+    if (newWindow) {
+      out += ' target="_blank"';
+    }
+    if (title && title !== 'newWindow') {
+      out += " title=\"" + title + "\"";
+    }
+    const output = out += ">" + text + "</a>";
+    return output;
+  };
+  
   return (
-    marked(markdown, { gfm: true })
-      // Move hrefs to target blank
-      .replace(/a href=/g, "a target='_blank' href=")
+    marked(markdown, { gfm: true, renderer: renderer })
       // don't want a trailing newline
       .trim()
   );
