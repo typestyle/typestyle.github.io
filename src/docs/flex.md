@@ -33,7 +33,7 @@ If the parent is too small the content will overflow:
 
 > If you want the parent flex container to scroll for content just mixin `csx.scroll`.
 
-### Flex Direction
+## Root (redux)
 
 In CSS flexbox the concept of `root` does not exist without combining it with the concept of *flex direction*.
 
