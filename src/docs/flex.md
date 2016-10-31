@@ -86,7 +86,7 @@ The `flex` children actually share the *remainder* of the space left in the `roo
 |   ContentChild
 ------------------------------------
 ```
-Upon expansion:
+If the parent becomes bigger the `flex` children share all the space that remains after the `content` children take their share:
 
 ```
 ------------------------------------
