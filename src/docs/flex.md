@@ -59,42 +59,18 @@ We've seen four types of containers : `csx.vertical`, `csx.horizontal`, `csx.fle
 ## Vertical Example
 Consider the following layout:
 
-```
-------------------------------------
-|            HEADER                |
-------------------------------------
-|                                  |
-|             BODY                 |
-|                                  |
-------------------------------------
-|             FOOTER               |
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical-small.png)
 
 Up front we know its *vertical*. Assume that we want the body to *flex* i.e. as the root becomes larger:
 
-```
-------------------------------------
-|            HEADER                |
-------------------------------------
-|                                  |
-|                                  |
-|                                  |
-|             BODY                 |
-|                                  |
-|                                  |
-|                                  |
-------------------------------------
-|             FOOTER               |
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical-large.png)
 
-In our lingo the `root` here is `vertical` that has three children:
-* header: `content`
-* body: `flex`
-* footer: `content`
+In our lingo the `root` here is `csx.vertical` that has three children:
+* header: `csx.content`
+* body: `csx.flex`
+* footer: `csx.content`
 
-Of course the children are going to automatically flex in the cross dimension (horizontal).
+Of course the children are going to automatically flexing in the cross dimension (horizontal).
 
 ## Multiple Flex Children
 The `flex` children actually share the *remainder* of the space left in the `root` after all the `content` children take up the space they need. This is shown below:
