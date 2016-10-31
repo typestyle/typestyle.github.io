@@ -75,45 +75,19 @@ Of course the children are going to automatically flexing in the cross dimension
 ## Multiple Flex Children
 The `flex` children actually share the *remainder* of the space left in the `root` after all the `content` children take up the space they need. This is shown below:
 
-```
-------------------------------------
-|   ContentChild
-|
-|   FlexChild
-|
-|   FlexChild
-|
-|   ContentChild
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-small.png)
+
 If the parent becomes bigger the `flex` children share all the space that remains after the `content` children take their share:
 
-```
-------------------------------------
-|   ContentChild
-|
-|
-|
-|   FlexChild
-|
-|
-|
-|   FlexChild
-|
-|
-|
-|   ContentChild
-------------------------------------
-```
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-large.png)
 
-Actually a flex child can decide what *flex scaling factor* (`csx.flex1`,`csx.flex2` ... `csx.flex12`) they have. So if you have
+Actually a flex child can decide a *flex scaling factor* (`csx.flex1`,`csx.flex2` ... `csx.flex12`) to divide up the remaining space. E.g. a 1:2 ratio can easily be achieved:
 
 ```
 A: {flex1}
 B: {flex2}
 ```
 The remainder space is divided into `3` (`1 + 2`) equal parts with `1` part going to a `A` and `2` parts going to `B`.
-[](TODO: image would help)
 
 ## Horizontal Example
 
