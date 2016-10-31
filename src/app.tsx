@@ -17,7 +17,7 @@ ReactDOM.render(<cp.Content>
         <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
       </cp.ContentVerticalCentered>
 
-      <cp.ContentVerticalCentered style={{ color: cp.colors.text }}>
+      <cp.ContentVerticalCentered style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
         This project is powered by github 🌟s, and they are much appreciated 🌹
       </cp.ContentVerticalCentered>
     </cp.ContentVerticalMargined>
