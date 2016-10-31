@@ -24,6 +24,11 @@ const page: Doc = {
   link: 'page',
   content: require('../docs/page.md')
 };
+const flexbox: Doc = {
+  title: "Flexbox",
+  link: 'flex',
+  content: require('../docs/flex.md')
+};
 const toc: string = require('../docs/toc.md');
 
 export function renderRoutes() {
@@ -43,6 +48,7 @@ export function renderRoutes() {
       {renderMarkdownRoute(intro)}
       {renderMarkdownRoute(css)}
       {renderMarkdownRoute(page)}
+      {renderMarkdownRoute(flexbox)}
     </Router>
   );
 

@@ -60,6 +60,18 @@ namespace MarkDownStyles {
   padding: 10px;
   background: #eee;
 }
+
+/** Blockquote */
+.${rootClass} blockquote {
+    margin: 0;
+    padding: 5px 20px;
+    color: #6b6b6b;
+    background-color: #f6f6f6;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-left: 4px solid #e5e5e5;
+}
   `);
 }
 
