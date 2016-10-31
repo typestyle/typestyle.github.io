@@ -44,10 +44,17 @@ A root has a default *main axis* of `horizontal`. This is axis in which the chil
 So there are really two roots:
 * `csx.horizontal`: Lays out children horizontally based on `content` and `flexes` them vertically.
 * `csx.vertical`: Lays out children vertically based on `content` and `flexes` them horizontally.
-[](TODO: screens would help here)
 
-# Children
-We've seen three types of containers : `root`, `flex`, `content`. The next step is to combine the `flex` and `content` children into a `root`.
+Here is an example of a `csx.horizontal` layout with `content` children.
+
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal.png)
+
+Here is an example of a `csx.vertical` layout with `content` children.
+
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical.png)
+
+# Examples
+We've seen four types of containers : `csx.vertical`, `csx.horizontal`, `csx.flex`, `csx.content`. The next step is to practice with real world examples
 
 ## Vertical Example
 Consider the following layout:
