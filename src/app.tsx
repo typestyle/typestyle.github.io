@@ -9,7 +9,7 @@ import { renderRoutes } from './routing/router';
 
 ReactDOM.render(<cp.Content>
   <cp.Header />
-  <cp.ContentVerticalMargined style={{ padding: '10px' }}>
+  <cp.ContentVerticalMargined style={{ padding: '20px 10px 10px 10px' }}>
 
     {/** The github links */}
     <cp.ContentVerticalMargined>

@@ -5,7 +5,7 @@ import * as csx from 'typestyle/csx';
 export const colors = {
   white: 'white',
 
-  header: 'rgb(0, 188, 212)',
+  header: 'black',
   headerHover: 'rgb(0, 207, 233)',
 
   text: '#555'

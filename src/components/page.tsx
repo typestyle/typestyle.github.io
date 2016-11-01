@@ -11,7 +11,7 @@ import * as txt from './txt';
 namespace HeaderStyles {
   export const root = style(
     csx.centerCenter,
-    csx.padding(50, 0),
+    csx.padding(10, 0, 35, 0),
     {
       backgroundColor: colors.header,
       color: 'white'
@@ -29,7 +29,7 @@ namespace HeaderStyles {
 export const Header = () => {
   return (
     <div className={HeaderStyles.root}>
-      <div className={style(csx.content, csx.vertical, csx.verticallySpaced(24))}>
+      <div className={style(csx.content, csx.vertical, csx.verticallySpaced(10))}>
         <h1 className={style(csx.fontStyleItalic)}>TypeStyle</h1>
         <p>Making CSS TypeSafe</p>
       </div>
