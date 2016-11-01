@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <div className={HeaderStyles.root}>
       <div className={style(csx.content, csx.vertical, csx.verticallySpaced(10))}>
-        <h1 className={style(csx.fontStyleItalic)}>TypeStyle</h1>
+        <h1># TypeStyle</h1>
         <p>Making CSS TypeSafe</p>
       </div>
     </div>
