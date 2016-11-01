@@ -95,61 +95,55 @@ The remainder space is divided into `3` (`1 + 2`) equal parts with `1` part goin
 ## Horizontal Example
 
 Consider the layout:
-```
------------------------------------------
-|             |           |             |
-|   SIDEBAR   |    BODY   |    SIDEBAR  |
-|             |           |             |
------------------------------------------
-```
-Where we want to body to grow:
-```
---------------------------------------------------------
-|             |                          |             |
-|   SIDEBAR   |             BODY         |    SIDEBAR  |
-|             |                          |             |
---------------------------------------------------------
-```
 
-Here we have:
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-small.png)
+
+Where we want to `body` to grow:
+
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-large.png)
+
+We can see intutively that it is a *horizontal* container with *content* sidebars and *flex* body.  
+
 * root: `csx.horizontal`
 * sidebar: `csx.content`
 * body: `csx.flex`
 * sidebar: `csx.content`
 
-This example should have been fairly obvious and was designed to give you a hands on experience 🌹
+This example should have been fairly obvious and was designed to give you a hands on experience 🌹. Visually:
+
+![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-solution.png)
 
 ## Arbitrary Layout
 Consider this layout:
 
 ```
---------------------------------------------------------
-|                       HEADER                         |
---------------------------------------------------------
-|             |                          |             |
-|   SIDEBAR   |             BODY         |    SIDEBAR  |
-|             |                          |             |
---------------------------------------------------------
-|                       FOOTER                         |
---------------------------------------------------------
+----------------------------------------------------
+|                     HEADER                       |
+----------------------------------------------------
+|           |                          |           |
+|  SIDEBAR  |          BODY            |   SIDEBAR |
+|           |                          |           |
+----------------------------------------------------
+|                     FOOTER                       |
+----------------------------------------------------
 ```
 This is actually a layout used by lots of applications. If you think about it, its just a nesting of concepts you already know `csx.vertical`,`csx.horizontal`, `csx.flex`, `csx.content`.
 
-In fact its a combination of the first layout:
+In fact its a combination of the first example layout (`csx.vertical`):
 
 ```
 ------------------------------------
-|            HEADER                |
+|             HEADER               |
 ------------------------------------
 |                                  |
-|             BODY                 |
+|              BODY1               |
 |                                  |
 ------------------------------------
 |             FOOTER               |
 ------------------------------------
 ```
 
-Where the body is itself a `csx.horizontal`:
+Where the `body1` is itself a `csx.horizontal` containing the `sidebar`s and `body`:
 
 ```
 -----------------------------------------------
@@ -159,7 +153,7 @@ Where the body is itself a `csx.horizontal`:
 |   SIDEBAR   |       BODY      |    SIDEBAR  |
 |             |                 |             |
 -----------------------------------------------
-|                     FOOTER                  |
+|                    FOOTER                   |
 -----------------------------------------------
 ```
 Easy right!
