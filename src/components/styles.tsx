@@ -16,3 +16,6 @@ export const fontSizes = {
 export const breakpoints = {
   phone: 480
 }
+export const spacing = {
+  lineHeight: '24px'
+}

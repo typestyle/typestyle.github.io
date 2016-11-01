@@ -2,7 +2,7 @@ import * as React from "react";
 import * as marked from "marked";
 import { style, cssRaw, classes } from 'typestyle';
 import * as csx from 'typestyle/csx';
-import { colors } from './styles';
+import { colors, spacing } from './styles';
 
 /**
  * CSS customizations
@@ -31,6 +31,7 @@ namespace MarkDownStyles {
 .${rootClass} ul {
     margin: 0px;
     margin-bottom: 20px !important;
+    line-height: ${spacing.lineHeight};
 }
 .${rootClass} ul>* {
   margin-bottom: 10px !important;
@@ -59,6 +60,7 @@ namespace MarkDownStyles {
   display: block;
   padding: 10px;
   background: #eee;
+  overflow: auto;
 }
 
 /** Blockquote */
