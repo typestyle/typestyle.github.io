@@ -84,6 +84,9 @@ Hence the recommended page setup
 
 ```html
 <html>
+<head>
+  <meta name="viewport" content="width=device-width">
+</head>
 <body>
   <div id="root"></div>
   <script src="./build/bundle.js"></script>
@@ -99,5 +102,9 @@ setupPage('#root');
 
 // All your designs will now be more consistent across browsers
 ```
+
+Notes on some non `css` stuff in this page setup: 
+* `<meta name="viewport" content="width=device-width">` ensures that mobile browsers use their width to render the page. Otherwise mobiles render the page at desktop resolutions, forcing the user to zoom in to read text and then you get horizontal scrollbars. Its lovingly called the *responsive meta tag*.
+* Having the `script` after the root `div` ensures that it can be used from our JavaScript without needing something like `DOMContentLoaded`
 
 [normalize.css]:https://github.com/necolas/normalize.css
