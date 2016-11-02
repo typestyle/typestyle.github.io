@@ -1,3 +1,6 @@
+/** Setup es6 */
+import 'babel-polyfill';
+
 import { setupPage, normalize } from 'typestyle/csx';
 normalize();
 setupPage('#root');
