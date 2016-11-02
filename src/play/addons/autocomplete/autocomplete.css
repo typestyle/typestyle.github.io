@@ -21,7 +21,7 @@
 
     background: white;
     font-size: 90%;
-    font-family: monospace;
+    font-family: consolas, menlo, monospace;
 
     max-height: 20em;
     overflow-y: auto;
@@ -115,7 +115,7 @@ li.CodeMirror-hint-active {
 
     max-width: 200px;
 
-    font-size: 8px;
+    font-size: 12px;
     color: #D1D1D1;
 
     overflow: hidden;
