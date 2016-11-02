@@ -18,5 +18,8 @@ module.exports = {
       { test: /\.md/, loader: 'raw-loader' },
       { test: /\.css/, loader: 'raw-loader' },
     ]
+  },
+  node: {
+    fs: "empty"
   }
 }

@@ -6,7 +6,7 @@ import * as utils from '../utils';
 const languageServiceHost = new lsh.LanguageServiceHost(undefined, {
   allowNonTsExtensions: true,
   allowJs: true,
-  noLib: false,
+  noLib: true, /** We add lib files ourselves */
 });
 const languageService = ts.createLanguageService(languageServiceHost, ts.createDocumentRegistry());
 
@@ -29,6 +29,13 @@ export function getPositionOfLineAndCharacter(filePath: string, line: number, ch
   return languageServiceHost.getPositionOfLineAndCharacter(filePath, line, ch);
 }
 
+//////////////////////
+// 
+// ADD all the context files
+// 
+//////////////////////
+// addFile('lib.d.ts', require('raw!typescript/lib/lib.d.ts'));
+// addFile('lib.es6.d.ts', require('raw!typescript/lib/lib.es6.d.ts'));
 
 /**
  * 
