@@ -7,7 +7,7 @@ setupPage('#root');
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
-import { CodeEditor } from './demo/codeEditor';
+import { CodeEditor } from './play/codeEditor';
 import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { debounce } from './utils';
