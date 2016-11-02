@@ -3,7 +3,7 @@ import * as lsh from './languageServiceHost';
 import * as fuzzaldrin from 'fuzzaldrin';
 import * as utils from '../utils';
 
-const languageServiceHost = new lsh.LanguageServiceHost(undefined, {
+const languageServiceHost = new lsh.LanguageServiceHost('', {
   allowNonTsExtensions: true,
   allowJs: true,
   noLib: true, /** We add lib files ourselves */
