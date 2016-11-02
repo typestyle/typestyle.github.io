@@ -15,18 +15,28 @@ import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { debounce } from './utils';
 import * as ts from 'byots';
+import * as ps from './play/projectService';
 
 class DemoState {
+  /**
+   * This is the file name we use for the user file
+   */
+  readonly mainCodeFilePath = 'userfile.tsx';
+
   @observable code: string;
   constructor() {
     this.reset();
   }
   @action reset = () => {
     this.code = '';
+    ps.addFile(this.mainCodeFilePath, '');
   }
   @action setCode = (code: string) => {
     this.code = code;
     this.recalculateOutput();
+  }
+  @action onCodeEdit = (codeEdit: CodeEdit) => {
+    ps.editFile(this.mainCodeFilePath, codeEdit);
   }
 
   @observable output = '';
@@ -51,7 +61,10 @@ export class Demo extends React.Component<{}, {}> {
     return <cp.FlexHorizontal className={style({ backgroundColor: '#343436' })}>
       {/** code */}
       <cp.Flex>
-        <CodeEditor value={demoState.code} onChange={value => demoState.setCode(value)} />
+        <CodeEditor
+          value={demoState.code}
+          onChange = {(value => demoState.setCode(value))}
+          onCodeEdit={(codeEdit) => demoState.onCodeEdit(codeEdit)} />
       </cp.Flex>
       <cp.SmallVerticalSpace/>
       {/** output */}

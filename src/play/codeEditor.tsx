@@ -6,6 +6,7 @@ import * as csx from "typestyle/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
 
+
 // CSS
 cssRaw(require('codemirror/lib/codemirror.css'));
 cssRaw(require('codemirror/theme/monokai.css'));
@@ -118,6 +119,7 @@ interface Props {
   preview?: ts.TextSpan;
   value: string;
   onChange: (value: string) => any;
+  onCodeEdit: (codeEdit: CodeEdit) => any;
 }
 
 export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
@@ -193,6 +195,25 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
     this.codeMirror.on('change', this.codemirrorValueChanged);
     this._currentCodemirrorValue = this.props.value || '';
     this.codeMirror.setValue(this._currentCodemirrorValue);
+
+    (this.codeMirror.getDoc() as any).on('beforeChange', (doc: CodeMirror.Doc, change: CodeMirror.EditorChange) => {
+
+      // This is just the user pressing backspace on an empty file.
+      // If we let it go through then the classifier cache will crash.
+      // So abort
+      if (change.from.line === change.to.line && change.from.ch === change.to.ch && change.text.length === 1 && change.text[0].length === 0) {
+        return;
+      }
+
+      let codeEdit: CodeEdit = {
+        from: { line: change.from.line, ch: change.from.ch },
+        to: { line: change.to.line, ch: change.to.ch },
+        newText: change.text.join('\n'),
+        sourceId: ''
+      };
+
+      this.props.onCodeEdit(codeEdit);
+    });
 
     setTimeout(() => this.codeMirror.refresh(), 200);// Needed to resize gutters correctly
   }

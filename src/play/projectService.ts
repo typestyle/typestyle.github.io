@@ -1,7 +1,6 @@
 import * as ts from 'byots';
 import * as lsh from './languageServiceHost';
 
-
 const languageServiceHost = new lsh.LanguageServiceHost(undefined, {
   allowNonTsExtensions: true,
   allowJs: true,
