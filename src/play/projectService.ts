@@ -7,6 +7,8 @@ const languageServiceHost = new lsh.LanguageServiceHost('', {
   allowNonTsExtensions: true,
   allowJs: true,
   noLib: true, /** We add lib files ourselves */
+  jsx: ts.JsxEmit.React,
+  experimentalDecorators: true,
 });
 const languageService = ts.createLanguageService(languageServiceHost, ts.createDocumentRegistry());
 
