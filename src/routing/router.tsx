@@ -34,11 +34,11 @@ const toc: string = require('../docs/toc.md');
 export function renderRoutes() {
   const renderMarkdownRoute = (doc: Doc) => {
     return <Route
-      path={'/'+doc.link}
+      path={'/' + doc.link}
       component={() =>
         <cp.PageSection title={doc.title} link={doc.link}>
           <cp.MarkDown markdown={doc.content} />
-          <hr/>
+          <hr />
           <cp.MarkDown markdown={toc} />
         </cp.PageSection>
       } />
