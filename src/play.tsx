@@ -41,7 +41,7 @@ class DemoState {
 
   @observable output = '';
   @action recalculateOutput = debounce(() => { 
-    this.output = ts.transpile(this.code);
+    this.output = ps.getRawJsOutput(this.mainCodeFilePath);
   }, 1000);
 }
 

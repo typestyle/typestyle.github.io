@@ -157,6 +157,18 @@ export function getCompletionsAtPosition(query: Types.GetCompletionsAtPositionQu
   };
 }
 
+export function getRawJsOutput(filePath: string): string {
+    let services = languageService;
+
+    let output: ts.EmitOutput = services.getEmitOutput(filePath);
+
+    /** We only care about the js output */
+    const jsFile = output.outputFiles.filter(x => x.name.endsWith(".js"))[0];
+    if (!jsFile) return '';
+
+    return jsFile.text;
+}
+
 /**
  * General utility interfaces
  */
