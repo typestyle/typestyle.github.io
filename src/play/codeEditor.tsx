@@ -9,6 +9,7 @@ import * as ts from 'byots';
 // CSS
 cssRaw(require('codemirror/lib/codemirror.css'));
 cssRaw(require('codemirror/theme/monokai.css'));
+cssRaw(require('codemirror/addon/fold/foldgutter.css'));
 // Css overrides
 cssRaw(`
 /* Make code mirror flex boxy */
@@ -21,9 +22,10 @@ cssRaw(`
     flex: 1;
 }
 
-/** Bigger font */
+/** Bigger, better font */
 .CodeMirror {
   font-size: 16px;
+  font-family: consolas, menlo, monospace; 
 }
 
 /* Make code mirror selections a bit more popping */
@@ -57,6 +59,25 @@ cssRaw(`
 /* tag matching is a bit too bold. Dull it down a bit */
 .CodeMirror-matchingtag {
     background: rgba(0, 150, 150, .3);
+}
+
+/* Code folding style from graphiql */
+.CodeMirror-foldmarker {
+  border-radius: 4px;
+  background: #08f;
+  background: -webkit-linear-gradient(#43A8FF, #0F83E8);
+  background:         linear-gradient(#43A8FF, #0F83E8);
+
+  color: white;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  font-family: arial;
+  line-height: 0;
+  padding: 0px 4px 1px;
+  font-size: 12px;
+  margin: 0 3px;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
 }
 `)
 
@@ -136,7 +157,8 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
       indentUnit: 2,
 
 
-      gutters: ["CodeMirror-linenumbers"],
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 
       // Active line addon
       styleActiveLine: true,
