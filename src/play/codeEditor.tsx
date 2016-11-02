@@ -161,6 +161,19 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
       theme: 'monokai',
       indentUnit: 2,
 
+      // Soft tabs (tabs to spaces):
+      // https://github.com/codemirror/CodeMirror/issues/988#issuecomment-37692827
+      extraKeys: {
+        Tab: function(cm) {
+          if (cm.doc.somethingSelected()) {
+            return CodeMirror.Pass;
+          }
+          var spacesPerTab = cm.getOption("indentUnit");
+          var spacesToInsert = spacesPerTab - (cm.doc.getCursor("start").ch % spacesPerTab);
+          var spaces = Array(spacesToInsert + 1).join(" ");
+          cm.replaceSelection(spaces, "end", "+input");
+        }
+      },
 
       foldGutter: true,
       gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
