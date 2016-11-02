@@ -21,6 +21,11 @@ cssRaw(`
     flex: 1;
 }
 
+/** Bigger font */
+.CodeMirror {
+  font-size: 16px;
+}
+
 /* Make code mirror selections a bit more popping */
 .cm-s-monokai div.CodeMirror-selected {
     background: #58574B;
@@ -159,13 +164,13 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
     options.gutters.push("CodeMirror-foldgutter");
 
     var textareaNode = ReactDOM.findDOMNode(this.refs.textarea);
-    this.codeMirror = CodeMirror.fromTextArea(textareaNode as any, options);
+    this.codeMirror = CodeMirror.fromTextArea(textareaNode as HTMLTextAreaElement, options);
     this.codeMirror.on('focus', this.focusChanged.bind(this, true));
     this.codeMirror.on('blur', this.focusChanged.bind(this, false));
 
     this.codeMirror.on('change', this.codemirrorValueChanged);
     this._currentCodemirrorValue = this.props.value || '';
-    (this.codeMirror as any).setValue(this._currentCodemirrorValue);
+    this.codeMirror.setValue(this._currentCodemirrorValue);
 
     setTimeout(() => this.codeMirror.refresh(), 200);// Needed to resize gutters correctly
   }
@@ -183,8 +188,8 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (this.codeMirror && nextProps.value !== undefined && this._currentCodemirrorValue !== nextProps.value) {
-      (this.codeMirror as any).setValue(nextProps.value);
+    if (this.codeMirror && nextProps.value !== undefined && this._currentCodemirrorValue != nextProps.value.toString()) {
+      this.codeMirror.setValue(nextProps.value);
     }
   }
 

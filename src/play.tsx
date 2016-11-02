@@ -10,15 +10,31 @@ import * as cp from './components';
 import { CodeEditor } from './demo/codeEditor';
 import { observable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
-
+import { debounce } from './utils';
+import * as ts from 'byots';
 
 class DemoState {
-  @observable code: string = '';
-  @action setCode(code: string) {
-    this.code = code;
+  @observable code: string;
+  constructor() {
+    this.reset();
   }
+  @action reset = () => {
+    this.code = '';
+  }
+  @action setCode = (code: string) => {
+    this.code = code;
+    this.recalculateOutput();
+  }
+
+  @observable output = '';
+  @action recalculateOutput = debounce(() => { 
+    this.output = ts.transpile(this.code);
+  }, 1000);
 }
 
+/**
+ * Our singleton state
+ */
 const demoState = new DemoState();
 
 /**
@@ -37,7 +53,7 @@ export class Demo extends React.Component<{}, {}> {
       <cp.SmallVerticalSpace/>
       {/** output */}
       <cp.Flex className={style({ backgroundColor: 'white' }, csx.layerParent)}>
-        Output
+        {demoState.output}
       </cp.Flex>
     </cp.FlexHorizontal>
   }

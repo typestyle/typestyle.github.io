@@ -1,7 +1,7 @@
 module.exports = {
   entry: {
     app: './src/app.tsx',
-    demo: './src/demo.tsx',
+    play: './src/play.tsx',
   },
   output: {
     path: './public',  
