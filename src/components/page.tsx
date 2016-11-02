@@ -37,6 +37,18 @@ export const Header = () => {
   );
 }
 
+export const HeaderSmall = () => {
+  return (
+    <div className={style(csx.padding(24),{color:'white',background: 'black'})}>
+      <div className={style(csx.content, csx.horizontal, csx.center, csx.horizontallySpaced(10))}>
+        <h3 className={style(csx.margin(0), {whiteSpace:'nowrap'})}># TypeStyle</h3>
+        <div className={style(csx.flex)}/>
+        <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
+      </div>
+    </div>
+  );
+}
+
 type PageSectionProps = {
   title: string, 
   link: string,

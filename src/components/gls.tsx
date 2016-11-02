@@ -68,6 +68,7 @@ namespace ClassNames {
   export const pass = typestyle.style(csx.pass);
   export const contentVertical = typestyle.style(csx.content, csx.vertical);
   export const contentVerticalCentered = typestyle.style(csx.content, csx.vertical, csx.center);
+  export const flexVerticalCentered = typestyle.style(csx.flex, csx.vertical, csx.center);
   export const contentHorizontal = typestyle.style(csx.content, csx.horizontal);
   export const contentHorizontalCentered = typestyle.style(csx.content, csx.horizontal, csx.center);
   export const flexVertical = typestyle.style(csx.flex, csx.vertical, { maxWidth: '100%' /*normalizing browser bugs*/ });
@@ -188,6 +189,19 @@ export const ContentVerticalCentered = (props: PrimitiveProps) => {
 ContentVerticalCentered.displayName = "ContentVerticalCentered";
 
 /**
+ * Quite commonly need horizontally centered text
+ */
+export const FlexVerticalCentered = (props: PrimitiveProps) => {
+  const className = ClassNames.flexVerticalCentered + (props.className ? ` ${props.className}` : '');
+  return (
+    <div data-comment="FlexVerticalCentered" {...props} className={className}>
+      {props.children}
+    </div>
+  );
+}
+FlexVerticalCentered.displayName = "FlexVerticalCentered";
+
+/**
  * Provides a Horizontal Container. For the parent it behaves like content.
  */
 export const ContentHorizontal = (props: PrimitiveProps) => {
@@ -259,9 +273,8 @@ export const ContentHorizontalMargined = (props: MarginedProps) => {
   const {margin} = props;
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
-  const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
-
-  const className = typestyle.style(csx.horizontallySpaced(spacing));
+  const spacing = (margin == null ? defaultValues.spacing : margin);
+  const className = typestyle.classes(props.className, typestyle.style(csx.horizontallySpaced(spacing)));
 
   return (
     <ContentHorizontal {...otherProps} className={className} data-comment="ContentHorizontalMargined">
@@ -285,16 +298,8 @@ export const FlexHorizontalMargined = (props: MarginedProps) => {
   const {margin} = props;
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
-  const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
-
-  const className = typestyle.style({
-    '&>*': {
-      marginRight: spacing
-    },
-    '&>*:last-child': {
-      marginRight: '0px',
-    }
-  });
+  const spacing = (margin == null ? defaultValues.spacing : margin);
+  const className = typestyle.classes(props.className, typestyle.style(csx.horizontallySpaced(spacing)));
 
   return (
     <FlexHorizontal {...otherProps} className={className} data-comment="FlexHorizontalMargined">
@@ -305,6 +310,23 @@ export const FlexHorizontalMargined = (props: MarginedProps) => {
   );
 }
 FlexHorizontalMargined.displayName = "FlexHorizontalMargined";
+
+export const FlexVerticalMargined = (props: MarginedProps) => {
+  const {margin} = props;
+  const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
+
+  const spacing = (margin == null ? defaultValues.spacing : margin);
+  const className = typestyle.classes(props.className, typestyle.style(csx.verticallySpaced(spacing)));
+
+  return (
+    <FlexVertical {...otherProps} className={className} data-comment="FlexVerticalMargined">
+      {
+        props.children
+      }
+    </FlexVertical>
+  );
+}
+FlexHorizontalMargined.displayName = "FlexVerticalMargined";
 
 /**
  * Lays out the children vertically with
@@ -318,9 +340,8 @@ export const ContentVerticalMargined = (props: MarginedProps) => {
   const {margin} = props;
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
-  const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
-
-  const className = typestyle.style(csx.verticallySpaced(spacing));
+  const spacing = (margin == null ? defaultValues.spacing : margin);
+  const className = typestyle.classes(props.className, typestyle.style(csx.verticallySpaced(spacing)));
 
   return (
     <ContentVertical {...otherProps} className={className} data-comment="ContentVerticalMargined">
@@ -373,44 +394,39 @@ interface ResponsiveMarginedProps extends PrimitiveProps {
  * - ThisComponent: Puts a horizontal margin between each item
  */
 export const ResponsiveContentMargined = (props: ResponsiveMarginedProps) => {
-  const {margin, breakpoint, className} = props;
-  const otherProps = _objectWithoutProperties(props, ['margin', 'children', 'breakpoint', 'className']);
+  const {margin, breakpoint} = props;
+  const otherProps = _objectWithoutProperties(props, ['margin', 'children', 'breakpoint']);
 
-  const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
+  const spacing = (margin == null ? defaultValues.spacing : margin);
   const breakpointPx = (breakpoint || defaultValues.breakpoints.phone) + 'px';
 
-  const componentClassName = typestyle.style(
-    csx.content,
+  const className = typestyle.classes(
+    props.className,
+    typestyle.style(
+      csx.content,
 
-    /** Bigger than breakpoint: Horizontal Margined */
-    csx.horizontal,
-    {
-      '&>*': {
-        marginRight: spacing
-      },
-      '&>*:last-child': {
-        marginRight: '0px',
-      },
-    },
-    /** Lower than breakpoint: Vertical Margined */
-    {
-      [`@media screen and (max-width: ${breakpointPx})`]: typestyle.extend(
-        csx.vertical,
-        {
-          '&>*': {
-            marginRight: '0px',
-            marginBottom: spacing,
+      /** Lower than breakpoint: Vertical Margined */
+      csx.vertical,
+      csx.verticallySpaced(spacing),
+
+      /** Bigger than breakpoint: Horizontal Margined */
+      {
+        [`@media screen and (min-width: ${breakpointPx})`]: typestyle.extend(
+          /** Clear stuff from the previous layout `&&` to increase specifity */
+          {
+            '&&>*': {
+              marginBottom: '0px !important',
+            }
           },
-          '&>*:last-child': {
-            marginBottom: '0px',
-          },
-        }
-      )
-    },
+          csx.horizontal,
+          csx.horizontallySpaced(spacing),
+        )
+      },
+    )
   );
 
   return (
-    <div {...otherProps} className={typestyle.classes(className, componentClassName)} data-comment="ResponsiveContentMargined">
+    <div {...otherProps} className={className} data-comment="ResponsiveContentMargined">
       {
         props.children
       }
