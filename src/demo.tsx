@@ -14,8 +14,8 @@ const spacing = 10;
  * Provides a nice demo / test component 
  */
 export const Demo = () => {
-  return <cp.FlexHorizontalMargined margin={spacing} className={style(csx.padding(spacing), { backgroundColor: 'red' })}>
-    <cp.Flex>Code</cp.Flex>
+  return <cp.FlexHorizontalMargined margin={spacing} className={style(csx.padding(spacing), { backgroundColor: '#343436' })}>
+    <cp.Flex className={style({backgroundColor:'#272822', color: 'white'})}>Code</cp.Flex>
     <cp.Flex>Output</cp.Flex>
   </cp.FlexHorizontalMargined>
 }
