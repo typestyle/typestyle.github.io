@@ -12,3 +12,24 @@ interface CodeEdit {
      */
     sourceId? : string;
 }
+
+/**
+ * Complete related stuff
+ */
+interface Completion {
+    /** stuff like "var"|"method" etc */
+    kind?: string;
+    /** stuff like "toString" */
+    name?: string;
+    /** This is displayParts (for functions). Empty for `var` etc. */
+    display?: string;
+    /** the docComment if any */
+    comment?: string;
+
+    /** If snippet is specified then the above stuff is ignored */
+    snippet?: {
+        name: string;
+        description: string;
+        template: string;
+    };
+}

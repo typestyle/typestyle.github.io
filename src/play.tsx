@@ -62,6 +62,7 @@ export class Demo extends React.Component<{}, {}> {
       {/** code */}
       <cp.Flex>
         <CodeEditor
+          filePath={demoState.mainCodeFilePath}
           value={demoState.code}
           onChange = {(value => demoState.setCode(value))}
           onCodeEdit={(codeEdit) => demoState.onCodeEdit(codeEdit)} />

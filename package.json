@@ -36,6 +36,7 @@
     "babel-polyfill": "^6.9.1",
     "byots": "^2.1.0-dev.20161101.22.10",
     "codemirror": "^5.20.2",
+    "fuzzaldrin": "^2.1.0",
     "gh-pages": "^0.11.0",
     "husky": "^0.11.9",
     "marked": "^0.3.6",

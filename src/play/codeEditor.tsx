@@ -113,6 +113,8 @@ require('codemirror/mode/jsx/jsx');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 
+import autocomplete = require('./addons/autocomplete/autocomplete');
+
 interface Props {
   onFocusChange?: (focused: boolean) => any;
   readOnly?: boolean | "nocursor";
@@ -120,6 +122,7 @@ interface Props {
   value: string;
   onChange: (value: string) => any;
   onCodeEdit: (codeEdit: CodeEdit) => any;
+  filePath: string;
 }
 
 export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
@@ -183,14 +186,16 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
       lineWrapping: true,
     } as any;
 
-    // fold
-    (options as any).foldGutter = true;
-    options.gutters.push("CodeMirror-foldgutter");
+    // setup hint / autocomplete options
+    autocomplete.setupOptions(options, this.props.filePath);
 
     var textareaNode = ReactDOM.findDOMNode(this.refs.textarea);
     this.codeMirror = CodeMirror.fromTextArea(textareaNode as HTMLTextAreaElement, options);
     this.codeMirror.on('focus', this.focusChanged.bind(this, true));
     this.codeMirror.on('blur', this.focusChanged.bind(this, false));
+
+    // Make hint / autocomplete more aggresive
+    autocomplete.setupCodeMirror(this.codeMirror);
 
     this.codeMirror.on('change', this.codemirrorValueChanged);
     this._currentCodemirrorValue = this.props.value || '';
