@@ -172,7 +172,8 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
           var spacesToInsert = spacesPerTab - (cm.doc.getCursor("start").ch % spacesPerTab);
           var spaces = Array(spacesToInsert + 1).join(" ");
           cm.replaceSelection(spaces, "end", "+input");
-        }
+        },
+        'Ctrl-Space': "autocomplete"
       },
 
       foldGutter: true,
@@ -233,7 +234,7 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
       this.props.onCodeEdit(codeEdit);
     });
 
-    setTimeout(() => this.codeMirror.refresh(), 200);// Needed to resize gutters correctly
+    setTimeout(() => this.codeMirror.refresh(), 500);// Needed to resize gutters correctly
   }
 
   componentWillUnmount() {
