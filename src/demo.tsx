@@ -29,16 +29,17 @@ export class Demo extends React.Component<{}, {}> {
   render() {
     const spacing = 10;
 
-    return <cp.FlexHorizontalMargined margin={spacing} className={style(csx.padding(spacing), { backgroundColor: '#343436' })}>
+    return <cp.FlexHorizontal className={style({ backgroundColor: '#343436' })}>
       {/** code */}
       <cp.Flex>
         <CodeEditor value={demoState.code} onChange={value => demoState.setCode(value)} />
       </cp.Flex>
+      <cp.SmallVerticalSpace/>
       {/** output */}
-      <cp.Flex className={style({ backgroundColor: 'white'}, csx.layerParent)}>
+      <cp.Flex className={style({ border: '1px solid black'}, csx.layerParent)}>
         Output
       </cp.Flex>
-    </cp.FlexHorizontalMargined>
+    </cp.FlexHorizontal>
   }
 }
 
