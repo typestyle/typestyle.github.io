@@ -36,7 +36,7 @@ export class Demo extends React.Component<{}, {}> {
       </cp.Flex>
       <cp.SmallVerticalSpace/>
       {/** output */}
-      <cp.Flex className={style({ border: '1px solid black'}, csx.layerParent)}>
+      <cp.Flex className={style({ backgroundColor: 'white' }, csx.layerParent)}>
         Output
       </cp.Flex>
     </cp.FlexHorizontal>
