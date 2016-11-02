@@ -34,8 +34,8 @@ export function getPositionOfLineAndCharacter(filePath: string, line: number, ch
 // ADD all the context files
 // 
 //////////////////////
-// addFile('lib.d.ts', require('raw!typescript/lib/lib.d.ts'));
-// addFile('lib.es6.d.ts', require('raw!typescript/lib/lib.es6.d.ts'));
+addFile('lib.d.ts', require('!raw!typescript/lib/lib.d.ts'));
+addFile('lib.es6.d.ts', require('!raw!typescript/lib/lib.es6.d.ts'));
 
 /**
  * 
