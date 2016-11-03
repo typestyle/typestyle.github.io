@@ -286,7 +286,8 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
       this.props.onCodeEdit(codeEdit);
     });
 
-    setTimeout(() => this.codeMirror.refresh(), 500);// Needed to resize gutters correctly
+    setTimeout(() => this.codeMirror.refresh(), 200);// Needed to resize gutters correctly
+    setTimeout(() => this.codeMirror.refresh(), 1000);// Needed to resize gutters correctly
   }
 
   componentWillUnmount() {
