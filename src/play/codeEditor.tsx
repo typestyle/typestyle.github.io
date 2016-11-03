@@ -6,7 +6,9 @@ import * as csx from "typestyle/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
 import * as utils from '../utils';
-
+import * as ps from './projectService';
+import escape = require("escape-html");
+import {toHtml} from '../components/markdown';
 
 // CSS
 cssRaw(require('codemirror/lib/codemirror.css'));
@@ -114,8 +116,11 @@ require('codemirror/mode/jsx/jsx');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 
+/** Our addons */
 import autocomplete = require('./addons/autocomplete/autocomplete');
 import linter = require('./addons/linter');
+import textHover = require('./addons/textHover');
+const ensureImport = textHover;
 
 interface Props {
   onFocusChange?: (focused: boolean) => any;
@@ -200,6 +205,16 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
 
       /** Overcomes horizontal scrolling for now */
       lineWrapping: true,
+
+      // Text hover
+      textHover: {
+        delay: 50,
+        getTextHover: (cm, data, e: MouseEvent) => {
+          if (data && data.pos) {
+            return this.getQuickInfo(data.pos);
+          }
+        },
+      }
     } as any;
 
     // setup hint / autocomplete options
@@ -214,9 +229,9 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
     this.codeMirror.on('blur', this.focusChanged.bind(this, false));
 
     // also lint on errors changing
-    this.codeMirror.on('change', utils.debounce(() => { 
+    this.codeMirror.on('change', utils.debounce(() => {
       this.codeMirror && (this.codeMirror as any).performLint();
-    },2000));
+    }, 2000));
 
     // Make hint / autocomplete more aggresive
     autocomplete.setupCodeMirror(this.codeMirror);
@@ -286,6 +301,29 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
   getValue() {
     return this.codeMirror.getDoc().getValue();
   }
+
+  getQuickInfo = (pos: CodeMirror.Position): Promise<string | HTMLElement> => {
+    return ps.quickInfo({ filePath: this.props.filePath, position: this.codeMirror.getDoc().indexFromPos(pos) })
+      .then(resp => {
+      if (!resp.valid) return;
+
+      var message = '';
+      if (resp.errors.length) {
+        message = message + `🐛 <i>${resp.errors.map(e => escape(e.message)).join('<br/>')}</i><br/>`
+      }
+
+      if (resp.info) {
+        message = message + `<b>${escape(resp.info.name)}</b>`;
+        if (resp.info.comment) {
+          message = message + `<br/>${toHtml(resp.info.comment)}`;
+        }
+      }
+
+      let div = document.createElement('div');
+      div.innerHTML = message;
+      return div;
+    });
+  };
 
   render() {
     var className = 'ReactCodeMirror';

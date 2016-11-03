@@ -2,6 +2,7 @@ import * as ts from 'byots';
 import * as lsh from './languageServiceHost';
 import * as fuzzaldrin from 'fuzzaldrin';
 import * as utils from '../utils';
+import {resolve} from '../utils';
 
 const languageServiceHost = new lsh.LanguageServiceHost('', {
   allowNonTsExtensions: true,
@@ -190,29 +191,60 @@ function getDiagnosticsByFilePath(filePath: string) {
 
 function diagnosticToCodeError(diagnostic: ts.Diagnostic): CodeError {
 
-    let preview = '';
-    let filePath = '';
-    let startPosition = { line: 0, character: 0 };
-    let endPosition = { line: 0, character: 0 };
+  let preview = '';
+  let filePath = '';
+  let startPosition = { line: 0, character: 0 };
+  let endPosition = { line: 0, character: 0 };
 
-    if (diagnostic.file) {
-        filePath = diagnostic.file.fileName;
-        startPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
-        endPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start + diagnostic.length);
-        preview = diagnostic.file.text.substr(diagnostic.start, diagnostic.length)
-    }
+  if (diagnostic.file) {
+    filePath = diagnostic.file.fileName;
+    startPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
+    endPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start + diagnostic.length);
+    preview = diagnostic.file.text.substr(diagnostic.start, diagnostic.length)
+  }
 
-    return {
-        filePath,
-        from: { line: startPosition.line, ch: startPosition.character },
-        to: { line: endPosition.line, ch: endPosition.character },
-        message: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
-        preview,
-    };
+  return {
+    filePath,
+    from: { line: startPosition.line, ch: startPosition.character },
+    to: { line: endPosition.line, ch: endPosition.character },
+    message: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
+    preview,
+  };
 }
 
 export function getCodeErrors(filePath: string) {
   return getDiagnosticsByFilePath(filePath).map(diagnosticToCodeError);
+}
+
+/** Utility */
+function positionErrors(query: Types.FilePathPositionQuery): CodeError[] {
+  let editorPos = languageServiceHost.getLineAndCharacterOfPosition(query.filePath, query.position);
+  let errors = getCodeErrors(query.filePath);
+  errors = errors.filter(e =>
+    // completely contained in the multiline
+    (e.from.line < editorPos.line && e.to.line > editorPos.line)
+    // error is single line and on the same line and characters match
+    || (e.from.line == e.to.line && e.from.line == editorPos.line && e.from.ch <= editorPos.ch && e.to.ch >= editorPos.ch)
+  );
+
+  return errors;
+}
+
+export function quickInfo(query: Types.QuickInfoQuery): Promise<Types.QuickInfoResponse> {
+  var info = languageService.getQuickInfoAtPosition(query.filePath, query.position);
+  var errors = positionErrors(query);
+  if (!info && !errors.length) {
+    return Promise.resolve({ valid: false });
+  } else {
+    return resolve({
+      valid: true,
+      info: info && {
+        name: ts.displayPartsToString(info.displayParts || []),
+        comment: ts.displayPartsToString(info.documentation || [])
+      },
+      errors: errors
+    });
+  }
 }
 
 /**
@@ -235,5 +267,18 @@ export namespace Types {
   export interface GetCompletionsAtPositionResponse {
     completions: Completion[];
     endsInPunctuation: boolean;
+  }
+
+  /**
+   * Mouse hover
+   */
+  export interface QuickInfoQuery extends FilePathPositionQuery { }
+  export interface QuickInfoResponse {
+    valid: boolean; // Do we have a valid response for this query
+    info?: {
+      name?: string;
+      comment?: string;
+    }
+    errors: CodeError[];
   }
 }
