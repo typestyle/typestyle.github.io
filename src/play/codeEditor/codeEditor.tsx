@@ -124,6 +124,31 @@ import linter = require('./addons/linter');
 import textHover = require('./addons/textHover');
 const ensureImport = textHover;
 
+
+/**
+ * Fixup keymaps
+ */
+
+/** Load CM and keymaps */
+require('codemirror/keymap/sublime')
+
+/** Straight out of codemirror.js */
+export var ios = /AppleWebKit/.test(navigator.userAgent) && /Mobile\/\w+/.test(navigator.userAgent);
+export var mac = ios || /Mac/.test(navigator.platform);
+export var windows = /win/i.test(navigator.platform);
+/** Nice display name for the mod by user platform */
+export var modName = mac ? '⌘' : 'Ctrl';
+let mod = mac ? 'Cmd' : 'Ctrl';
+
+// The key is like sublime -> default -> basic
+let keyMap = (CodeMirror as any).keyMap;
+let basicMap = keyMap.basic;
+let defaultMap = keyMap.default;
+let sublimeMap = keyMap.sublime;
+
+/** Want to use to to copy url */
+delete sublimeMap[`${mod}-L`];
+
 interface Props {
   onFocusChange?: (focused: boolean) => any;
   readOnly?: boolean | "nocursor";

@@ -38,10 +38,14 @@ namespace CodeOutputStyles {
 /**
  * Renders the `jsx` string to `js` string and then sets it as its innerHTML
  */
-export class CodeOutput extends React.PureComponent<{ hasCode: boolean, output: string }, {}>{
+export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode: boolean, output: string }, {}>{
   render() {
     const compiled = this.props.output;
     console.log({ compiled })
+
+    if (this.props.pending) {
+      return <div className={CodeOutputStyles.helpfulClass}>Analyzing 🌹</div>;
+    }
 
     if (!this.props.hasCode) {
       return <div className={CodeOutputStyles.helpfulClass}>Write some code to kick off 🌹</div>;

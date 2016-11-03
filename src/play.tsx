@@ -25,7 +25,7 @@ export class HeaderSmall extends React.Component<{}, {}> {
     return (
       <div className={style(csx.padding(24), { color: 'white', background: 'black' })}>
         <div className={style(csx.content, csx.horizontal, csx.center, csx.horizontallySpaced(10))}>
-          <h3 className={style(csx.margin(0), { whiteSpace: 'nowrap', transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 1 : 0.7 })}># TypeStyle</h3>
+          <h3 className={style(csx.margin(0), { whiteSpace: 'nowrap' })}># TypeStyle</h3>
           <a
             className={style({ textDecoration: 'none', color: 'green', fontSize: '24px', '&:hover': { textDecoration: 'underline' } })}
             href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
@@ -33,6 +33,7 @@ export class HeaderSmall extends React.Component<{}, {}> {
             🌹
         </a>
           <div className={style(csx.flex)} />
+          <div>Powered by 🌟s</div>
           <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
         </div>
       </div>
@@ -61,7 +62,7 @@ export class Demo extends React.Component<{}, {}> {
       <cp.SmallVerticalSpace />
       {/** output */}
       <cp.Flex className={style({ backgroundColor: 'white',transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 0.7 : 1 }, csx.layerParent)}>
-        <CodeOutput hasCode={demoState.hasCode} output={demoState.output} />
+        <CodeOutput pending={demoState.pendingUpdates} hasCode={demoState.hasCode} output={demoState.output} />
       </cp.Flex>
     </cp.FlexHorizontal>
   }
