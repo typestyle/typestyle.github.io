@@ -16,7 +16,8 @@ import { observer } from 'mobx-react';
 import { debounce } from './utils';
 import * as ts from 'byots';
 import * as ps from './play/projectService';
-import {demoState} from './play/playState';
+import { demoState } from './play/playState';
+import { CodeOutput } from './play/output/codeOutput';
 
 /**
  * Provides a nice demo / test component 
@@ -38,7 +39,7 @@ export class Demo extends React.Component<{}, {}> {
       <cp.SmallVerticalSpace/>
       {/** output */}
       <cp.Flex className={style({ backgroundColor: 'white' }, csx.layerParent)}>
-        {demoState.output}
+        <CodeOutput output={demoState.output}/>
       </cp.Flex>
     </cp.FlexHorizontal>
   }
