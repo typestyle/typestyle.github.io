@@ -2,7 +2,7 @@ import * as ts from 'byots';
 import * as lsh from './languageServiceHost';
 import * as fuzzaldrin from 'fuzzaldrin';
 import * as utils from '../utils';
-import {resolve} from '../utils';
+import { resolve } from '../utils';
 
 const languageServiceHost = new lsh.LanguageServiceHost('', {
   allowNonTsExtensions: true,
@@ -39,12 +39,46 @@ export function getPositionOfLineAndCharacter(filePath: string, line: number, ch
 //////////////////////
 addFile('lib.es6.d.ts', require('!raw!typescript/lib/lib.es6.d.ts'));
 
+/** Utilityexport.d.ts file to a namespace */
+function wrapExternalModuleInNamespace(config: { content: string, namespace: string }): string {
+  return `declare namespace ${config.namespace} { 
+    ${config.content.split('export declare').join('export')}
+  }`;
+}
+
 /** Note : for node_modules typescript calls `fs.existsSync` so lets *patch* it */
 const fs = require('fs');
 fs.existsSync = function() {
   return true;
 }
+
+/** React */
 addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts'));
+
+/** Typestyle namespace */
+const typestyleIndex: string = require('!raw!typestyle/src/index.d.ts');
+addFile('node_modules/typestyle/index.d.ts', wrapExternalModuleInNamespace({
+  content: typestyleIndex,
+  namespace: 'typestyle'
+}));
+
+/** Typestyle globals */
+addFile('css.d.ts', require('!raw!typestyle/src/css.d.ts'));
+
+/** TypeStyle named imports */
+addFile('globals.d.ts', `
+  /** The typestyle key functions */
+  ${typestyleIndex
+    .split(/\r\n?|\n/)
+    .filter(line => [
+      'cssRaw',
+      'style',
+      'cssRule',
+      'keyframes',
+      'classes',
+    ].some(namedImport => line.includes(namedImport)))
+    .map(line => line.replace('export declare', 'declare'))}
+`);
 
 /**
  * 

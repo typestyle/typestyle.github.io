@@ -39,7 +39,7 @@ export class Demo extends React.Component<{}, {}> {
       <cp.SmallVerticalSpace/>
       {/** output */}
       <cp.Flex className={style({ backgroundColor: 'white' }, csx.layerParent)}>
-        <CodeOutput code={demoState.code} output={demoState.output}/>
+        <CodeOutput hasCode={demoState.hasCode} output={demoState.output}/>
       </cp.Flex>
     </cp.FlexHorizontal>
   }

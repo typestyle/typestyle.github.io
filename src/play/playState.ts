@@ -24,6 +24,9 @@ class DemoState {
   @action onCodeEdit = (codeEdit: CodeEdit) => {
     ps.editFile(this.mainCodeFilePath, codeEdit);
   }
+  @computed get hasCode() {
+    return !!this.code.trim()
+  }
 
   @observable output = '';
   @action recalculateOutput = debounce(() => { 
