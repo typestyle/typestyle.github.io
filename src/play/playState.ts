@@ -20,6 +20,7 @@ class DemoState {
   @action setCode = (code: string) => {
     this.code = code;
     this.recalculateOutput();
+    this.pendingUpdates = true;
   }
   @action onCodeEdit = (codeEdit: CodeEdit) => {
     ps.editFile(this.mainCodeFilePath, codeEdit);
@@ -29,9 +30,11 @@ class DemoState {
   }
 
   @observable output = '';
+  @observable pendingUpdates = false;
   @action recalculateOutput = debounce(() => { 
     this.output = ps.getRawJsOutput(this.mainCodeFilePath);
     this._currentErrors = ps.getCodeErrors(this.mainCodeFilePath);
+    this.pendingUpdates = false;
   }, 1000);
 
   @observable private _currentErrors: CodeError[] = []
