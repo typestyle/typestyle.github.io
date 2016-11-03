@@ -78,6 +78,18 @@ addFile('globals.d.ts', `
       'classes',
     ].some(namedImport => line.includes(namedImport)))
     .map(line => line.replace('export declare', 'declare'))}
+
+  /** csx namespace */
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/box.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/display.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/flex.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/font.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/gradient.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/layer.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/normalize.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/page.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/scroll.d.ts'), namespace: 'csx' })}
 `);
 
 /**
