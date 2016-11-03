@@ -3,9 +3,17 @@ import 'babel-polyfill';
 
 import { setupPage, normalize } from 'typestyle/csx';
 import * as csx from 'typestyle/csx';
-import { style } from 'typestyle';
+import { style, cssRule } from 'typestyle';
 normalize();
 setupPage('#root');
+
+/**
+ * Clear default margins from all things 
+ * I wouldn't do this in a production site. But doing it to make teaching easier
+ */
+cssRule('h1,h2,h3,h4,h5,h6,h7,h8,p', {
+  margin: '0px'
+});
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -29,8 +37,8 @@ export class HeaderSmall extends React.Component<{}, {}> {
             className={style({ whiteSpace: 'nowrap', textDecoration: 'none', color: 'white', '&:hover': { textDecoration: 'underline' } })}
             href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
             target="_blank">
-            <h2 className={style(csx.margin(0))}># TypeStyle 🌹</h2> 
-        </a>
+            <h2 className={style(csx.margin(0))}># TypeStyle 🌹</h2>
+          </a>
           <div className={style(csx.flex)} />
           <div>Powered by 🌟s</div>
           <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -60,7 +68,7 @@ export class Demo extends React.Component<{}, {}> {
       </cp.Flex>
       <cp.SmallVerticalSpace />
       {/** output */}
-      <cp.Flex className={style({ backgroundColor: 'white',transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 0.7 : 1 }, csx.layerParent)}>
+      <cp.Flex className={style({ backgroundColor: 'white', transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 0.7 : 1 }, csx.layerParent)}>
         <CodeOutput pending={demoState.pendingUpdates} hasCode={demoState.hasCode} output={demoState.output} />
       </cp.Flex>
     </cp.FlexHorizontal>

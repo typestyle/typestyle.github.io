@@ -32,7 +32,7 @@ namespace CodeOutputStyles {
 
   export const outputClass = typestyle.style(base);
   export const errorClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: 'red', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
-  export const helpfulClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
+  export const helpfulClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px', textAlign: 'center' });
 }
 
 /**
@@ -48,7 +48,12 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
     }
 
     if (!this.props.hasCode) {
-      return <div className={CodeOutputStyles.helpfulClass}>Write some code to kick off 🌹</div>;
+      return <div className={CodeOutputStyles.helpfulClass}>
+        Write some code to kick off 🌹
+        <br />
+        <br />
+        (TIP: You can share to url to share code) 
+        </div>;
     }
 
     if (!compiled.replace('"use strict";', '').trim()) {
