@@ -33,3 +33,11 @@ interface Completion {
         template: string;
     };
 }
+
+interface CodeError {
+    filePath: string;
+    from: EditorPosition;
+    to: EditorPosition;
+    message: string;
+    preview: string;
+}

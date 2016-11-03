@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom";
 import * as csx from "typestyle/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
+import * as utils from '../utils';
 
 
 // CSS
@@ -114,6 +115,7 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 
 import autocomplete = require('./addons/autocomplete/autocomplete');
+import linter = require('./addons/linter');
 
 interface Props {
   onFocusChange?: (focused: boolean) => any;
@@ -207,6 +209,11 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
     this.codeMirror = CodeMirror.fromTextArea(textareaNode as HTMLTextAreaElement, options);
     this.codeMirror.on('focus', this.focusChanged.bind(this, true));
     this.codeMirror.on('blur', this.focusChanged.bind(this, false));
+
+    // lint
+    linter.setupOptions(options, this.props.filePath);
+    // also lint on errors changing
+    this.codeMirror.on('change', utils.debounce(()=> this.codeMirror && (this.codeMirror as any).performLint(),2000));
 
     // Make hint / autocomplete more aggresive
     autocomplete.setupCodeMirror(this.codeMirror);

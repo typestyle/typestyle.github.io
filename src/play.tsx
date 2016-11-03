@@ -16,39 +16,7 @@ import { observer } from 'mobx-react';
 import { debounce } from './utils';
 import * as ts from 'byots';
 import * as ps from './play/projectService';
-
-class DemoState {
-  /**
-   * This is the file name we use for the user file
-   */
-  readonly mainCodeFilePath = 'userfile.tsx';
-
-  @observable code: string;
-  constructor() {
-    this.reset();
-  }
-  @action reset = () => {
-    this.code = '';
-    ps.addFile(this.mainCodeFilePath, '');
-  }
-  @action setCode = (code: string) => {
-    this.code = code;
-    this.recalculateOutput();
-  }
-  @action onCodeEdit = (codeEdit: CodeEdit) => {
-    ps.editFile(this.mainCodeFilePath, codeEdit);
-  }
-
-  @observable output = '';
-  @action recalculateOutput = debounce(() => { 
-    this.output = ps.getRawJsOutput(this.mainCodeFilePath);
-  }, 1000);
-}
-
-/**
- * Our singleton state
- */
-const demoState = new DemoState();
+import {demoState} from './play/playState';
 
 /**
  * Provides a nice demo / test component 
