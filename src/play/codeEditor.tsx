@@ -8,7 +8,9 @@ import * as ts from 'byots';
 import * as utils from '../utils';
 import * as ps from './projectService';
 import escape = require("escape-html");
-import {toHtml} from '../components/markdown';
+import { toHtml } from '../components/markdown';
+
+const headerHeight = '78px';
 
 // CSS
 cssRaw(require('codemirror/lib/codemirror.css'));
@@ -18,12 +20,12 @@ cssRaw(require('codemirror/addon/fold/foldgutter.css'));
 cssRaw(`
 /* Make code mirror flex boxy */
 .CodeMirror {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-.CodeMirror-scroll {
-    flex: 1;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    height: 100%;
 }
 
 /** Bigger, better font */

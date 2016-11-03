@@ -29,7 +29,7 @@ export class Demo extends React.Component<{}, {}> {
 
     return <cp.FlexHorizontal className={style({ backgroundColor: '#343436' })}>
       {/** code */}
-      <cp.Flex>
+      <cp.Flex style={{maxWidth: '50%', position: 'relative'}}>
         <CodeEditor
           filePath={demoState.mainCodeFilePath}
           value={demoState.code}
