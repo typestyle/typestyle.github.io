@@ -12,7 +12,6 @@ cssRaw(require('./lint.css'));
 /** Enable linter for this code mirror */
 export function setupOptions(options: any, filePath: string) {
   options.lint = new Linter(filePath).lint;
-  options.gutters.push("CodeMirror-lint-markers");
 }
 
 interface LintError {

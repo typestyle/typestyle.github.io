@@ -28,12 +28,12 @@ class DemoState {
   @observable output = '';
   @action recalculateOutput = debounce(() => { 
     this.output = ps.getRawJsOutput(this.mainCodeFilePath);
-    this._currentErrors = ps.getDiagnostics();
+    this._currentErrors = ps.getCodeErrors(this.mainCodeFilePath);
   }, 1000);
 
-  @observable private _currentErrors = []
+  @observable private _currentErrors: CodeError[] = []
   @computed get currentErrors() {
-    return this._currentErrors;
+    return Array.from(this._currentErrors);
   }
 }
 

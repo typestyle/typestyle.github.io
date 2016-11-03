@@ -168,7 +168,7 @@ export function getRawJsOutput(filePath: string): string {
   return jsFile.text;
 }
 
-export function getDiagnostics() {
+function getDiagnostics() {
   const program = languageService.getProgram();
 
   const allDiagnostics = program.getGlobalDiagnostics()
@@ -176,6 +176,43 @@ export function getDiagnostics() {
     .concat(program.getSyntacticDiagnostics());
 
   return ts.sortAndDeduplicateDiagnostics(allDiagnostics);
+}
+
+function getDiagnosticsByFilePath(filePath: string) {
+  const program = languageService.getProgram();
+  const sourceFile = program.getSourceFile(filePath);
+
+  const allDiagnostics = program.getSemanticDiagnostics(sourceFile)
+    .concat(program.getSyntacticDiagnostics(sourceFile));
+
+  return ts.sortAndDeduplicateDiagnostics(allDiagnostics);
+}
+
+function diagnosticToCodeError(diagnostic: ts.Diagnostic): CodeError {
+
+    let preview = '';
+    let filePath = '';
+    let startPosition = { line: 0, character: 0 };
+    let endPosition = { line: 0, character: 0 };
+
+    if (diagnostic.file) {
+        filePath = diagnostic.file.fileName;
+        startPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
+        endPosition = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start + diagnostic.length);
+        preview = diagnostic.file.text.substr(diagnostic.start, diagnostic.length)
+    }
+
+    return {
+        filePath,
+        from: { line: startPosition.line, ch: startPosition.character },
+        to: { line: endPosition.line, ch: endPosition.character },
+        message: ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n'),
+        preview,
+    };
+}
+
+export function getCodeErrors(filePath: string) {
+  return getDiagnosticsByFilePath(filePath).map(diagnosticToCodeError);
 }
 
 /**
