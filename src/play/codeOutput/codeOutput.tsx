@@ -30,9 +30,9 @@ namespace CodeOutputStyles {
       fontSize: '16px'
     });
 
-  export const outputClass = typestyle.style(base, { border: '1px solid black' });
-  export const errorClass = typestyle.style(base, csx.padding(10), { color: 'red', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
-  export const helpfulClass = typestyle.style(base, csx.padding(10), { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
+  export const outputClass = typestyle.style(base);
+  export const errorClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: 'red', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
+  export const helpfulClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
 }
 
 /**
