@@ -57,7 +57,9 @@ class Linter {
 
         var msg = document.createElement("div");
 
-        msg.innerHTML = `<div style="font-size: 0.7rem; padding: 3px; background-color: black;">
+        msg.style.display = 'inline-block';
+
+        msg.innerHTML = `<div style="font-size: 12px; padding: 3px; background-color: black;">
                     🐛 ${err.message}
                 </div>`;
 

@@ -45,3 +45,8 @@
 .CodeMirror-lint-mark-error {
     background-image: url(/assets/error.svg);
 }
+
+/** Don't let the line widget break our flexbox */
+.CodeMirror-linewidget {
+  width: 100% !important;
+}
