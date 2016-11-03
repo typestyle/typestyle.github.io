@@ -39,6 +39,13 @@ export function getPositionOfLineAndCharacter(filePath: string, line: number, ch
 //////////////////////
 addFile('lib.es6.d.ts', require('!raw!typescript/lib/lib.es6.d.ts'));
 
+/** Note : for node_modules typescript calls `fs.existsSync` so lets *patch* it */
+const fs = require('fs');
+fs.existsSync = function() {
+  return true;
+}
+addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts'));
+
 /**
  * 
  * 
