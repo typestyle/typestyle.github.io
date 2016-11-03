@@ -1,6 +1,6 @@
 import { cssRaw } from 'typestyle';
 import CM = require('codemirror');
-import { demoState } from '../playState';
+import { demoState } from '../../playState';
 let CodeMirror = CM;
 
 // Docs https://codemirror.net/doc/manual.html#addon_lint

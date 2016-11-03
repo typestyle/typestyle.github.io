@@ -1,4 +1,4 @@
-import { createMap } from '../../../utils';
+import { createMap } from '../../../../utils';
 import { match, filter as fuzzyFilter } from "fuzzaldrin";
 import * as CodeMirror from 'codemirror';
 

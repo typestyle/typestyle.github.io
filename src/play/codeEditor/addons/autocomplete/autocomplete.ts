@@ -1,11 +1,11 @@
-import * as ps from '../../projectService';
+import * as ps from '../../../projectService';
 import * as templates from './templates';
 import CodeMirror = require('codemirror');
 require('codemirror/addon/hint/show-hint');
 require('codemirror/addon/hint/javascript-hint');
 
 import { ExtendedCodeMirrorHint, render, isCompletionActive } from "./autocompleteShared";
-import { debounce, createMap, throttle } from '../../../utils';
+import { debounce, createMap, throttle } from '../../../../utils';
 import { cssRaw } from 'typestyle';
 
 cssRaw(require('./autocomplete.css'));

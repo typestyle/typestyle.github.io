@@ -5,10 +5,10 @@ import * as ReactDOM from "react-dom";
 import * as csx from "typestyle/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
-import * as utils from '../utils';
-import * as ps from './projectService';
+import * as utils from '../../utils';
+import * as ps from '../projectService';
 import escape = require("escape-html");
-import { toHtml } from '../components/markdown';
+import { toHtml } from '../../components/markdown';
 
 const headerHeight = '78px';
 

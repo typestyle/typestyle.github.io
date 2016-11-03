@@ -21,7 +21,7 @@
 
     background: white;
     font-size: 90%;
-    font-family: consolas, menlo, monospace;
+    
 
     max-height: 20em;
     overflow-y: auto;
@@ -34,6 +34,12 @@
     /** display: table; */
     background: #272822;
     border: 1px solid #333;
+
+    /** Better font */
+    font-family: consolas, menlo, monospace;
+
+    /** Don't want scroll bars showing up on page */
+    max-height: 60%;
 }
 
 .CodeMirror-hint {
