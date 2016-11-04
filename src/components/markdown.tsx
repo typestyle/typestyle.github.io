@@ -61,6 +61,7 @@ namespace MarkDownStyles {
     margin: 0px;
     margin-bottom: 20px !important;
     line-height: ${spacing.lineHeight};
+    padding-left: 27px;
 }
 .${rootClass} ul>* {
   margin-bottom: 10px !important;

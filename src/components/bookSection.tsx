@@ -62,7 +62,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   return <gls.ContentVerticalMargined margin={15}>
     <txt.H2 id={'toc'}>Table of Contents</txt.H2>
-    <gls.ContentVerticalMargined margin={10} style={{ paddingLeft: '10px' }}>
+    <gls.ContentVerticalMargined margin={10} style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
       {toc.map((t, index) => {
         return <a key={index} className={classes(
           BookSectionStyles.anchor,
