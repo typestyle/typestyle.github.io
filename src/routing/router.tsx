@@ -19,6 +19,11 @@ const core: Doc = {
   link: 'core',
   content: require('../docs/core.md')
 };
+const raw: Doc = {
+  title: "Raw CSS Support",
+  link: 'raw',
+  content: require('../docs/raw.md')
+};
 const css: Doc = {
   title: "Basic CSS Tips",
   link: 'css',
@@ -42,6 +47,7 @@ const flex: Doc = {
 const toc: cp.TOCItem[] = [
   { display: 'About', link: '' },
   { display: 'Core API', link: 'core' },
+  { display: 'Raw CSS Support', link: 'raw' },
   { display: 'Basic CSS Tips', link: 'css' },
   { display: 'Page Setup (csx)', link: 'page' },
   { display: 'Flexbox (csx)', link: 'flex' },
@@ -62,6 +68,7 @@ export function renderRoutes() {
     <Router history={hashHistory}>
       {renderMarkdownRoute(intro)}
       {renderMarkdownRoute(core)}
+      {renderMarkdownRoute(raw)}
       {renderMarkdownRoute(css)}
       {renderMarkdownRoute(page)}
       {renderMarkdownRoute(flex)}            
