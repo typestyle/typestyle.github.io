@@ -10,11 +10,11 @@ We will look at `flex`ible children and `content` children. These concepts exist
 
 Consider the following layout:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/flex-small.png)
+![](/images/book/flex/flex-small.png)
 
 Here the content *takes up all the available space offered by the parent*. If the parent offers more space, the child takes it gladly.
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/flex-large.png)
+![](/images/book/flex/flex-large.png)
 
 The space taken by the child (content) is what is available to its children. No more, no less.
 
@@ -25,11 +25,11 @@ Such a child is called *flex* (`csx.flex`).
 
 In the previous example the child *flexed* into the parent. The only other concept we need for a child is that of *content*. **A *content* child determines its size based on the size of its content**. That is all the space it takes up in the parent. This is shown below where if the parent is too big the rest of the space is unused:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-unused.png)
+![](/images/book/flex/content-unused.png)
 
 If the parent is too small the content will overflow:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/content-overflow.png)
+![](/images/book/flex/content-overflow.png)
 
 > If you want the parent flex container to scroll for content just mixin `csx.scroll`.
 
@@ -47,11 +47,11 @@ So there are really two roots:
 
 Here is an example of a `csx.horizontal` layout with `content` children.
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal.png)
+![](/images/book/flex/horizontal.png)
 
 Here is an example of a `csx.vertical` layout with `content` children.
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical.png)
+![](/images/book/flex/vertical.png)
 
 # Examples
 We've seen four types of containers : `csx.vertical`, `csx.horizontal`, `csx.flex`, `csx.content`. The next step is to practice with real world examples
@@ -59,11 +59,11 @@ We've seen four types of containers : `csx.vertical`, `csx.horizontal`, `csx.fle
 ## Vertical Example
 Consider the following layout:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical-small.png)
+![](/images/book/flex/vertical-small.png)
 
 Up front we know that the root is `csx.vertical`. Assume that we want the `body` section to *flex* i.e. as the root becomes larger it expands to consume the remaining space, while `header` and `footer` remain sized based on their content:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical-large.png)
+![](/images/book/flex/vertical-large.png)
 
 In our lingo the `root` here is `csx.vertical` that has three children:
 
@@ -73,22 +73,22 @@ In our lingo the `root` here is `csx.vertical` that has three children:
 
 Visually: 
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/vertical-solution.png)
+![](/images/book/flex/vertical-solution.png)
 
 > As mentioned before the children are going to automatically flex in the cross dimension (in this case horizontal).
 
 ## Multiple Flex Children
 The `flex` children actually share the *remainder* of the space left in the `root` after all the `content` children take up the space they need. This is shown below:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-small.png)
+![](/images/book/flex/multiple-flex-small.png)
 
 If the parent becomes bigger the `flex` children share all the space that remains after the `content` children take their share:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-large.png)
+![](/images/book/flex/multiple-flex-large.png)
 
 Actually a flex child can decide a *flex scaling factor* (`csx.flex1`,`csx.flex2` ... `csx.flex12`) to divide up the remaining space. E.g. a 1:2 ratio can easily be achieved:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/multiple-flex-scaling.png)
+![](/images/book/flex/multiple-flex-scaling.png)
 
 The remainder space is divided into `3` (`1 + 2`) equal parts with `1` part going to a `A` and `2` parts going to `B`.
 
@@ -96,11 +96,11 @@ The remainder space is divided into `3` (`1 + 2`) equal parts with `1` part goin
 
 Consider the layout:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-small.png)
+![](/images/book/flex/horizontal-small.png)
 
 Where we want to `body` to grow:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-large.png)
+![](/images/book/flex/horizontal-large.png)
 
 We can see intutively that it is a *horizontal* container with *content* sidebars and *flex* body.  
 
@@ -111,7 +111,7 @@ We can see intutively that it is a *horizontal* container with *content* sidebar
 
 This example should have been fairly obvious and was designed to give you a hands on experience 🌹. Visually:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/flex/horizontal-solution.png)
+![](/images/book/flex/horizontal-solution.png)
 
 ## Arbitrary Layout
 Consider this layout:
