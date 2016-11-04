@@ -38,7 +38,10 @@ class Linter {
   lint = (doc: string, options: any, cm: CodeMirror.Editor) => {
     let rawErrors = demoState.currentErrors;
     let errors: LintError[] = rawErrors.map(codeErrorToLintError);
-    this.updateInlineWidgets(cm, rawErrors); // If you want to enable inline error linting
+    this.updateInlineWidgets(cm,
+      /** only first */
+      rawErrors.filter((x, i) => !i)
+    ); // If you want to enable inline error linting
     return errors;
   }
 
