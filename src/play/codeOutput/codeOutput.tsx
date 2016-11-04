@@ -63,7 +63,7 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
         Write some code to kick off 🌹
         <br />
         <br />
-        (TIP: You can share to url to share code) 
+        (TIP: You can share the url to share code) 
         </div>;
     }
 
