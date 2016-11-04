@@ -44,7 +44,9 @@ export function renderRoutes() {
         <cp.PageSection title={doc.title} link={doc.link}>
           <cp.MarkDown markdown={doc.content} />
           <hr />
-          <cp.MarkDown markdown={toc} />
+          <div onClick={()=>window.scrollTo(0,0)}>
+            <cp.MarkDown markdown={toc} />
+          </div>
         </cp.PageSection>
       } />
   }
