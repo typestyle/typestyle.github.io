@@ -1,6 +1,6 @@
 At the heart of typestyle is the simple `style` function. It is the function you use to interact with CSS.
 
-### `style`
+## `style`
 The signature of this function is super simple: 
 
 ```ts
@@ -42,40 +42,14 @@ const MyText =
 
 The class name will look something like `f14svl5e`, this is basically a *hash* of the style objects passed to `style`. In the background `style` has gone ahead and also inserted CSS like `.f14svl5e { color: red }` into the document so using this class name with *any* framework has the desired effect of styling the element.
 
-With this simple function the following problems with maintaining CSS are solved: 
-
-* No global variables (with raw CSS it all gets thrown into a global namespace. This results in hard to debug / maintain conflicts)
-* Built in dependency system (Same as for the rest of your JS. e.g. NPM)
-* Dead code elimination (e.g. on `noUnusedLocals` in TypeScript)
-* Minification (Minify JS with existing tools)
-* Shared constants and reusable styles (Using variables and objects)
-* Extensible (Just use JavaScript with all its power)
-* Your components are still free to have class names that you can give to external people to further style your stuff (better still take `clasName` as a property and let them use *typestyle* too!).
-* No style bloat (will magically merges duplicate styles as the same style object structure gives the same className which is only written once!)
-* Develop components alongside the style (No more hunting CSS files for estranged `ul > li > a`)
-* Create isomorphic applications (easy export to a CSS file is supported)
-* All the power of CSS without compromise e.g. pseudo states (`{ '&:hover': { ... } }`)
-* Better than CSS management of media queries (`{ '@media (min-width: 500px)': { ... } }`)
-* Overload CSS properties using arrays (`{ backgroundColor: ['red', 'linear-gradient(to right, red 0%, blue 100%)'] }`)
-* Integrates with any third-party system
-* Extremely small and powerful API that works with any ecosystem
-
-> Note: Many of these are truly the same advantages FreeStyle. Now for the differentiators.
-
-* Provides great TypeScript developer autocomplete experience.
-* No custom AST transform or module loader support needed.
-* Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
-* Zero config. Just use.
-* Super small core size (~1k).
-
-### CSX
+## CSX
 We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
 
-### Concept: Mixin
+## Concept: Mixin
 
 > A mixin is an object that contains properties for reuse
 
-The `style` functions can take multiple objects. This makes it easy to reuse simple style objects e.g. 
+The `style` function can take multiple objects. This makes it easy to reuse simple style objects e.g. 
 
 ```ts
 const redMaker = {color:'red'};
@@ -106,3 +80,21 @@ const Demo = () =>
     <div>Three</div>
   </div>;
 ```
+
+## Concept: Interpolation
+You can use `&` in any key for the object passed to `style` and its get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
+
+```ts
+/** Import */
+import {style} from "typestyle";
+
+/** convert a style object to a CSS class name */
+const className = style({
+  color: 'blue',
+  '&:hover': {
+    color: 'red'
+  }
+});
+```
+
+With `style` out of the way lets jump to come core CSS tips.

@@ -20,7 +20,7 @@ const core: Doc = {
   content: require('../docs/core.md')
 };
 const css: Doc = {
-  title: "Basic tips",
+  title: "Basic CSS Tips",
   link: 'css',
   content: require('../docs/css.md')
 };
@@ -42,7 +42,7 @@ const flex: Doc = {
 const toc: cp.TOCItem[] = [
   { display: 'About', link: '' },
   { display: 'Core API', link: 'core' },
-  { display: 'CSS Basics', link: 'css' },
+  { display: 'Basic CSS Tips', link: 'css' },
   { display: 'Page Setup (csx)', link: 'page' },
   { display: 'Flexbox (csx)', link: 'flex' },
   { display: 'Colors (csx)', link: 'colors' },
