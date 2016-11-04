@@ -6,7 +6,7 @@ export const colors = {
   white: 'white',
 
   header: 'black',
-  headerHover: 'rgb(0, 207, 233)',
+  headerHover: '#444',
 
   text: '#555'
 }

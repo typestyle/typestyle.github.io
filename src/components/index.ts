@@ -1,6 +1,5 @@
-export * from './button';
 export * from './gls';
-export * from './page';
+export * from './bookSection';
 export * from './txt';
 export * from './markdown';
 export * from './styles';

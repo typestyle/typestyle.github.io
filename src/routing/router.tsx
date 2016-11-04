@@ -34,20 +34,22 @@ const flexbox: Doc = {
   link: 'flex',
   content: require('../docs/flex.md')
 };
-const toc: string = require('../docs/toc.md');
+const toc: cp.TOCItem[] = [
+  { display: 'About', link: '' },
+  { display: 'CSS Basics', link: 'css' },
+  { display: 'Page Setup (csx)', link: 'page' },
+  { display: 'Flexbox (csx)', link: 'flex' },
+  { display: 'Colors (csx)', link: 'colors' },
+]
 
 export function renderRoutes() {
   const renderMarkdownRoute = (doc: Doc) => {
     return <Route
       path={'/' + doc.link}
       component={() =>
-        <cp.PageSection title={doc.title} link={doc.link}>
+        <cp.BookSection title={doc.title} link={doc.link} toc={toc}>
           <cp.MarkDown markdown={doc.content} />
-          <hr />
-          <div onClick={()=>window.scrollTo(0,0)}>
-            <cp.MarkDown markdown={toc} />
-          </div>
-        </cp.PageSection>
+        </cp.BookSection>
       } />
   }
   const routes = (
