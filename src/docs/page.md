@@ -8,17 +8,17 @@ You really want the root of your page to be something that takes up all the avai
 
 ```css
 html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
 }
 ```
 
 ### Box Model
 You really want the `width`/`height` of an element to represent the `border+padding+content`. This is shown below:
 
-![](https://raw.githubusercontent.com/typestyle/typestyle.github.io/source/images/book/borderbox.png)
+![](/images/book/borderbox.png)
 
 It sounds something basic but the first HTML spec got wrong. Its easy to fix though:
 

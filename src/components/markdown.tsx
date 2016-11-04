@@ -3,6 +3,35 @@ import * as marked from "marked";
 import { style, cssRaw, classes } from 'typestyle';
 import * as csx from 'typestyle/csx';
 import { colors, spacing } from './styles';
+import * as escape from 'escape-html';
+
+/** 
+ * Using codemirror for syntax highlighting
+ **/
+import * as CodeMirror from 'codemirror';
+cssRaw(require('codemirror/lib/codemirror.css'));
+cssRaw(require('codemirror/theme/monokai.css'));
+require('codemirror/addon/runmode/runmode');
+/** JSX */
+require('codemirror/mode/jsx/jsx');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/xml/xml');
+/** CSS */
+require('codemirror/mode/css/css');
+/** HTML */
+require('codemirror/mode/htmlmixed/htmlmixed');
+/** Our function */
+function highlightCodeWithMode(args: { code: string, mode: string }) {
+  // console.log({ code }); // DEBUG
+  const collection = [];
+  (CodeMirror as any).runMode(args.code, args.mode,
+    (text, category) => {
+      text = escape(text);
+      collection.push(category ? `<span class="cm-${category}">${text}</span>` : text)
+    }
+  );
+  return `<div class="cm-s-default" style="display: inline-block">${collection.join('')}</div>`
+}
 
 /**
  * CSS customizations
@@ -127,9 +156,24 @@ export function toHtml(markdown: string) {
     const output = out += ">" + text + "</a>";
     return output;
   };
-  
+
   return (
-    marked(markdown, { gfm: true, renderer: renderer })
+    marked(markdown, {
+      gfm: true,
+      renderer: renderer,
+      highlight: (code, lang) => {
+        if (lang === 'ts' || lang === 'js' || lang === 'typescript' || lang === 'javascript') {
+          return highlightCodeWithMode({ code, mode: 'jsx' })
+        }
+        if (lang === 'html') {
+          return highlightCodeWithMode({ code, mode: 'text/html' })
+        }
+        if (lang === 'css') {
+          return highlightCodeWithMode({ code, mode: 'css' })
+        }
+        return code;
+      }
+    })
       // don't want a trailing newline
       .trim()
   );
