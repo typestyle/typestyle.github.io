@@ -19,6 +19,11 @@ const css: Doc = {
   link: 'css',
   content: require('../docs/css.md')
 };
+const colors: Doc = {
+  title: "Colors",
+  link: 'colors',
+  content: require('../docs/colors.md')
+};
 const page: Doc = {
   title: "Page Setup",
   link: 'page',
@@ -46,6 +51,7 @@ export function renderRoutes() {
   const routes = (
     <Router history={hashHistory}>
       {renderMarkdownRoute(intro)}
+      {renderMarkdownRoute(colors)}
       {renderMarkdownRoute(css)}
       {renderMarkdownRoute(page)}
       {renderMarkdownRoute(flexbox)}

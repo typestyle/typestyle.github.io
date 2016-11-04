@@ -1,3 +1,4 @@
 .alm
+.vscode
 node_modules
 public/build
