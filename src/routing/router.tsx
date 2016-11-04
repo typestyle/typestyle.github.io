@@ -14,6 +14,11 @@ const intro: Doc = {
   link: '',
   content: require('../docs/intro.md')
 };
+const core: Doc = {
+  title: "Core API",
+  link: 'core',
+  content: require('../docs/core.md')
+};
 const css: Doc = {
   title: "Basic tips",
   link: 'css',
@@ -29,13 +34,14 @@ const page: Doc = {
   link: 'page',
   content: require('../docs/page.md')
 };
-const flexbox: Doc = {
+const flex: Doc = {
   title: "Flexbox",
   link: 'flex',
   content: require('../docs/flex.md')
 };
 const toc: cp.TOCItem[] = [
   { display: 'About', link: '' },
+  { display: 'Core API', link: 'core' },
   { display: 'CSS Basics', link: 'css' },
   { display: 'Page Setup (csx)', link: 'page' },
   { display: 'Flexbox (csx)', link: 'flex' },
@@ -55,10 +61,11 @@ export function renderRoutes() {
   const routes = (
     <Router history={hashHistory}>
       {renderMarkdownRoute(intro)}
-      {renderMarkdownRoute(colors)}
+      {renderMarkdownRoute(core)}
       {renderMarkdownRoute(css)}
       {renderMarkdownRoute(page)}
-      {renderMarkdownRoute(flexbox)}
+      {renderMarkdownRoute(flex)}            
+      {renderMarkdownRoute(colors)}
     </Router>
   );
 
