@@ -9,9 +9,28 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
+import * as csx from 'typestyle/csx';
+import { style } from 'typestyle';
+
+export const Header = () => {
+  return (
+    <div className={style(
+      csx.centerCenter,
+      csx.padding(10, 0, 35, 0),
+      {
+        backgroundColor: cp.colors.header,
+        color: 'white'
+      })}>
+      <div className={style(csx.content, csx.vertical, csx.verticallySpaced(10))}>
+        <h1># TypeStyle</h1>
+        <p>Making CSS TypeSafe</p>
+      </div>
+    </div>
+  );
+}
 
 ReactDOM.render(<cp.Content>
-  <cp.Header />
+  <Header />
   <cp.ContentVerticalMargined style={{ padding: '20px 10px 10px 10px' }}>
 
     {/** The github links */}

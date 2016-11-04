@@ -8,14 +8,7 @@ import * as gls from './gls';
 import { colors, fontSizes } from './styles';
 import * as txt from './txt';
 
-namespace HeaderStyles {
-  export const root = style(
-    csx.centerCenter,
-    csx.padding(10, 0, 35, 0),
-    {
-      backgroundColor: colors.header,
-      color: 'white'
-    });
+namespace PageStyles {
   export const anchor = style({
     color: colors.text,
     textDecoration: 'none',
@@ -26,25 +19,14 @@ namespace HeaderStyles {
   })
 }
 
-export const Header = () => {
-  return (
-    <div className={HeaderStyles.root}>
-      <div className={style(csx.content, csx.vertical, csx.verticallySpaced(10))}>
-        <h1># TypeStyle</h1>
-        <p>Making CSS TypeSafe</p>
-      </div>
-    </div>
-  );
-}
-
 type PageSectionProps = {
-  title: string, 
+  title: string,
   link: string,
   children?: React.ReactNode
 }
 export const PageSection = ({title, link, children}: PageSectionProps) => {
   return <gls.ContentVerticalMargined margin={15}>
-    <a className={HeaderStyles.anchor} title="Permalink" href={"#"+link}><txt.H2 id={link}>{title}</txt.H2></a>
+    <a className={PageStyles.anchor} title="Permalink" href={"#" + link}><txt.H2 id={link}>{title}</txt.H2></a>
     <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
       {children}
     </div>
