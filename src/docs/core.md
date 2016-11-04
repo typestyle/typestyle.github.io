@@ -97,4 +97,26 @@ const className = style({
 });
 ```
 
+or even child selectors for example a nicely spaced vertical layout: 
+
+```ts
+/** Import */
+import {style} from "typestyle";
+
+/** Share constants in TS! */
+const spacing = '5px';
+
+/** style -> className :) */
+const className = style({
+  '&>*': {
+    marginBottom: spacing,
+  },
+  '&>*:last-child': {
+    marginBottom: '0px',
+  }
+});
+```
+
+> Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csx mixin e.g. `csx.verticallySpaced(10)`. More on this function when we look at csx box functions later in the book.
+
 With `style` out of the way lets jump to come core CSS tips.
