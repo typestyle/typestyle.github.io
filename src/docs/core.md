@@ -119,4 +119,53 @@ const className = style({
 
 > Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csx mixin e.g. `csx.verticallySpaced(10)`. More on this function when we look at csx box functions later in the book.
 
-With `style` out of the way lets jump to come core CSS tips.
+## Concept: Media queries 
+
+You can use `@media` at the start of a key to indicate that you want to customize the CSS when a certain media query is met. We generate the *right* CSS for you. Example usage: 
+
+```ts
+const colorChangingClass = style({
+  backgroundColor: 'red',
+  '@media (min-width: 400px)': {
+    backgroundColor: 'pink'
+  }
+})
+```
+
+## Concept: Keyframes
+
+Keyframes in CSS must be named and defined at the root level (much like class names). Fortunately just like `style` lets you not worry about that *global namespace*, the `keyframes` function takes keyframes and generates an *animation name* that you can then use in a style. Here is a simple example: 
+
+```ts
+const colorAnimationName = typestyle.keyframes({
+  from: { color: 'red' },
+  to: { color: 'blue' }
+})
+
+const ooooClass = typestyle.style({
+  animationName: colorAnimationName,
+  animationDuration: '1s'
+});
+```
+
+## Tip: Code Organization
+How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
+
+```ts
+/** Think of it like an inline stylesheet */
+namespace MyStyles {
+  const color = 'red';
+
+  export const alwaysRedClass = style({color});
+  export const onlyRedOnHoverClass = style({'&:hover':{color});
+}
+
+/** Use e.g. with React */
+const AlwaysRed = ({text}) => <div className={MyStyles.alwaysRedClass}>{text}</div>
+const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}>{text}</div>
+```
+
+Also suffix `Class` for classes.
+
+That's it for core, Next we look at providing a more complete story for any *advanced* CSS scenario you might have.
+
