@@ -1,6 +1,7 @@
 import { cssRaw } from 'typestyle';
 import CM = require('codemirror');
 import { demoState } from '../../playState';
+import * as escape from 'escape-html';
 let CodeMirror = CM;
 
 // Docs https://codemirror.net/doc/manual.html#addon_lint
@@ -63,7 +64,7 @@ class Linter {
         msg.style.display = 'inline-block';
 
         msg.innerHTML = `<div style="font-size: 12px; padding: 3px; background-color: black;">
-                    🐛 ${err.message}
+                    🐛 ${escape(err.message)}
                 </div>`;
 
         widgets.push(editor.addLineWidget(err.from.line, msg, { coverGutter: false, noHScroll: true }));
