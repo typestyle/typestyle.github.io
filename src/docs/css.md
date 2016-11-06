@@ -27,3 +27,5 @@ Having an element as `display: inline` means that it completely ignores its heig
 ![](/images/book/inlineBlock.png)
 
 Also you cannot CSS3 transform inline elements. So use a `span` but if there is anything fancy you need the `span` to do, be sure to `inline-block` it.
+
+> TIP: `csx` has a mixin `csx.inlineBlock` for your inline desires. 
