@@ -83,14 +83,17 @@ namespace MarkDownStyles {
   padding-left: 5px;
   padding-right: 5px;
   background: #eee;
+  font-family: consolas, menlo, monospace; 
 }
 
 /** Block code */
 .${rootClass} pre>code {
   display: block;
   padding: 10px;
-  background: #eee;
+  background: #f4f4f4;
   overflow: auto;
+  font-family: consolas, menlo, monospace; 
+  border-left: 2px solid #ddd;
 }
 
 /** Blockquote */
