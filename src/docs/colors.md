@@ -1,8 +1,8 @@
 Color management in a large project is always a challenge.  With this in mind, TypeStyle comes with SASS/LESS inspired color functions to make styling simple and reusable.
+Here are some of the things you can do:
 
-### Named Colors
-> TypeStyle comes with definitions for all major named colors in CSS.  Each of these ColorHelpers can be used anywhere a a CSSColor can be used.
-
+---
+### Import and Use Named Colors
 ```typescript
   import { aliceblue } from 'typestyle/csx';
 ```
@@ -484,8 +484,8 @@ Color management in a large project is always a challenge.  With this in mind, T
     </div>
 </div>
 
-### Creation functions
-> These functions create new colors
+---
+### Create New Colors
 
 #### color(value: string): ColorHelper
 Creates a color
@@ -498,33 +498,6 @@ import { color } from 'typestyle/csx';
 var red1 = color('red');
 var red2 = color('#FF0000');
 var red3 = color('#F00');
-```
-
-#### rgb(red: number, green: number: blue: number): ColorHelper
-Creates a color from red, green, and blue values
-
-- Red, Green, and Blue are expressed as numbers between 0 and 255
-
-```typescript
-import { rgb } from 'typestyle/csx';
-
-const red = rgb(255, 0, 0);
-const green = rgb(0, 255, 0);
-const blue = rgb(0, 0, 255);
-```
-
-#### rgb(red: number, green: number: blue: number, alpha: number | string): ColorHelper
-Creates a color from red, green, blue, and alpha values
-
-- Red, Green, and Blue are expressed as numbers between 0 and 255
-- Alpha is expressed as a string (e.g. '10%') or as a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { rgba } from 'typestyle/csx';
-
-const red = rgba(255, 0, 0, 1);
-const green = rgba(0, 255, 0, '100%');
-const blue = rgba(0, 0, 255, 1);
 ```
 
 #### hsl(hue: number, saturation: number | string: lightness: number | string): ColorHelper
@@ -554,9 +527,156 @@ const color1 = hsla(250, .5, .5, .5);
 const color1 = hsla(250, '50%', '50%', '50%');
 ```
 
+#### rgb(red: number, green: number: blue: number): ColorHelper
+Creates a color from red, green, and blue values
 
-### Inspection functions
-> These functions inspect existing colors and return information about them
+- Red, Green, and Blue are expressed as numbers between 0 and 255
+
+```typescript
+import { rgb } from 'typestyle/csx';
+
+const red = rgb(255, 0, 0);
+const green = rgb(0, 255, 0);
+const blue = rgb(0, 0, 255);
+```
+
+#### rgba(red: number, green: number: blue: number, alpha: number | string): ColorHelper
+Creates a color from red, green, blue, and alpha values
+
+- Red, Green, and Blue are expressed as numbers between 0 and 255
+- Alpha is expressed as a string (e.g. '10%') or as a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { rgba } from 'typestyle/csx';
+
+const red = rgba(255, 0, 0, 1);
+const green = rgba(0, 255, 0, '100%');
+const blue = rgba(0, 0, 255, 1);
+```
+
+---
+### Create a New Colors From Other Colors
+
+#### darken(amount: number | string): ColorHelper
+Creates a darker color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.darken('10%');
+const red2 = red.darken(.1);
+```
+
+#### desaturate(amount: number | string): ColorHelper
+Creates a less saturated color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.desaturate('10%');
+const red2 = red.desaturate(.1);
+```
+
+#### fade(alpha: number | string): ColorHelper
+Creates the same color with the specified opacity/alpha
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.fade('50%');
+const red2 = red.fade(.5);
+```
+
+#### fadeIn(amount: number | string): ColorHelper
+Creates a more opaque color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.fadeIn('10%');
+const red2 = red.fadeIn(.1);
+```
+
+#### fadeOut(amount: number | string): ColorHelper
+Creates a more transparent color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.fadeOut('10%');
+const red2 = red.fadeOut(.1);
+```
+
+#### grayscale(): ColorHelper
+Creates a grayscale version of the color
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const gray = red.grayscale();
+```
+
+#### invert(): ColorHelper
+Creates the inverse of a color
+
+```typescript
+import { red, green, blue } from 'typestyle/csx';
+
+const green = red.invert();
+const red = green.invert();
+const orange = blue.invert();
+```
+
+#### lighten(amount: number | string): ColorHelper
+Creates a lighter color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.lighten('10%');
+const red2 = red.lighten(.1);
+```
+
+#### mix(color2: CSSColor, weight?: string | number): ColorHelper
+Creates a new color from an existing color and a second color
+
+- color2 can be any type that resolves to a CSSColor (string, ColorHelper, etc.)
+- weight is expressed as a string (e.g. '50%') or a number between 0 and 1 (e.g. 0.5)
+
+```typescript
+import { rgb } from 'typestyle/csx';
+
+const red = rgb(255, 0, 0);
+const blue = rgb(0, 0, 255);
+const purple = red.mix(blue, 0.5);
+```
+
+#### saturate(amount: number | string): ColorHelper
+Creates a more saturation color
+
+- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const red1 = red.saturate('10%');
+const red2 = red.saturate(.1);
+```
+
+---
+### Inspect Colors
 
 #### red(): number
 Returns the value of the red component of the color
@@ -613,126 +733,4 @@ import { hsl, rgb } from 'typestyle/csx';
 
 const value1 = hsl(120, .5, .5).opacity();
 const value2 = rgb(128, 255, 0).alpha();
-```
-
-### Derivative functions
-> These functions create a new color based off of an existing one
-
-#### mix(color2: CSSColor, weight?: string | number): ColorHelper
-Creates a new color from an existing color and a second color
-
-- color2 can be any type that resolves to a CSSColor (string, ColorHelper, etc.)
-- weight is expressed as a string (e.g. '50%') or a number between 0 and 1 (e.g. 0.5)
-
-```typescript
-import { rgb } from 'typestyle/csx';
-
-const red = rgb(255, 0, 0);
-const blue = rgb(0, 0, 255);
-const purple = red.mix(blue, 0.5);
-```
-
-#### lighten(amount: number | string): ColorHelper
-Creates a lighter color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.lighten('10%');
-const red2 = red.lighten(.1);
-```
-
-#### darken(amount: number | string): ColorHelper
-Creates a darker color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.darken('10%');
-const red2 = red.darken(.1);
-```
-
-#### saturate(amount: number | string): ColorHelper
-Creates a more saturation color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.saturate('10%');
-const red2 = red.saturate(.1);
-```
-
-#### desaturate(amount: number | string): ColorHelper
-Creates a less saturated color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.desaturate('10%');
-const red2 = red.desaturate(.1);
-```
-
-#### grayscale(): ColorHelper
-Creates a grayscale version of the color
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const gray = red.grayscale();
-```
-
-#### invert(): ColorHelper
-Creates the inverse of a color
-
-```typescript
-import { red, green, blue } from 'typestyle/csx';
-
-const green = red.invert();
-const red = green.invert();
-const orange = blue.invert();
-```
-
-
-#### fade(alpha: number | string): ColorHelper
-Creates the same color with the specified opacity/alpha
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.fade('50%');
-const red2 = red.fade(.5);
-```
-
-#### fadeIn(amount: number | string): ColorHelper
-Creates a more opaque color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.fadeIn('10%');
-const red2 = red.fadeIn(.1);
-```
-
-#### fadeOut(amount: number | string): ColorHelper
-Creates a more transparent color
-
-- amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
-
-```typescript
-import { red } from 'typestyle/csx';
-
-const red1 = red.fadeOut('10%');
-const red2 = red.fadeOut(.1);
 ```
