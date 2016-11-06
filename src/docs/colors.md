@@ -1,24 +1,488 @@
-TypeStyle comes with several color functions to make styling as simple as possible. Many of these are inspired by modern CSS Preprocessors. 
+Color management in a large project is always a challenge.  With this in mind, TypeStyle comes with SASS/LESS inspired color functions to make styling simple and reusable.
 
 ### Named Colors
 > TypeStyle comes with definitions for all major named colors in CSS.  Each of these ColorHelpers can be used anywhere a a CSSColor can be used.
 
 ```typescript
-  import { aliceblue, antiquewhite, aqua, aquamarine, azure, beige, bisque, black, blanchedalmond, blue
- , blueviolet, brown, burlywood, cadetblue, chartreuse, chocolate, coral, cornflowerblue, cornsilk
- , crimson, cyan, darkblue, darkcyan, darkgoldenrod, darkgray, darkgreen, darkgrey, darkkhaki
- , darkmagenta, darkolivegreen, darkorange, darkorchid, darkred, darksalmon, darkseagreen
- , darkslateblue, darkslategray, darkslategrey, darkturquoise, darkviolet, deeppink, deepskyblue
- , dimgray, dimgrey, dodgerblue, firebrick, floralwhite, forestgreen, fuchsia, gainsboro
- , ghostwhite, gold, goldenrod, gray, green, greenyellow, grey, honeydew, hotpink, indianred
- , indigo, ivory, khaki, lavender, lavenderblush, lawngreen, lemonchiffon, lightblue, lightcoral
- , lightcyan, lightgoldenrodyellow, lightgray, lightgreen, lightgrey, lightpink, lightsalmon
- , lightseagreen, lightskyblue, lightslategray, lightslategrey, lightsteelblue, lightyellow, lime
- , limegreen, linen, maroon, mediumaquamarine, mediumblue, mediumorchid, mediumpurple, mediumseagreen
- , mediumslateblue, mediumspringgreen, mediumturquoise, mediumvioletred, midnightblue, mintcream
- , mistyrose, moccasin, navajowhite, navy, oldlace, olive, olivedrab, orange, purple
-  , rebeccapurple, red, silver, teal, transparent, white, yellow } from 'typestyle/csx';
+  import { aliceblue } from 'typestyle/csx';
 ```
+
+<!-- todo: make this reusable -->
+<style>
+  .color-swatch {
+    display: inline-block;
+    width: 2rem;
+    height: 1.3rem;
+    border: solid thin hsla(0, 0%, 80%, 0.75);
+    border-radius: 10%;
+  }
+  .color-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .color-grid .color-item {
+    width: 11.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+</style>
+
+<div class="color-grid">
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:aliceblue"></span>
+        <span class="label">aliceblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:antiquewhite"></span>
+        <span class="label">antiquewhite</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:aqua"></span>
+        <span class="label">aqua</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:aquamarine"></span>
+        <span class="label">aquamarine</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:azure"></span>
+        <span class="label">azure</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:beige"></span>
+        <span class="label">beige</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:bisque"></span>
+        <span class="label">bisque</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:black"></span>
+        <span class="label">black</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:blanchedalmond"></span>
+        <span class="label">blanchedalmond</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:blue"></span>
+        <span class="label">blue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:blueviolet"></span>
+        <span class="label">blueviolet</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:brown"></span>
+        <span class="label">brown</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:burlywood"></span>
+        <span class="label">burlywood</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:cadetblue"></span>
+        <span class="label">cadetblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:chartreuse"></span>
+        <span class="label">chartreuse</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:chocolate"></span>
+        <span class="label">chocolate</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:coral"></span>
+        <span class="label">coral</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:cornflowerblue"></span>
+        <span class="label">cornflowerblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:cornsilk"></span>
+        <span class="label">cornsilk</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:crimson"></span>
+        <span class="label">crimson</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:cyan"></span>
+        <span class="label">cyan</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkblue"></span>
+        <span class="label">darkblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkcyan"></span>
+        <span class="label">darkcyan</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkgoldenrod"></span>
+        <span class="label">darkgoldenrod</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkgray"></span>
+        <span class="label">darkgray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkgreen"></span>
+        <span class="label">darkgreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkgrey"></span>
+        <span class="label">darkgrey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkkhaki"></span>
+        <span class="label">darkkhaki</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkmagenta"></span>
+        <span class="label">darkmagenta</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkolivegreen"></span>
+        <span class="label">darkolivegreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkorange"></span>
+        <span class="label">darkorange</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkorchid"></span>
+        <span class="label">darkorchid</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkred"></span>
+        <span class="label">darkred</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darksalmon"></span>
+        <span class="label">darksalmon</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkseagreen"></span>
+        <span class="label">darkseagreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkslateblue"></span>
+        <span class="label">darkslateblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkslategray"></span>
+        <span class="label">darkslategray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkslategrey"></span>
+        <span class="label">darkslategrey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkturquoise"></span>
+        <span class="label">darkturquoise</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:darkviolet"></span>
+        <span class="label">darkviolet</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:deeppink"></span>
+        <span class="label">deeppink</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:deepskyblue"></span>
+        <span class="label">deepskyblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:dimgray"></span>
+        <span class="label">dimgray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:dimgrey"></span>
+        <span class="label">dimgrey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:dodgerblue"></span>
+        <span class="label">dodgerblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:firebrick"></span>
+        <span class="label">firebrick</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:floralwhite"></span>
+        <span class="label">floralwhite</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:forestgreen"></span>
+        <span class="label">forestgreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:fuchsia"></span>
+        <span class="label">fuchsia</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:gainsboro"></span>
+        <span class="label">gainsboro</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:ghostwhite"></span>
+        <span class="label">ghostwhite</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:gold"></span>
+        <span class="label">gold</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:goldenrod"></span>
+        <span class="label">goldenrod</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:gray"></span>
+        <span class="label">gray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:green"></span>
+        <span class="label">green</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:greenyellow"></span>
+        <span class="label">greenyellow</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:grey"></span>
+        <span class="label">grey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:honeydew"></span>
+        <span class="label">honeydew</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:hotpink"></span>
+        <span class="label">hotpink</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:indianred"></span>
+        <span class="label">indianred</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:indigo"></span>
+        <span class="label">indigo</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:ivory"></span>
+        <span class="label">ivory</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:khaki"></span>
+        <span class="label">khaki</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lavender"></span>
+        <span class="label">lavender</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lavenderblush"></span>
+        <span class="label">lavenderblush</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lawngreen"></span>
+        <span class="label">lawngreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lemonchiffon"></span>
+        <span class="label">lemonchiffon</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightblue"></span>
+        <span class="label">lightblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightcoral"></span>
+        <span class="label">lightcoral</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightcyan"></span>
+        <span class="label">lightcyan</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightgoldenrodyellow"></span>
+        <span class="label">lightgoldenrodyellow</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightgray"></span>
+        <span class="label">lightgray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightgreen"></span>
+        <span class="label">lightgreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightgrey"></span>
+        <span class="label">lightgrey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightpink"></span>
+        <span class="label">lightpink</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightsalmon"></span>
+        <span class="label">lightsalmon</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightseagreen"></span>
+        <span class="label">lightseagreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightskyblue"></span>
+        <span class="label">lightskyblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightslategray"></span>
+        <span class="label">lightslategray</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightslategrey"></span>
+        <span class="label">lightslategrey</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightsteelblue"></span>
+        <span class="label">lightsteelblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lightyellow"></span>
+        <span class="label">lightyellow</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:lime"></span>
+        <span class="label">lime</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:limegreen"></span>
+        <span class="label">limegreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:linen"></span>
+        <span class="label">linen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:maroon"></span>
+        <span class="label">maroon</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumaquamarine"></span>
+        <span class="label">mediumaquamarine</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumblue"></span>
+        <span class="label">mediumblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumorchid"></span>
+        <span class="label">mediumorchid</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumpurple"></span>
+        <span class="label">mediumpurple</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumseagreen"></span>
+        <span class="label">mediumseagreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumslateblue"></span>
+        <span class="label">mediumslateblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumspringgreen"></span>
+        <span class="label">mediumspringgreen</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumturquoise"></span>
+        <span class="label">mediumturquoise</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mediumvioletred"></span>
+        <span class="label">mediumvioletred</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:midnightblue"></span>
+        <span class="label">midnightblue</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mintcream"></span>
+        <span class="label">mintcream</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:mistyrose"></span>
+        <span class="label">mistyrose</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:moccasin"></span>
+        <span class="label">moccasin</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:navajowhite"></span>
+        <span class="label">navajowhite</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:navy"></span>
+        <span class="label">navy</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:oldlace"></span>
+        <span class="label">oldlace</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:olive"></span>
+        <span class="label">olive</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:olivedrab"></span>
+        <span class="label">olivedrab</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:orange"></span>
+        <span class="label">orange</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:purple"></span>
+        <span class="label">purple</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:rebeccapurple"></span>
+        <span class="label">rebeccapurple</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:red"></span>
+        <span class="label">red</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:silver"></span>
+        <span class="label">silver</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:teal"></span>
+        <span class="label">teal</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:transparent"></span>
+        <span class="label">transparent</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:white"></span>
+        <span class="label">white</span>
+    </div>
+    <div class="color-item">
+        <span class="color-swatch" style="background-color:yellow"></span>
+        <span class="label">yellow</span>
+    </div>
+</div>
 
 ### Creation functions
 > These functions create new colors
