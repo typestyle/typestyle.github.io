@@ -686,7 +686,7 @@ import { red } from 'typestyle/csx';
 const lighterRed = red.tint(0.5);
 ```
 
-#### tint(weight: number): ColorHelper
+#### shade(weight: number): ColorHelper
 It darkens the color by mixing black into it.  It is the same as black.mix(color, weight).
 
 - weight is expressed as a number between 0 and 1 (e.g. 0.5)
