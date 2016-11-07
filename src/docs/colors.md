@@ -675,6 +675,28 @@ const red1 = red.saturate('10%');
 const red2 = red.saturate(.1);
 ```
 
+#### tint(weight: number): ColorHelper
+It lightens the color by mixing white into it.  It is the same as white.mix(color, weight).
+
+- weight is expressed as a number between 0 and 1 (e.g. 0.5)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const lighterRed = red.tint(0.5);
+```
+
+#### tint(weight: number): ColorHelper
+It darkens the color by mixing black into it.  It is the same as black.mix(color, weight).
+
+- weight is expressed as a number between 0 and 1 (e.g. 0.5)
+
+```typescript
+import { red } from 'typestyle/csx';
+
+const darkerRed = red.shade(0.5);
+```
+
 ---
 ### Inspect Colors
 
