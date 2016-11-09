@@ -17,16 +17,14 @@ With a simple `style` function the following problems with maintaining CSS are s
 * All the power of CSS without compromise e.g. pseudo states (`{ '&:hover': { ... } }`)
 * Better than CSS management of media queries (`{ '@media (min-width: 500px)': { ... } }`)
 * Overload CSS properties using arrays (`{ backgroundColor: ['red', 'linear-gradient(to right, red 0%, blue 100%)'] }`)
-* Integrates with any third-party system
-* Extremely small and powerful API that works with any ecosystem
-
-> Note: Many of these are truly the same advantages FreeStyle. Now for the differentiators.
-
+* Super small core size (~1k).
+* Extremely small and powerful API that works with any ecosystem.
 * Provides great TypeScript developer autocomplete experience.
 * No custom AST transform or module loader support needed.
 * Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
 * Zero config. Just use.
-* Super small core size (~1k).
+
+> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS funcitons and mixins to give a smooth learning curve for even new CSS devs). 
 
 # The Guide
 
