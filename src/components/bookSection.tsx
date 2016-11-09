@@ -82,7 +82,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
     </div>
 
     {/** Next / previous */}
-    <hr />
+    <hr style={{margin: '0px'}} />
     <gls.ContentHorizontal>
       {previousIfAny && <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + previousIfAny.link}>Previous</a>}
       <gls.Flex />
