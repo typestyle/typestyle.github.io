@@ -9,50 +9,42 @@ type Doc = {
   content: string
 }
 
-const intro: Doc = {
+const docs: Doc[] = [{
   title: "The guide to maintainable CSS",
   link: '',
   content: require('../docs/intro.md')
-};
-const core: Doc = {
+},
+{
   title: "Core API",
   link: 'core',
   content: require('../docs/core.md')
-};
-const raw: Doc = {
+},
+{
   title: "Raw CSS Support",
   link: 'raw',
   content: require('../docs/raw.md')
-};
-const css: Doc = {
+},
+{
   title: "Basic CSS Tips",
   link: 'css',
   content: require('../docs/css.md')
-};
-const colors: Doc = {
-  title: "Colors",
-  link: 'colors',
-  content: require('../docs/colors.md')
-};
-const page: Doc = {
-  title: "Page Setup",
+},
+{
+  title: "Page Setup (csx)",
   link: 'page',
   content: require('../docs/page.md')
-};
-const flex: Doc = {
-  title: "Flexbox",
+},
+{
+  title: "Flexbox (csx)",
   link: 'flex',
   content: require('../docs/flex.md')
-};
-const toc: cp.TOCItem[] = [
-  { display: 'About', link: '' },
-  { display: 'Core API', link: 'core' },
-  { display: 'Raw CSS Support', link: 'raw' },
-  { display: 'Basic CSS Tips', link: 'css' },
-  { display: 'Page Setup (csx)', link: 'page' },
-  { display: 'Flexbox (csx)', link: 'flex' },
-  { display: 'Colors (csx)', link: 'colors' },
-]
+},
+{
+  title: "Colors (csx)",
+  link: 'colors',
+  content: require('../docs/colors.md')
+}];
+const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link }));
 
 export function renderRoutes() {
   const renderMarkdownRoute = (doc: Doc) => {
@@ -65,16 +57,11 @@ export function renderRoutes() {
       } />
   }
   const routes = (
-    <Router history={hashHistory}>
-      {renderMarkdownRoute(intro)}
-      {renderMarkdownRoute(core)}
-      {renderMarkdownRoute(raw)}
-      {renderMarkdownRoute(css)}
-      {renderMarkdownRoute(page)}
-      {renderMarkdownRoute(flex)}            
-      {renderMarkdownRoute(colors)}
-    </Router>
+    React.createElement(
+      Router,
+      { history: hashHistory },
+      ...docs.map(renderMarkdownRoute)
+    )
   );
-
   return routes;
 }
