@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as marked from "marked";
 import { style, cssRaw, classes } from 'typestyle';
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 import { colors, spacing } from './styles';
 import * as escape from 'escape-html';
 

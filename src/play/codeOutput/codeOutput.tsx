@@ -12,7 +12,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import * as typestyle from 'typestyle';
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 const {
   style,
   cssRaw,

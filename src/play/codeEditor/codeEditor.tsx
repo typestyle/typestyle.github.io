@@ -2,7 +2,7 @@
 import CodeMirror = require('codemirror');
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as csx from "typestyle/csx";
+import * as csx from "typestyle/lib/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
 import * as utils from '../../utils';

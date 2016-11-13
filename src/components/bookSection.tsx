@@ -2,7 +2,7 @@
  * components used to setup the demo page 
  */
 import { style, classes } from 'typestyle';
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 import * as React from 'react';
 import * as gls from './gls';
 import { colors, fontSizes } from './styles';

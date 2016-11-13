@@ -2,7 +2,7 @@
  * This is a level above CSX
  *  - It wraps up the CSX primitives into components
  */
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 import * as typestyle from 'typestyle';
 import * as React from "react";
 

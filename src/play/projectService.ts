@@ -56,7 +56,7 @@ fs.existsSync = function() {
 addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts'));
 
 /** Typestyle namespace */
-const typestyleIndex: string = require('!raw!typestyle/src/index.d.ts');
+const typestyleIndex: string = require('!raw!typestyle/lib/index.d.ts');
 addFile('node_modules/typestyle/index.d.ts', wrapExternalModuleInNamespace({
   content: typestyleIndex,
   namespace: 'typestyle'
@@ -80,16 +80,16 @@ addFile('globals.d.ts', `
     .map(line => line.replace('export declare', 'declare'))}
 
   /** csx namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/box.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/color.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/display.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/flex.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/font.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/gradient.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/layer.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/normalize.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/page.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/csx/scroll.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/box.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/display.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/flex.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/font.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/gradient.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/layer.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/normalize.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/page.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/scroll.d.ts'), namespace: 'csx' })}
 `);
 
 /**

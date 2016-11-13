@@ -43,7 +43,7 @@ const MyText =
 The class name will look something like `f14svl5e`, this is basically a *hash* of the style objects passed to `style`. In the background `style` has gone ahead and also inserted CSS like `.f14svl5e { color: red }` into the document so using this class name with *any* framework has the desired effect of styling the element.
 
 ## CSX
-We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
+We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/lib/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
 
 ## Concept: Mixin
 
@@ -60,10 +60,10 @@ const greyOnHoverClass = style(
 );
 ```
 
-In fact a large number of mixins are provided by `csx` (`import * as csx from 'typestyle/csx'`). e.g. for flexbox we have `csx.flex`, `csx.content`, `csx.vertical` etc. Use them as you would naturally expect e.g. 
+In fact a large number of mixins are provided by `csx` (`import * as csx from 'typestyle/lib/csx'`). e.g. for flexbox we have `csx.flex`, `csx.content`, `csx.vertical` etc. Use them as you would naturally expect e.g. 
 
 ```ts
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 import {style} from 'typestyle';
 
 const flexHorizontalGreen = style(

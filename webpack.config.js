@@ -14,7 +14,7 @@ module.exports = {
   module: {
     loaders: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      { test: /\.tsx?$/, loader: 'ts-loader' },
       { test: /\.md/, loader: 'raw-loader' },
       { test: /\.css/, loader: 'raw-loader' },
     ]

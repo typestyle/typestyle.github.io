@@ -1,7 +1,7 @@
 /** Setup es6 */
 import 'babel-polyfill';
 
-import { setupPage, normalize } from 'typestyle/csx';
+import { setupPage, normalize } from 'typestyle/lib/csx';
 normalize();
 setupPage('#root');
 
@@ -9,7 +9,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
-import * as csx from 'typestyle/csx';
+import * as csx from 'typestyle/lib/csx';
 import { style } from 'typestyle';
 
 export const Header = () => {
