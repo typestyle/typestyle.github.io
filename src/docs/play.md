@@ -8,7 +8,7 @@ So we created our own. Introducing the TypeStyle playground : [http://typestyle.
 It differs from the TypeScript playground in that it supports *full* demo development with
 
 * JavaScript in the form of TypeScript 
-* HTML in the form of JSX 
+* HTML in the form of React/JSX
 * CSS in the form of TypeStyle
 
 Here is the hello world:
@@ -17,4 +17,28 @@ Here is the hello world:
 <div>
   Hello world
 </div>
-``` 
+```
+
+Beyond that it has the usual features of 
+
+## Autocomplete
+`ctrl + space`
+
+![](/images/book/play/autocomplete.png)
+
+## Errors
+We do continuous linting (TypeScript is really just the world's most powerful JavaScript linter). The first error is shown inline so you don't need to use your mouse much. 
+
+![](/images/book/play/error.png)
+
+## Live output
+The last JSX expression that gets evaluated in the code gets rendered to the output window
+
+```play
+let message = "Hello World!"; 
+<h1>
+  {message}
+</h1>
+```
+
+![](/images/book/play/full.png)
