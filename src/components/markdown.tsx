@@ -206,11 +206,14 @@ export function toHtml(markdown: string) {
           return highlightCodeWithMode({ code, mode: 'css' })
         }
         if (lang === 'play') {
+          code = code.trim();
           return `
 ${highlightCodeWithMode({ code, mode: 'jsx' })}
 
-<a class="${PlayButtonStyles.anchorLookingLikeButton}" href="${getPlaygroundLink(code)}" target="_blank">Open in Playground</a>`
+<a class="${PlayButtonStyles.anchorLookingLikeButton}" href="${getPlaygroundLink(code)}" target="_blank">Open in Playground</a>
+`.trim()
         }
+
         return code;
       }
     })
