@@ -2,8 +2,9 @@ import * as React from "react";
 import * as marked from "marked";
 import { style, cssRaw, classes } from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
-import { colors, spacing } from './styles';
+import { colors, spacing, fontSizes } from './styles';
 import * as escape from 'escape-html';
+import { getPlaygroundLink } from '../play/srcLoader';
 
 /** 
  * Using codemirror for syntax highlighting
@@ -31,6 +32,34 @@ function highlightCodeWithMode(args: { code: string, mode: string }) {
     }
   );
   return `<div class="cm-s-default" style="display: inline-block">${collection.join('')}</div>`
+}
+
+namespace PlayButtonStyles {
+  export const anchorLookingLikeButton = style({
+    cursor: 'pointer',
+    height: 'auto',
+    padding: "12px 30px 11px",
+    border: `1px solid ${colors.header}`,
+    borderRadius: '3px',
+    color: `${colors.white} !important`,
+    backgroundColor: colors.header,
+    fontSize: fontSizes.buttonText,
+    textDecoration: "none",
+    lineHeight: "1em",
+    outline: 'none',
+    transition: 'color .2s, background-color .2s',
+    display: 'inline-block',
+    '&:hover': {
+      backgroundColor: colors.headerHover,
+    },
+    '&:active': {
+      backgroundColor: colors.headerHover,
+    },
+    '&:focus': {
+      outline: 'thin dotted',
+      outlineColor: colors.header
+    }
+  });
 }
 
 /**
@@ -174,6 +203,12 @@ export function toHtml(markdown: string) {
         }
         if (lang === 'css') {
           return highlightCodeWithMode({ code, mode: 'css' })
+        }
+        if (lang === 'play') {
+          return `
+${highlightCodeWithMode({ code, mode: 'jsx' })}
+
+<a class="${PlayButtonStyles.anchorLookingLikeButton}" href="${getPlaygroundLink(code)}" target="_blank">Open in Playground</a>`
         }
         return code;
       }

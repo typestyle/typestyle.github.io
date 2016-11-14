@@ -12,3 +12,7 @@ export const setSource = (source: string) => {
   window.location.hash = hash;
   window.onhashchange = function() { window.location.hash = hash }
 }
+
+export const getPlaygroundLink = (src: string) => {
+  return `http://typestyle.io/play/#src=${encodeURI(src)}`;
+}

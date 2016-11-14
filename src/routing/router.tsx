@@ -15,6 +15,11 @@ const docs: Doc[] = [{
   content: require('../docs/intro.md')
 },
 {
+  title: "Playground",
+  link: 'play',
+  content: require('../docs/play.md')
+},
+{
   title: "Core API",
   link: 'core',
   content: require('../docs/core.md')
