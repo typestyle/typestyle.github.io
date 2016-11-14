@@ -43,7 +43,7 @@ let message = "Hello World!";
 
 ![](/images/book/play/full.png)
 
-## Context
+## Compilation Context
 We put the following variables into the compilation context (and runtime) for you so that you don't need to do anything special 
 
 * `typestyle`: The complete `"typestyle"` module
