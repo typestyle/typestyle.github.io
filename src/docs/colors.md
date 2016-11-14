@@ -485,7 +485,8 @@ import { aliceblue } from 'typestyle/lib/csx';
 </div>
 
 ---
-### Create New Colors
+### Convert Colors
+
 
 #### color(value: string): ColorHelper
 Creates a color
@@ -499,6 +500,27 @@ var red1 = color('red');
 var red2 = color('#FF0000');
 var red3 = color('#F00');
 ```
+
+#### toHexString(): string
+Returns a string with the RGB Hex code (e.g. black = #000000)
+```typescript
+import { white } from 'typestyle/lib/csx';
+
+white.toHexString(); // #FFFFFF
+```
+
+#### toString(): string
+Returns a string representing the current color
+```typescript
+import { hsla, rgba } from 'typestyle/lib/csx';
+
+rgba(0, 0, 0, .5).toHexString(); // rgba(0, 0, 0, 50%)
+hsla(0, 0, 0, .5).toHexString(); // hsla(0, 0, 0, 50%)
+```
+
+---
+### Create New Colors
+
 
 #### hsl(hue: number, saturation: number | string: lightness: number | string): ColorHelper
 Creates a color from hue, satuation, and lightness 
