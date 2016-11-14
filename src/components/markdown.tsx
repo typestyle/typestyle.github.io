@@ -123,6 +123,7 @@ namespace MarkDownStyles {
   overflow: auto;
   font-family: consolas, menlo, monospace; 
   border-left: 2px solid #ddd;
+  line-height: 24px;
 }
 
 /** Blockquote */
