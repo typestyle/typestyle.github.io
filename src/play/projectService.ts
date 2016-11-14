@@ -52,6 +52,11 @@ fs.existsSync = function() {
   return true;
 }
 
+
+/**
+ * NOTE: These match what is availble in `codeOutput.tsx`
+ */
+
 /** React */
 addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts'));
 
@@ -75,6 +80,7 @@ addFile('globals.d.ts', `
       'style',
       'cssRule',
       'keyframes',
+      'extend',
       'classes',
     ].some(namedImport => line.includes(namedImport)))
     .map(line => line.replace('export declare', 'declare'))}

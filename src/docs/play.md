@@ -32,7 +32,7 @@ We do continuous linting (TypeScript is really just the world's most powerful Ja
 ![](/images/book/play/error.png)
 
 ### Live output
-The last JSX expression that gets evaluated in the code gets rendered to the output window
+The last JSX expression that gets evaluated in the code gets rendered to the output window. You are free to write any other TypeScript code before that if you want.
 
 ```play
 let message = "Hello World!"; 
@@ -43,3 +43,11 @@ let message = "Hello World!";
 
 ![](/images/book/play/full.png)
 
+## Context
+We put the following variables into the compilation context (and runtime) for you so that you don't need to do anything special 
+
+* `typestyle`: The complete `"typestyle"` module
+* `csx`: The complete `"typestyle/lib/csx"` module
+* `style`, `keyframes`, `classes` from the `"typestyle"` module
+
+Additionally we have `React` in context as well as its used internally by any JSX (e.g. `<div/>` becomes `React.createElement('div')`). 

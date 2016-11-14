@@ -3,7 +3,7 @@
  */
 
 /** 
- * Note:
+ * NOTE:
  * - Any local imports become usable by the demo
  * - To update you also need to update projectService.ts 
  **/
@@ -19,6 +19,7 @@ const {
   keyframes,
   cssRule,
   classes,
+  extend,
 } = typestyle;
 
 namespace CodeOutputStyles {
