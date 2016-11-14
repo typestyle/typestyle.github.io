@@ -19,19 +19,19 @@ Here is the hello world:
 </div>
 ```
 
-Beyond that it has the usual features of 
+## Features
 
-## Autocomplete
+### Autocomplete
 `ctrl + space`
 
 ![](/images/book/play/autocomplete.png)
 
-## Errors
+### Errors
 We do continuous linting (TypeScript is really just the world's most powerful JavaScript linter). The first error is shown inline so you don't need to use your mouse much. 
 
 ![](/images/book/play/error.png)
 
-## Live output
+### Live output
 The last JSX expression that gets evaluated in the code gets rendered to the output window
 
 ```play
@@ -42,3 +42,4 @@ let message = "Hello World!";
 ```
 
 ![](/images/book/play/full.png)
+
