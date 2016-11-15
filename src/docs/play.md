@@ -57,7 +57,7 @@ let message = "Hello World!";
 
 ## Root
 
-> We cover more of `csx` and the concepts of mixins and flexbox and all that jazz later in the book.  
+> We cover more of `csx` and the concepts of mixins and flexbox and all that jazz later in the book. This is just a quick look.  
 
 The output is rendered in a container that has `position: relative`. So you can attach to it with handy dandy `csx.fillParent` e.g. 
 
@@ -73,5 +73,21 @@ And if you want to play with flexbox just use `csx.vertical` (or `csx.horizontal
 <div className={style(csx.fillParent, csx.vertical)}>
   <div className={style(csx.flex, demo.bg.lightskyblue)}/>
   <div className={style(csx.flex, demo.bg.lightsalmon)}/>
+</div>
+```
+
+And another with three children showing a common header / body / footer layout: 
+
+```play
+<div className={style(csx.fillParent, csx.vertical)}>
+  <div className={style(csx.content,csx.height(50), demo.bg.lightskyblue)}>
+    Header
+  </div>
+  <div className={style(csx.flex, demo.bg.lightsalmon)}>
+    Body
+  </div>
+  <div className={style(csx.content,csx.height(50), demo.bg.lightskyblue)}>
+    Footer
+  </div>
 </div>
 ```
