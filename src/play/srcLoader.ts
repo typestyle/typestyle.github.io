@@ -14,5 +14,5 @@ export const setSource = (source: string) => {
 }
 
 export const getPlaygroundLink = (src: string) => {
-  return `http://typestyle.io/play/#src=${encodeURI(src)}`;
+  return `${window.location.origin}/play/#src=${encodeURI(src)}`;
 }
