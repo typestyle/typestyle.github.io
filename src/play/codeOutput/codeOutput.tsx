@@ -22,6 +22,15 @@ const {
   extend,
 } = typestyle;
 
+/**
+ * Some mixins for demo
+ */
+const demo = {
+  bg: {
+    lightskyblue: { backgroundColor: 'lightskyblue' }
+  }
+};
+
 namespace CodeOutputStyles {
   const base = typestyle.extend(
     csx.fillParent,
