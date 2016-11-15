@@ -53,10 +53,22 @@ let message = "Hello World!";
 ![](/images/book/play/full.png) 
 
 ## Root
+
+> We cover more of `csx` and the concepts of mixins and flexbox and all that jazz later in the book.  
+
 The output is rendered in a container that has `position: relative`. So you can attach to it with handy dandy `csx.fillParent` e.g. 
 
 ```play
 <div className={style(csx.fillParent, demo.bg.lightskyblue)}>
   I fill the root
+</div>
+```
+
+And if you want to play with flexbox just use `csx.vertical` (or `csx.horizontal`) wherever it makes sense e.g. here we show two flex children: 
+
+```play
+<div className={style(csx.fillParent, csx.vertical)}>
+  <div className={style(csx.flex, demo.bg.lightskyblue)}/>
+  <div className={style(csx.flex, demo.bg.lightsalmon)}/>
 </div>
 ```

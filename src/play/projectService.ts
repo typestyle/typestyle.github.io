@@ -103,6 +103,7 @@ addFile('globals.d.ts', `
   const demo: {
     bg: {
       lightskyblue: NestedCSSProperties;
+      lightsalmon: NestedCSSProperties;
     }
   }
 `);
