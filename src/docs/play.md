@@ -26,6 +26,9 @@ We do continuous linting (TypeScript is really just the world's most powerful Ja
 
 ![](/images/book/play/error.png)
 
+## Sharing
+
+The url is always kept in sync with the code so you can share it around at any point you want.
 
 ## Compilation Context
 We put the following variables into the compilation context (and runtime) for you so that you don't need to do anything special 
