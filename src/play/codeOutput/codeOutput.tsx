@@ -29,6 +29,7 @@ const demo = {
   bg: {
     lightskyblue: { backgroundColor: 'lightskyblue' },
     lightsalmon: { backgroundColor: 'lightsalmon' },
+    mediumorchid: { backgroundColor: 'mediumorchid' },
   }
 };
 

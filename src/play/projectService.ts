@@ -104,6 +104,7 @@ addFile('globals.d.ts', `
     bg: {
       lightskyblue: NestedCSSProperties;
       lightsalmon: NestedCSSProperties;
+      mediumorchid: NestedCSSProperties;
     }
   }
 `);
