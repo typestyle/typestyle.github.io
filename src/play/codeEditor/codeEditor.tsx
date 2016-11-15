@@ -207,7 +207,13 @@ export class CodeEditor extends React.Component<Props, { isFocused: boolean }>{
           var spaces = Array(spacesToInsert + 1).join(" ");
           cm.replaceSelection(spaces, "end", "+input");
         },
-        'Ctrl-Space': "autocomplete"
+        'Ctrl-Space': "autocomplete",
+        'Cmd-S': () => { 
+          /** We have no use for save */
+        },
+        'Ctrl-S': () => { 
+          /** We have no use for save */
+        }
       },
 
       foldGutter: true,
