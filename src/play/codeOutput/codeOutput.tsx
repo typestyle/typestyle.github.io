@@ -55,9 +55,8 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
   lastEvalResult?: any;
   componentDidUpdate() {
     if (!this.lastEvalResult) return;
-    if (!(this.refs as any).root) return;
 
-    const root = ((this.refs as any).root as HTMLDivElement);
+    const root = ReactDOM.findDOMNode(this);
     ReactDOM.render(this.lastEvalResult, root);
   }
 
@@ -74,7 +73,7 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
         Write some code to kick off 🌹
         <br />
         <br />
-        (TIP: You can share the url to share code) 
+        (TIP: You can share the url to share code)
         </div>;
     }
 
@@ -93,8 +92,8 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
     try {
       this.lastEvalResult = evaled;
       ReactDOMServer.renderToString(evaled);
-      
-      return <div ref='root' className={CodeOutputStyles.outputClass}></div>;
+
+      return <div className={CodeOutputStyles.outputClass}></div>;
     }
     catch (e) {
       this.lastEvalResult = undefined;
