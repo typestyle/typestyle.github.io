@@ -61,6 +61,7 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
   }
 
   render() {
+    this.lastEvalResult = undefined;
     const compiled = this.props.output;
     console.log({ compiled })
 
@@ -90,13 +91,12 @@ export class CodeOutput extends React.PureComponent<{ pending: boolean, hasCode:
     }
 
     try {
-      this.lastEvalResult = evaled;
       ReactDOMServer.renderToString(evaled);
+      this.lastEvalResult = evaled;
 
       return <div className={CodeOutputStyles.outputClass}></div>;
     }
     catch (e) {
-      this.lastEvalResult = undefined;
       const message: string = e.message;
       if (message.indexOf('You must pass a valid ReactElement.') !== -1) {
         return <div className={CodeOutputStyles.helpfulClass}>The last expression must to be a react element (e.g. {'<div>Hello world</div>'}) 🌹</div>;
