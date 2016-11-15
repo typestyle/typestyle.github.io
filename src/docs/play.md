@@ -1,8 +1,6 @@
 > NOTE: we are presenting the playground *before* going through the API in detail. This is so that you can play around later when we present the maintainability guidance and CSS learnings.
 
-For large scale application development static code analysis can be invaluable for developer productivity. We created TypeStyle with this in mind. However the *JavaScript* playgrounds out there don't utilize the full power of *TypeScript*. This is understandable as its hard work, difficult to do if its not your main focus (similar to how we created [alm](http://alm.tools/) to be a focused IDE).
-
-So we created our own. Introducing the TypeStyle playground : [http://typestyle.io/play/](http://typestyle.io/play/). It supports *full* demo development with
+We found the JavaScript playgrounds out there missing key features for a great TypeScript experience. Introducing the TypeStyle playground : [http://typestyle.io/play/](http://typestyle.io/play/). It supports *full* demo development with:
 
 * JavaScript in the form of TypeScript 
 * HTML in the form of React/JSX
