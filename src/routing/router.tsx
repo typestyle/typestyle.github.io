@@ -56,7 +56,7 @@ const docs: Doc[] = [{
   title: "Colors (csx)",
   link: 'colors',
   content: require('../docs/colors.md'),
-  prelude: 'Having a great color pallet is fundamental to great design. We give this special love in our API.'
+  prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.'
 }];
 const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link, prelude: r.prelude }));
 
