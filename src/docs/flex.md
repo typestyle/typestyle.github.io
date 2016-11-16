@@ -156,7 +156,31 @@ Where the `body1` is itself a `csx.horizontal` containing the `sidebar`s and `bo
 |                    FOOTER                   |
 -----------------------------------------------
 ```
-Easy right!
+Easy right! Here is a demo for you to play with:
+
+```play
+const bg = (backgroundColor) => ({backgroundColor});
+
+<div className={style(csx.fillParent, csx.vertical)}>
+  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
+    Header
+  </div>
+  <div className={style(csx.flex, csx.horizontal)}>
+    <div className={style(csx.content, csx.width(100), bg(csx.lightpink))}>
+      Sidebar
+    </div>
+    <div className={style(csx.flex, bg(csx.darkorange))}>
+      Body
+    </div>
+    <div className={style(csx.content, csx.width(100), bg(csx.limegreen))}>
+      Sidebar
+    </div>
+  </div>
+  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
+    Footer
+  </div>
+</div>
+```
 
 [](TODO: # Scrolling)
 
