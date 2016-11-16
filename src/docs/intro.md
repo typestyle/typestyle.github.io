@@ -28,5 +28,5 @@ With a simple `style` function the following problems with maintaining CSS are s
 
 # The Guide
 
-This guide is designed for the beginner and expert alike. You are welcome to drop off at any point and go build your amazing application with what you have learnt. Lets kick off with the core functions.
+This guide is designed for the beginner and expert alike. You are welcome to drop off at any point and go build your amazing application with what you have learnt.
 

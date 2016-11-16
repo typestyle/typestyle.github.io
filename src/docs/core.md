@@ -167,5 +167,5 @@ const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}
 
 Also suffix `Class` for classes.
 
-That's it for core, Next we look at providing a more complete story for any *advanced* CSS scenario you might have.
+That's it for the core of TypeStyle. Simple right!
 

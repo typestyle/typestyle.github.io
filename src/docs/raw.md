@@ -66,4 +66,4 @@ h1 {
 * Works seemlessly in a nodejs enviroment (for testing) whereas `require('./someCss.css')` does not without additional setup.
 * You still get to use JS + all our fancy mixins.
 
-Great. That covers the key API surface. Now lets take a quick detour into some quick CSS tips.
+Great. That covers the key TypeStyle API surface.

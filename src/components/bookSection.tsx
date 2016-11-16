@@ -5,7 +5,7 @@ import { style, classes } from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
 import * as React from 'react';
 import * as gls from './gls';
-import { colors, fontSizes } from './styles';
+import { colors, fontSizes, spacing } from './styles';
 import * as txt from './txt';
 
 namespace BookSectionStyles {
@@ -45,7 +45,7 @@ namespace BookSectionStyles {
   });
 }
 
-export type TOCItem = { display: string, link: string }
+export type TOCItem = { display: string, link: string, prelude: string }
 
 type BookSectionProps = {
   title: string,
@@ -82,11 +82,17 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
     </div>
 
     {/** Next / previous */}
-    <hr style={{margin: '0px'}} />
+    <hr style={{ margin: '0px' }} />
     <gls.ContentHorizontal>
-      {previousIfAny && <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + previousIfAny.link}>Previous</a>}
-      <gls.Flex />
-      {nextIfAny && <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + nextIfAny.link}>Next</a>}
+      {previousIfAny && <gls.ContentHorizontalCentered>
+        <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + previousIfAny.link}>Previous</a>
+      </gls.ContentHorizontalCentered>}
+      <gls.Flex className={style(csx.padding(10), csx.endJustified, { color: colors.text, lineHeight: spacing.lineHeight })}>
+        {nextIfAny && nextIfAny.prelude}
+      </gls.Flex>
+      {nextIfAny && <gls.ContentHorizontalCentered>
+        <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + nextIfAny.link}>Next</a>
+      </gls.ContentHorizontalCentered>}
     </gls.ContentHorizontal>
   </gls.ContentVerticalMargined>
 }
