@@ -37,11 +37,12 @@ We put the following variables into the compilation context (and runtime) for yo
 * `csx`: The complete `"typestyle/lib/csx"` module
 * `style`, `keyframes`, `classes` from the `"typestyle"` module
 
-Additionally we provide a few mixins to just for the playground under `demo` 
+Additionally we have `React` in context as well as its used internally by any JSX (e.g. `<div/>` becomes `React.createElement('div')`). You can even create your own React components 
 
-* `demo.bg`: Provides nice backgrounds for demo e.g. `demo.bg.lightskyblue`. You can explore it using autocomplete ;)
-
-Additionally we have `React` in context as well as its used internally by any JSX (e.g. `<div/>` becomes `React.createElement('div')`).
+```play
+const HelloWorld = () => <div>Hello World</div>;
+<HelloWorld/>
+```
 
 ## Output
 The last JSX expression that gets evaluated in the code gets rendered to the output window. You are free to write any other TypeScript code before that if you want.
@@ -62,7 +63,9 @@ let message = "Hello World!";
 The output is rendered in a container that has `position: relative`. So you can attach to it with handy dandy `csx.fillParent` e.g. 
 
 ```play
-<div className={style(csx.fillParent, demo.bg.lightskyblue)}>
+const bg = (backgroundColor) => ({backgroundColor});
+
+<div className={style(csx.fillParent, bg(csx.lightskyblue))}>
   I fill the root
 </div>
 ```
@@ -70,23 +73,27 @@ The output is rendered in a container that has `position: relative`. So you can 
 And if you want to play with flexbox just use `csx.vertical` (or `csx.horizontal`) wherever it makes sense e.g. here we show two flex children: 
 
 ```play
+const bg = (backgroundColor) => ({backgroundColor});
+
 <div className={style(csx.fillParent, csx.vertical)}>
-  <div className={style(csx.flex, demo.bg.lightskyblue)}/>
-  <div className={style(csx.flex, demo.bg.lightsalmon)}/>
+  <div className={style(csx.flex, bg(csx.lightskyblue))}/>
+  <div className={style(csx.flex, bg(csx.lightsalmon))}/>
 </div>
 ```
 
 And another with three children showing a common header / body / footer layout: 
 
 ```play
+const bg = (backgroundColor) => ({backgroundColor});
+
 <div className={style(csx.fillParent, csx.vertical)}>
-  <div className={style(csx.content,csx.height(50), demo.bg.lightskyblue)}>
+  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
     Header
   </div>
-  <div className={style(csx.flex, demo.bg.lightsalmon)}>
+  <div className={style(csx.flex, bg(csx.lightsalmon))}>
     Body
   </div>
-  <div className={style(csx.content,csx.height(50), demo.bg.lightskyblue)}>
+  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
     Footer
   </div>
 </div>

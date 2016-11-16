@@ -96,17 +96,6 @@ addFile('globals.d.ts', `
   ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/normalize.d.ts'), namespace: 'csx' })}
   ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/page.d.ts'), namespace: 'csx' })}
   ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/scroll.d.ts'), namespace: 'csx' })}
-
-  /**
-   * Some mixins for demo
-   */
-  const demo: {
-    bg: {
-      lightskyblue: NestedCSSProperties;
-      lightsalmon: NestedCSSProperties;
-      mediumorchid: NestedCSSProperties;
-    }
-  }
 `);
 
 
