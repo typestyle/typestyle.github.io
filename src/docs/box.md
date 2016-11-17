@@ -35,6 +35,9 @@ Also you cannot CSS3 transform inline elements. So use a `span` but if there is 
 `csx.padding` is a nice mixin to create padding for managing the space inside a component. e.g. Here is some pretty text you can hover over,
 
 ```play
+import {style} from 'typestyle';
+import * as csx from 'typestyle/lib/csx';
+
 const prettyBox = style(
   csx.padding(10),
   csx.inlineBlock,
