@@ -38,16 +38,19 @@ Also you cannot CSS3 transform inline elements. So use a `span` but if there is 
 import {style} from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
 
+const bg = csx.black;
+const color = csx.white;
 const prettyBox = style(
   csx.padding(10),
   csx.inlineBlock,
   {
-    color:'white',
+    color:color.darken(.2),
     cursor:'pointer',
-    backgroundColor:'black',
-    transition: 'background-color .2s',
+    backgroundColor:bg,
+    transition: 'color .2s, background-color .2s',
     '&:hover':{
-      backgroundColor:'grey',
+      color: color,
+      backgroundColor:bg.lighten(.2),
     }
   }
 );
