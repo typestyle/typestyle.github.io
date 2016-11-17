@@ -206,11 +206,16 @@ export function toHtml(markdown: string) {
           return highlightCodeWithMode({ code, mode: 'css' })
         }
         if (lang === 'play') {
+          // Remove any imports 
+          const codeForPlayground = code.split(/\n|\r\n/g).filter(l => !l.startsWith('import')).join('\n').trim();
+
+          /** Makes it easier to write :) */
           code = code.trim();
+
           return `
 ${highlightCodeWithMode({ code, mode: 'jsx' })}
 
-<a class="${PlayButtonStyles.anchorLookingLikeButton}" href="${getPlaygroundLink(code)}" target="_blank">Open in Playground</a>
+<a class="${PlayButtonStyles.anchorLookingLikeButton}" href="${getPlaygroundLink(codeForPlayground)}" target="_blank">Open in Playground</a>
 `.trim()
         }
 

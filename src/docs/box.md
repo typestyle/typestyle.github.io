@@ -29,3 +29,27 @@ Having an element as `display: inline` means that it completely ignores its heig
 Also you cannot CSS3 transform inline elements. So use a `span` but if there is anything fancy you need the `span` to do, be sure to `inline-block` it.
 
 > TIP: `csx` has a mixin `csx.inlineBlock` for your inline desires. 
+
+## `csx.padding`
+
+`csx.padding` is a nice mixin to create padding for managing the space inside a component. e.g. Here is some pretty text you can hover over,
+
+```play
+const prettyBox = style(
+  csx.padding(10),
+  csx.inlineBlock,
+  {
+    color:'white',
+    cursor:'pointer',
+    backgroundColor:'black',
+    transition: 'background-color .2s',
+    '&:hover':{
+      backgroundColor:'grey',
+    }
+  }
+);
+
+<div className={prettyBox}>Hello World</div>
+```
+
+This is what a padding should be used for. Maintaining a nice boundary seperation *inside* a component.
