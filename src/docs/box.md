@@ -1,4 +1,4 @@
-Here are some tiny tips you need to know for creating maintainable layouts (after all that is the biggest use case of CSS).
+How you manage the space around and inside your components is vital to a great design. First a quick recap of some core CSS concepts that we will use here.
 
 ### Never let margin bleed
 You really only need to know the difference between `margin` (something that's outside) and `padding` (something that is inside). Here's a picture:

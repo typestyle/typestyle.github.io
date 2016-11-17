@@ -35,12 +35,6 @@ const docs: Doc[] = [{
   prelude: 'Next we look at providing a more complete story for any advanced CSS scenario you might have.'
 },
 {
-  title: "Basic CSS Tips",
-  link: 'css',
-  content: require('../docs/css.md'),
-  prelude: 'Now lets take a quick detour into some quick CSS tips.'
-},
-{
   title: "Page Setup (csx)",
   link: 'page',
   content: require('../docs/page.md'),
@@ -51,6 +45,12 @@ const docs: Doc[] = [{
   link: 'flex',
   content: require('../docs/flex.md'),
   prelude: 'Its not just the CSS tools that are evolving, but CSS itself is getting better ways to represent application layouts. One of the best ways is the flexbox and we provide guidance + great mixins to make using it easier and meaningful.'
+},
+{
+  title: "Box model (csx)",
+  link: 'box',
+  content: require('../docs/box.md'),
+  prelude: 'How you manage the space around and inside your components is vital to a great design. Next we cover the helpers to make this a breeze.'
 },
 {
   title: "Colors (csx)",
