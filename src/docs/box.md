@@ -59,3 +59,83 @@ const prettyBox = style(
 ```
 
 This is what a padding should be used for. Maintaining a nice boundary seperation *inside* a component.
+
+## Spacing children
+
+> If a function only does mutation inside is it still functional?
+
+Remeber the lesson of margins: You cannot have margins bleed. However you can use them to create a nice visual seperation between *your* children (subitems of the component). We provide utilities for just that `csx.horizontallySpaced` and `csx.verticallySpaced` 
+
+E.g. a nice vertical layout: 
+
+```play
+import {style} from 'typestyle';
+import * as csx from 'typestyle/lib/csx';
+
+const DemoItem = () => <h1 className={style(
+    csx.centerCenter,
+    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+  )}>
+  Demo Item
+</h1>;
+
+<div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+  <DemoItem/>
+  <DemoItem/>
+  <DemoItem/>
+</div>
+```
+
+The reason for letting such spacing come down from the parent *instead* of having it on each `DemoItem` is because quite commonly in application layouts you have buttons / page sections popping in and popping out due to some logic. Having this logic come down using *margins* from the parent results in a more maintainable layout.
+
+Spacing items like this where there is no *margin bleed* at the borders **composes** nicely e.g. here are two columns: 
+
+ ```play
+import {style} from 'typestyle';
+import * as csx from 'typestyle/lib/csx';
+
+const DemoItem = () => <h1 className={style(
+    csx.centerCenter,
+    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+  )}>
+  Demo Item
+</h1>;
+
+const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+  <DemoItem/>
+  <DemoItem/>
+  <DemoItem/>
+</div>;
+
+<div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+  <DemoCollection/>
+  <DemoCollection/>
+</div>;
+```
+
+You can see that for the user its impossible to tell the fact that there are two sets of three `DemoItem`s instead of one set of six `DemoItem`s.
+
+At some level up the heirarchy you would need to create a visual seperation from the border (e.g. at the page level) and there you should use `csx.padding`. This is shown below: 
+
+ ```play
+import {style} from 'typestyle';
+import * as csx from 'typestyle/lib/csx';
+
+const DemoItem = () => <h1 className={style(
+    csx.centerCenter,
+    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+  )}>
+  Demo Item
+</h1>;
+
+const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+  <DemoItem/>
+  <DemoItem/>
+  <DemoItem/>
+</div>;
+
+<div className={style(csx.vertical,csx.verticallySpaced(15), csx.padding(15))}> 
+  <DemoCollection/>
+  <DemoCollection/>
+</div>;
+```
