@@ -86,9 +86,9 @@ const DemoItem = () => <h1 className={style(
 </div>
 ```
 
-The reason for letting such spacing come down from the parent *instead* of having it on each `DemoItem` is because quite commonly in application layouts you have buttons / page sections popping in and popping out due to some logic. Having this logic come down using *margins* from the parent results in a more maintainable layout.
+The reason for letting such spacing come down from the parent *instead* of having it on each `DemoItem` is common in application layouts, where you have buttons / page sections popping in and popping out due to some logic regarding page state and user permissions. Having this visual seperation come down using *margins* from the parent results in a more maintainable layout (as the components can be blissfully unaware of their siblings).
 
-Spacing items like this where there is no *margin bleed* at the borders **composes** nicely e.g. here are two columns: 
+Spacing items like this where there is no *margin bleed* at the borders **composes** nicely too e.g. here are two columns: 
 
  ```play
 import {style} from 'typestyle';
@@ -101,21 +101,23 @@ const DemoItem = () => <h1 className={style(
   Demo Item
 </h1>;
 
+/* Sample showing DemoItems composing */
 const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
   <DemoItem/>
   <DemoItem/>
   <DemoItem/>
 </div>;
 
+/* Sample showing DemoCollections composing */
 <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
   <DemoCollection/>
   <DemoCollection/>
 </div>;
 ```
 
-You can see that for the user its impossible to tell the fact that there are two sets of three `DemoItem`s instead of one set of six `DemoItem`s.
+You can see that, for the user, its impossible to tell the fact that there are two sets of three `DemoItem`s instead of one set of six `DemoItem`s.
 
-At some level up the heirarchy you would need to create a visual seperation from the border (e.g. at the page level) and there you should use `csx.padding`. This is shown below: 
+At some level up the heirarchy you would need to create a visual seperation from the border (e.g. at the page level) and there you should use `csx.padding`. This is shown below where we have a nice root `Page` component: 
 
  ```play
 import {style} from 'typestyle';
@@ -134,8 +136,14 @@ const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySp
   <DemoItem/>
 </div>;
 
-<div className={style(csx.vertical,csx.verticallySpaced(15), csx.padding(15))}> 
-  <DemoCollection/>
-  <DemoCollection/>
+/** A nice Page component with padding */
+const Page = (props) => <div className={style(csx.vertical,csx.verticallySpaced(15), csx.padding(15))}>
+ {props.children}
 </div>;
+
+<Page>
+  <DemoCollection/>
+  <DemoCollection/>
+</Page>;
 ```
+
