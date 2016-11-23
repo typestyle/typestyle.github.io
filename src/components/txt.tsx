@@ -13,12 +13,12 @@ export const P = ({children}: {children?:any}) => {
   </p>;
 }
 
-export const H2 = ({children, id}: {children?:any, id: string}) => {
-  return <h2 className={style({
+export const H1 = ({children, id}: {children?:any, id: string}) => {
+  return <h1 className={style({
     margin: '0px',
     color: styles.colors.text
   })}
     id={id}>
     {children}
-  </h2>;
+  </h1>;
 }

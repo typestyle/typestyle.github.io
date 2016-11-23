@@ -3,7 +3,7 @@ There are very few simple things about the default layout of an HTML page that n
 * Full Sized Body
 * Box Model
 
-### Full Sized Body
+## Full Sized Body
 You really want the root of your page to be something that takes up all the available space on screen and provides it as a drawing canvas for children. This can be done easily:
 
 ```css
@@ -15,7 +15,7 @@ html, body {
 }
 ```
 
-### Box Model
+## Box Model
 You really want the `width`/`height` of an element to represent the `border+padding+content`. This is shown below:
 
 ![](/images/book/borderbox.png)
@@ -31,7 +31,7 @@ html {
 }
 ```
 
-### Root
+## Root
 Finally with modern web frameworks you normally render to some container div. e.g. `root` in the following example:
 
 ```html
@@ -45,7 +45,7 @@ Finally with modern web frameworks you normally render to some container div. e.
 
 You probably want `#root` to be the same size as the body. Easily done by making its width / height `100%`.
 
-### `setupPage`
+## `setupPage`
 Combine all that we've talked about and we have the following page setup.
 
 ```html
@@ -68,7 +68,7 @@ setupPage('#root');
 
 Easy as :)
 
-### `normalize`
+## `normalize`
 Browsers have different default styles for a few a the native tags e.g. the `template` tag *does not have `display: none` in IE but has it in all other browers. The list of such quirks is small but not something that you should bother with. This is why [normalize.css] exists. It is used by all the popular css frameworks including bootstrap. So a good idea to include in your own designs as well. Super simple with `csx/normalize` ;)
 
 ```ts
@@ -78,7 +78,7 @@ normalize();
 // Yay. Browser quirks ironed out
 ```
 
-### Recommended page setup
+## Recommended page setup
 
 Hence the recommended page setup
 

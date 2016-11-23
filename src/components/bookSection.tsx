@@ -61,7 +61,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
   const scrollToTop = () => window.scrollTo(0, 0);
 
   return <gls.ContentVerticalMargined margin={15}>
-    <txt.H2 id={'toc'}>Table of Contents</txt.H2>
+    <txt.H1 id={'toc'}>Table of Contents</txt.H1>
     <gls.ContentVerticalMargined margin={10} style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
       {toc.map((t, index) => {
         return <a key={index} className={classes(
@@ -76,7 +76,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
       })}
     </gls.ContentVerticalMargined>
 
-    <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H2 id={link}>{title}</txt.H2></a>
+    <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
     <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
       {children}
     </div>
