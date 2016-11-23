@@ -17,13 +17,13 @@ const docs: Doc[] = [{
   prelude: '',
 },
 {
-  title: "Core API",
+  title: "Core API (TypeStyle)",
   link: 'core',
   content: require('../docs/core.md'),
   prelude: 'Next we kick off with the core TypeStyle functions.'
 },
 {
-  title: "Raw CSS Support",
+  title: "Raw CSS Support (TypeStyle)",
   link: 'raw',
   content: require('../docs/raw.md'),
   prelude: 'Next we look at providing a more complete story for any advanced CSS scenario you might have.'
@@ -41,7 +41,7 @@ const docs: Doc[] = [{
   prelude: 'Its not just the CSS tools that are evolving, but CSS itself is getting better ways to represent application layouts. One of the best ways is the flexbox and we provide guidance + great mixins to make using it easier and meaningful.'
 },
 {
-  title: "Box model (csx)",
+  title: "Box helpers (csx)",
   link: 'box',
   content: require('../docs/box.md'),
   prelude: 'How you manage the space around and inside your components is vital to a great design. Next we cover the helpers to make this a breeze.'
@@ -57,6 +57,12 @@ const docs: Doc[] = [{
   link: 'play',
   content: require('../docs/play.md'),
   prelude: 'Next we show you a playground we designed expecially to allow beginners to experiment and learn CSS easily.'
+},
+{
+  title: "Why TypeStyle",
+  link: 'why',
+  content: require('../docs/why.md'),
+  prelude: 'If you are looking for reasons to use TypeStyle, we have plenty of them.'
 },
 ];
 const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link, prelude: r.prelude }));
