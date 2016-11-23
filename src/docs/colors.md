@@ -514,8 +514,8 @@ Returns a string representing the current color
 ```typescript
 import { hsla, rgba } from 'typestyle/lib/csx';
 
-rgba(0, 0, 0, .5).toHexString(); // rgba(0, 0, 0, 50%)
-hsla(0, 0, 0, .5).toHexString(); // hsla(0, 0, 0, 50%)
+rgba(0, 0, 0, .5).toString(); // rgba(0, 0, 0, 50%)
+hsla(0, 0, 0, .5).toString(); // hsla(0, 0, 0, 50%)
 ```
 
 ---
