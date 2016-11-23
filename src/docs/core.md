@@ -181,8 +181,5 @@ const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}
 
 Also suffix `Class` for classes.
 
-## CSX
-We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/lib/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
-
 That's it for the core of TypeStyle. Simple right!
 
