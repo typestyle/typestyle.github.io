@@ -2,7 +2,12 @@ Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a f
 
 ![](/images/autocomplete.gif)
 
-With a simple `style` function the following problems with maintaining CSS are solved: 
+The DOM `style` attribute is not enough to cater for things like psuedo states and media queries. We provide a simple *zero config* `style` function that gives you all the power of CSS with all the safety of TypeScript. 
+
+> **Jump to the [core API](/#/core)**.
+
+# Boring list of reasons
+If you need to all the problems the simple fact of using the `style` function solves for your managers, here it is:
 
 * No global variables (with raw CSS it all gets thrown into a global namespace. This results in hard to debug / maintain conflicts)
 * Built in dependency system (Same as for the rest of your JS. e.g. NPM)
@@ -24,7 +29,7 @@ With a simple `style` function the following problems with maintaining CSS are s
 * Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
 * Zero config. Just use.
 
-> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS funcitons and mixins to give a smooth learning curve for even new CSS devs). 
+> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
 
 # The Guide
 
