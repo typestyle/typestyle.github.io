@@ -10,13 +10,14 @@ The DOM `style` attribute is not enough to cater for things like psuedo states a
 
 # About `csx`
 
-TypeStyle core is actually **very** small (~1k) and you are free to use **just that**.
+TypeStyle core is actually **very** small (~1k) and you are free to use just that.
 
-However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. Hence it has `csx` sections (a sub library that ships with typestyle) as we are trying to help beginners use CSS effectively
+However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. Hence it has `csx` sections (a sub library `typestyle/lib/csx` that ships with typestyle) as we are trying to help beginners use CSS effectively:
 
+* helps you manage common CSS properties like `padding`, `margin` and **colors**.
 * it essentially documents CSS tips that people might not be familiar with.
 * gives names to these CSS tips.
-* helps you manage common CSS properties like `padding`, `margin` and **colors**. 
+ 
 
 # Boring list of reasons to use TypeStyle
 
@@ -41,5 +42,3 @@ However this guide and TypeStyle is designed to be approachable by both beginner
 * Zero config. Just use.
 
 > Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
-
-
