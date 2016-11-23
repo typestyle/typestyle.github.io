@@ -82,6 +82,7 @@ addFile('globals.d.ts', `
       'keyframes',
       'extend',
       'classes',
+      'media',
     ].some(namedImport => line.includes(namedImport)))
     .map(line => line.replace('export declare', 'declare'))}
 

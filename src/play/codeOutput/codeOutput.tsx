@@ -20,6 +20,7 @@ const {
   cssRule,
   classes,
   extend,
+  media
 } = typestyle;
 
 namespace CodeOutputStyles {

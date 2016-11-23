@@ -129,16 +129,16 @@ const niceVerticalLayout = style({
 
 ## Concept: Media queries 
 
-You can use `@media` at the start of a key to indicate that you want to customize the CSS when a certain media query is met. We generate the *right* CSS for you. Example usage: 
+You can use the `media` function to indicate that you want to customize the CSS when a certain media query is met. We generate the *right* CSS for you. Example usage: 
 
 ```play
-const sizeChangingClass = style({
-  transition: 'font-size .2s',
-  fontSize: '24px',
-  '@media (min-width: 600px)': {
-    fontSize: '50px'
-  }
-});
+import { style, media } from "typestyle";
+
+const sizeChangingClass = style(
+  {transition: 'font-size .2s'},
+  media({minWidth:0,maxWidth:600}, {fontSize: '24px'}),
+  media({minWidth:601}, {fontSize: '50px'}),
+);
 
 <h1 className={sizeChangingClass}>Hello world</h1>
 ```
