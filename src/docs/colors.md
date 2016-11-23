@@ -716,8 +716,8 @@ Shifts the hue around the color wheel by a certain number of positive or negativ
 ```typescript
 import { red, spin } from 'typestyle/lib/csx';
 
-const yellow = red.spin(120);
-const blue = yellow.spin(120);
+const green = red.spin(120);
+const blue = green.spin(120);
 const redAgain = blue.spin(120);
 ```
 
