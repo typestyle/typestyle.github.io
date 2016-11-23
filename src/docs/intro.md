@@ -13,3 +13,11 @@ However this guide and TypeStyle is designed to be approachable by both beginner
 * helps you manage common CSS properties like `padding`, `margin` and **colors**.
 * it essentially documents CSS tips that people might not be familiar with.
 * gives names to these CSS tips.
+
+# Installation 
+
+Available easily via npm: 
+
+```
+npm install typestyle --save
+```
