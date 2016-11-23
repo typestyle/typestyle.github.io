@@ -697,6 +697,30 @@ const red1 = red.saturate('10%');
 const red2 = red.saturate(.1);
 ```
 
+### shade(weight: number): ColorHelper
+It darkens the color by mixing black into it.  It is the same as black.mix(color, weight).
+
+- weight is expressed as a number between 0 and 1 (e.g. 0.5)
+
+```typescript
+import { red } from 'typestyle/lib/csx';
+
+const darkerRed = red.shade(0.5);
+```
+
+### spin(degrees: number): ColorHelper
+Shifts the hue around the color wheel by a certain number of positive or negative degrees
+
+- degrees is expressed as a number between -360 to 360.  Values above or below that range will be wrapped around (e.g. 480 is the same as 120, -480 is the same as -120).
+
+```typescript
+import { red, spin } from 'typestyle/lib/csx';
+
+const yellow = red.spin(120);
+const blue = yellow.spin(120);
+const redAgain = blue.spin(120);
+```
+
 ### tint(weight: number): ColorHelper
 It lightens the color by mixing white into it.  It is the same as white.mix(color, weight).
 
@@ -708,16 +732,7 @@ import { red } from 'typestyle/lib/csx';
 const lighterRed = red.tint(0.5);
 ```
 
-### shade(weight: number): ColorHelper
-It darkens the color by mixing black into it.  It is the same as black.mix(color, weight).
 
-- weight is expressed as a number between 0 and 1 (e.g. 0.5)
-
-```typescript
-import { red } from 'typestyle/lib/csx';
-
-const darkerRed = red.shade(0.5);
-```
 
 ---
 ## Inspect Colors
