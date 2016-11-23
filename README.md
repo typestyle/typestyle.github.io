@@ -1,5 +1,5 @@
 # typestyle.github.io
-Website for TypeStyle
+Website for TypeStyle. Check it out [here](http://typestyle.github.io/).
 
 # Contributing 
 * Add commits to `source` and they get built and published to `master` by travis
