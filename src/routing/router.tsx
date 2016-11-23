@@ -29,6 +29,12 @@ const docs: Doc[] = [{
   prelude: 'Next we look at providing a more complete story for any advanced CSS scenario you might have.'
 },
 {
+  title: "Server side rendering (TypeStyle)",
+  link: 'server',
+  content: require('../docs/server.md'),
+  prelude: 'Next we look at server side rendering which *may* or *may not* be something you need.'
+},
+{
   title: "Page Setup (csx)",
   link: 'page',
   content: require('../docs/page.md'),
