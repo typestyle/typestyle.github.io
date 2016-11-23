@@ -58,12 +58,12 @@ h1 {
 `)
 ```
 
-
 > Protip `csx.normalize()` uses this function internally to actually add `normalize.css`. More on this later.
 
 ## Advantages of these functions over loaders 
 
 * Works seemlessly in a nodejs enviroment (for testing) whereas `require('./someCss.css')` does not without additional setup.
-* You still get to use JS + all our fancy mixins.
+* You still get to use JS and share variables with JS (using template strings!).
+* With `cssRule` you can also use all our (and your!) fancy mixins.
 
 Great. That covers the key TypeStyle API surface.
