@@ -77,7 +77,7 @@ export class Demo extends React.Component<{}, {}> {
       </cp.Flex>
       <cp.SmallVerticalSpace />
       {/** output */}
-      <cp.Flex className={style({ backgroundColor: 'white', transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 0.7 : 1 }, csx.layerParent)}>
+      <cp.Flex className={style({ backgroundColor: 'white', transition: 'opacity .2s', opacity: demoState.pendingUpdates ? 0.7 : 1 }, csx.layerParent, csx.maxWidth('50%'))}>
         <CodeOutput pending={demoState.pendingUpdates} hasCode={demoState.hasCode} output={demoState.output} />
       </cp.Flex>
     </cp.FlexHorizontal>
