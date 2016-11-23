@@ -1,4 +1,28 @@
-The biggest reason is developer happiness🌹. Beyond that here is a boring list of reasons to use TypeStyle.
+The biggest reason is developer happiness🌹. 
+
+## Concept: Deduping
+
+It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if its not required this is shown below: 
+
+```play
+import {style} from 'typestyle';
+import * as csx from 'typestyle/lib/csx';
+
+const a = style({color:csx.red});
+const b = style({color:csx.red});
+
+<div>a:{a},b:{b}. Same? {(a===b).toString()}</div>;
+```
+
+This gives the following gains: 
+
+* No needless CSS updates + reflows.
+* True freedom to use `className` like you would use `style` in your framework of choice.
+* No style bloat: Automatically smaller stylesheets based on your object reuse.  
+
+## More boring reasons 
+
+Beyond that here is a boring list of additional reasons to use TypeStyle.
 
 * No global variables (with raw CSS it all gets thrown into a global namespace. This results in hard to debug / maintain conflicts)
 * Built in dependency system (Same as for the rest of your JS. e.g. NPM)
@@ -7,7 +31,6 @@ The biggest reason is developer happiness🌹. Beyond that here is a boring list
 * Shared constants and reusable styles (Using variables and objects)
 * Extensible (Just use JavaScript with all its power)
 * Your components are still free to have class names that you can give to external people to further style your stuff (better still take `clasName` as a property and let them use *typestyle* too!).
-* No style bloat (will magically merges duplicate styles as the same style object structure gives the same className which is only written once!)
 * Develop components alongside the style (No more hunting CSS files for estranged `ul > li > a`)
 * Create isomorphic applications (easy export to a CSS file is supported)
 * All the power of CSS without compromise e.g. pseudo states (`{ '&:hover': { ... } }`)
