@@ -20,7 +20,7 @@ const docs: Doc[] = [{
   title: "Core API (TypeStyle)",
   link: 'core',
   content: require('../docs/core.md'),
-  prelude: 'Next we kick off with the core TypeStyle functions.'
+  prelude: 'Go ahead and jump into the super simple core API.'
 },
 {
   title: "Raw CSS Support (TypeStyle)",
