@@ -1,13 +1,24 @@
-Writing maintainable CSS is hardwork. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
+Maintainable CSS is nearly impossible. But writing maintainable JavaScript is a fairly solved problem. Lets combine the two to make CSS maintainability an issue of the past.
 
 ![](/images/autocomplete.gif)
 
-The DOM `style` attribute is not enough to cater for things like psuedo states and media queries. We provide a simple *zero config* `style` function that gives you all the power of CSS with all the safety of TypeScript. 
+The DOM `style` attribute is not enough to cater for things like psuedo states and media queries. We provide a simple *zero config* `style` function that gives you all the power of CSS with all the safety and maintainability of TypeScript / JavaScript. 
 
-> **Jump to the [core API](/#/core)**.
+> **[Go ahead and jump to the core API](/#/core)** 
+<br/>
+> *or if you want motivation a boring list of reasons and notes follow*. 
 
-# Boring list of reasons
-If you need to all the problems the simple fact of using the `style` function solves for your managers, here it is:
+# About `csx`
+
+TypeStyle core is actually **very** small (~1k) and you are free to use **just that**.
+
+However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. Hence it has `csx` sections (a sub library that ships with typestyle) as we are trying to help beginners use CSS effectively
+
+* it essentially documents CSS tips that people might not be familiar with.
+* gives names to these CSS tips.
+* helps you manage common CSS properties like `padding`, `margin` and **colors**. 
+
+# Boring list of reasons to use TypeStyle
 
 * No global variables (with raw CSS it all gets thrown into a global namespace. This results in hard to debug / maintain conflicts)
 * Built in dependency system (Same as for the rest of your JS. e.g. NPM)
@@ -31,7 +42,4 @@ If you need to all the problems the simple fact of using the `style` function so
 
 > Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
 
-# The Guide
-
-This guide is designed for the beginner and expert alike. You are welcome to drop off at any point and go build your amazing application with what you have learnt.
 
