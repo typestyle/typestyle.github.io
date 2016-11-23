@@ -29,6 +29,12 @@ export const Header = () => {
   );
 }
 
+const anchorClass = style({
+  color: '#333', whiteSpace: 'nowrap', textDecoration: 'none',
+  '&:hover': { textDecoration: 'underline' },
+  '&:visited': { color: '#333' }
+})
+
 ReactDOM.render(<cp.Content>
   <Header />
   <cp.ContentVerticalMargined style={{ padding: '20px 10px 10px 10px' }}>
@@ -39,9 +45,14 @@ ReactDOM.render(<cp.Content>
         <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
       </cp.ContentVerticalCentered>
 
-      <cp.ContentVerticalCentered style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
-        This project is powered by github 🌟s, and they are much appreciated 🌹
-      </cp.ContentVerticalCentered>
+      <div style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
+        <a href="https://github.com/typestyle/typestyle/stargazers" target="_blank" className={anchorClass}>Powered by your github 🌟s.</a> <a
+            className={anchorClass}
+            href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
+            target="_blank">
+            Don't forget to share 🌹
+          </a>
+      </div>
     </cp.ContentVerticalMargined>
 
     {renderRoutes()}
