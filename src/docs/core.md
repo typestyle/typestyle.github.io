@@ -25,7 +25,7 @@ const className = style({color: 'red'});
 
 You would use the *generated* class name just like you would use some actual class name e.g. with React: 
 
-```ts
+```play
 /** Import */
 import {style} from "typestyle";
 
@@ -33,17 +33,16 @@ import {style} from "typestyle";
 const className = style({color: 'red'});
 
 /** Usage with e.g. React */
-const MyText =
-  ({text})
-    => <div className={className}>
-        {text}
-      </div>
+const MyText = ({text}) => 
+  <div className={className}>
+    {text}
+  </div>;
+
+/** Use the component */
+<MyText text="Hello world!"/>
 ```
 
 The class name will look something like `f14svl5e`, this is basically a *hash* of the style objects passed to `style`. In the background `style` has gone ahead and also inserted CSS like `.f14svl5e { color: red }` into the document so using this class name with *any* framework has the desired effect of styling the element.
-
-## CSX
-We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/lib/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
 
 ## Concept: Mixin
 
@@ -51,13 +50,15 @@ We understand that its difficult to get started with CSS in JS without additiona
 
 The `style` function can take multiple objects. This makes it easy to reuse simple style objects e.g. 
 
-```ts
+```play
 const redMaker = {color:'red'};
-const alwaysRedClass = style(redMaker);
-const greyOnHoverClass = style(
+const bigFont = {fontSize: '50px'};
+const bigRedClass = style(
   redMaker,
-  {'&:hover':{color: 'grey'}}
+  bigFont
 );
+
+<div className={bigRedClass}>Hello world</div>
 ```
 
 In fact a large number of mixins are provided by `csx` (`import * as csx from 'typestyle/lib/csx'`). e.g. for flexbox we have `csx.flex`, `csx.content`, `csx.vertical` etc. Use them as you would naturally expect e.g. 
@@ -84,30 +85,31 @@ const Demo = () =>
 ## Concept: Interpolation
 You can use `&` in any key for the object passed to `style` and its get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
 
-```ts
-/** Import */
+```play
 import {style} from "typestyle";
 
 /** convert a style object to a CSS class name */
-const className = style({
+const niceColors = style({
+  transition: 'color .2s',
   color: 'blue',
   '&:hover': {
     color: 'red'
   }
 });
+
+<h1 className={niceColors}>Hello world</h1>
 ```
 
 or even child selectors for example a nicely spaced vertical layout: 
 
-```ts
-/** Import */
+```play
 import {style} from "typestyle";
 
 /** Share constants in TS! */
 const spacing = '5px';
 
 /** style -> className :) */
-const className = style({
+const niceVerticalLayout = style({
   '&>*': {
     marginBottom: spacing,
   },
@@ -115,6 +117,12 @@ const className = style({
     marginBottom: '0px',
   }
 });
+
+<div className={niceVerticalLayout}>
+  <div>foo</div>
+  <div>bar</div>
+  <div>bas</div>
+</div>  
 ```
 
 > Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csx mixin e.g. `csx.verticallySpaced(10)`. More on this function when we look at csx box functions later in the book.
@@ -123,13 +131,16 @@ const className = style({
 
 You can use `@media` at the start of a key to indicate that you want to customize the CSS when a certain media query is met. We generate the *right* CSS for you. Example usage: 
 
-```ts
-const colorChangingClass = style({
-  backgroundColor: 'red',
-  '@media (min-width: 400px)': {
-    backgroundColor: 'pink'
+```play
+const sizeChangingClass = style({
+  transition: 'font-size .2s',
+  fontSize: '24px',
+  '@media (min-width: 600px)': {
+    fontSize: '50px'
   }
-})
+});
+
+<h1 className={sizeChangingClass}>Hello world</h1>
 ```
 
 ## Concept: Keyframes
@@ -166,6 +177,9 @@ const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}
 ```
 
 Also suffix `Class` for classes.
+
+## CSX
+We understand that its difficult to get started with CSS in JS without additional guidance. So we also provide a lot of utility style objects in `typestyle/lib/csx` to decrease you rampup. Also these give more semantic names to CSS concepts that are used commonly. More on this later.
 
 That's it for the core of TypeStyle. Simple right!
 
