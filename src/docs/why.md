@@ -1,4 +1,25 @@
-The biggest reason is developer happiness🌹. 
+The biggest reason is developer happiness🌹.
+
+## Concept: Hashed className
+
+CSS class names (e.g. `.btn`) suffer from global conflicts. 
+
+* This makes integrating with third party libraries hard. Each library must follow a convention to prevent mistakes e.g. `bootstrap-btn` but *most libraries* don't and camp on global names.
+* This makes even writing maintainable CSS *in your project* hard and you need to treat it as *global* e.g. if you want to create a class for buttons in two components e.g. date picker and a file dropzone you must have `.mine-datepicker-button` and `.mine-dropzone-button` to prevent mistaken conflicts. With JS/TS you would probably have seperate `.js` files (e.g. `datePicker.js` and `dropzone.js`) and each can have a local variable `buttonClass` without any conflicts. You don't even need to export these to the outside world.
+
+However due to limitations of CSS we still need to generate a CSS file to allow you to use features like hover states and media queries. Hence we generate a className based on the content for you: 
+
+```play
+import {style} from 'typestyle';
+
+const myColorClass = style({color:'red'});
+
+<div>The generated class name: {myColorClass}</div>;
+```
+
+This gives you: 
+
+* Isolation: No globals!
 
 ## Concept: Deduping
 
@@ -24,10 +45,9 @@ This gives the following gains:
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
 
-* No global variables (with raw CSS it all gets thrown into a global namespace. This results in hard to debug / maintain conflicts)
-* Built in dependency system (Same as for the rest of your JS. e.g. NPM)
+* Built in dependency system (Same as for the rest of your JS)
 * Dead code elimination (e.g. on `noUnusedLocals` in TypeScript)
-* Minification (Minify JS with existing tools)
+* Minification (Minify JS with existing tools). The CSS we generate is already nearly whitespace free.
 * Shared constants and reusable styles (Using variables and objects)
 * Extensible (Just use JavaScript with all its power)
 * Your components are still free to have class names that you can give to external people to further style your stuff (better still take `clasName` as a property and let them use *typestyle* too!).
