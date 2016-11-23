@@ -17,12 +17,6 @@ const docs: Doc[] = [{
   prelude: '',
 },
 {
-  title: "Playground",
-  link: 'play',
-  content: require('../docs/play.md'),
-  prelude: 'Next we show you a playground we designed expecially to allow beginners to experiment and learn CSS easily.'
-},
-{
   title: "Core API",
   link: 'core',
   content: require('../docs/core.md'),
@@ -57,7 +51,14 @@ const docs: Doc[] = [{
   link: 'colors',
   content: require('../docs/colors.md'),
   prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.'
-}];
+},
+{
+  title: "Playground Docs",
+  link: 'play',
+  content: require('../docs/play.md'),
+  prelude: 'Next we show you a playground we designed expecially to allow beginners to experiment and learn CSS easily.'
+},
+];
 const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link, prelude: r.prelude }));
 
 export function renderRoutes() {

@@ -1,5 +1,3 @@
-> NOTE: we are presenting the playground *before* going through the API in detail. This is so that you can play around later when we present the maintainability guidance and CSS learnings.
-
 We found the JavaScript playgrounds out there missing key features for a great TypeScript experience. Introducing the TypeStyle playground : [http://typestyle.io/play/](http://typestyle.io/play/). It supports *full* demo development with:
 
 * JavaScript in the form of TypeScript 
