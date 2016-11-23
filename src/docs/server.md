@@ -1,4 +1,4 @@
-Sever side rendering + static page generations is supported with a super easy function.
+Sever side rendering + static page generations is supported with a super easy function. It may not be a feature you need so you can safely skip reading this section.
 
 ## `css`
 It allows you to get the styles as CSS which you can return as a part of your server response. e.g.
