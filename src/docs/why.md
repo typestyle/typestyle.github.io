@@ -1,4 +1,6 @@
-The biggest reason is developer happiness🌹.
+The biggest reason is developer happiness from not having to manage too many files that are intrinsically linked to each other and not having to use different tools to get the *single* job done 🌹.
+
+But of course, there are lots of other reasons as well and we present a few below.
 
 ## Concept: Hashed className
 
@@ -39,14 +41,27 @@ This gives the following gains:
 
 * No needless CSS updates + reflows.
 * True freedom to use `className` like you would use `style` in your framework of choice.
-* No style bloat: Automatically smaller stylesheets based on your object reuse.  
+* No style bloat: Automatically smaller stylesheets based on your object reuse.
+
+## Concept: Dead CSS 
+
+Determining the impact of a CSS className on your codebase is one of the hardest problems facing frontend maintainability. 
+
+Having the styles managed in JS (especially with TypeScript) gives you the following immediate gains:
+
+* You can immediately see all the places where a class is used (e.g find references in TypeScript). This also gives you the *impact* footprint of a CSS class.
+* Refactor class names easily, especially true with TypeScript (e.g. from `fooClass` to `barClass`. You no longer need to be afraid to touch your CSS class names).
+* Remove CSS classes that are no longer used easily (e.g. switch on `noUnusedLocals` in TypeScript).
+* Delete a TS file containing CSS classNames. If its used you get a nice compiler error which you can fix easily (same way you fix / remove unused JS code). Next go out and party 🎉.
+* Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
+* With fancy tree shaking module loaders (like rollup/webpack2) if a varaible isn't used its removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.  
 
 ## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
 
-* Built in dependency system (Same as for the rest of your JS)
-* Dead code elimination (e.g. on `noUnusedLocals` in TypeScript)
+* No context switching your brain (think its worth mentioning again).
+* Built in dependency system same as the rest of your JS. No special code for CSS needed.
 * Minification (Minify JS with existing tools). The CSS we generate is already nearly whitespace free.
 * Shared constants and reusable styles (Using variables and objects)
 * Extensible (Just use JavaScript with all its power)
