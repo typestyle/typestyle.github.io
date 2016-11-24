@@ -162,6 +162,45 @@ const ooooClass = typestyle.style({
 <h1 className={ooooClass}>Hello world</h1>
 ```
 
+## `classes`
+CSS classes compose nicely. If a dom element has two classes applied to it, the second class gets to override any first class properties. We have a function `classes` to make composing classes (essentially string concatenation) easier: 
+
+```play
+const messageClass = style({
+  color: 'grey',
+  fontSize: '24px',
+  width: '100%'
+});
+
+const Message = (props:{className?:string,text:string}) => {
+  return (
+    <p className={classes(messageClass,props.className)}>{props.text}</p>
+  );
+};
+
+<div>
+  {/** Without customization */}
+  <Message text="Hello"/>
+  {/** With customization */}
+  <Message text="World" className={style({color:'red'})}/>
+</div>
+```
+
+> You can use `className` to allow *full* customization of any of your components (something that can't be done with style attributes). Using `className`/`classes` also solves one of the hardest problems of CSS in JS i.e. external themeability.
+
+Also `classes` safely ignores any *falsy* values so you can *optionally* merge classes if you need to: 
+
+```ts
+const tallClass = style({height:'100px'});
+const coloredClass = style({color:'red'});
+
+/** Compose classes */
+const tallColoredClass = typestyle.classes(tallClass, coloredClass);
+
+/** Even conditionally (any falsy parameters are ignored in the composed class name) */
+const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
+```  
+
 ## Tip: Code Organization
 How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
 
