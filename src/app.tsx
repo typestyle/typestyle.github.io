@@ -10,8 +10,9 @@ import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
 import * as csx from 'typestyle/lib/csx';
-import { style } from 'typestyle';
+import { style, forceFlush } from 'typestyle';
 
+forceFlush();
 export const Header = () => {
   return (
     <div className={style(
