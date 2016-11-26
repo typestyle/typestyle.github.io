@@ -62,6 +62,7 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 
 * No context switching your brain (think its worth mentioning again).
 * Built in dependency system same as the rest of your JS. No special code for CSS needed.
+* Ship CSS in the same channel that you ship JS, with no special configuration being required by your library user.
 * Minification (Minify JS with existing tools). The CSS we generate is already nearly whitespace free.
 * Shared constants and reusable styles (Using variables and objects)
 * Extensible (Just use JavaScript with all its power)
