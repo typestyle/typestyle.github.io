@@ -12,7 +12,6 @@ import { renderRoutes } from './routing/router';
 import * as csx from 'typestyle/lib/csx';
 import { style, forceFlush } from 'typestyle';
 
-forceFlush();
 export const Header = () => {
   return (
     <div className={style(
@@ -61,3 +60,5 @@ ReactDOM.render(<cp.Content>
   </cp.ContentVerticalMargined>
 
 </cp.Content>, document.getElementById('root'));
+
+forceFlush();
