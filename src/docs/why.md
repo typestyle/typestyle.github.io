@@ -4,12 +4,12 @@ But of course, there are lots of other reasons as well and we present a few belo
 
 ## Concept: Hashed className
 
-CSS class names (e.g. `.btn`) suffer from global conflicts.
+CSS class names (e.g. `.btn`) suffer from global conflicts. 
 
 * This makes integrating with third party libraries hard. Each library must follow a convention to prevent mistakes e.g. `bootstrap-btn` but *most libraries* don't and camp on global names.
 * This makes even writing maintainable CSS *in your project* hard and you need to treat it as *global* e.g. if you want to create a class for buttons in two components e.g. date picker and a file dropzone you must have `.mine-datepicker-button` and `.mine-dropzone-button` to prevent mistaken conflicts. With JS/TS you would probably have seperate `.js` files (e.g. `datePicker.js` and `dropzone.js`) and each can have a local variable `buttonClass` without any conflicts. You don't even need to export these to the outside world.
 
-However due to limitations of CSS we still need to generate a CSS file to allow you to use features like hover states and media queries. Hence we generate a className based on the content for you:
+However due to limitations of CSS we still need to generate a CSS file to allow you to use features like hover states and media queries. Hence we generate a className based on the content for you: 
 
 ```play
 import {style} from 'typestyle';
@@ -19,13 +19,13 @@ const myColorClass = style({color:'red'});
 <div>The generated class name: {myColorClass}</div>;
 ```
 
-This gives you:
+This gives you: 
 
 * Isolation: No globals!
 
 ## Concept: Deduping
 
-It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if its not required this is shown below:
+It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if its not required this is shown below: 
 
 ```play
 import {style} from 'typestyle';
@@ -37,15 +37,15 @@ const b = style({color:csx.red});
 <div>a:{a},b:{b}. Same? {(a===b).toString()}</div>;
 ```
 
-This gives the following gains:
+This gives the following gains: 
 
 * No needless CSS updates + reflows.
 * True freedom to use `className` like you would use `style` in your framework of choice.
 * No style bloat: Automatically smaller stylesheets based on your object reuse.
 
-## Concept: Dead CSS
+## Concept: Dead CSS 
 
-Determining the impact of a CSS className on your codebase is one of the hardest problems facing frontend maintainability.
+Determining the impact of a CSS className on your codebase is one of the hardest problems facing frontend maintainability. 
 
 Having the styles managed in JS (especially with TypeScript) gives you the following immediate gains:
 
@@ -53,10 +53,10 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 * Refactor class names easily, especially true with TypeScript (e.g. from `fooClass` to `barClass`. You no longer need to be afraid to touch your CSS class names).
 * Remove CSS classes that are no longer used easily (e.g. switch on `noUnusedLocals` in TypeScript).
 * Delete a TS file containing CSS classNames. If its used you get a nice compiler error which you can fix easily (same way you fix / remove unused JS code). Next go out and party 🎉.
-* Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*.
-* With fancy tree shaking module loaders (like rollup/webpack2) if a variable isn't used, it's removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.
+* Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
+* With fancy tree shaking module loaders (like rollup/webpack2) if a varaible isn't used its removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.  
 
-## More boring reasons
+## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
 
@@ -79,4 +79,4 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 * Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
 * Zero config. Just use.
 
-> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs).
+> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
