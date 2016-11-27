@@ -25,7 +25,7 @@ This gives you:
 
 ## Concept: Deduping
 
-It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if its not required this is shown below: 
+It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if it's not required this is shown below: 
 
 ```play
 import {style} from 'typestyle';
@@ -52,15 +52,15 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 * You can immediately see all the places where a class is used (e.g find references in TypeScript). This also gives you the *impact* footprint of a CSS class.
 * Refactor class names easily, especially true with TypeScript (e.g. from `fooClass` to `barClass`. You no longer need to be afraid to touch your CSS class names).
 * Remove CSS classes that are no longer used easily (e.g. switch on `noUnusedLocals` in TypeScript).
-* Delete a TS file containing CSS classNames. If its used you get a nice compiler error which you can fix easily (same way you fix / remove unused JS code). Next go out and party 🎉.
+* Delete a TS file containing CSS classNames. If it's used, you get a nice compiler error which you can fix easily (same way you fix / remove unused JS code). Next go out and party 🎉.
 * Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
-* With fancy tree shaking module loaders (like rollup/webpack2) if a varaible isn't used its removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.  
+* With fancy tree shaking module loaders (like rollup/webpack2) if a variable isn't used, it's removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.
 
 ## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
 
-* No context switching your brain (think its worth mentioning again).
+* No context switching your brain (think it's worth mentioning again).
 * Built in dependency system same as the rest of your JS. No special code for CSS needed.
 * Ship CSS in the same channel that you ship JS, with no special configuration being required by your library user.
 * Minification (Minify JS with existing tools). The CSS we generate is already nearly whitespace free.
