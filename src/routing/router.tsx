@@ -70,6 +70,12 @@ const docs: Doc[] = [{
   content: require('../docs/why.md'),
   prelude: 'If you are looking for reasons to use TypeStyle, we have plenty of them.'
 },
+{
+  title: "Reviews",
+  link: 'reviews',
+  content: require('../docs/reviews.md'),
+  prelude: 'Checkout the positive response to this library / framework.'
+},
 ];
 const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link, prelude: r.prelude }));
 

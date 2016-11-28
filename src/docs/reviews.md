@@ -1,0 +1,17 @@
+
+* [I haven't been this giggly-happy about a library in a long time!!!](https://twitter.com/andrestaltz/status/788665551325454337)
+* [Rad idea!](https://twitter.com/iammerrick/status/788784672314576897)
+* [What a fantastic #css resource](https://twitter.com/zbrianw/status/792177209490313217)
+* [This is the CSS framework I have wanted to exist for the past 5 years.](https://twitter.com/jeffwhelpley/status/802275885353054208)
+* [Relief! CSS w/ Type Safety!](https://twitter.com/wwwalkerrun/status/802329604471959552)
+* [This is seriously cool stuff.](https://twitter.com/jonbrennecke/status/802351164247265280)
+* [YES! That's freaking awesome!](https://twitter.com/brechtbilliet/status/802385818295746560)
+* [This is an example of both types and linting being enforced by the same systems as the rest of your code](https://twitter.com/rauchg/status/802706919823581185)
+* [Nice approach to have your #css in order and using #typescript](https://twitter.com/chris_noring/status/802824657401475073)
+
+# Sample Projects
+The best sample projects are real world usages. Here are a few: 
+
+* [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/) Built with TypeStyle / CycleJS / TypeScript
+* [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](http://typestyle.io/play)
+* [alm.tools](http://alm.tools) designed to provide the best developer experience for TypeScript 
