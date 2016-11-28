@@ -9,9 +9,10 @@
 * [This is an example of both types and linting being enforced by the same systems as the rest of your code](https://twitter.com/rauchg/status/802706919823581185)
 * [Nice approach to have your #css in order and using #typescript](https://twitter.com/chris_noring/status/802824657401475073)
 
-# Sample Projects
-The best sample projects are real world usages. Here are a few: 
+# Samples
+
+TypeStyle is simply just a `style` function with a handful of *simple* utilities that we cover nicely in the rest of the book. So don't need another hello world here. That said, the best samples are real world usages. Here are a few: 
 
 * [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/) Built with TypeStyle / CycleJS / TypeScript
-* [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](http://typestyle.io/play)
-* [alm.tools](http://alm.tools) designed to provide the best developer experience for TypeScript 
+* [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](http://typestyle.io/play) are all built 100% with typestyle.
+* [alm.tools](http://alm.tools) and IDE designed to provide the best developer experience for TypeScript.
