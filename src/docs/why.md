@@ -58,19 +58,20 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 
 # Comparison to other options
 
-There are a lot of other CSS in JS frameworks out there. We use and had a look at quite a few. Some quick reasons why we wrote our own.
+There are a lot of other CSS in JS frameworks out there. In the past we used and experimented with quite a few. Some quick reasons why we wrote our own.
 
 * We are focused on Autocomplete / *Compile* time error analysis
   * None of them had this out of the box.
-  * Not all APIs are statically analyzable e.g. if you use template strings the CSS portion is essentially not analyzed at all.
-* Some forced you to use a custom AST transform 
-  * Would be fine if custom ASTs came with IDE support + static analysis. It doesn't. So don't want to force you to use that. 
-* Many others are framework specific e.g. react specific 
+  * Not all APIs are statically analyzable e.g. if the API is powered by template strings, the CSS portion is essentially not analyzed at all.
+* Some forced you to use a custom AST transforms 
+  * Would be fine if custom ASTs came with IDE support + static analysis. It doesn't.
+* Many others are framework specific e.g. React specific 
   * Some force you to rethink / wrap your component. Didn't want that.
   * They make upgrading your frontend framework harder as you need for them to update their wrapper first. 
-* Many others try to solve problem with JS
-  * This can result in issues when a JS event is absent, e.g. a stuck `:hover` https://github.com/FormidableLabs/radium/issues/524
+* Many others try to solve problem with JS events instead of generating CSS.
+  * This can result in issues when a JS event is absent, e.g. [a stuck `:hover`](https://goo.gl/e5tUyt)
   * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
+  * The number of issues reported on libraries that use JS events is generally too high for comfort.
   * Generally framework specific and that has problems we've mentioned before.
 * CSS Modules : Not CSS in JS. Just solves namespacing. Most the other CSS managment problems still exist.
 
