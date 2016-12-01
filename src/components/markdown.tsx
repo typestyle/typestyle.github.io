@@ -98,6 +98,13 @@ namespace MarkDownStyles {
 .${rootClass} ul>*:last-child {
   margin-bottom: 0px !important;
 }
+.${rootClass} li>* {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+.${rootClass} li>*:last-child {
+  margin-bottom: 0px !important;
+}
 
 .${rootClass} a {
   color: grey;
