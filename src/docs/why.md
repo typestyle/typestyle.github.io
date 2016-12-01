@@ -56,6 +56,26 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 * Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
 * With fancy tree shaking module loaders (like rollup/webpack2) if a variable isn't used, it's removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.
 
+# Comparison to other options
+
+There are a lot of other CSS in JS frameworks out there. We use and had a look at quite a few. Some quick reasons why we wrote our own.
+
+* We are focused on Autocomplete / *Compile* time error analysis
+  * None of them had this out of the box.
+  * Not all APIs are statically analyzable e.g. if you use template strings the CSS portion is essentially not analyzed at all.
+* Some forced you to use a custom AST transform 
+  * Would be fine if custom ASTs came with IDE support + static analysis. It doesn't. So don't want to force you to use that. 
+* Many others are framework specific e.g. react specific 
+  * Some force you to rethink / wrap your component. Didn't want that.
+  * They make upgrading your frontend framework harder as you need for them to update their wrapper first. 
+* Many others try to solve problem with JS
+  * this can result in problem like elements forgetting to clear `:hover` https://github.com/FormidableLabs/radium/issues/524
+  * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
+  * Generally framework specific and that has problems we've mentioned before.
+* CSS Modules : Not CSS in JS. Just solves namespacing. Most the other CSS managment problems still exist.
+
+Of course there are tradeoff to all choices and we would not exist without their hard work 🌹 
+
 ## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
