@@ -69,7 +69,7 @@ There are a lot of other CSS in JS frameworks out there. We use and had a look a
   * Some force you to rethink / wrap your component. Didn't want that.
   * They make upgrading your frontend framework harder as you need for them to update their wrapper first. 
 * Many others try to solve problem with JS
-  * this can result in problem like elements forgetting to clear `:hover` https://github.com/FormidableLabs/radium/issues/524
+  * This can result in issues when a JS event is absent, e.g. a stuck `:hover` https://github.com/FormidableLabs/radium/issues/524
   * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
   * Generally framework specific and that has problems we've mentioned before.
 * CSS Modules : Not CSS in JS. Just solves namespacing. Most the other CSS managment problems still exist.
