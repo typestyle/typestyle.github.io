@@ -74,7 +74,7 @@ There are a lot of other CSS in JS frameworks out there. We use and had a look a
   * Generally framework specific and that has problems we've mentioned before.
 * CSS Modules : Not CSS in JS. Just solves namespacing. Most the other CSS managment problems still exist.
 
-Of course there are tradeoff to all choices and we would not exist without their hard work 🌹 
+Of course we would not exist without their previous and continued hard work and public idea exchange 🌹 
 
 ## More boring reasons 
 
