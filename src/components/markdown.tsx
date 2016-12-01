@@ -93,7 +93,7 @@ namespace MarkDownStyles {
     padding-left: 27px;
 }
 .${rootClass} ul>* {
-  margin-bottom: 10px !important;
+  margin-bottom: 5px !important;
 }
 .${rootClass} ul>*:last-child {
   margin-bottom: 0px !important;
