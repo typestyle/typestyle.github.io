@@ -2,6 +2,30 @@ The biggest reason is developer happiness from not having to manage too many fil
 
 But of course, there are lots of other reasons as well and we present a few below.
 
+# Comparison to other options
+
+There are a lot of other CSS in JS frameworks out there. In the past we used and experimented with quite a few. Some quick reasons why we wrote our own.
+
+* We are focused on Autocomplete / *Compile* time error analysis
+  * None of them had this out of the box.
+  * Not all APIs are statically analyzable e.g. if the API is powered by template strings, the CSS portion is essentially not analyzed at all.
+* Some forced you to use a custom AST transforms 
+  * Would be fine if custom ASTs came with IDE support + static analysis. It doesn't.
+* Many others are framework specific e.g. React specific 
+  * Some force you to rethink / wrap your component. Didn't want that.
+  * They make upgrading your frontend framework harder as you need for them to update their wrapper first. 
+* Many others try to solve problem with JS events instead of generating CSS.
+  * This can result in issues when a JS event is absent, e.g. [a stuck `:hover`](https://goo.gl/e5tUyt)
+  * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
+  * The number of issues reported on libraries that use JS events is generally too high for comfort.
+  * Generally framework specific and that has problems we've mentioned before.
+* CSS Modules : Not CSS in JS. Just solves namespacing.
+  * Most the other CSS managment problems still exist. We are essentially CSS modules, if CSS modules were written in JS.
+* Super small core size (~1k). 
+  * We are just putting a type system + encapsulation / maintainability (no globals) on CSS.
+
+Of course we would not exist without their previous and continued hard work and public idea exchange 🌹 
+
 ## Concept: Hashed className
 
 CSS class names (e.g. `.btn`) suffer from global conflicts. 
@@ -56,27 +80,6 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 * Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
 * With fancy tree shaking module loaders (like rollup/webpack2) if a variable isn't used, it's removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.
 
-# Comparison to other options
-
-There are a lot of other CSS in JS frameworks out there. In the past we used and experimented with quite a few. Some quick reasons why we wrote our own.
-
-* We are focused on Autocomplete / *Compile* time error analysis
-  * None of them had this out of the box.
-  * Not all APIs are statically analyzable e.g. if the API is powered by template strings, the CSS portion is essentially not analyzed at all.
-* Some forced you to use a custom AST transforms 
-  * Would be fine if custom ASTs came with IDE support + static analysis. It doesn't.
-* Many others are framework specific e.g. React specific 
-  * Some force you to rethink / wrap your component. Didn't want that.
-  * They make upgrading your frontend framework harder as you need for them to update their wrapper first. 
-* Many others try to solve problem with JS events instead of generating CSS.
-  * This can result in issues when a JS event is absent, e.g. [a stuck `:hover`](https://goo.gl/e5tUyt)
-  * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
-  * The number of issues reported on libraries that use JS events is generally too high for comfort.
-  * Generally framework specific and that has problems we've mentioned before.
-* CSS Modules : Not CSS in JS. Just solves namespacing. Most the other CSS managment problems still exist.
-
-Of course we would not exist without their previous and continued hard work and public idea exchange 🌹 
-
 ## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.
@@ -100,4 +103,4 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 * Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
 * Zero config. Just use.
 
-> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`css.d.ts`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
+> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`types`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
