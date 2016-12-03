@@ -10,7 +10,8 @@ import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
 import * as csx from 'typestyle/lib/csx';
-import { style, forceFlush } from 'typestyle';
+import { style, forceRender } from 'typestyle';
+import './augment';
 
 export const Header = () => {
   return (
@@ -31,8 +32,10 @@ export const Header = () => {
 
 const anchorClass = style({
   color: '#333', whiteSpace: 'nowrap', textDecoration: 'none',
-  '&:hover': { textDecoration: 'underline' },
-  '&:visited': { color: '#333' }
+  nested: {
+    '&:hover': { textDecoration: 'underline' },
+    '&:visited': { color: '#333' }
+  }
 })
 
 ReactDOM.render(<cp.Content>
@@ -47,10 +50,10 @@ ReactDOM.render(<cp.Content>
 
       <div style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
         <a href="https://github.com/typestyle/typestyle/stargazers" target="_blank" className={anchorClass}>Powered by your github 🌟s.</a> <a
-            className={anchorClass}
-            href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
-            target="_blank">
-            Don't forget to share 🌹
+          className={anchorClass}
+          href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
+          target="_blank">
+          Don't forget to share 🌹
           </a>
       </div>
     </cp.ContentVerticalMargined>
@@ -61,4 +64,4 @@ ReactDOM.render(<cp.Content>
 
 </cp.Content>, document.getElementById('root'));
 
-forceFlush();
+forceRender();

@@ -12,9 +12,11 @@ namespace BookSectionStyles {
   export const anchor = style({
     color: colors.text,
     textDecoration: 'none',
-    '&:hover': {
-      color: colors.text,
-      textDecoration: 'underline'
+    nested: {
+      '&:hover': {
+        color: colors.text,
+        textDecoration: 'underline'
+      }
     }
   });
 
@@ -32,15 +34,17 @@ namespace BookSectionStyles {
     outline: 'none',
     transition: 'color .2s, background-color .2s',
     display: 'inline-block',
-    '&:hover': {
-      backgroundColor: colors.headerHover,
-    },
-    '&:active': {
-      backgroundColor: colors.headerHover,
-    },
-    '&:focus': {
-      outline: 'thin dotted',
-      outlineColor: colors.header
+    nested: {
+      '&:hover': {
+        backgroundColor: colors.headerHover,
+      },
+      '&:active': {
+        backgroundColor: colors.headerHover,
+      },
+      '&:focus': {
+        outline: 'thin dotted',
+        outlineColor: colors.header
+      }
     }
   });
 }
