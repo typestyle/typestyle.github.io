@@ -19,6 +19,7 @@ There are a lot of other CSS in JS frameworks out there. In the past we used and
   * Can be significantly slower in real world usage as CSS does a faster job of changing quick styles than events.
   * The number of issues reported on libraries that use JS events is generally too high for comfort.
   * Generally framework specific and that has problems we've mentioned before.
+  * They also tend to change `style` instead of writing CSS which makes using devtools with immediate feedback (e.g. chrome dev tools) harder.
 * CSS Modules : Not CSS in JS. Just solves namespacing.
   * Most the other CSS managment problems still exist. We are essentially CSS modules, if CSS modules were written in JS.
 * Super small core size (~1k). 
