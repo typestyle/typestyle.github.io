@@ -10,7 +10,7 @@ import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
 import * as csx from 'typestyle/lib/csx';
-import { style, forceRender } from 'typestyle';
+import { style, forceRenderStyles } from 'typestyle';
 import './augmentTypes';
 
 export const Header = () => {
@@ -64,4 +64,4 @@ ReactDOM.render(<cp.Content>
 
 </cp.Content>, document.getElementById('root'));
 
-forceRender();
+forceRenderStyles();
