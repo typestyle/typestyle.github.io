@@ -83,7 +83,7 @@ const Demo = () =>
 ```
 
 ## Concept: Interpolation
-You can use `&` in any key for the object passed to `style` and its get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
+You can nest properties for different states using the `nested` property. Any `&` in a key for the object passed to `style` get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
 
 ```play
 import {style} from "typestyle";
@@ -92,8 +92,10 @@ import {style} from "typestyle";
 const niceColors = style({
   transition: 'color .2s',
   color: 'blue',
-  '&:hover': {
-    color: 'red'
+  nested: {
+    '&:hover': {
+      color: 'red'
+    }
   }
 });
 
@@ -110,11 +112,13 @@ const spacing = '5px';
 
 /** style -> className :) */
 const niceVerticalLayout = style({
-  '&>*': {
-    marginBottom: spacing,
-  },
-  '&>*:last-child': {
-    marginBottom: '0px',
+  nested: {
+    '&>*': {
+      marginBottom: spacing,
+    },
+    '&>*:last-child': {
+      marginBottom: '0px',
+    }
   }
 });
 
@@ -221,18 +225,27 @@ But be sure to create an [issue with us](https://github.com/typestyle/typestyle/
 ## Tip: Code Organization
 How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
 
-```ts
+```play
 /** Think of it like an inline stylesheet */
 namespace MyStyles {
   const color = 'red';
 
   export const alwaysRedClass = style({color});
-  export const onlyRedOnHoverClass = style({'&:hover':{color});
+  export const onlyRedOnHoverClass = style({
+    nested:{
+      '&:hover':{color}
+    }
+  });
 }
 
 /** Use e.g. with React */
-const AlwaysRed = ({text}) => <div className={MyStyles.alwaysRedClass}>{text}</div>
-const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}>{text}</div>
+const AlwaysRed = ({text}) => <div className={MyStyles.alwaysRedClass}>{text}</div>;
+const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}>{text}</div>;
+
+<div>
+  <AlwaysRed text="Hello"/>
+  <OnlyRedOnHover text="World"/>
+</div>
 ```
 
 Also suffix `Class` for classes.
