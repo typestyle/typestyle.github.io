@@ -16,7 +16,7 @@ At the heart of typestyle is the simple `style` function. It is the function you
 style(...objects: NestedCSSProperties[]): string
 ```
 
-You get a hold of it from TypeStyle:
+It takes any number of `NestedCSSProperties` and gives you back a generated CSS `className`. You get a hold of it from TypeStyle:
 
 ```ts
 import { style } from "typestyle";
@@ -52,6 +52,10 @@ const MyText = ({text}) =>
 ```
 
 The class name will look something like `f14svl5e`, this is basically a *hash* of the style objects passed to `style`. In the background `style` has gone ahead and also inserted CSS like `.f14svl5e { color: red }` into the document so using this class name with *any* framework has the desired effect of styling the element.
+
+Next we cover the two key things in the signature.
+* Why we optionally take more than one object (hint : mixins)
+* Why the objects `NestedCSSProperties` instead of `CSSProperties` (hint: interpolation and media queries)
 
 ## Concept: Mixin
 
