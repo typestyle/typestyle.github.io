@@ -205,15 +205,15 @@ const tallColoredClass = typestyle.classes(tallClass, coloredClass);
 const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
 ``` 
 
-## TIP: `forceRender`
+## TIP: `forceRenderStyles`
 
 Whenever you call `style` we go ahead and queue a CSS update for the next `requestAnimationFrame`. However on initial application you probably want to deterministically write the CSS right after writing the HTML to prevent an unsightly flash. An example is shown below: 
 
 ```ts
-import {forceRender} from 'typestyle';
+import {forceRenderStyles} from 'typestyle';
 
 ReactDOM.render(<MyApp/>);
-forceRender();
+forceRenderStyles();
 ``` 
 
 ## Tip: Declaring new CSS stuff
