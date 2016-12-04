@@ -77,7 +77,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   const scrollToTop = () => window.scrollTo(0, 0);
 
-  return <gls.ContentVerticalMargined margin={15}>
+  return <gls.ContentVerticalMargined margin={15} className={style(csx.maxWidth(900))}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
     <gls.ContentVertical style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
       {toc.map((t, index) => {
