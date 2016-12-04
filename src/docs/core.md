@@ -203,7 +203,18 @@ const tallColoredClass = typestyle.classes(tallClass, coloredClass);
 
 /** Even conditionally (any falsy parameters are ignored in the composed class name) */
 const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
-```  
+``` 
+
+## TIP: `forceRender`
+
+Whenever you call `style` we go ahead and queue a CSS update for the next `requestAnimationFrame`. However on initial application you probably want to deterministically write the CSS right after writing the HTML to prevent an unsightly flash. An example is shown below: 
+
+```ts
+import {forceRender} from 'typestyle';
+
+ReactDOM.render(<MyApp/>);
+forceRender();
+``` 
 
 ## Tip: Declaring new CSS stuff
 We protect against typos e.g. if you misspell a property like `color`: 
