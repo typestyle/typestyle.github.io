@@ -23,7 +23,7 @@ export const renderPage = ({ html, css }: { html: string, css: string }) => `
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <style>
+    <style id="style-target">
       ${css}
     </style>
 </head>
@@ -43,4 +43,12 @@ const response = renderPage({
 });
 
 /** ^ send this as your HTML response */
+```
+
+Then in the frontend you simply use the same style tag: 
+
+```ts
+import {setTargetTag} from "typestyle";
+ReactDOM.render(<App/>, document.getElementById('root'));
+setTargetTag(document.getElementById('style-target'));
 ```
