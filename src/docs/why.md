@@ -94,9 +94,9 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 * Your components are still free to have class names that you can give to external people to further style your stuff (better still take `clasName` as a property and let them use *typestyle* too!).
 * Develop components alongside the style (No more hunting CSS files for estranged `ul > li > a`)
 * Create isomorphic applications (easy export to a CSS file is supported)
-* All the power of CSS without compromise e.g. pseudo states (`{ '&:hover': { ... } }`)
-* Better than CSS management of media queries (`{ '@media (min-width: 500px)': { ... } }`)
-* Overload CSS properties using arrays (`{ backgroundColor: ['red', 'linear-gradient(to right, red 0%, blue 100%)'] }`)
+* All the power of CSS without compromise e.g. pseudo states (e.g. `&:hover`)
+* Better than CSS, management of media queries i.e. *nested class driven* media quries
+* Fallback CSS properties using arrays (`{ backgroundColor: ['red', 'linear-gradient(to right, red 0%, blue 100%)'] }`)
 * Super small core size (~1k).
 * Extremely small and powerful API that works with any ecosystem.
 * Provides great TypeScript developer autocomplete experience.
