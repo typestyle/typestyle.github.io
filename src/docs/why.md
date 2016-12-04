@@ -81,6 +81,15 @@ Having the styles managed in JS (especially with TypeScript) gives you the follo
 * Based on how *all module loaders work* (including webpack/tsify/rollup) if a file isn't *required*, it doesn't become a part of the bundle. So their CSS also goes away *automatically*. 
 * With fancy tree shaking module loaders (like rollup/webpack2) if a variable isn't used, it's removed from the bundle. So even without `noUnusedLocals`, the CSS bound to these variables (e.g. `const fooUnused = style({color:'red'})`) goes away.
 
+## Vendor Prefixing
+
+Note: We don't do *automatic* vendor prefixing for a few reasons:
+
+* Code bloat, runtime performance, you might want more control (we don't make choices that you might need to undo).
+* Vendor prefixing has no future: https://webkit.org/blog/6131/updating-our-prefixing-policy/
+
+> Protip: Big fan of flexbox? Use `csx` as it provides the necessary vendor prefixes so you don't need to worry about them.
+
 ## More boring reasons 
 
 Beyond that here is a boring list of additional reasons to use TypeStyle.

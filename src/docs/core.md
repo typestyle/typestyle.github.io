@@ -4,6 +4,7 @@
 * [Concept: Media Queries](/#/core/concept-media-queries)
 * [Concept: Keyframes](/#/core/concept-keyframes)
 * [Concept: Composing classes](/#/core/-classes-)
+* [Concept: Fallbacks](/#/core/concept-fallbacks)
 * [TIP: forceRenderStyles](/#/core/tip-forcerenderstyles-)
 * [TIP: Declaring new CSS stuff](/#/core/tip-declaring-new-css-stuff)
 * [TIP: Code Organization](/#/core/tip-code-organization)
@@ -211,6 +212,31 @@ const tallColoredClass = typestyle.classes(tallClass, coloredClass);
 
 /** Even conditionally (any falsy parameters are ignored in the composed class name) */
 const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
+``` 
+
+## Concept: Fallbacks
+There are two kinds of fallbacks in CSS and both are supported:
+
+* Same key multiple values: Just use an *array* for the value e.g. background colors
+
+```ts
+const fallBackBackground = style({
+  backgroundColor: [
+    /* The fallback */
+    'rgb(200, 54, 54)',
+    /** Graceful upgrade */
+    'rgba(200, 54, 54, 0.5)'
+  ]
+});
+```
+
+* Vendor prefixing: Anything that starts with `-` is not case renamed (i.e. no `fooBar` => `foo-bar`) e.g. for smooth scroll:
+
+```ts
+const scroll = style({
+  '-webkit-overflow-scrolling': 'touch',
+  overflow: 'auto'
+});
 ``` 
 
 ## TIP: `forceRenderStyles`
