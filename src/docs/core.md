@@ -1,7 +1,15 @@
-At the heart of typestyle is the simple `style` function. It is the function you use to interact with CSS.
+* [style](/#/core/-style-)
+* [Concept: Mixin](/#/core/concept-mixin)
+* [Concept: Interpolation](/#/core/concept-interpolation)
+* [Concept: Media Queries](/#/core/concept-media-queries)
+* [Concept: Keyframes](/#/core/concept-keyframes)
+* [Concept: Composing classes](/#/core/-classes-)
+* [TIP: forceRenderStyles](/#/core/tip-forcerenderstyles-)
+* [TIP: Declaring new CSS stuff](/#/core/tip-declaring-new-css-stuff)
+* [TIP: Code Organization](/#/core/tip-code-organization)
 
 ## `style`
-The signature of this function is super simple: 
+At the heart of typestyle is the simple `style` function. It is the function you use to generate a CSS className. The signature of this function is super simple: 
 
 ```ts
 style(...objects: NestedCSSProperties[]): string
@@ -216,7 +224,7 @@ ReactDOM.render(<MyApp/>);
 forceRenderStyles();
 ``` 
 
-## Tip: Declaring new CSS stuff
+## TIP: Declaring new CSS stuff
 We protect against typos e.g. if you misspell a property like `color`: 
 
 ```play
@@ -233,7 +241,7 @@ However there might be vendor prefixes or non standard CSS Property (or even som
 
 But be sure to create an [issue with us](https://github.com/typestyle/typestyle/issues) so we can add to our `CSSProperties` to help future developers.
 
-## Tip: Code Organization
+## TIP: Code Organization
 How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
 
 ```play

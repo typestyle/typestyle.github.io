@@ -8,10 +8,6 @@ type Doc = {
   link: string
   content: string
   prelude: string
-  sub: {
-    title: string,
-    link: string
-  }[]
 }
 
 const docs: Doc[] = [{
@@ -19,77 +15,66 @@ const docs: Doc[] = [{
   link: '',
   content: require('../docs/intro.md'),
   prelude: '',
-  sub: []
 },
 {
   title: "Core API (TypeStyle)",
   link: 'core',
   content: require('../docs/core.md'),
   prelude: 'Go ahead and jump into the super simple core API.',
-  sub: []
 },
 {
   title: "Raw CSS Support (TypeStyle)",
   link: 'raw',
   content: require('../docs/raw.md'),
   prelude: 'Next we look at providing a more complete story for any advanced CSS scenario you might have.',
-  sub: []
 },
 {
   title: "Server side rendering (TypeStyle)",
   link: 'server',
   content: require('../docs/server.md'),
   prelude: 'Next we look at server side rendering which *may* or *may not* be something you need.',
-  sub: []
 },
 {
   title: "Page Setup (csx)",
   link: 'page',
   content: require('../docs/page.md'),
   prelude: 'Setting up your first or next HTML page can be daunting. Next we show how TypeStyle makes this easier.',
-  sub: []
 },
 {
   title: "Flexbox (csx)",
   link: 'flex',
   content: require('../docs/flex.md'),
   prelude: 'Its not just the CSS tools that are evolving, but CSS itself is getting better ways to represent application layouts. One of the best ways is the flexbox and we provide guidance + great mixins to make using it easier and meaningful.',
-  sub: []
 },
 {
   title: "Box helpers (csx)",
   link: 'box',
   content: require('../docs/box.md'),
   prelude: 'How you manage the space around and inside your components is vital to a great design. Next we cover the helpers to make this a breeze.',
-  sub: []
 },
 {
   title: "Colors (csx)",
   link: 'colors',
   content: require('../docs/colors.md'),
   prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.',
-  sub: []
 },
 {
   title: "Playground Docs",
   link: 'play',
   content: require('../docs/play.md'),
   prelude: 'Next we show you a playground we designed expecially to allow beginners to experiment and learn CSS easily.',
-  sub: []
 },
 {
   title: "Why TypeStyle",
   link: 'why',
   content: require('../docs/why.md'),
   prelude: 'If you are looking for reasons to use TypeStyle, we have plenty of them.',
-  sub: []
 },
 {
   title: "Reviews",
   link: 'reviews',
   content: require('../docs/reviews.md'),
   prelude: 'Checkout the positive response to this library / framework.',
-  sub: []
 },
 ];
 const toc: cp.TOCItem[] = docs.map(r => ({ display: r.title, link: r.link, prelude: r.prelude }));

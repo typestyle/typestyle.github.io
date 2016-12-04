@@ -73,6 +73,7 @@ type BookSectionProps = {
 }
 export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
   const currentSectionIndex = toc.findIndex(t => t.link === link);
+  const currentToc = toc.find(t => t.link === link);
   const previousIfAny = toc[currentSectionIndex - 1];
   const nextIfAny = toc[currentSectionIndex + 1];
 
@@ -96,6 +97,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
     </gls.ContentVertical>
 
     <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
+
     <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
       {children}
     </div>

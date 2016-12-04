@@ -1,3 +1,7 @@
+* [cssRule](/#/raw/-cssrule-)
+* [cssRaw](/#/raw/-cssraw-)
+* [Advantages of these functions over loaders](/#/raw/advantages-of-these-functions-over-loaders)
+
 We understand that just classes are not sufficient for a full CSS in JS story as the generated dom is not always coming from your library, or in your control.
 
 For those scenarios we have two functions 
@@ -62,7 +66,7 @@ h1 {
 
 ## Advantages of these functions over loaders 
 
-* Works seemlessly in a nodejs enviroment (for testing) whereas `require('./someCss.css')` does not without additional setup.
+* Works seemlessly in a nodejs enviroment (example use cases are nodejs testing / server side rendering) whereas `require('./someCss.css')` does not without additional setup.
 * You still get to use JS and share variables with JS (using template strings!).
 * With `cssRule` you can also use all our (and your!) fancy mixins.
 
