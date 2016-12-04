@@ -45,6 +45,11 @@ function wrapExternalModuleInNamespace(config: { content: string, namespace: str
     ${config.content.split('export declare').join('export')}
   }`;
 }
+function makeGlobal(content: string) { 
+  return content
+    .split('export declare type').join('type')
+    .split('export interface').join('interface');
+}
 
 /** Note : for node_modules typescript calls `fs.existsSync` so lets *patch* it */
 const fs = require('fs');
@@ -68,7 +73,7 @@ addFile('node_modules/typestyle/index.d.ts', wrapExternalModuleInNamespace({
 }));
 
 /** Typestyle globals */
-addFile('css.d.ts', require('!raw!typestyle/src/css.d.ts'));
+addFile('types.d.ts', makeGlobal(require('!raw!typestyle/lib/types.d.ts')));
 
 /** TypeStyle named imports */
 addFile('globals.d.ts', `
