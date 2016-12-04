@@ -45,7 +45,7 @@ function wrapExternalModuleInNamespace(config: { content: string, namespace: str
     ${config.content.split('export declare').join('export')}
   }`;
 }
-function makeGlobal(content: string) { 
+function makeGlobal(content: string) {
   return content
     .split('export declare type').join('type')
     .split('export interface').join('interface');
@@ -78,9 +78,11 @@ addFile('types.d.ts', makeGlobal(require('!raw!typestyle/lib/types.d.ts')));
 /** TypeStyle named imports */
 addFile('globals.d.ts', `
   /** The typestyle key functions */
-  ${typestyleIndex
-    .split(/\r\n?|\n/)
-    .filter(line => [
+  ${
+  typestyleIndex
+    .split('export')
+    .filter(section => section.trim().startsWith('declare'))
+    .filter(section => [
       'cssRaw',
       'style',
       'cssRule',
@@ -88,8 +90,10 @@ addFile('globals.d.ts', `
       'extend',
       'classes',
       'media',
-    ].some(namedImport => line.includes(namedImport)))
-    .map(line => line.replace('export declare', 'declare'))}
+    ].some(namedImport => section.includes(namedImport)))
+    .map(section => section.split('types.').join(''))
+    .join('\n')
+  }
 
   /** csx namespace */
   ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/box.d.ts'), namespace: 'csx' })}
@@ -237,7 +241,7 @@ export function getRawJsOutput(filePath: string): string {
   }
   catch (e) {
     console.log('TypeScript emit failure:', e);
-    return ''; 
+    return '';
   }
 }
 
