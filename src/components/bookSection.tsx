@@ -20,6 +20,19 @@ namespace BookSectionStyles {
     }
   });
 
+  export const tocAnchor = style({
+    background: '#eee',
+    padding: '5px',
+    color: colors.text,
+    textDecoration: 'none',
+    nested: {
+      '&:hover': {
+        color: colors.text,
+        textDecoration: 'underline'
+      }
+    }
+  });
+
   export const anchorLookingLikeButton = style({
     cursor: 'pointer',
     height: 'auto',
@@ -66,10 +79,10 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   return <gls.ContentVerticalMargined margin={15}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
-    <gls.ContentVerticalMargined margin={10} style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
+    <gls.ContentVertical style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
       {toc.map((t, index) => {
         return <a key={index} className={classes(
-          BookSectionStyles.anchor,
+          BookSectionStyles.tocAnchor,
           currentSectionIndex === index && style({
             fontWeight: 'bold',
             textDecoration: 'underline'
@@ -78,7 +91,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
           {t.display}
         </a>
       })}
-    </gls.ContentVerticalMargined>
+    </gls.ContentVertical>
 
     <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
     <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
