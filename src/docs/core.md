@@ -201,6 +201,23 @@ const tallColoredClass = typestyle.classes(tallClass, coloredClass);
 const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
 ```  
 
+## Tip: Declaring new CSS stuff
+We protect against typos e.g. if you misspell a property like `color`: 
+
+```play
+style({colour: 'red'}) // TypeScript Error: unknown prop `colour`
+```
+However there might be vendor prefixes or non standard CSS Property (or even some property we missed) that you might want to use. It is super easy to augment our types simply following the standard TypeScript pattern shown below:
+
+![](./images/book/augmentTypes.png)
+
+- create a `.ts` file e.g. `augmentTypes.ts`
+- Agument the `"typestyle/lib/types".CSSProperties` interface
+- Include the `augmentTypes` module from your application root
+- Yay! now you can use the new types with complete safety. 
+
+But be sure to create an [issue with us](https://github.com/typestyle/typestyle/issues) so we can add to our `CSSProperties` to help future developers.
+
 ## Tip: Code Organization
 How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
 
