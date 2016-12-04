@@ -85,7 +85,8 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
           BookSectionStyles.tocAnchor,
           currentSectionIndex === index && style({
             fontWeight: 'bold',
-            textDecoration: 'underline'
+            backgroundColor: '#ddd',
+            borderLeft: '2px solid #999',
           })
         )} href={"#" + t.link}>
           {t.display}
