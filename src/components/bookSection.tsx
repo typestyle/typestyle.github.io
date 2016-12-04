@@ -79,7 +79,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   return <gls.ContentVerticalMargined margin={15} className={style(csx.maxWidth(900))}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
-    <gls.ContentVertical style={{ paddingLeft: '10px', paddingBottom: '10px' }}>
+    <gls.ContentVertical style={{ paddingBottom: '10px' }}>
       {toc.map((t, index) => {
         return <a key={index} className={classes(
           BookSectionStyles.tocAnchor,
