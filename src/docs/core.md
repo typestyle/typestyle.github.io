@@ -211,10 +211,10 @@ However there might be vendor prefixes or non standard CSS Property (or even som
 
 ![](./images/book/augmentTypes.png)
 
-- create a `.ts` file e.g. `augmentTypes.ts`
-- Agument the `"typestyle/lib/types".CSSProperties` interface
-- Include the `augmentTypes` module from your application root
-- Yay! now you can use the new types with complete safety. 
+1. create a `.ts` file e.g. `augmentTypes.ts`
+1. Agument the `"typestyle/lib/types".CSSProperties` interface
+1. `import` the `augmentTypes` module from your application root
+1. Yay! now you can use the new types with complete safety. 
 
 But be sure to create an [issue with us](https://github.com/typestyle/typestyle/issues) so we can add to our `CSSProperties` to help future developers.
 

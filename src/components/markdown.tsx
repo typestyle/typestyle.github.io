@@ -108,6 +108,19 @@ namespace MarkDownStyles {
   margin-bottom: 0px !important;
 }
 
+.${rootClass} ol {
+    margin: 0px;
+    margin-bottom: 20px !important;
+    line-height: ${spacing.lineHeight};
+    padding-left: 27px;
+}
+.${rootClass} ol>* {
+  margin-bottom: 5px !important;
+}
+.${rootClass} ol>*:last-child {
+  margin-bottom: 0px !important;
+}
+
 .${rootClass} a {
   color: grey;
 }
