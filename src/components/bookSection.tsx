@@ -20,18 +20,19 @@ namespace BookSectionStyles {
     }
   });
 
-  export const tocAnchor = style({
-    background: '#eee',
-    padding: '5px',
-    color: colors.text,
-    textDecoration: 'none',
-    nested: {
-      '&:hover': {
-        color: colors.text,
-        textDecoration: 'underline'
+  export const tocAnchor = style(
+    csx.padding(5, 5, 5, 10),
+    {
+      background: '#eee',
+      color: colors.text,
+      textDecoration: 'none',
+      nested: {
+        '&:hover': {
+          color: colors.text,
+          background: '#ddd',
+        }
       }
-    }
-  });
+    });
 
   export const anchorLookingLikeButton = style({
     cursor: 'pointer',
