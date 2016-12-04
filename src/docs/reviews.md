@@ -9,6 +9,7 @@
 * [This is an example of both types and linting being enforced by the same systems as the rest of your code](https://twitter.com/rauchg/status/802706919823581185)
 * [Nice approach to have your #css in order and using #typescript](https://twitter.com/chris_noring/status/802824657401475073)
 * [Try out #TypeStyle which uses #Typescript to generate your styles!](https://twitter.com/designpuddle/status/802658082924937216)
+* [The IDE abilities of TypeScript and TypeStyle are appealing for a larger component based design system](https://twitter.com/twnsndco/status/804081260633214977)
 
 * [Add yours 🌹!](https://twitter.com/intent/tweet?text=Super%20simple%20maintainable%20%23CSS%20with%20%23TypeStyle%3A%20http%3A%2F%2Ftypestyle.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9)
 
