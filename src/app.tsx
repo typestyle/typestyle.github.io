@@ -11,7 +11,7 @@ import * as cp from './components';
 import { renderRoutes } from './routing/router';
 import * as csx from 'typestyle/lib/csx';
 import { style, forceRender } from 'typestyle';
-import './augment';
+import './augmentTypes';
 
 export const Header = () => {
   return (
