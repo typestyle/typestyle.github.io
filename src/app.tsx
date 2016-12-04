@@ -58,7 +58,9 @@ ReactDOM.render(<cp.Content>
       </div>
     </cp.ContentVerticalMargined>
 
-    {renderRoutes()}
+    <cp.Content className={style(csx.horizontallyCenterSelf, csx.maxWidth(900))}>
+      {renderRoutes()}
+    </cp.Content>
 
   </cp.ContentVerticalMargined>
 
