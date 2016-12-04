@@ -74,6 +74,38 @@ const bigRedClass = style(
 <div className={bigRedClass}>Hello world</div>
 ```
 
+It is just as easy functions to emulate CSS preprocessors using functions in JavaScript!
+
+```play
+import {style} from 'typestyle';
+
+function bordered(type: string) {
+  return {
+    border: `${type} thin black`
+  };
+}
+
+function roundCorners(radius: string = '5px') {
+  return {
+    '-webkit-border-radius': radius,
+    '-moz-border-radius': radius,
+    borderRadius: radius,
+    '-moz-background-clip': 'padding',
+    '-webkit-background-clip': 'padding-box',
+    backgroundClip: 'padding-box'
+  }
+}
+
+const mainButtonClass = style(
+  bordered('solid'),
+  roundCorners('0.5rem')
+);
+
+<button className={mainButtonClass}>
+  Testing Mixins
+</button>
+```
+
 In fact a large number of mixins are provided by `csx` (`import * as csx from 'typestyle/lib/csx'`). e.g. for flexbox we have `csx.flex`, `csx.content`, `csx.vertical` etc. Use them as you would naturally expect e.g. 
 
 ```ts
