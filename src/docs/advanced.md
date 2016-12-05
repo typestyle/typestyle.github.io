@@ -90,10 +90,8 @@ Conventional css authors will write media queries with an *override* mindset i.e
 ```css
 /** Common */
 font-size: 50px;
-
 /** Default */
 color: red;
-
 /** Override: change for bigger screens */
 @media (min-width: 500px) {
   color: green;
