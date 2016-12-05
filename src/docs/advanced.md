@@ -88,13 +88,17 @@ const moveDown = style({
 Conventional css authors will write media queries with an *override* mindset i.e
 
 ```css
-/** Common */
-font-size: 50px;
-/** Default */
-color: red;
+.some {
+  /** Common */
+  font-size: 50px;
+  /** Default */
+  color: red;
+}
 /** Override: change for bigger screens */
 @media (min-width: 500px) {
-  color: green;
+  .some {
+    color: green;
+  }
 }
 ```
 
@@ -103,7 +107,7 @@ Due to style deduping you should not depend on style ordering, with TypeStyle yo
 ```play
 import { style, media } from 'typestyle';
 
-const className = style(
+const some = style(
   /** Common */
   {fontSize: '50px'},
   /** Default */
