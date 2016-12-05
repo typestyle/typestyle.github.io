@@ -1,5 +1,6 @@
 * [Concept: Deduping](/#/advanced/concept-deduping)
 * [Concept: Ordering pseudo classes](/#/advanced/concept-ordering-pseudo-classes)
+* [Concept: Ordering media queries](/#/advanced/concept-ordering-media-queries)
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
 
 ## Concept: Deduping
@@ -81,6 +82,39 @@ const moveDown = style({
   <button className={buttonClass}>Hello</button>
   <button className={buttonClass}>World</button>
 </div>
+```
+
+## Concept: Ordering media queries
+Conventional css authors will write media queries with an *override* mindset i.e
+
+```css
+/** Common */
+font-size: 50px;
+
+/** Default */
+color: red;
+
+/** Override: change for bigger screens */
+@media (min-width: 500px) {
+  color: green;
+}
+```
+
+Due to style deduping you should not depend on style ordering, with TypeStyle you should write with a *mutally exclusive* mindset
+
+```play
+import { style, media } from 'typestyle';
+
+const className = style(
+  /** Common */
+  {fontSize: '50px'},
+  /** Default */
+  media({minWidth: 0, maxWidth: 499}, {color:'red'}),
+  /** Change for bigger screens */
+  media({minWidth: 500}, {color:'green'}),
+);
+
+<div className={className}>Hello world</div>;
 ```
 
 ## Concept: Ensuring a unique selector
