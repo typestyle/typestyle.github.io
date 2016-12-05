@@ -48,26 +48,6 @@ This gives you:
 
 * Isolation: No globals!
 
-## Concept: Deduping
-
-It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function) as it doesn't generate new CSS if it's not required this is shown below: 
-
-```play
-import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
-
-const a = style({color:csx.red});
-const b = style({color:csx.red});
-
-<div>a:{a},b:{b}. Same? {(a===b).toString()}</div>;
-```
-
-This gives the following gains: 
-
-* No needless CSS updates + reflows.
-* True freedom to use `className` like you would use `style` in your framework of choice.
-* No style bloat: Automatically smaller stylesheets based on your object reuse.
-
 ## Concept: Dead CSS 
 
 Determining the impact of a CSS className on your codebase is one of the hardest problems facing frontend maintainability. 
