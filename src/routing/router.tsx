@@ -35,6 +35,12 @@ const docs: Doc[] = [{
   prelude: 'Next we look at server side rendering which *may* or *may not* be something you need.',
 },
 {
+  title: "Advanced edge cases (TypeStyle)",
+  link: 'advanced',
+  content: require('../docs/advanced.md'),
+  prelude: 'Next we look at some advanced cases that are also handled with TypeStyle.',
+},
+{
   title: "Page Setup (csx)",
   link: 'page',
   content: require('../docs/page.md'),
