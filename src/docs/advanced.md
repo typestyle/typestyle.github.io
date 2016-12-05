@@ -4,7 +4,7 @@
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
 
 ## Concept: Deduping
-It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function). TypeStyle doesn't generate new CSS if it's not required, this is shown below:
+It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function). `style` doesn't generate new CSS if it's not required, this is shown below:
 
 ```play
 import {style} from 'typestyle';
