@@ -12,7 +12,7 @@ namespace BookSectionStyles {
   export const anchor = style({
     color: colors.text,
     textDecoration: 'none',
-    nested: {
+    $nest: {
       '&:hover': {
         color: colors.text,
         textDecoration: 'underline'
@@ -26,7 +26,7 @@ namespace BookSectionStyles {
       background: '#eee',
       color: colors.text,
       textDecoration: 'none',
-      nested: {
+      $nest: {
         '&:hover': {
           color: colors.text,
           background: '#ddd',
@@ -48,7 +48,7 @@ namespace BookSectionStyles {
     outline: 'none',
     transition: 'color .2s, background-color .2s',
     display: 'inline-block',
-    nested: {
+    $nest: {
       '&:hover': {
         backgroundColor: colors.headerHover,
       },

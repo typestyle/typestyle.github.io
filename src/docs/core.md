@@ -128,7 +128,7 @@ const Demo = () =>
 ```
 
 ## Concept: Interpolation
-You can nest properties for different states using the `nested` property. Any `&` in a key for the object passed to `style` get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
+You can nest properties for different states using the `$nest` property. Any `&` in a key for the object passed to `style` get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
 
 ```play
 import {style} from "typestyle";
@@ -137,7 +137,7 @@ import {style} from "typestyle";
 const niceColors = style({
   transition: 'color .2s',
   color: 'blue',
-  nested: {
+  $nest: {
     '&:hover': {
       color: 'red'
     }
@@ -157,7 +157,7 @@ const spacing = '5px';
 
 /** style -> className :) */
 const niceVerticalLayout = style({
-  nested: {
+  $nest: {
     '&>*': {
       marginBottom: spacing,
     },
@@ -313,7 +313,7 @@ namespace MyStyles {
 
   export const alwaysRedClass = style({color});
   export const onlyRedOnHoverClass = style({
-    nested:{
+    $nest:{
       '&:hover':{color}
     }
   });

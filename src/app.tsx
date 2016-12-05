@@ -32,7 +32,7 @@ export const Header = () => {
 
 const anchorClass = style({
   color: '#333', whiteSpace: 'nowrap', textDecoration: 'none',
-  nested: {
+  $nest: {
     '&:hover': { textDecoration: 'underline' },
     '&:visited': { color: '#333' }
   }

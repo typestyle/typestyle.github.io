@@ -49,7 +49,7 @@ namespace PlayButtonStyles {
     outline: 'none',
     transition: 'color .2s, background-color .2s',
     display: 'inline-block',
-    nested: {
+    $nest: {
       '&:hover': {
         backgroundColor: colors.headerHover,
       },

@@ -414,7 +414,7 @@ export const ResponsiveContentMargined = (props: ResponsiveMarginedProps) => {
         [`@media screen and (min-width: ${breakpointPx})`]: typestyle.extend(
           /** Clear stuff from the previous layout `&&` to increase specifity */
           {
-            nested: {
+            $nest: {
               '&&>*': {
                 marginBottom: '0px !important',
               }
