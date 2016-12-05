@@ -116,7 +116,7 @@ const some = style(
   media({minWidth: 500}, {color:'green'}),
 );
 
-<div className={className}>Hello world</div>;
+<div className={some}>Hello world</div>;
 ```
 
 ## Concept: Ensuring a unique selector
