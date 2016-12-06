@@ -491,7 +491,7 @@ import { aliceblue } from 'typestyle/lib/csx';
 ### color(value: string): ColorHelper
 Creates a color
 
-- Value can be expressed as a named color, a six character hex code, or a three character hex code
+- Value can be expressed as a named color, a six character hex code, a three character hex code, or a CSS color function
 
 ```typescript
 import { color } from 'typestyle/lib/csx';
@@ -499,6 +499,10 @@ import { color } from 'typestyle/lib/csx';
 var red1 = color('red');
 var red2 = color('#FF0000');
 var red3 = color('#F00');
+var red4 = color('rgb(255,0,0)');
+var red5 = color('rgba(255,0,0,1)');
+var red6 = color('hsl(0,100%,50%)');
+var red7 = color('hsl(0,100%,50%,1)');
 ```
 
 ### toHexString(): string
