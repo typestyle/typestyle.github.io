@@ -2,6 +2,7 @@
 * [Concept: Ordering pseudo classes](/#/advanced/concept-ordering-pseudo-classes)
 * [Concept: Ordering media queries](/#/advanced/concept-ordering-media-queries)
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
+* [$debugName](/#/advanced/-debugname-)
 
 ## Concept: Deduping
 It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function). `style` doesn't generate new CSS if it's not required, this is shown below:
@@ -164,3 +165,29 @@ const className = style({
 
 <input className={className} placeholder="Sample placeholder"/>
 ```
+
+## `$debugName`
+If your DOM looks a bit confusing you are generally better off adding something like `data-comment` to your dom element to debug it, e.g. 
+
+```play
+<div data-comment="Yay. You know where this DOM div is coming from">
+  Open up dev tools and see the data-comment
+</div>;
+```
+
+However if you still want to have a meaningful word associated with the generated className you can use the `$debugName` property e.g.: 
+
+```play
+const className = style({
+  $debugName: 'bigRed',
+  color: 'red',
+  fontSize: '50px',
+});
+<div className={className}>
+  The className: 
+  <br/>
+  {className}
+</div>;
+```
+
+Note that this name is purely for debugging convinience and has no impact on any of other logic (e.g. deduping). Additionally if you run a production build of your code (`process.env.NODE_ENV !== 'production'`) this name is removed.
