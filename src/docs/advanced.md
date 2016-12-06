@@ -167,15 +167,7 @@ const className = style({
 ```
 
 ## `$debugName`
-If your DOM looks a bit confusing you are generally better off adding something like `data-comment` to your dom element to debug it, e.g. 
-
-```play
-<div data-comment="Yay. You know where this DOM div is coming from">
-  Open up dev tools and see the data-comment
-</div>;
-```
-
-However if you still want to have a meaningful word associated with the generated className you can use the `$debugName` property e.g.: 
+If you want meaningful word associated with the generated className for debugging you can use the `$debugName` property e.g.: 
 
 ```play
 const className = style({
@@ -190,4 +182,4 @@ const className = style({
 </div>;
 ```
 
-Note that this name is purely for debugging convinience and has no impact on any of other logic (e.g. deduping). Additionally if you run a production build of your code (`process.env.NODE_ENV !== 'production'`) this name is removed.
+Note that this name is purely for debugging convinience and has no impact on any of the other logic (e.g. deduping). Additionally if you run a production build of your code (`process.env.NODE_ENV !== 'production'`) this name is removed so use as much as you want.
