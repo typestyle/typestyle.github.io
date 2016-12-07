@@ -95,7 +95,7 @@ Content.displayName = "Content";
  * Takes as much space as it needs, no more, no less
  */
 export const InlineBlock = (props: PrimitiveProps) => {
-  const style = typestyle.extend({ display: 'inline-block' }, props.style || {}) as any;
+  const style = typestyle.extend({ display: 'inline-block' }, props.style as any || {}) as any;
   return (
     <div data-comment="InlineBlock" {...props} style={style}>
       {props.children}
@@ -127,7 +127,7 @@ export const FlexMaxWidth = (props: PrimitiveProps & { maxWidth: number }) => {
 
   const className = ClassNames.flex + (props.className ? ` ${props.className}` : '');
   const maxWidthStyle = { maxWidth };
-  const style = (props.style ? typestyle.extend(props.style, maxWidthStyle) : maxWidthStyle);
+  const style = (props.style ? typestyle.extend(props.style as any, maxWidthStyle) : maxWidthStyle);
   return (
     <div data-comment="FlexMaxWidth" {...otherProps} className={className} style={maxWidthStyle}>
       {props.children}
@@ -259,7 +259,7 @@ FlexHorizontal.displayName = "FlexHorizontal";
  *
  ********/
 interface MarginedProps extends PrimitiveProps {
-  margin?: number;
+  margin?: number | string;
 }
 
 /**
@@ -367,7 +367,7 @@ export const GridMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
   const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
 
-  const className = typestyle.style(csx.wrap, { marginTop: '-' + spacing, marginLeft: '-' + spacing }, props.style || {});
+  const className = typestyle.style(csx.wrap, { marginTop: '-' + spacing, marginLeft: '-' + spacing }, props.style as any || {});
   const children = React.Children.toArray(props.children).filter(c => !!c);
   return (
     <ContentHorizontal {...otherProps} className={className}>
