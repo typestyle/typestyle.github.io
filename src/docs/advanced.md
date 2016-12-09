@@ -9,7 +9,7 @@ It is safe to call `style` with the same object strucure again and again (e.g. f
 
 ```play
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csx from 'csx';
 
 const a = style({color:csx.red});
 const b = style({color:csx.red});

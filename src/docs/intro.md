@@ -9,12 +9,13 @@ The DOM `style` attribute is not enough to cater for things like psuedo states a
 TypeStyle core is actually **very** small (~1k) and you are free to use just that. However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. So we provide utilities that are mentioned next.
 
 # About `csx`
-We have `csx` sections (a sub library `typestyle/lib/csx` that ships with typestyle) as we are trying to help beginners use CSS effectively:
+Provided as a seperate library (`npm install csx`):
+
 * helps you manage CSS properties e.g. **colors** and create typed CSS variables.
 
 # About `csstips`
 
-Provided as a seperate library `npm install csstips`). Provides utilities for pagesetup / CSS normalization along with mixins and mixin creators.
+Provided as a seperate library (`npm install csstips`). Provides utilities for pagesetup / CSS normalization along with mixins and mixin creators.
 
 * it essentially documents CSS tips that people might not be familiar with.
 * gives names to these CSS tips.

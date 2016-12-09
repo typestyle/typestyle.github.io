@@ -36,7 +36,7 @@ Also you cannot CSS3 transform inline elements. So use a `span` but if there is 
 
 ```play
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csx from 'csx';
 import * as csstips from 'csstips';
 
 const bg = csx.black;
@@ -95,7 +95,7 @@ Spacing items like this where there is no *margin bleed* at the borders **compos
 
  ```play
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csx from 'csx';
 import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
@@ -125,7 +125,7 @@ At some level up the heirarchy you would need to create a visual seperation from
 
  ```play
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csx from 'csx';
 import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(

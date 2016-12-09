@@ -4,7 +4,7 @@ Here are some of the things you can do:
 ---
 ## Import and Use Named Colors
 ```typescript
-import { aliceblue } from 'typestyle/lib/csx';
+import { aliceblue } from 'csx';
 ```
 
 <!-- todo: make this reusable -->
@@ -494,7 +494,7 @@ Creates a color
 - Value can be expressed as a named color, a six character hex code, a three character hex code, or a CSS color function
 
 ```typescript
-import { color } from 'typestyle/lib/csx';
+import { color } from 'csx';
 
 var red1 = color('red');
 var red2 = color('#FF0000');
@@ -508,7 +508,7 @@ var red7 = color('hsl(0,100%,50%,1)');
 ### toHexString(): string
 Returns a string with the RGB Hex code (e.g. black = #000000)
 ```typescript
-import { white } from 'typestyle/lib/csx';
+import { white } from 'csx';
 
 white.toHexString(); // #FFFFFF
 ```
@@ -516,7 +516,7 @@ white.toHexString(); // #FFFFFF
 ### toString(): string
 Returns a string representing the current color
 ```typescript
-import { hsla, rgba } from 'typestyle/lib/csx';
+import { hsla, rgba } from 'csx';
 
 rgba(0, 0, 0, .5).toString(); // rgba(0, 0, 0, 50%)
 hsla(0, 0, 0, .5).toString(); // hsla(0, 0, 0, 50%)
@@ -533,7 +533,7 @@ Creates a color from hue, satuation, and lightness
 - Saturation and Lightness can be expressed as a string (e.g. '10%') or as a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { hsl } from 'typestyle/lib/csx';
+import { hsl } from 'csx';
 
 const color1 = hsl(250, .5, .5);
 const color1 = hsl(250, '50%', '50%');
@@ -547,7 +547,7 @@ Creates a color from hue, satuation, lightness, and alpha
 - Alpha is expressed as a string (e.g. '10%') or as a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { hsla } from 'typestyle/lib/csx';
+import { hsla } from 'csx';
 
 const color1 = hsla(250, .5, .5, .5);
 const color1 = hsla(250, '50%', '50%', '50%');
@@ -559,7 +559,7 @@ Creates a color from red, green, and blue values
 - Red, Green, and Blue are expressed as numbers between 0 and 255
 
 ```typescript
-import { rgb } from 'typestyle/lib/csx';
+import { rgb } from 'csx';
 
 const red = rgb(255, 0, 0);
 const green = rgb(0, 255, 0);
@@ -573,7 +573,7 @@ Creates a color from red, green, blue, and alpha values
 - Alpha is expressed as a string (e.g. '10%') or as a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { rgba } from 'typestyle/lib/csx';
+import { rgba } from 'csx';
 
 const red = rgba(255, 0, 0, 1);
 const green = rgba(0, 255, 0, '100%');
@@ -589,7 +589,7 @@ Creates a darker color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.darken('10%');
 const red2 = red.darken(.1);
@@ -601,7 +601,7 @@ Creates a less saturated color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.desaturate('10%');
 const red2 = red.desaturate(.1);
@@ -613,7 +613,7 @@ Creates the same color with the specified opacity/alpha
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.fade('50%');
 const red2 = red.fade(.5);
@@ -625,7 +625,7 @@ Creates a more opaque color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.fadeIn('10%');
 const red2 = red.fadeIn(.1);
@@ -637,7 +637,7 @@ Creates a more transparent color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.fadeOut('10%');
 const red2 = red.fadeOut(.1);
@@ -647,7 +647,7 @@ const red2 = red.fadeOut(.1);
 Creates a grayscale version of the color
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const gray = red.grayscale();
 ```
@@ -656,7 +656,7 @@ const gray = red.grayscale();
 Creates the inverse of a color
 
 ```typescript
-import { red, green, blue } from 'typestyle/lib/csx';
+import { red, green, blue } from 'csx';
 
 const green = red.invert();
 const red = green.invert();
@@ -669,7 +669,7 @@ Creates a lighter color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.lighten('10%');
 const red2 = red.lighten(.1);
@@ -682,7 +682,7 @@ Creates a new color from an existing color and a second color
 - weight is expressed as a string (e.g. '50%') or a number between 0 and 1 (e.g. 0.5)
 
 ```typescript
-import { rgb } from 'typestyle/lib/csx';
+import { rgb } from 'csx';
 
 const red = rgb(255, 0, 0);
 const blue = rgb(0, 0, 255);
@@ -695,7 +695,7 @@ Creates a more saturation color
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const red1 = red.saturate('10%');
 const red2 = red.saturate(.1);
@@ -707,7 +707,7 @@ It darkens the color by mixing black into it.  It is the same as black.mix(color
 - weight is expressed as a number between 0 and 1 (e.g. 0.5)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const darkerRed = red.shade(0.5);
 ```
@@ -718,7 +718,7 @@ Shifts the hue around the color wheel by a certain number of positive or negativ
 - degrees is expressed as a number between -360 to 360.  Values above or below that range will be wrapped around (e.g. 480 is the same as 120, -480 is the same as -120).
 
 ```typescript
-import { red, spin } from 'typestyle/lib/csx';
+import { red, spin } from 'csx';
 
 const green = red.spin(120);
 const blue = green.spin(120);
@@ -731,7 +731,7 @@ It lightens the color by mixing white into it.  It is the same as white.mix(colo
 - weight is expressed as a number between 0 and 1 (e.g. 0.5)
 
 ```typescript
-import { red } from 'typestyle/lib/csx';
+import { red } from 'csx';
 
 const lighterRed = red.tint(0.5);
 ```
@@ -744,7 +744,7 @@ const lighterRed = red.tint(0.5);
 ### red(): number
 Returns the value of the red component of the color
 ```typescript
-import { rgb } from 'typestyle/lib/csx';
+import { rgb } from 'csx';
 
 const value = rgb(255, 0, 0).red();
 ```
@@ -752,7 +752,7 @@ const value = rgb(255, 0, 0).red();
 ### green(): number
 Returns the value of the green component of the color
 ```typescript
-import { rgb } from 'typestyle/lib/csx';
+import { rgb } from 'csx';
 
 const value = rgb(0, 255, 0).green();
 ```
@@ -760,7 +760,7 @@ const value = rgb(0, 255, 0).green();
 ### blue(): number
 Returns the value of the blue component of the color
 ```typescript
-import { rgb } from 'typestyle/lib/csx';
+import { rgb } from 'csx';
 
 const value = rgb(0, 0, 255).blue();
 ```
@@ -768,7 +768,7 @@ const value = rgb(0, 0, 255).blue();
 ### hue(): number
 Returns the hue of the color
 ```typescript
-import { hsl } from 'typestyle/lib/csx';
+import { hsl } from 'csx';
 
 const value = hsl(120, .5, .5).hue();
 ```
@@ -776,7 +776,7 @@ const value = hsl(120, .5, .5).hue();
 ### saturation(): number
 Returns the saturation of the color
 ```typescript
-import { hsl } from 'typestyle/lib/csx';
+import { hsl } from 'csx';
 
 const value = hsl(120, .5, .5).saturation();
 ```
@@ -784,7 +784,7 @@ const value = hsl(120, .5, .5).saturation();
 ### lightness(): number
 Returns the lightness/luminosity of the color
 ```typescript
-import { hsl } from 'typestyle/lib/csx';
+import { hsl } from 'csx';
 
 const value = hsl(120, .5, .5).lightness();
 ```
@@ -792,7 +792,7 @@ const value = hsl(120, .5, .5).lightness();
 ### alpha() / opacity(): number
 Returns the alpha/opacity of the color
 ```typescript
-import { hsl, rgb } from 'typestyle/lib/csx';
+import { hsl, rgb } from 'csx';
 
 const value1 = hsl(120, .5, .5).opacity();
 const value2 = rgb(128, 255, 0).alpha();

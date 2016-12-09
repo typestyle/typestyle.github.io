@@ -62,7 +62,7 @@ h1 {
 `)
 ```
 
-> Protip `csx.normalize()` uses this function internally to actually add `normalize.css`. More on this later.
+> Protip `csstips.normalize()` uses this function internally to actually add `normalize.css`. More on this later.
 
 ## Advantages of these functions over loaders 
 

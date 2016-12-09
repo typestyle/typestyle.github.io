@@ -1,7 +1,6 @@
 /**
  * @module style constants
  */
-import * as csx from 'typestyle/lib/csx';
 export const colors = {
   white: 'white',
 

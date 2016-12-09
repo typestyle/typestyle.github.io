@@ -96,18 +96,18 @@ addFile('globals.d.ts', `
   }
 
   /** csx namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/gradient.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/gradient.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/color.d.ts'), namespace: 'csx' })}
 
   /** csstips namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/box.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/display.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/flex.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/font.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/layer.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/normalize.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/page.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/scroll.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/box.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/display.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/flex.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/font.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/layer.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/normalize.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/page.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/scroll.d.ts'), namespace: 'csstips' })}
 `);
 
 

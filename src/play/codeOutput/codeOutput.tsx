@@ -12,7 +12,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import * as typestyle from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csx from 'csx';
 import * as csstips from 'csstips';
 const ensureImport = csx || csstips;
 const {

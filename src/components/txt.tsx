@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
 import * as styles from './styles';
 
 export const P = ({children}: {children?:any}) => {
