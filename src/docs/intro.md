@@ -10,7 +10,7 @@ TypeStyle core is actually **very** small (~1k) and you are free to use just tha
 
 # About `csx`
 We have `csx` sections (a sub library `typestyle/lib/csx` that ships with typestyle) as we are trying to help beginners use CSS effectively:
-* helps you manage CSS properties e.g. **colors** and create typed vers
+* helps you manage CSS properties e.g. **colors** and create typed CSS variables.
 
 # About `csstips`
 
