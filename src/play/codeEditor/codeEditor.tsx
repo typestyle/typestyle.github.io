@@ -2,13 +2,13 @@
 import CodeMirror = require('codemirror');
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as csx from "typestyle/lib/csx";
 import { style, classes, cssRaw } from "typestyle";
 import * as ts from 'byots';
 import * as utils from '../../utils';
 import * as ps from '../projectService';
 import escape = require("escape-html");
 import { toHtml } from '../../components/markdown';
+import * as csx from 'csstips';
 
 const headerHeight = '78px';
 

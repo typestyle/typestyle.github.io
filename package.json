@@ -50,7 +50,7 @@
     "ts-loader": "^1.1.0",
     "ts-node": "^1.6.1",
     "typescript": "2.1.0-dev.20161108",
-    "typestyle": "0.14.5",
+    "typestyle": "0.15.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }

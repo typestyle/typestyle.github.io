@@ -2,7 +2,7 @@
  * components used to setup the demo page 
  */
 import { style, classes } from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 import * as React from 'react';
 import * as gls from './gls';
 import { colors, fontSizes, spacing } from './styles';
@@ -21,7 +21,7 @@ namespace BookSectionStyles {
   });
 
   export const tocAnchor = style(
-    csx.padding(5, 5, 5, 10),
+    csstips.padding(5, 5, 5, 10),
     {
       background: '#eee',
       color: colors.text,
@@ -79,7 +79,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   const scrollToTop = () => window.scrollTo(0, 0);
 
-  return <gls.ContentVerticalMargined margin={15} className={style(csx.maxWidth(900))}>
+  return <gls.ContentVerticalMargined margin={15} className={style(csstips.maxWidth(900))}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
     <gls.ContentVertical style={{ paddingBottom: '10px' }}>
       {toc.map((t, index) => {
@@ -98,7 +98,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
     <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
 
-    <div className={style(csx.verticallySpaced(10), csx.content, csx.vertical)}>
+    <div className={style(csstips.verticallySpaced(10), csstips.content, csstips.vertical)}>
       {children}
     </div>
 
@@ -108,7 +108,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
       {previousIfAny && <gls.ContentHorizontalCentered>
         <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + previousIfAny.link}>Previous</a>
       </gls.ContentHorizontalCentered>}
-      <gls.Flex className={style(csx.padding(10), csx.endJustified, { color: colors.text, lineHeight: spacing.lineHeight })}>
+      <gls.Flex className={style(csstips.padding(10), csstips.endJustified, { color: colors.text, lineHeight: spacing.lineHeight })}>
         {nextIfAny && nextIfAny.prelude}
       </gls.Flex>
       {nextIfAny && <gls.ContentHorizontalCentered>

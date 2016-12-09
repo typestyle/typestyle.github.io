@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as marked from "marked";
 import { style, cssRaw, classes } from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 import { colors, spacing, fontSizes } from './styles';
 import * as escape from 'escape-html';
 import { getPlaygroundLink } from '../play/srcLoader';
@@ -184,7 +184,7 @@ export class MarkDown extends React.Component<Props, {}> {
     const rendered = toHtml(this.props.markdown);
 
     return (
-      <div className={classes(MarkDownStyles.rootClass, style(csx.verticallySpaced(10)))} dangerouslySetInnerHTML={{ __html: rendered }} />
+      <div className={classes(MarkDownStyles.rootClass, style(csstips.verticallySpaced(10)))} dangerouslySetInnerHTML={{ __html: rendered }} />
     );
   }
 }

@@ -2,9 +2,9 @@
  * This is a level above CSX
  *  - It wraps up the CSX primitives into components
  */
-import * as csx from 'typestyle/lib/csx';
 import * as typestyle from 'typestyle';
 import * as React from "react";
+import * as csstips from 'csstips';
 
 /**
  * Defaults used in layout
@@ -62,17 +62,17 @@ SmallVerticalSpace.displayName = "SmallHorizontalSpace";
 interface PrimitiveProps extends React.HTMLProps<HTMLDivElement> { };
 
 namespace ClassNames {
-  export const content = typestyle.style(csx.content);
-  export const flex = typestyle.style(csx.pass, csx.flex);
-  export const flexScrollY = typestyle.style(csx.pass, csx.flex, csx.vertical, { overflowY: 'auto' });
-  export const pass = typestyle.style(csx.pass);
-  export const contentVertical = typestyle.style(csx.content, csx.vertical);
-  export const contentVerticalCentered = typestyle.style(csx.content, csx.vertical, csx.center);
-  export const flexVerticalCentered = typestyle.style(csx.flex, csx.vertical, csx.center);
-  export const contentHorizontal = typestyle.style(csx.content, csx.horizontal);
-  export const contentHorizontalCentered = typestyle.style(csx.content, csx.horizontal, csx.center);
-  export const flexVertical = typestyle.style(csx.flex, csx.vertical, { maxWidth: '100%' /*normalizing browser bugs*/ });
-  export const flexHorizontal = typestyle.style(csx.flex, csx.horizontal);
+  export const content = typestyle.style(csstips.content);
+  export const flex = typestyle.style(csstips.pass, csstips.flex);
+  export const flexScrollY = typestyle.style(csstips.pass, csstips.flex, csstips.vertical, { overflowY: 'auto' });
+  export const pass = typestyle.style(csstips.pass);
+  export const contentVertical = typestyle.style(csstips.content, csstips.vertical);
+  export const contentVerticalCentered = typestyle.style(csstips.content, csstips.vertical, csstips.center);
+  export const flexVerticalCentered = typestyle.style(csstips.flex, csstips.vertical, csstips.center);
+  export const contentHorizontal = typestyle.style(csstips.content, csstips.horizontal);
+  export const contentHorizontalCentered = typestyle.style(csstips.content, csstips.horizontal, csstips.center);
+  export const flexVertical = typestyle.style(csstips.flex, csstips.vertical, { maxWidth: '100%' /*normalizing browser bugs*/ });
+  export const flexHorizontal = typestyle.style(csstips.flex, csstips.horizontal);
 }
 
 /**
@@ -274,7 +274,7 @@ export const ContentHorizontalMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
   const spacing = (margin == null ? defaultValues.spacing : margin);
-  const className = typestyle.classes(props.className, typestyle.style(csx.horizontallySpaced(spacing)));
+  const className = typestyle.classes(props.className, typestyle.style(csstips.horizontallySpaced(spacing)));
 
   return (
     <ContentHorizontal {...otherProps} className={className} data-comment="ContentHorizontalMargined">
@@ -299,7 +299,7 @@ export const FlexHorizontalMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
   const spacing = (margin == null ? defaultValues.spacing : margin);
-  const className = typestyle.classes(props.className, typestyle.style(csx.horizontallySpaced(spacing)));
+  const className = typestyle.classes(props.className, typestyle.style(csstips.horizontallySpaced(spacing)));
 
   return (
     <FlexHorizontal {...otherProps} className={className} data-comment="FlexHorizontalMargined">
@@ -316,7 +316,7 @@ export const FlexVerticalMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
   const spacing = (margin == null ? defaultValues.spacing : margin);
-  const className = typestyle.classes(props.className, typestyle.style(csx.verticallySpaced(spacing)));
+  const className = typestyle.classes(props.className, typestyle.style(csstips.verticallySpaced(spacing)));
 
   return (
     <FlexVertical {...otherProps} className={className} data-comment="FlexVerticalMargined">
@@ -341,7 +341,7 @@ export const ContentVerticalMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
 
   const spacing = (margin == null ? defaultValues.spacing : margin);
-  const className = typestyle.classes(props.className, typestyle.style(csx.verticallySpaced(spacing)));
+  const className = typestyle.classes(props.className, typestyle.style(csstips.verticallySpaced(spacing)));
 
   return (
     <ContentVertical {...otherProps} className={className} data-comment="ContentVerticalMargined">
@@ -367,7 +367,7 @@ export const GridMargined = (props: MarginedProps) => {
   const otherProps = _objectWithoutProperties(props, ['margin', 'children']);
   const spacing = (margin == null ? defaultValues.spacing : margin) + 'px';
 
-  const className = typestyle.style(csx.wrap, { marginTop: '-' + spacing, marginLeft: '-' + spacing }, props.style as any || {});
+  const className = typestyle.style(csstips.wrap, { marginTop: '-' + spacing, marginLeft: '-' + spacing }, props.style as any || {});
   const children = React.Children.toArray(props.children).filter(c => !!c);
   return (
     <ContentHorizontal {...otherProps} className={className}>
@@ -403,11 +403,11 @@ export const ResponsiveContentMargined = (props: ResponsiveMarginedProps) => {
   const className = typestyle.classes(
     props.className,
     typestyle.style(
-      csx.content,
+      csstips.content,
 
       /** Lower than breakpoint: Vertical Margined */
-      csx.vertical,
-      csx.verticallySpaced(spacing),
+      csstips.vertical,
+      csstips.verticallySpaced(spacing),
 
       /** Bigger than breakpoint: Horizontal Margined */
       {
@@ -420,8 +420,8 @@ export const ResponsiveContentMargined = (props: ResponsiveMarginedProps) => {
               }
             }
           },
-          csx.horizontal,
-          csx.horizontallySpaced(spacing),
+          csstips.horizontal,
+          csstips.horizontallySpaced(spacing),
         )
       },
     )

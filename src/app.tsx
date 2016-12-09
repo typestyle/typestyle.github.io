@@ -1,7 +1,8 @@
 /** Setup es6 */
 import 'babel-polyfill';
 
-import { setupPage, normalize } from 'typestyle/lib/csx';
+import { setupPage, normalize } from 'csstips';
+import * as csstips from 'csstips';
 normalize();
 setupPage('#root');
 
@@ -9,20 +10,19 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
-import * as csx from 'typestyle/lib/csx';
 import { style, forceRenderStyles } from 'typestyle';
 import './augmentTypes';
 
 export const Header = () => {
   return (
     <div className={style(
-      csx.centerCenter,
-      csx.padding(10, 0, 35, 0),
+      csstips.centerCenter,
+      csstips.padding(10, 0, 35, 0),
       {
         backgroundColor: cp.colors.header,
         color: 'white'
       })}>
-      <div className={style(csx.content, csx.vertical, csx.verticallySpaced(10))}>
+      <div className={style(csstips.content, csstips.vertical, csstips.verticallySpaced(10))}>
         <h1># TypeStyle</h1>
         <p>Making CSS TypeSafe</p>
       </div>
@@ -58,7 +58,7 @@ ReactDOM.render(<cp.Content>
       </div>
     </cp.ContentVerticalMargined>
 
-    <cp.Content className={style(csx.horizontallyCenterSelf, csx.maxWidth('100%'))}>
+    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth('100%'))}>
       {renderRoutes()}
     </cp.Content>
 
