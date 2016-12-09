@@ -28,29 +28,32 @@ Having an element as `display: inline` means that it completely ignores its heig
 
 Also you cannot CSS3 transform inline elements. So use a `span` but if there is anything fancy you need the `span` to do, be sure to `inline-block` it.
 
-> TIP: `csx` has a mixin `csx.inlineBlock` for your inline desires. 
+> TIP: `csstips` has a mixin `csstips.inlineBlock` for your inline desires. 
 
-## `csx.padding`
+## `csstips.padding`
 
-`csx.padding` is a nice mixin to create padding for managing the space inside a component. e.g. Here is some pretty text you can hover over,
+`csstips.padding` is a nice mixin to create padding for managing the space inside a component. e.g. Here is some pretty text you can hover over,
 
 ```play
 import {style} from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 
 const bg = csx.black;
 const color = csx.white;
 const prettyBox = style(
-  csx.padding(10),
-  csx.inlineBlock,
+  csstips.padding(10),
+  csstips.inlineBlock,
   {
     color:color.darken(.2),
     cursor:'pointer',
     backgroundColor:bg,
     transition: 'color .2s, background-color .2s',
-    '&:hover':{
-      color: color,
-      backgroundColor:bg.lighten(.2),
+    $nest: {
+      '&:hover':{
+        color: color,
+        backgroundColor:bg.lighten(.2),
+      }
     }
   }
 );
@@ -64,22 +67,22 @@ This is what a padding should be used for. Maintaining a nice boundary seperatio
 
 > If a function only does mutation inside is it still functional?
 
-Remeber the lesson of margins: You cannot have margins bleed. However you can use them to create a nice visual seperation between *your* children (subitems of the component). We provide utilities for just that `csx.horizontallySpaced` and `csx.verticallySpaced` 
+Remeber the lesson of margins: You cannot have margins bleed. However you can use them to create a nice visual seperation between *your* children (subitems of the component). We provide utilities for just that `csstips.horizontallySpaced` and `csstips.verticallySpaced` 
 
 E.g. a nice vertical layout: 
 
 ```play
 import {style} from 'typestyle';
-import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
-    csx.centerCenter,
+    csstips.centerCenter,
     {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
   )}>
   Demo Item
 </h1>;
 
-<div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+<div className={style(csstips.vertical,csstips.verticallySpaced(15))}> 
   <DemoItem/>
   <DemoItem/>
   <DemoItem/>
@@ -93,23 +96,24 @@ Spacing items like this where there is no *margin bleed* at the borders **compos
  ```play
 import {style} from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
-    csx.centerCenter,
+    csstips.centerCenter,
     {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
   )}>
   Demo Item
 </h1>;
 
 /* Sample showing DemoItems composing */
-const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+const DemoCollection = () => <div className={style(csstips.vertical,csstips.verticallySpaced(15))}> 
   <DemoItem/>
   <DemoItem/>
   <DemoItem/>
 </div>;
 
 /* Sample showing DemoCollections composing */
-<div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+<div className={style(csstips.vertical,csstips.verticallySpaced(15))}> 
   <DemoCollection/>
   <DemoCollection/>
 </div>;
@@ -117,27 +121,28 @@ const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySp
 
 You can see that, for the user, its impossible to tell the fact that there are two sets of three `DemoItem`s instead of one set of six `DemoItem`s.
 
-At some level up the heirarchy you would need to create a visual seperation from the border (e.g. at the page level) and there you should use `csx.padding`. This is shown below where we have a nice root `Page` component: 
+At some level up the heirarchy you would need to create a visual seperation from the border (e.g. at the page level) and there you should use `csstips.padding`. This is shown below where we have a nice root `Page` component: 
 
  ```play
 import {style} from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
-    csx.centerCenter,
+    csstips.centerCenter,
     {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
   )}>
   Demo Item
 </h1>;
 
-const DemoCollection = () => <div className={style(csx.vertical,csx.verticallySpaced(15))}> 
+const DemoCollection = () => <div className={style(csstips.vertical,csstips.verticallySpaced(15))}> 
   <DemoItem/>
   <DemoItem/>
   <DemoItem/>
 </div>;
 
 /** A nice Page component with padding */
-const Page = (props) => <div className={style(csx.vertical,csx.verticallySpaced(15), csx.padding(15))}>
+const Page = (props) => <div className={style(csstips.vertical,csstips.verticallySpaced(15), csstips.padding(15))}>
  {props.children}
 </div>;
 

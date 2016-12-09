@@ -41,28 +41,28 @@ const docs: Doc[] = [{
   prelude: 'Next we look at some advanced cases that are also handled with TypeStyle.',
 },
 {
-  title: "Page Setup (csx)",
+  title: "Colors (csx)",
+  link: 'colors',
+  content: require('../docs/colors.md'),
+  prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.',
+},
+{
+  title: "Page Setup (csstips)",
   link: 'page',
   content: require('../docs/page.md'),
   prelude: 'Setting up your first or next HTML page can be daunting. Next we show how TypeStyle makes this easier.',
 },
 {
-  title: "Flexbox (csx)",
+  title: "Flexbox (csstips)",
   link: 'flex',
   content: require('../docs/flex.md'),
   prelude: 'Its not just the CSS tools that are evolving, but CSS itself is getting better ways to represent application layouts. One of the best ways is the flexbox and we provide guidance + great mixins to make using it easier and meaningful.',
 },
 {
-  title: "Box helpers (csx)",
+  title: "Box helpers (csstips)",
   link: 'box',
   content: require('../docs/box.md'),
   prelude: 'How you manage the space around and inside your components is vital to a great design. Next we cover the helpers to make this a breeze.',
-},
-{
-  title: "Colors (csx)",
-  link: 'colors',
-  content: require('../docs/colors.md'),
-  prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.',
 },
 {
   title: "Playground Docs",

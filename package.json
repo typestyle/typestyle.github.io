@@ -35,7 +35,7 @@
     "babel-polyfill": "^6.9.1",
     "byots": "^2.1.0-dev.20161101.22.10",
     "codemirror": "^5.20.2",
-    "csstips": "0.0.2",
+    "csstips": "0.0.3",
     "escape-html": "^1.0.3",
     "fuzzaldrin": "^2.1.0",
     "gh-pages": "^0.11.0",

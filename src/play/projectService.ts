@@ -96,16 +96,18 @@ addFile('globals.d.ts', `
   }
 
   /** csx namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/box.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/color.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/display.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/flex.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/font.d.ts'), namespace: 'csx' })}
   ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/gradient.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/layer.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/normalize.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/page.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/scroll.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/color.d.ts'), namespace: 'csx' })}
+
+  /** csstips namespace */
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/box.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/display.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/flex.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/font.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/layer.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/normalize.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/page.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!typestyle/lib/csx/scroll.d.ts'), namespace: 'csstips' })}
 `);
 
 

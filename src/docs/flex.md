@@ -3,10 +3,10 @@ Having well defined semantics of *how the layout will happen* is important for a
 ## Root
 We will look at `flex`ible children and `content` children. These concepts exist inside a *`root`*. The root is simply the *container* that is used as a point of reference for these children.
 
-> A general purpose `csx.flexRoot` exists.
+> A general purpose `csstips.flexRoot` exists.
 
 ## Flex
-> A *flex* container `csx.flex` has the same size as its parent.
+> A *flex* container `csstips.flex` has the same size as its parent.
 
 Consider the following layout:
 
@@ -18,10 +18,10 @@ Here the content *takes up all the available space offered by the parent*. If th
 
 The space taken by the child (content) is what is available to its children. No more, no less.
 
-Such a child is called *flex* (`csx.flex`).
+Such a child is called *flex* (`csstips.flex`).
 
 ## Content
-> A *content* (`csx.content`) child determines its size based on the size of its content
+> A *content* (`csstips.content`) child determines its size based on the size of its content
 
 In the previous example the child *flexed* into the parent. The only other concept we need for a child is that of *content*. **A *content* child determines its size based on the size of its content**. That is all the space it takes up in the parent. This is shown below where if the parent is too big the rest of the space is unused:
 
@@ -31,45 +31,45 @@ If the parent is too small the content will overflow:
 
 ![](/images/book/flex/content-overflow.png)
 
-> If you want the parent flex container to scroll for content just mixin `csx.scroll`.
+> If you want the parent flex container to scroll for content just mixin `csstips.scroll`.
 
 ## Root (redux)
 
 In CSS flexbox the concept of `root` does not exist without combining it with the concept of *flex direction*.
 
-> The general purpose `csx.flexRoot` is just an alias (more semantic name) for `csx.horizontal`.
+> The general purpose `csstips.flexRoot` is just an alias (more semantic name) for `csstips.horizontal`.
 
 A root has a default *main axis* of `horizontal`. This is axis in which the children are layed out. In the *cross axis* the children are by default forced to `flex`.
 
 So there are really two roots:
-* `csx.horizontal`: Lays out children horizontally based on `content` and `flexes` them vertically.
-* `csx.vertical`: Lays out children vertically based on `content` and `flexes` them horizontally.
+* `csstips.horizontal`: Lays out children horizontally based on `content` and `flexes` them vertically.
+* `csstips.vertical`: Lays out children vertically based on `content` and `flexes` them horizontally.
 
-Here is an example of a `csx.horizontal` layout with `content` children.
+Here is an example of a `csstips.horizontal` layout with `content` children.
 
 ![](/images/book/flex/horizontal.png)
 
-Here is an example of a `csx.vertical` layout with `content` children.
+Here is an example of a `csstips.vertical` layout with `content` children.
 
 ![](/images/book/flex/vertical.png)
 
 # Examples
-We've seen four types of containers : `csx.vertical`, `csx.horizontal`, `csx.flex`, `csx.content`. The next step is to practice with real world examples
+We've seen four types of containers : `csstips.vertical`, `csstips.horizontal`, `csstips.flex`, `csstips.content`. The next step is to practice with real world examples
 
 ## Vertical Example
 Consider the following layout:
 
 ![](/images/book/flex/vertical-small.png)
 
-Up front we know that the root is `csx.vertical`. Assume that we want the `body` section to *flex* i.e. as the root becomes larger it expands to consume the remaining space, while `header` and `footer` remain sized based on their content:
+Up front we know that the root is `csstips.vertical`. Assume that we want the `body` section to *flex* i.e. as the root becomes larger it expands to consume the remaining space, while `header` and `footer` remain sized based on their content:
 
 ![](/images/book/flex/vertical-large.png)
 
-In our lingo the `root` here is `csx.vertical` that has three children:
+In our lingo the `root` here is `csstips.vertical` that has three children:
 
-* header: `csx.content`
-* body: `csx.flex`
-* footer: `csx.content`
+* header: `csstips.content`
+* body: `csstips.flex`
+* footer: `csstips.content`
 
 Visually: 
 
@@ -86,7 +86,7 @@ If the parent becomes bigger the `flex` children share all the space that remain
 
 ![](/images/book/flex/multiple-flex-large.png)
 
-Actually a flex child can decide a *flex scaling factor* (`csx.flex1`,`csx.flex2` ... `csx.flex12`) to divide up the remaining space. E.g. a 1:2 ratio can easily be achieved:
+Actually a flex child can decide a *flex scaling factor* (`csstips.flex1`,`csstips.flex2` ... `csstips.flex12`) to divide up the remaining space. E.g. a 1:2 ratio can easily be achieved:
 
 ![](/images/book/flex/multiple-flex-scaling.png)
 
@@ -104,10 +104,10 @@ Where we want to `body` to grow:
 
 We can see intutively that it is a *horizontal* container with *content* sidebars and *flex* body.  
 
-* root: `csx.horizontal`
-* sidebar: `csx.content`
-* body: `csx.flex`
-* sidebar: `csx.content`
+* root: `csstips.horizontal`
+* sidebar: `csstips.content`
+* body: `csstips.flex`
+* sidebar: `csstips.content`
 
 This example should have been fairly obvious and was designed to give you a hands on experience 🌹. Visually:
 
@@ -127,9 +127,9 @@ Consider this layout:
 |                     FOOTER                       |
 ----------------------------------------------------
 ```
-This is actually a layout used by lots of applications. If you think about it, its just a nesting of concepts you already know `csx.vertical`,`csx.horizontal`, `csx.flex`, `csx.content`.
+This is actually a layout used by lots of applications. If you think about it, its just a nesting of concepts you already know `csstips.vertical`,`csstips.horizontal`, `csstips.flex`, `csstips.content`.
 
-In fact its a combination of the first example layout (`csx.vertical`):
+In fact its a combination of the first example layout (`csstips.vertical`):
 
 ```
 ------------------------------------
@@ -143,7 +143,7 @@ In fact its a combination of the first example layout (`csx.vertical`):
 ------------------------------------
 ```
 
-Where the `body1` is itself a `csx.horizontal` containing the `sidebar`s and `body`:
+Where the `body1` is itself a `csstips.horizontal` containing the `sidebar`s and `body`:
 
 ```
 -----------------------------------------------
@@ -161,22 +161,22 @@ Easy right! Here is a demo for you to play with:
 ```play
 const bg = (backgroundColor) => ({backgroundColor});
 
-<div className={style(csx.fillParent, csx.vertical)}>
-  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
+<div className={style(csstips.fillParent, csstips.vertical)}>
+  <div className={style(csstips.content,csstips.height(50), bg(csx.lightskyblue))}>
     Header
   </div>
-  <div className={style(csx.flex, csx.horizontal)}>
-    <div className={style(csx.content, csx.width(100), bg(csx.lightpink))}>
+  <div className={style(csstips.flex, csstips.horizontal)}>
+    <div className={style(csstips.content, csstips.width(100), bg(csx.lightpink))}>
       Sidebar
     </div>
-    <div className={style(csx.flex, bg(csx.darkorange))}>
+    <div className={style(csstips.flex, bg(csx.darkorange))}>
       Body
     </div>
-    <div className={style(csx.content, csx.width(100), bg(csx.limegreen))}>
+    <div className={style(csstips.content, csstips.width(100), bg(csx.limegreen))}>
       Sidebar
     </div>
   </div>
-  <div className={style(csx.content,csx.height(50), bg(csx.lightskyblue))}>
+  <div className={style(csstips.content,csstips.height(50), bg(csx.lightskyblue))}>
     Footer
   </div>
 </div>

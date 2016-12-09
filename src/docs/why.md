@@ -68,7 +68,7 @@ Note: We don't do *automatic* vendor prefixing for a few reasons:
 * Code bloat, runtime performance, you might want more control (we don't make choices that you might need to undo).
 * Vendor prefixing has no future: https://webkit.org/blog/6131/updating-our-prefixing-policy/
 
-> Protip: Big fan of flexbox? Use `csx` as it provides the necessary vendor prefixes so you don't need to worry about them.
+> Protip: Big fan of flexbox? Use `csstips` as it provides the necessary vendor prefixes so you don't need to worry about them.
 
 ## More boring reasons 
 
@@ -93,4 +93,4 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 * Works with any framework (react, angular2, cyclejs, whatever, doesn't matter).
 * Zero config. Just use.
 
-> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`types`* (for autocomplete and errors), and *csx* (a great set of CSS functions and mixins to give a smooth learning curve for even new CSS devs). 
+> Note: Many of these are truly the advantages of using FreeStyle. The additional features by typestyle are *autoinjection*, *`types`* (for autocomplete and errors), `csx` (CSSFunctions and Typed CSS value creators) and *csstips* (a great set of CSS mixins / page setup helpers to give a smooth learning curve for even new CSS devs). 

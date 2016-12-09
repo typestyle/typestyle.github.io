@@ -13,6 +13,8 @@ import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import * as typestyle from 'typestyle';
 import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
+const ensureImport = csx || csstips;
 const {
   style,
   cssRaw,
@@ -25,8 +27,8 @@ const {
 
 namespace CodeOutputStyles {
   const base = typestyle.extend(
-    csx.fillParent,
-    csx.layerParent,
+    csstips.fillParent,
+    csstips.layerParent,
     {
       overflow: 'auto',
       fontFamily: 'sans-serif',
@@ -34,8 +36,8 @@ namespace CodeOutputStyles {
     });
 
   export const outputClass = typestyle.style(base);
-  export const errorClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: 'red', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
-  export const helpfulClass = typestyle.style(base, csx.padding(10), csx.fillParent, csx.centerCenter, { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px', textAlign: 'center' });
+  export const errorClass = typestyle.style(base, csstips.padding(10), csstips.fillParent, csstips.centerCenter, { color: 'red', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px' });
+  export const helpfulClass = typestyle.style(base, csstips.padding(10), csstips.fillParent, csstips.centerCenter, { color: '#333', fontWeight: 'bold', fontFamily: 'monospace', fontSize: '24px', textAlign: 'center' });
 }
 
 /**

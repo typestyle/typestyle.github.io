@@ -4,13 +4,18 @@ Maintainable CSS is nearly impossible. But writing maintainable JavaScript is a 
 
 The DOM `style` attribute is not enough to cater for things like psuedo states and media queries. We provide a simple *zero config* `style` function that gives you all the power of CSS with all the safety and maintainability of TypeScript / JavaScript. 
 
+# Utilities 
+
+TypeStyle core is actually **very** small (~1k) and you are free to use just that. However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. So we provide utilities that are mentioned next.
+
 # About `csx`
+We have `csx` sections (a sub library `typestyle/lib/csx` that ships with typestyle) as we are trying to help beginners use CSS effectively:
+* helps you manage CSS properties e.g. **colors** and create typed vers
 
-TypeStyle core is actually **very** small (~1k) and you are free to use just that.
+# About `csstips`
 
-However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. Hence it has `csx` sections (a sub library `typestyle/lib/csx` that ships with typestyle) as we are trying to help beginners use CSS effectively:
+Provided as a seperate library `npm install csstips`). Provides utilities for pagesetup / CSS normalization along with mixins and mixin creators.
 
-* helps you manage common CSS properties like `padding`, `margin` and **colors**.
 * it essentially documents CSS tips that people might not be familiar with.
 * gives names to these CSS tips.
 

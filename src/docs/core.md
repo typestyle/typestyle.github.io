@@ -106,15 +106,15 @@ const mainButtonClass = style(
 </button>
 ```
 
-In fact a large number of mixins are provided by `csx` (`import * as csx from 'typestyle/lib/csx'`). e.g. for flexbox we have `csx.flex`, `csx.content`, `csx.vertical` etc. Use them as you would naturally expect e.g. 
+In fact a large number of mixins are provided by `csstips` (`import * as csstips from 'csstips'`). e.g. for flexbox we have `csstips.flex`, `csstips.content`, `csstips.vertical` etc. Use them as you would naturally expect e.g. 
 
 ```ts
-import * as csx from 'typestyle/lib/csx';
+import * as csstips from 'csstips';
 import {style} from 'typestyle';
 
 const flexHorizontalGreen = style(
-  csx.flex,
-  csx.horizontal,
+  csstips.flex,
+  csstips.horizontal,
   { backgroundColor: 'green' }
 );
 
@@ -174,7 +174,7 @@ const niceVerticalLayout = style({
 </div>  
 ```
 
-> Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csx mixin e.g. `csx.verticallySpaced(10)`. More on this function when we look at csx box functions later in the book.
+> Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csstips mixin e.g. `csstips.verticallySpaced(10)`. More on this function when we look at csstips box functions later in the book.
 
 ## Concept: Media queries 
 

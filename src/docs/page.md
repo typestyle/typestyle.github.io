@@ -58,7 +58,7 @@ Combine all that we've talked about and we have the following page setup.
 ```
 
 ```ts
-import {setupPage} from "typestyle/lib/csx";
+import {setupPage} from "csstips";
 setupPage('#root');
 ```
 
@@ -69,10 +69,10 @@ setupPage('#root');
 Easy as :)
 
 ## `normalize`
-Browsers have different default styles for a few a the native tags e.g. the `template` tag *does not have `display: none` in IE but has it in all other browers. The list of such quirks is small but not something that you should bother with. This is why [normalize.css] exists. It is used by all the popular css frameworks including bootstrap. So a good idea to include in your own designs as well. Super simple with `csx/normalize` ;)
+Browsers have different default styles for a few a the native tags e.g. the `template` tag *does not have `display: none` in IE but has it in all other browers. The list of such quirks is small but not something that you should bother with. This is why [normalize.css] exists. It is used by all the popular css frameworks including bootstrap. So a good idea to include in your own designs as well. Super simple with `normalize` ;)
 
 ```ts
-import {normalize} from "typestyle/lib/csx";
+import {normalize} from "csstips";
 normalize();
 
 // Yay. Browser quirks ironed out
@@ -95,7 +95,7 @@ Hence the recommended page setup
 ```
 
 ```ts
-import {normalize, setupPage} from "typestyle/lib/csx";
+import {normalize, setupPage} from "csstips";
 
 normalize();
 setupPage('#root');
