@@ -79,7 +79,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   const scrollToTop = () => window.scrollTo(0, 0);
 
-  return <gls.ContentVerticalMargined margin={15} className={style(csstips.maxWidth(900))}>
+  return <gls.ContentVerticalContentMargined margin={15} className={style(csstips.maxWidth(900))}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
     <gls.ContentVertical style={{ paddingBottom: '10px' }}>
       {toc.map((t, index) => {
@@ -115,5 +115,5 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
         <a onClick={scrollToTop} className={BookSectionStyles.anchorLookingLikeButton} href={"#" + nextIfAny.link}>Next</a>
       </gls.ContentHorizontalCentered>}
     </gls.ContentHorizontal>
-  </gls.ContentVerticalMargined>
+  </gls.ContentVerticalContentMargined>
 }

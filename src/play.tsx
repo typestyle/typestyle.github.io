@@ -3,7 +3,7 @@ import 'babel-polyfill';
 
 import { setupPage, normalize } from 'csstips';
 import * as csstips from 'csstips';
-import { style, cssRule } from 'typestyle';
+import { style, cssRule, media } from 'typestyle';
 normalize();
 setupPage('#root');
 
@@ -33,7 +33,7 @@ export class HeaderSmall extends React.Component<{}, {}> {
   render() {
     return (
       <div className={style(csstips.padding(24), { color: 'white', background: 'black' })}>
-        <gls.ResponsiveContentMargined className={style(csstips.center)}>
+        <gls.ContentHorizontalMargined className={style(csstips.center)}>
           <a
             className={style({ whiteSpace: 'nowrap', textDecoration: 'none', color: 'white', $nest: { '&:hover': { textDecoration: 'underline' } } })}
             href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
@@ -50,8 +50,10 @@ export class HeaderSmall extends React.Component<{}, {}> {
             <h4 className={style(csstips.margin(0))}>Help</h4>
           </a>
 
-          <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
-        </gls.ResponsiveContentMargined>
+          <a className={style(media({ minWidth: 0, maxWidth: 500 }, { display: 'none' }))}>
+            <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
+          </a>
+        </gls.ContentHorizontalMargined>
       </div >
     );
   }

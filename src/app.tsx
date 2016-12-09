@@ -40,10 +40,10 @@ const anchorClass = style({
 
 ReactDOM.render(<cp.Content>
   <Header />
-  <cp.ContentVerticalMargined style={{ padding: '20px 10px 10px 10px' }}>
+  <cp.ContentVerticalContentMargined style={{ padding: '20px 10px 10px 10px' }}>
 
     {/** The github links */}
-    <cp.ContentVerticalMargined>
+    <cp.ContentVerticalContentMargined>
       <cp.ContentVerticalCentered>
         <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
       </cp.ContentVerticalCentered>
@@ -56,13 +56,13 @@ ReactDOM.render(<cp.Content>
           Don't forget to share 🌹
           </a>
       </div>
-    </cp.ContentVerticalMargined>
+    </cp.ContentVerticalContentMargined>
 
     <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth('100%'))}>
       {renderRoutes()}
     </cp.Content>
 
-  </cp.ContentVerticalMargined>
+  </cp.ContentVerticalContentMargined>
 
 </cp.Content>, document.getElementById('root'));
 
