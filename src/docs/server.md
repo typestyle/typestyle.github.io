@@ -1,17 +1,17 @@
 Sever side rendering + static page generations is supported with a super easy function. It may not be a feature you need so you can safely skip reading this section.
 
-## `css`
+## `getCss`
 It allows you to get the styles as CSS which you can return as a part of your server response. e.g.
 
 ```ts
 /** Import */
-import {style, css} from "typestyle";
+import {style, getCss} from "typestyle";
 
 /** convert a style object to a CSS class name */
 const className = style({color: 'red'});
 
 /** Render to CSS style tag */
-const styleTag = `<style>${css()}</style>`
+const styleTag = `<style>${getCss()}</style>`
 /** ^ send this as a part of your HTML response */
 ```
 
@@ -34,12 +34,12 @@ export const renderPage = ({ html, css }: { html: string, css: string }) => `
 </html>
 `;
 
-import {css} from "typestyle";
+import {getCss} from "typestyle";
 import {App} from "./yourApp";
 
 const response = renderPage({ 
   html: ReactDOMServer.renderToString(<App/>), 
-  css: css()
+  css: getCss()
 });
 
 /** ^ send this as your HTML response */
