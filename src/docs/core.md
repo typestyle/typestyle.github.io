@@ -147,6 +147,20 @@ const niceColors = style({
 <h1 className={niceColors}>Hello world</h1>
 ```
 
+it also allows you to use pseudo-elements (e.g. `::after`, `&::before` etc): 
+
+```play
+const hello = style({
+  $nest: {
+    '&::before': {
+      content:`'Hello '`
+    }
+  }
+});
+
+<div className={hello}>World</div>
+```
+
 or even child selectors for example a nicely spaced vertical layout: 
 
 ```play
