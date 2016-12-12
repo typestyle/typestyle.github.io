@@ -1,6 +1,6 @@
 * [style](/#/core/-style-)
 * [Concept: Mixin](/#/core/concept-mixin)
-* [Concept: Interpolation / Psedo states / Pseduo elements](/#/core/concept-interpolation)
+* [Concept: Interpolation / Pseudo states / Pseudo elements](/#/core/concept-interpolation)
 * [Concept: Media Queries](/#/core/concept-media-queries)
 * [Concept: Keyframes / Animations](/#/core/concept-keyframes)
 * [Concept: Composing classes / Customizable components / Theming](/#/core/-classes-)
