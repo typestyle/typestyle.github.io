@@ -50,5 +50,5 @@ Then in the frontend you simply use the same style tag after rendering the html:
 ```ts
 import {setStylesTarget} from "typestyle";
 ReactDOM.render(<App/>, document.getElementById('root'));
-setStylesTarget(document.getElementById('css-target'));
+setStylesTarget(document.getElementById('styles-target'));
 ```
