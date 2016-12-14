@@ -1,17 +1,17 @@
 Sever side rendering + static page generations is supported with a super easy function. It may not be a feature you need so you can safely skip reading this section.
 
-## `getCss`
+## `getStyles`
 It allows you to get the styles as CSS which you can return as a part of your server response. e.g.
 
 ```ts
 /** Import */
-import {style, getCss} from "typestyle";
+import {style, getStyles} from "typestyle";
 
 /** convert a style object to a CSS class name */
 const className = style({color: 'red'});
 
 /** Render to CSS style tag */
-const styleTag = `<style>${getCss()}</style>`
+const styleTag = `<style>${getStyles()}</style>`
 /** ^ send this as a part of your HTML response */
 ```
 
@@ -23,7 +23,7 @@ export const renderPage = ({ html, css }: { html: string, css: string }) => `
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <style id="css-target">
+    <style id="styles-target">
       ${css}
     </style>
 </head>
@@ -34,12 +34,12 @@ export const renderPage = ({ html, css }: { html: string, css: string }) => `
 </html>
 `;
 
-import {getCss} from "typestyle";
+import {getStyles} from "typestyle";
 import {App} from "./yourApp";
 
 const response = renderPage({ 
   html: ReactDOMServer.renderToString(<App/>), 
-  css: getCss()
+  css: getStyles()
 });
 
 /** ^ send this as your HTML response */
@@ -48,7 +48,7 @@ const response = renderPage({
 Then in the frontend you simply use the same style tag after rendering the html: 
 
 ```ts
-import {setCssTarget} from "typestyle";
+import {setStylesTarget} from "typestyle";
 ReactDOM.render(<App/>, document.getElementById('root'));
-setCssTarget(document.getElementById('css-target'));
+setStylesTarget(document.getElementById('css-target'));
 ```
