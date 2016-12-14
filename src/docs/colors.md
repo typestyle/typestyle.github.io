@@ -583,9 +583,8 @@ const blue = rgba(0, 0, 255, 1);
 ---
 ## Create a New Colors From Other Colors
 
-### darken(amount: number | string): ColorHelper
+### darken(amount: number | string, relative?: boolean): ColorHelper
 Creates a darker color
-
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
 
 ```typescript
@@ -595,7 +594,7 @@ const red1 = red.darken('10%');
 const red2 = red.darken(.1);
 ```
 
-### desaturate(amount: number | string): ColorHelper
+### desaturate(amount: number | string, relative?: boolean): ColorHelper
 Creates a less saturated color
 
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
@@ -619,7 +618,7 @@ const red1 = red.fade('50%');
 const red2 = red.fade(.5);
 ```
 
-### fadeIn(amount: number | string): ColorHelper
+### fadeIn(amount: number | string, relative?: boolean): ColorHelper
 Creates a more opaque color
 
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
@@ -631,7 +630,7 @@ const red1 = red.fadeIn('10%');
 const red2 = red.fadeIn(.1);
 ```
 
-### fadeOut(amount: number | string): ColorHelper
+### fadeOut(amount: number | string, relative?: boolean): ColorHelper
 Creates a more transparent color
 
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)
@@ -689,7 +688,7 @@ const blue = rgb(0, 0, 255);
 const purple = red.mix(blue, 0.5);
 ```
 
-### saturate(amount: number | string): ColorHelper
+### saturate(amount: number | string, relative?: boolean): ColorHelper
 Creates a more saturation color
 
 - amount can be a string (e.g. '10%') or a number between 0 and 1 (e.g. 0.1)

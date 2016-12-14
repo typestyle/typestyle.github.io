@@ -22,15 +22,6 @@ cssRule('html, body', {
 });
 ```
 
-* Font faces:
-
-```ts
-cssRule('@font-face', {
-  fontFamily: '"Bitstream Vera Serif Bold"',
-  src: 'url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf")'
-});
-```
-
 * Page level media queries:
 
 ```ts
@@ -42,7 +33,33 @@ cssRule('@media print', {
 });
 ```
 
-## `cssRaw` 
+
+## `fontFace`
+
+Specifying fonts has a special function for readability:
+
+```ts
+import { fontFace } from 'typestyle';
+
+fontFace({
+  fontFamily: 'Roboto',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  src: /* url here */'',
+  unicodeRange: 'U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F'
+});
+```
+
+* Fonts can also be specified using the above ```cssRule``` using the @font-face rule.
+
+```ts
+cssRule('@font-face', {
+  fontFamily: '"Bitstream Vera Serif Bold"',
+  src: 'url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf")'
+});
+```
+
+## `cssRaw`
 
 Sometimes someone just hands you are raw CSS file and you can't be bothered to make it into objects. An excellent use case is using something like `normalize.css`.
 
