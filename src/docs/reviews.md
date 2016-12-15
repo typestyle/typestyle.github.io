@@ -21,9 +21,3 @@ TypeStyle is simply just a `style` function with a handful of *simple* utilities
 * [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/) Built with TypeStyle / CycleJS / TypeScript
 * [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](http://typestyle.io/play) are all built 100% with typestyle.
 * [alm.tools](http://alm.tools) and IDE designed to provide the best developer experience for TypeScript.
-
-# Companies
-
-* [Australia Post](http://auspost.com.au/)
-* [Sourcegraph](https://sourcegraph.com/)
-* [Add yours 🌹!](https://github.com/typestyle/typestyle/issues)
