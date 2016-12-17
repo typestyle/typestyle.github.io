@@ -47,6 +47,12 @@ const docs: Doc[] = [{
   prelude: 'Having a great color palette is fundamental to great design. We give this special love in our API.',
 },
 {
+  title: "Utilities (csx)",
+  link: 'utilities',
+  content: require('../docs/utilities.md'),
+  prelude: 'Use these utilities to write prettier CSS in JavaScript',
+},
+{
   title: "Page Setup (csstips)",
   link: 'page',
   content: require('../docs/page.md'),
