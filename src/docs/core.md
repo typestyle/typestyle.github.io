@@ -190,6 +190,25 @@ const niceVerticalLayout = style({
 
 > Note: ^ if this CSS looks complex to you, I don't blame you. That's why it in a nice csstips mixin e.g. `csstips.verticallySpaced(10)`. More on this function when we look at csstips box functions later in the book.
 
+And even use it to style third party dom safely e.g 
+
+```play
+const container = style({
+  $nest: {
+    '& .third-party-class': {
+      color: 'red'
+    }
+  }
+});
+
+<div className={container}>
+  { /** third party dom  */ }
+  <div>
+    <div className='third-party-class'>Some third party dom</div>
+  </div>
+</div>
+```
+
 ## Concept: Media queries 
 
 You can use the `media` function to indicate that you want to customize the CSS when a certain media query is met. We generate the *right* CSS for you. Example usage: 
