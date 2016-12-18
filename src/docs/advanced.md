@@ -34,7 +34,7 @@ This gives the following gains:
 * No style bloat: Automatically smaller stylesheets based on your object reuse.
 
 ## Concept: Ordering pseudo classes
-You normally don't need to worry about ordering your pseudo classes. For cases when you do, you should use `&&`, then `&&&` so on, to increase specificity. This also shows that you are explicit, that you want the ordering to matter.
+You normally don't need to worry about ordering your pseudo classes. For cases when you do, you should use `&&`, then `&&&` so on, to increase specificity (in CSS `.foo` loses to `.foo.foo`). This also shows that you explicitly want the ordering to matter for any later code review.
 
 ```play
 /** BAD */
