@@ -32,6 +32,16 @@ import { px } from 'csx';
 const width = px(42);
 ```
 
+### rad(value: number): string
+Returns the number followed by the rad unit
+
+```typescript
+import { rad } from 'csx';
+
+// outputs '20rad'
+const rotation = rad(20);
+```
+
 ### rem(value: number): string
 Returns the number followed by the rem unit
 
@@ -61,6 +71,17 @@ import { viewWidth } from 'csx';
 // outputs '85vw'
 const width = viewWidth(85);
 ```
+
+### turn(value: number): string
+Returns the number followed by the turn unit
+
+```typescript
+import { turn } from 'csx';
+
+// outputs '1turn'
+const rotation = turn(1);
+```
+
 
 ## Function utilities
 
