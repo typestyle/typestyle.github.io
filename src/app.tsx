@@ -4,7 +4,7 @@ import 'babel-polyfill';
 import { setupPage, normalize } from 'csstips';
 import * as csstips from 'csstips';
 normalize();
-setupPage('#root');
+setupPage('#app-root');
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -64,6 +64,6 @@ ReactDOM.render(<cp.Content>
 
   </cp.ContentVerticalContentMargined>
 
-</cp.Content>, document.getElementById('root'));
+</cp.Content>, document.getElementById('app-root'));
 
 forceRenderStyles();
