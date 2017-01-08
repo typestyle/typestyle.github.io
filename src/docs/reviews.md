@@ -11,6 +11,7 @@
 * [Try out #TypeStyle which uses #Typescript to generate your styles!](https://twitter.com/designpuddle/status/802658082924937216)
 * [The IDE abilities of TypeScript and TypeStyle are appealing for a larger component based design system](https://twitter.com/twnsndco/status/804081260633214977)
 * [I just discovered typestyle. It's awesome.  👍](https://twitter.com/arnarbirgisson/status/805805142289293314)
+* [The future of CSS for TypeScript powered applications #TypeStyle](https://twitter.com/piotrekwitek/status/817655604206596096)
 
 * [Add yours 🌹!](https://twitter.com/intent/tweet?text=Super%20simple%20maintainable%20%23CSS%20with%20%23TypeStyle%3A%20http%3A%2F%2Ftypestyle.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9)
 
