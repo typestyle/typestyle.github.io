@@ -1,6 +1,8 @@
 # typestyle.github.io
 Website for TypeStyle. Check it out [here](http://typestyle.github.io/).
 
+[![Build Status](https://travis-ci.org/typestyle/typestyle.github.io.svg?branch=master)](https://travis-ci.org/typestyle/typestyle.github.io)
+
 # Contributing 
 * Add commits to `source` and they get built and published to `master` by travis
 * See the website locally by running `npm start` and `localhost:8080`
