@@ -62,6 +62,10 @@ ReactDOM.render(<cp.Content>
       {renderRoutes()}
     </cp.Content>
 
+    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
+      <cp.MarkDown markdown={'[Found a bug? Send us a PR ❤️](https://github.com/typestyle/typestyle.github.io/tree/source/src/docs)'}/>
+    </cp.Content>
+
   </cp.ContentVerticalContentMargined>
 
 </cp.Content>, document.getElementById('app-root'));
