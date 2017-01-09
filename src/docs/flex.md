@@ -159,24 +159,24 @@ Where the `body1` is itself a `csstips.horizontal` containing the `sidebar`s and
 Easy right! Here is a demo for you to play with:
 
 ```play
-const bg = (color) => ({backgroundColor:color.toString()});
+const bg = (color) => ({backgroundColor:color});
 
 <div className={style(csstips.fillParent, csstips.vertical)}>
-  <div className={style(csstips.content,csstips.height(50), bg(csx.lightskyblue))}>
+  <div className={style(csstips.content,csstips.height(50), bg('lightskyblue'))}>
     Header
   </div>
   <div className={style(csstips.flex, csstips.horizontal)}>
-    <div className={style(csstips.content, csstips.width(100), bg(csx.lightpink))}>
+    <div className={style(csstips.content, csstips.width(100), bg('lightpink'))}>
       Sidebar
     </div>
-    <div className={style(csstips.flex, bg(csx.darkorange))}>
+    <div className={style(csstips.flex, bg('darkorange'))}>
       Body
     </div>
-    <div className={style(csstips.content, csstips.width(100), bg(csx.limegreen))}>
+    <div className={style(csstips.content, csstips.width(100), bg('limegreen'))}>
       Sidebar
     </div>
   </div>
-  <div className={style(csstips.content,csstips.height(50), bg(csx.lightskyblue))}>
+  <div className={style(csstips.content,csstips.height(50), bg('lightskyblue'))}>
     Footer
   </div>
 </div>
