@@ -41,12 +41,6 @@ const docs: Doc[] = [{
   prelude: 'Next we look at some advanced cases that are also handled with TypeStyle.',
 },
 {
-  title: "Intro (csx)",
-  link: 'csx',
-  content: require('../docs/csx.md'),
-  prelude: 'Next we introduce csx. A set of functions to help you manage css values.',
-},
-{
   title: "Colors (csx)",
   link: 'colors',
   content: require('../docs/colors.md'),

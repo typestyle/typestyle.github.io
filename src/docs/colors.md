@@ -1,4 +1,7 @@
 Color management in a large project is always a challenge.  With this in mind, TypeStyle (csx) comes with SASS/LESS/Stylus inspired color functions to make styling simple and reusable.
+
+> Values from these `csx` utilities need to be `toString`ed before being used in TypeStyle or any other library. This means that they can be used with or without TypeStyle 🌹
+
 Here are some of the things you can do:
 
 ---

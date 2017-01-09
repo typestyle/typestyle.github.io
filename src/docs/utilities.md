@@ -1,4 +1,6 @@
- TypeStyle (csx) includes utilities that make using units and css functions feel natural and flow in JavaScript
+TypeStyle (csx) includes utilities that make using units and css functions feel natural and flow in JavaScript.
+
+> Values from these `csx` utilities need to be `toString`ed before being used in TypeStyle or any other library. This means that they can be used with or without TypeStyle 🌹
 
 ## Unit utilities
 
