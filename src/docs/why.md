@@ -22,7 +22,7 @@ There are a lot of other CSS in JS frameworks out there. In the past we used and
   * They also tend to change `style` instead of writing CSS which makes using devtools with immediate feedback (e.g. chrome dev tools) harder.
 * CSS Modules : Not CSS in JS. Just solves namespacing.
   * Most the other CSS managment problems still exist. We are essentially CSS modules, if CSS modules were written in JS.
-* Super small core size (~12k). 
+* Super small core size (~6k gz). 
   * We are just putting a type system + encapsulation / maintainability (no globals) on CSS.
 
 Of course we would not exist without their previous and continued hard work and public idea exchange 🌹 
