@@ -159,7 +159,7 @@ Where the `body1` is itself a `csstips.horizontal` containing the `sidebar`s and
 Easy right! Here is a demo for you to play with:
 
 ```play
-const bg = (backgroundColor) => ({backgroundColor});
+const bg = (color) => ({backgroundColor:color.toString()});
 
 <div className={style(csstips.fillParent, csstips.vertical)}>
   <div className={style(csstips.content,csstips.height(50), bg(csx.lightskyblue))}>
