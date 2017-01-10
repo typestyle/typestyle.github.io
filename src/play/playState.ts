@@ -13,6 +13,12 @@ class DemoState {
   @observable code: string;
   constructor() {
     this.reset();
+
+    window.onhashchange = () => {
+      if (srcLoader.getSource() !== this.code) {
+        this.reset();
+      }
+    }
   }
   @action reset = () => {
     this.code = srcLoader.getSource();
