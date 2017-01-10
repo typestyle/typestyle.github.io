@@ -5,12 +5,8 @@ export const getSource = () => {
   return decodeURI(afterHash.substr('src='.length));
 };
 export const setSource = (source: string) => {
-  // http://stackoverflow.com/questions/12381563/how-to-stop-browser-back-button-using-javascript
   const hash = '#src=' + encodeURI(source);
   window.location.hash = hash;
-  window.location.hash = "Again-No-back-button"; // again because google chrome don't insert first hash into history
-  window.location.hash = hash;
-  window.onhashchange = function() { window.location.hash = hash }
 }
 
 export const getPlaygroundLink = (src: string) => {
