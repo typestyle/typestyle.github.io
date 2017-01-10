@@ -67,6 +67,7 @@ addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts')
 
 /** Typestyle namespace */
 const typestyleIndex: string = require('!raw!typestyle/lib/index.d.ts');
+const utilitiesIndex: string = require('!raw!typestyle/lib/internal/utilities.d.ts');
 addFile('node_modules/typestyle/index.d.ts', wrapExternalModuleInNamespace({
   content: typestyleIndex,
   namespace: 'typestyle'
@@ -87,6 +88,17 @@ addFile('globals.d.ts', `
       'style',
       'cssRule',
       'keyframes',
+    ].some(namedImport => section.includes(namedImport)))
+    .map(section => section.split('types.').join(''))
+    .join('\n')
+  }
+
+  /** The key utility functions */
+  ${
+  utilitiesIndex
+    .split('export')
+    .filter(section => section.trim().startsWith('declare'))
+    .filter(section => [
       'extend',
       'classes',
       'media',
