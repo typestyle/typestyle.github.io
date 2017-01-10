@@ -245,7 +245,7 @@ const ooooClass = typestyle.style({
 ```
 
 ## `classes`
-CSS classes compose nicely. If a dom element has two classes applied to it, the second class gets to override any first class properties. We have a function `classes` to make composing classes (essentially string concatenation) easier: 
+CSS classes compose nicely (mostly). We have a function `classes` to make composing classes (essentially string concatenation) easier: 
 
 ```play
 const messageClass = style({
@@ -264,7 +264,7 @@ const Message = (props:{className?:string,text:string}) => {
   {/** Without customization */}
   <Message text="Hello"/>
   {/** With customization */}
-  <Message text="World" className={style({color:'red'})}/>
+  <Message text="World" className={style({backgroundColor:'blue'})}/>
 </div>
 ```
 
@@ -282,6 +282,29 @@ const tallColoredClass = typestyle.classes(tallClass, coloredClass);
 /** Even conditionally (any falsy parameters are ignored in the composed class name) */
 const mightBeColored = typestyle.classes(tallClass, hasError && coloredClass);
 ``` 
+
+ProTip: If you want to *override* a property in the default class use `!important` just like CSS: 
+
+```play
+const messageClass = style({
+  color: 'grey',
+  fontSize: '24px',
+  width: '100%'
+});
+
+const Message = (props:{className?:string,text:string}) => {
+  return (
+    <p className={classes(messageClass,props.className)}>{props.text}</p>
+  );
+};
+
+<div>
+  {/** Without customization */}
+  <Message text="Hello"/>
+  {/** With customization */}
+  <Message text="World" className={style({color:'red !important'})}/>
+</div>
+```
 
 ## Concept: Fallbacks
 There are two kinds of fallbacks in CSS and both are supported:
