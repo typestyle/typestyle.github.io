@@ -2,7 +2,7 @@
 * [Concept: Ordering pseudo classes](/#/advanced/concept-ordering-pseudo-classes)
 * [Concept: Ordering media queries](/#/advanced/concept-ordering-media-queries)
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
-* [content](/#/advanced/content)
+* [content](/#/advanced/-content-)
 * [$debugName](/#/advanced/-debugname-)
 
 ## Concept: Deduping
