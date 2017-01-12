@@ -2,6 +2,7 @@
 * [Concept: Ordering pseudo classes](/#/advanced/concept-ordering-pseudo-classes)
 * [Concept: Ordering media queries](/#/advanced/concept-ordering-media-queries)
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
+* [content](/#/advanced/content)
 * [$debugName](/#/advanced/-debugname-)
 
 ## Concept: Deduping
@@ -164,6 +165,35 @@ const className = style({
 });
 
 <input className={className} placeholder="Sample placeholder"/>
+```
+
+## `content`
+
+When assigning a string to the content property it requires double or single quotes in CSS. So you should use whatever string you want e.g. if you want to prefix with `'Hello'` you can wrap that whole content easily with backticks.
+
+```play
+const hello = style({
+  $nest: {
+    '&:before': {
+      content: `'Hello '`
+    }  
+  }
+});
+<div className={hello}>is it me you are looking for?</div>
+```
+We don't do automatic quoting as you are free to use other things in CSS content that aren't quoted e.g. `attr`: 
+
+```play
+const before = style({
+  $nest: {
+    '&:before': {
+      content: `attr(data-before)`
+    }  
+  }
+});
+<div className={before} data-before={'Hello '}>
+  is it me you are looking for?
+</div>
 ```
 
 ## `$debugName`
