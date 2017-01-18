@@ -3,6 +3,7 @@
 * [Concept: Ordering media queries](/#/advanced/concept-ordering-media-queries)
 * [Concept: Ensuring a unique selector](/#/advanced/concept-ensuring-a-unique-selector)
 * [content](/#/advanced/-content-)
+* [Google Fonts](/#/advanced/google-fonts)
 * [$debugName](/#/advanced/-debugname-)
 
 ## Concept: Deduping
@@ -194,6 +195,26 @@ const before = style({
 <div className={before} data-before={'Hello '}>
   is it me you are looking for?
 </div>
+```
+
+## Google Fonts
+If you want to use google fonts e.g. [Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto), you can just use the `@import` syntax they give you with `cssRaw` and then you can use the font like you normally would e.g. 
+
+```ts
+/** Import the file */
+cssRaw(`
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+`);
+
+/** Now you are good to go */
+const className = style({fontFamily:'Roboto, sans-serif'});
+<div>
+  <h1 className={className}>Demo</h1>
+  <h2 className={className}>Demo</h2>
+  <h3 className={className}>Demo</h3>
+  <h4 className={className}>Demo</h4>
+  <h5 className={className}>Demo</h5>
+</div>;
 ```
 
 ## `$debugName`
