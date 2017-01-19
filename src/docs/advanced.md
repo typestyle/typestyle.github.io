@@ -198,7 +198,9 @@ const before = style({
 ```
 
 ## Google Fonts
-If you want to use google fonts e.g. [Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto), you can just use the `@import` syntax they give you with `cssRaw` and then you can use the font like you normally would e.g. 
+If you want to use google fonts e.g. [Roboto](http://www.google.com/fonts#UsePlace:use/Collection:Roboto), you can just use the `@import` syntax they give you with `cssRaw` 
+
+> Note: Be sure to have this call *before* any other calls to `cssRaw` because [@import only works if its at the top of the file](https://www.w3.org/TR/css-cascade-3/#at-import)
 
 ```ts
 /** Import the file */
@@ -206,7 +208,11 @@ cssRaw(`
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 `);
 
-/** Now you are good to go */
+```
+and then you can use the font like you normally would e.g. 
+
+```
+/** Elsewhere */
 const className = style({fontFamily:'Roboto, sans-serif'});
 <div>
   <h1 className={className}>Demo</h1>
