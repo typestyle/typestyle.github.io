@@ -211,7 +211,7 @@ cssRaw(`
 ```
 and then you can use the font like you normally would e.g. 
 
-```
+```ts
 /** Elsewhere */
 const className = style({fontFamily:'Roboto, sans-serif'});
 <div>
