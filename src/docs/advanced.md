@@ -84,7 +84,7 @@ const moveDown = style({
 <div>
   <button className={buttonClass}>Hello</button>
   <button className={buttonClass}>World</button>
-</div>
+</div> 
 ```
 
 ## Concept: Ordering media queries
