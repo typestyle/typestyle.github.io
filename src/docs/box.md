@@ -45,14 +45,14 @@ const prettyBox = style(
   csstips.padding(10),
   csstips.inlineBlock,
   {
-    color:color.darken(.2),
+    color:color.darken(.2).toHexString(),
     cursor:'pointer',
-    backgroundColor:bg,
+    backgroundColor:bg.toHexString(),
     transition: 'color .2s, background-color .2s',
     $nest: {
       '&:hover':{
-        color: color,
-        backgroundColor:bg.lighten(.2),
+        color: color.toHexString(),
+        backgroundColor:bg.lighten(.2).toHexString(),
       }
     }
   }
@@ -77,7 +77,10 @@ import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
     csstips.centerCenter,
-    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+    {
+      backgroundColor:csx.lightskyblue.toHexString(),
+      border: '1px solid dashed'
+    }
   )}>
   Demo Item
 </h1>;
@@ -100,7 +103,10 @@ import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
     csstips.centerCenter,
-    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+    {
+      backgroundColor:csx.lightskyblue.toHexString(),
+      border: '1px solid dashed'
+    }
   )}>
   Demo Item
 </h1>;
@@ -130,7 +136,10 @@ import * as csstips from 'csstips';
 
 const DemoItem = () => <h1 className={style(
     csstips.centerCenter,
-    {backgroundColor:csx.lightskyblue,border: '1px solid dashed'}
+    {
+      backgroundColor:csx.lightskyblue.toHexString(),
+      border: '1px solid dashed'
+    }
   )}>
   Demo Item
 </h1>;
