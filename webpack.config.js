@@ -1,6 +1,7 @@
 module.exports = {
   entry: {
     app: './src/app.tsx',
+    converter: './src/converter.tsx',
     play: './src/play.tsx',
   },
   output: {

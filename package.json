@@ -35,6 +35,7 @@
     "babel-polyfill": "^6.9.1",
     "byots": "^2.1.0-dev.20161101.22.10",
     "codemirror": "^5.20.2",
+    "css-to-typestyle": "^0.0.5",
     "csstips": "0.0.3",
     "csx": "8.2.1",
     "escape-html": "^1.0.3",
