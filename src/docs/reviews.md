@@ -15,6 +15,7 @@
 * [I really love #TypeStyle. So agnostic, so small, so out of your way. Css in JS that just works.](https://twitter.com/nickbalestra/status/818393513847037953)
 * [#typescript + #reactjs + #typestyle is just a thing of beauty, it's like developer ambrosia](https://twitter.com/deis/status/823404962323505152)
 * [I just came across TypeStyle ... I can't praise the library enough! Ultimate typesafe CSS solution](https://twitter.com/erikcupal/status/823700902578163712)
+* [Holy cow! TypeStyle combines #TypeScript with #CSS for maintainable styles! 😍](https://twitter.com/timo_ernst/status/823262762596007937)
 
 * [Add yours 🌹!](https://twitter.com/intent/tweet?text=Super%20simple%20maintainable%20%23CSS%20with%20%23TypeStyle%3A%20http%3A%2F%2Ftypestyle.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9)
 
