@@ -14,11 +14,14 @@ class DemoState {
   constructor() {
     this.reset();
 
-    window.onhashchange = () => {
+    /**
+     * Debounced because hash can chang as much as it wants while the user is editing code
+     */
+    window.onhashchange = debounce(() => {
       if (srcLoader.getSource() !== this.code) {
         this.reset();
       }
-    }
+    }, 1000);
   }
   @action reset = () => {
     this.code = srcLoader.getSource();
