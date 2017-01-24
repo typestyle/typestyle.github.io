@@ -84,7 +84,25 @@ const moveDown = style({
 <div>
   <button className={buttonClass}>Hello</button>
   <button className={buttonClass}>World</button>
-</div> 
+</div>
+```
+
+A common pattern is sytling anchors using [LVHA-order](https://developer.mozilla.org/en-US/docs/Web/CSS/:active): 
+
+```play
+const anchorClass = style({
+  $nest: {
+    '&:link': { color: 'blue' },
+    '&&:visited': { color: 'purple' },
+    '&&&:hover': { fontWeight: 'bold' },
+    '&&&&:active': { color: 'lime' },
+  },
+});
+
+<a 
+  className={anchorClass} 
+  href='http://typestyle.io/' 
+  target='_blank'>TypeStyle</a>;
 ```
 
 ## Concept: Ordering media queries
