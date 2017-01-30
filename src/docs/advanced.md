@@ -11,10 +11,9 @@ It is safe to call `style` with the same object strucure again and again (e.g. f
 
 ```play
 import {style} from 'typestyle';
-import * as csx from 'csx';
 
-const a = style({color:csx.red});
-const b = style({color:csx.red});
+const a = style({color:'red'});
+const b = style({color:'red'});
 
 <div>a:{a},b:{b}. Same? {(a===b).toString()}</div>;
 ```
