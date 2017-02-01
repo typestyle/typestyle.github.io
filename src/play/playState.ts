@@ -17,11 +17,11 @@ class DemoState {
     /**
      * Debounced because hash can chang as much as it wants while the user is editing code
      */
-    window.onhashchange = debounce(() => {
+    window.onhashchange = () => {
       if (srcLoader.getSource() !== this.code) {
         this.reset();
       }
-    }, 1000);
+    };
   }
   @action reset = () => {
     this.code = srcLoader.getSource();
