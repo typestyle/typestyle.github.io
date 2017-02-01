@@ -80,7 +80,7 @@ Beyond that here is a boring list of additional reasons to use TypeStyle.
 * Minification (Minify JS with existing tools). The CSS we generate is already nearly whitespace free.
 * Shared constants and reusable styles (Using variables and objects)
 * Extensible (Just use JavaScript with all its power)
-* Your components are still free to have class names that you can give to external people to further style your stuff (better still take `clasName` as a property and let them use *typestyle* too!).
+* Your components are still free to have class names that you can give to external people to further style your stuff (better still take `className` as a property and let them use *typestyle* too!).
 * Develop components alongside the style (No more hunting CSS files for estranged `ul > li > a`)
 * Create isomorphic applications (easy export to a CSS file is supported)
 * All the power of CSS without compromise e.g. pseudo states (e.g. `&:hover`)
