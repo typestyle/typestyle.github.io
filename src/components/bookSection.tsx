@@ -71,7 +71,7 @@ type BookSectionProps = {
   toc: TOCItem[],
   children?: React.ReactNode
 }
-export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
+export const BookSection = ({ title, link, toc, children }: BookSectionProps) => {
   const currentSectionIndex = toc.findIndex(t => t.link === link);
   const currentToc = toc.find(t => t.link === link);
   const previousIfAny = toc[currentSectionIndex - 1];
@@ -79,7 +79,7 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
 
   const scrollToTop = () => window.scrollTo(0, 0);
 
-  return <gls.ContentVerticalContentMargined margin={15} className={style(csstips.horizontallyCenterSelf,csstips.maxWidth(900))}>
+  return <gls.ContentVerticalContentMargined margin={15} className={style(csstips.horizontallyCenterSelf, csstips.maxWidth(900))}>
     <txt.H1 id={'toc'}>Table of Contents</txt.H1>
     <gls.ContentVertical style={{ paddingBottom: '10px' }}>
       {toc.map((t, index) => {
@@ -96,9 +96,9 @@ export const BookSection = ({title, link, toc, children}: BookSectionProps) => {
       })}
     </gls.ContentVertical>
 
-    <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
-
-    <div className={style(csstips.verticallySpaced(10), csstips.content, csstips.vertical)}>
+    {/** The id is used to track the content that should be made available for search */}
+    <div id="doc-search" className={style(csstips.verticallySpaced(10), csstips.content, csstips.vertical)}>
+      <a className={BookSectionStyles.anchor} title="Permalink" href={"#" + link}><txt.H1 id={link}>{title}</txt.H1></a>
       {children}
     </div>
 
