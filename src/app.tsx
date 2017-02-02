@@ -10,8 +10,35 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as cp from './components';
 import { renderRoutes } from './routing/router';
-import { style, forceRenderStyles } from 'typestyle';
+import { style, forceRenderStyles, cssRaw } from 'typestyle';
 import './augmentTypes';
+
+namespace SearchInputStyles {
+  /**
+   * Style algolia-autocomplete
+   */
+  cssRaw(`
+.algolia-autocomplete {
+  width: 100%
+}
+  `);
+
+  export const inputClass = style(
+    {
+      width: '100%',
+      padding: '10px',
+      fontSize: '20px',
+      color: '#555',
+      $nest: {
+        '&:focus': {
+          border: '2px solid #999',
+          outline: 'none',
+          borderRadius: '3px',
+        }
+      }
+    }
+  );
+}
 
 export const Header = () => {
   return (
@@ -58,16 +85,31 @@ ReactDOM.render(<cp.Content>
       </div>
     </cp.ContentVerticalContentMargined>
 
+    {/** Input for doc search */}
+    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth(900))}>
+      <input id="doc-search-input" placeholder="Search Docs" className={SearchInputStyles.inputClass} />
+    </cp.Content>
+
     <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth('100%'))}>
       {renderRoutes()}
     </cp.Content>
 
     <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
-      <cp.MarkDown markdown={'[Found a bug? Send us a PR ❤️](https://github.com/typestyle/typestyle.github.io/tree/source/src/docs)'}/>
+      <cp.MarkDown markdown={'[Found a bug? Send us a PR ❤️](https://github.com/typestyle/typestyle.github.io/tree/source/src/docs)'} />
     </cp.Content>
 
   </cp.ContentVerticalContentMargined>
 
 </cp.Content>, document.getElementById('app-root'));
 
+/** Loaded in our index.html */
+declare var docsearch: any;
+docsearch({
+  apiKey: '88a637601106d67ed27a4d8c10915fde',
+  indexName: 'typestyle',
+  inputSelector: '#doc-search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+
+/** kickoff styles */
 forceRenderStyles();
