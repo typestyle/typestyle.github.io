@@ -47434,9 +47434,10 @@
 	                    borderLeft: '2px solid #999',
 	                })), href: "#" + t.link }, t.display);
 	        })),
-	        React.createElement("a", { className: BookSectionStyles.anchor, title: "Permalink", href: "#" + link },
-	            React.createElement(txt.H1, { id: link }, title)),
-	        React.createElement("div", { className: typestyle_1.style(csstips.verticallySpaced(10), csstips.content, csstips.vertical) }, children),
+	        React.createElement("div", { id: "doc-search", className: typestyle_1.style(csstips.verticallySpaced(10), csstips.content, csstips.vertical) },
+	            React.createElement("a", { className: BookSectionStyles.anchor, title: "Permalink", href: "#" + link },
+	                React.createElement(txt.H1, { id: link }, title)),
+	            children),
 	        React.createElement("hr", { style: { margin: '0px' } }),
 	        React.createElement(gls.ContentHorizontal, null,
 	            previousIfAny && React.createElement(gls.ContentHorizontalCentered, null,
