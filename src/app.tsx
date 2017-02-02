@@ -22,6 +22,13 @@ namespace SearchInputStyles {
   width: 100%
 }
   `);
+  /** make the selected style match our theme */
+  cssRaw(`
+  .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.suggestion-layout-simple, .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion:not(.suggestion-layout-simple) .algolia-docsearch-suggestion--content {
+    background-color: rgba(81,81,81,.1) !important;
+  }
+  `);
+
 
   export const inputClass = style(
     {
