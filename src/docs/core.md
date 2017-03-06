@@ -1,6 +1,6 @@
 * [style](/#/core/-style-)
 * [Concept: Mixin](/#/core/concept-mixin)
-* [Concept: Interpolation / Pseudo states / Pseudo elements](/#/core/concept-interpolation)
+* [Concept: Interpolation / Pseudo classes / Pseudo elements](/#/core/concept-interpolation)
 * [Concept: Media Queries](/#/core/concept-media-queries)
 * [Concept: Keyframes / Animations](/#/core/concept-keyframes)
 * [Concept: Composing classes / Customizable components / Theming](/#/core/-classes-)
@@ -128,7 +128,7 @@ const Demo = () =>
 ```
 
 ## Concept: Interpolation
-You can nest properties for different states using the `$nest` property. Any `&` in a key for the object passed to `style` get replaced with the generated class name when its written to CSS. As an example it allows super simple pseudo state (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
+You can nest properties for different selectors using the `$nest` property. Any `&` in a key for `$nest` gets replaced with the generated class name when its written to CSS. As an example it allows super simple CSS pseudo class (`&:hover`, `&:active`, `&:focus`, `&:disabled`) customization: 
 
 ```play
 import {style} from "typestyle";
