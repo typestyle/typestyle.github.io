@@ -256,4 +256,4 @@ const className = style({
 </div>;
 ```
 
-Note that this name is purely for debugging convinience and has no impact on any of the other logic (e.g. deduping). Additionally if you run a production build of your code (`process.env.NODE_ENV !== 'production'`) this name is removed so use as much as you want.
+Note that this name is purely for debugging convinience and has no impact on any of the other logic (e.g. deduping).
