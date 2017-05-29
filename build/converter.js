@@ -73,7 +73,7 @@
 	    margin: 0
 	});
 	var React = __webpack_require__(39);
-	var ReactDOM = __webpack_require__(151);
+	var ReactDOM = __webpack_require__(152);
 	var cp = __webpack_require__(235);
 	var mobx_react_1 = __webpack_require__(562);
 	var gls = __webpack_require__(148);
@@ -743,7 +743,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var anObject       = __webpack_require__(5)
-	  , IE8_DOM_DEFINE = __webpack_require__(162)
+	  , IE8_DOM_DEFINE = __webpack_require__(163)
 	  , toPrimitive    = __webpack_require__(37)
 	  , dP             = Object.defineProperty;
 	
@@ -2160,7 +2160,7 @@
 	        ch = dir < 0 ? lineObj.text.length - 1 : 0;
 	        var targetTop = measureCharPrepared(cm, prep, ch).top;
 	        ch = findFirst(function (ch) { return measureCharPrepared(cm, prep, ch).top == targetTop; }, (dir < 0) == (part.level == 1) ? part.from : part.to - 1, ch);
-	        if (sticky == "before") { ch = moveCharLogically(lineObj, ch, 1, true); }
+	        if (sticky == "before") { ch = moveCharLogically(lineObj, ch, 1); }
 	      } else { ch = dir < 0 ? part.to : part.from; }
 	      return new Pos(lineNo, ch, sticky)
 	    }
@@ -4174,49 +4174,6 @@
 	  setTimeout(function () { if (!cm.state.focused) { cm.display.shift = false; } }, 150);
 	}
 	
-	// Re-align line numbers and gutter marks to compensate for
-	// horizontal scrolling.
-	function alignHorizontally(cm) {
-	  var display = cm.display, view = display.view;
-	  if (!display.alignWidgets && (!display.gutters.firstChild || !cm.options.fixedGutter)) { return }
-	  var comp = compensateForHScroll(display) - display.scroller.scrollLeft + cm.doc.scrollLeft;
-	  var gutterW = display.gutters.offsetWidth, left = comp + "px";
-	  for (var i = 0; i < view.length; i++) { if (!view[i].hidden) {
-	    if (cm.options.fixedGutter) {
-	      if (view[i].gutter)
-	        { view[i].gutter.style.left = left; }
-	      if (view[i].gutterBackground)
-	        { view[i].gutterBackground.style.left = left; }
-	    }
-	    var align = view[i].alignable;
-	    if (align) { for (var j = 0; j < align.length; j++)
-	      { align[j].style.left = left; } }
-	  } }
-	  if (cm.options.fixedGutter)
-	    { display.gutters.style.left = (comp + gutterW) + "px"; }
-	}
-	
-	// Used to ensure that the line number gutter is still the right
-	// size for the current document size. Returns true when an update
-	// is needed.
-	function maybeUpdateLineNumberWidth(cm) {
-	  if (!cm.options.lineNumbers) { return false }
-	  var doc = cm.doc, last = lineNumberFor(cm.options, doc.first + doc.size - 1), display = cm.display;
-	  if (last.length != display.lineNumChars) {
-	    var test = display.measure.appendChild(elt("div", [elt("div", last)],
-	                                               "CodeMirror-linenumber CodeMirror-gutter-elt"));
-	    var innerW = test.firstChild.offsetWidth, padding = test.offsetWidth - innerW;
-	    display.lineGutter.style.width = "";
-	    display.lineNumInnerWidth = Math.max(innerW, display.lineGutter.offsetWidth - padding) + 1;
-	    display.lineNumWidth = display.lineNumInnerWidth + padding;
-	    display.lineNumChars = display.lineNumInnerWidth ? last.length : -1;
-	    display.lineGutter.style.width = display.lineNumWidth + "px";
-	    updateGutterSpace(cm);
-	    return true
-	  }
-	  return false
-	}
-	
 	// Read the actual heights of the rendered lines, and update their
 	// stored heights to match.
 	function updateHeightsInViewport(cm) {
@@ -4275,137 +4232,216 @@
 	  return {from: from, to: Math.max(to, from + 1)}
 	}
 	
+	// Re-align line numbers and gutter marks to compensate for
+	// horizontal scrolling.
+	function alignHorizontally(cm) {
+	  var display = cm.display, view = display.view;
+	  if (!display.alignWidgets && (!display.gutters.firstChild || !cm.options.fixedGutter)) { return }
+	  var comp = compensateForHScroll(display) - display.scroller.scrollLeft + cm.doc.scrollLeft;
+	  var gutterW = display.gutters.offsetWidth, left = comp + "px";
+	  for (var i = 0; i < view.length; i++) { if (!view[i].hidden) {
+	    if (cm.options.fixedGutter) {
+	      if (view[i].gutter)
+	        { view[i].gutter.style.left = left; }
+	      if (view[i].gutterBackground)
+	        { view[i].gutterBackground.style.left = left; }
+	    }
+	    var align = view[i].alignable;
+	    if (align) { for (var j = 0; j < align.length; j++)
+	      { align[j].style.left = left; } }
+	  } }
+	  if (cm.options.fixedGutter)
+	    { display.gutters.style.left = (comp + gutterW) + "px"; }
+	}
+	
+	// Used to ensure that the line number gutter is still the right
+	// size for the current document size. Returns true when an update
+	// is needed.
+	function maybeUpdateLineNumberWidth(cm) {
+	  if (!cm.options.lineNumbers) { return false }
+	  var doc = cm.doc, last = lineNumberFor(cm.options, doc.first + doc.size - 1), display = cm.display;
+	  if (last.length != display.lineNumChars) {
+	    var test = display.measure.appendChild(elt("div", [elt("div", last)],
+	                                               "CodeMirror-linenumber CodeMirror-gutter-elt"));
+	    var innerW = test.firstChild.offsetWidth, padding = test.offsetWidth - innerW;
+	    display.lineGutter.style.width = "";
+	    display.lineNumInnerWidth = Math.max(innerW, display.lineGutter.offsetWidth - padding) + 1;
+	    display.lineNumWidth = display.lineNumInnerWidth + padding;
+	    display.lineNumChars = display.lineNumInnerWidth ? last.length : -1;
+	    display.lineGutter.style.width = display.lineNumWidth + "px";
+	    updateGutterSpace(cm);
+	    return true
+	  }
+	  return false
+	}
+	
+	// SCROLLING THINGS INTO VIEW
+	
+	// If an editor sits on the top or bottom of the window, partially
+	// scrolled out of view, this ensures that the cursor is visible.
+	function maybeScrollWindow(cm, rect) {
+	  if (signalDOMEvent(cm, "scrollCursorIntoView")) { return }
+	
+	  var display = cm.display, box = display.sizer.getBoundingClientRect(), doScroll = null;
+	  if (rect.top + box.top < 0) { doScroll = true; }
+	  else if (rect.bottom + box.top > (window.innerHeight || document.documentElement.clientHeight)) { doScroll = false; }
+	  if (doScroll != null && !phantom) {
+	    var scrollNode = elt("div", "\u200b", null, ("position: absolute;\n                         top: " + (rect.top - display.viewOffset - paddingTop(cm.display)) + "px;\n                         height: " + (rect.bottom - rect.top + scrollGap(cm) + display.barHeight) + "px;\n                         left: " + (rect.left) + "px; width: " + (Math.max(2, rect.right - rect.left)) + "px;"));
+	    cm.display.lineSpace.appendChild(scrollNode);
+	    scrollNode.scrollIntoView(doScroll);
+	    cm.display.lineSpace.removeChild(scrollNode);
+	  }
+	}
+	
+	// Scroll a given position into view (immediately), verifying that
+	// it actually became visible (as line heights are accurately
+	// measured, the position of something may 'drift' during drawing).
+	function scrollPosIntoView(cm, pos, end, margin) {
+	  if (margin == null) { margin = 0; }
+	  var rect;
+	  for (var limit = 0; limit < 5; limit++) {
+	    var changed = false;
+	    var coords = cursorCoords(cm, pos);
+	    var endCoords = !end || end == pos ? coords : cursorCoords(cm, end);
+	    rect = {left: Math.min(coords.left, endCoords.left),
+	            top: Math.min(coords.top, endCoords.top) - margin,
+	            right: Math.max(coords.left, endCoords.left),
+	            bottom: Math.max(coords.bottom, endCoords.bottom) + margin};
+	    var scrollPos = calculateScrollPos(cm, rect);
+	    var startTop = cm.doc.scrollTop, startLeft = cm.doc.scrollLeft;
+	    if (scrollPos.scrollTop != null) {
+	      updateScrollTop(cm, scrollPos.scrollTop);
+	      if (Math.abs(cm.doc.scrollTop - startTop) > 1) { changed = true; }
+	    }
+	    if (scrollPos.scrollLeft != null) {
+	      setScrollLeft(cm, scrollPos.scrollLeft);
+	      if (Math.abs(cm.doc.scrollLeft - startLeft) > 1) { changed = true; }
+	    }
+	    if (!changed) { break }
+	  }
+	  return rect
+	}
+	
+	// Scroll a given set of coordinates into view (immediately).
+	function scrollIntoView(cm, rect) {
+	  var scrollPos = calculateScrollPos(cm, rect);
+	  if (scrollPos.scrollTop != null) { updateScrollTop(cm, scrollPos.scrollTop); }
+	  if (scrollPos.scrollLeft != null) { setScrollLeft(cm, scrollPos.scrollLeft); }
+	}
+	
+	// Calculate a new scroll position needed to scroll the given
+	// rectangle into view. Returns an object with scrollTop and
+	// scrollLeft properties. When these are undefined, the
+	// vertical/horizontal position does not need to be adjusted.
+	function calculateScrollPos(cm, rect) {
+	  var display = cm.display, snapMargin = textHeight(cm.display);
+	  if (rect.top < 0) { rect.top = 0; }
+	  var screentop = cm.curOp && cm.curOp.scrollTop != null ? cm.curOp.scrollTop : display.scroller.scrollTop;
+	  var screen = displayHeight(cm), result = {};
+	  if (rect.bottom - rect.top > screen) { rect.bottom = rect.top + screen; }
+	  var docBottom = cm.doc.height + paddingVert(display);
+	  var atTop = rect.top < snapMargin, atBottom = rect.bottom > docBottom - snapMargin;
+	  if (rect.top < screentop) {
+	    result.scrollTop = atTop ? 0 : rect.top;
+	  } else if (rect.bottom > screentop + screen) {
+	    var newTop = Math.min(rect.top, (atBottom ? docBottom : rect.bottom) - screen);
+	    if (newTop != screentop) { result.scrollTop = newTop; }
+	  }
+	
+	  var screenleft = cm.curOp && cm.curOp.scrollLeft != null ? cm.curOp.scrollLeft : display.scroller.scrollLeft;
+	  var screenw = displayWidth(cm) - (cm.options.fixedGutter ? display.gutters.offsetWidth : 0);
+	  var tooWide = rect.right - rect.left > screenw;
+	  if (tooWide) { rect.right = rect.left + screenw; }
+	  if (rect.left < 10)
+	    { result.scrollLeft = 0; }
+	  else if (rect.left < screenleft)
+	    { result.scrollLeft = Math.max(0, rect.left - (tooWide ? 0 : 10)); }
+	  else if (rect.right > screenw + screenleft - 3)
+	    { result.scrollLeft = rect.right + (tooWide ? 0 : 10) - screenw; }
+	  return result
+	}
+	
+	// Store a relative adjustment to the scroll position in the current
+	// operation (to be applied when the operation finishes).
+	function addToScrollTop(cm, top) {
+	  if (top == null) { return }
+	  resolveScrollToPos(cm);
+	  cm.curOp.scrollTop = (cm.curOp.scrollTop == null ? cm.doc.scrollTop : cm.curOp.scrollTop) + top;
+	}
+	
+	// Make sure that at the end of the operation the current cursor is
+	// shown.
+	function ensureCursorVisible(cm) {
+	  resolveScrollToPos(cm);
+	  var cur = cm.getCursor(), from = cur, to = cur;
+	  if (!cm.options.lineWrapping) {
+	    from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
+	    to = Pos(cur.line, cur.ch + 1);
+	  }
+	  cm.curOp.scrollToPos = {from: from, to: to, margin: cm.options.cursorScrollMargin};
+	}
+	
+	function scrollToCoords(cm, x, y) {
+	  if (x != null || y != null) { resolveScrollToPos(cm); }
+	  if (x != null) { cm.curOp.scrollLeft = x; }
+	  if (y != null) { cm.curOp.scrollTop = y; }
+	}
+	
+	function scrollToRange(cm, range$$1) {
+	  resolveScrollToPos(cm);
+	  cm.curOp.scrollToPos = range$$1;
+	}
+	
+	// When an operation has its scrollToPos property set, and another
+	// scroll action is applied before the end of the operation, this
+	// 'simulates' scrolling that position into view in a cheap way, so
+	// that the effect of intermediate scroll commands is not ignored.
+	function resolveScrollToPos(cm) {
+	  var range$$1 = cm.curOp.scrollToPos;
+	  if (range$$1) {
+	    cm.curOp.scrollToPos = null;
+	    var from = estimateCoords(cm, range$$1.from), to = estimateCoords(cm, range$$1.to);
+	    scrollToCoordsRange(cm, from, to, range$$1.margin);
+	  }
+	}
+	
+	function scrollToCoordsRange(cm, from, to, margin) {
+	  var sPos = calculateScrollPos(cm, {
+	    left: Math.min(from.left, to.left),
+	    top: Math.min(from.top, to.top) - margin,
+	    right: Math.max(from.right, to.right),
+	    bottom: Math.max(from.bottom, to.bottom) + margin
+	  });
+	  scrollToCoords(cm, sPos.scrollLeft, sPos.scrollTop);
+	}
+	
 	// Sync the scrollable area and scrollbars, ensure the viewport
 	// covers the visible area.
-	function setScrollTop(cm, val) {
+	function updateScrollTop(cm, val) {
 	  if (Math.abs(cm.doc.scrollTop - val) < 2) { return }
-	  cm.doc.scrollTop = val;
 	  if (!gecko) { updateDisplaySimple(cm, {top: val}); }
-	  if (cm.display.scroller.scrollTop != val) { cm.display.scroller.scrollTop = val; }
-	  cm.display.scrollbars.setScrollTop(val);
+	  setScrollTop(cm, val, true);
 	  if (gecko) { updateDisplaySimple(cm); }
 	  startWorker(cm, 100);
 	}
+	
+	function setScrollTop(cm, val, forceScroll) {
+	  val = Math.min(cm.display.scroller.scrollHeight - cm.display.scroller.clientHeight, val);
+	  if (cm.display.scroller.scrollTop == val && !forceScroll) { return }
+	  cm.doc.scrollTop = val;
+	  cm.display.scrollbars.setScrollTop(val);
+	  if (cm.display.scroller.scrollTop != val) { cm.display.scroller.scrollTop = val; }
+	}
+	
 	// Sync scroller and scrollbar, ensure the gutter elements are
 	// aligned.
-	function setScrollLeft(cm, val, isScroller) {
-	  if (isScroller ? val == cm.doc.scrollLeft : Math.abs(cm.doc.scrollLeft - val) < 2) { return }
+	function setScrollLeft(cm, val, isScroller, forceScroll) {
 	  val = Math.min(val, cm.display.scroller.scrollWidth - cm.display.scroller.clientWidth);
+	  if ((isScroller ? val == cm.doc.scrollLeft : Math.abs(cm.doc.scrollLeft - val) < 2) && !forceScroll) { return }
 	  cm.doc.scrollLeft = val;
 	  alignHorizontally(cm);
 	  if (cm.display.scroller.scrollLeft != val) { cm.display.scroller.scrollLeft = val; }
 	  cm.display.scrollbars.setScrollLeft(val);
-	}
-	
-	// Since the delta values reported on mouse wheel events are
-	// unstandardized between browsers and even browser versions, and
-	// generally horribly unpredictable, this code starts by measuring
-	// the scroll effect that the first few mouse wheel events have,
-	// and, from that, detects the way it can convert deltas to pixel
-	// offsets afterwards.
-	//
-	// The reason we want to know the amount a wheel event will scroll
-	// is that it gives us a chance to update the display before the
-	// actual scrolling happens, reducing flickering.
-	
-	var wheelSamples = 0;
-	var wheelPixelsPerUnit = null;
-	// Fill in a browser-detected starting value on browsers where we
-	// know one. These don't have to be accurate -- the result of them
-	// being wrong would just be a slight flicker on the first wheel
-	// scroll (if it is large enough).
-	if (ie) { wheelPixelsPerUnit = -.53; }
-	else if (gecko) { wheelPixelsPerUnit = 15; }
-	else if (chrome) { wheelPixelsPerUnit = -.7; }
-	else if (safari) { wheelPixelsPerUnit = -1/3; }
-	
-	function wheelEventDelta(e) {
-	  var dx = e.wheelDeltaX, dy = e.wheelDeltaY;
-	  if (dx == null && e.detail && e.axis == e.HORIZONTAL_AXIS) { dx = e.detail; }
-	  if (dy == null && e.detail && e.axis == e.VERTICAL_AXIS) { dy = e.detail; }
-	  else if (dy == null) { dy = e.wheelDelta; }
-	  return {x: dx, y: dy}
-	}
-	function wheelEventPixels(e) {
-	  var delta = wheelEventDelta(e);
-	  delta.x *= wheelPixelsPerUnit;
-	  delta.y *= wheelPixelsPerUnit;
-	  return delta
-	}
-	
-	function onScrollWheel(cm, e) {
-	  var delta = wheelEventDelta(e), dx = delta.x, dy = delta.y;
-	
-	  var display = cm.display, scroll = display.scroller;
-	  // Quit if there's nothing to scroll here
-	  var canScrollX = scroll.scrollWidth > scroll.clientWidth;
-	  var canScrollY = scroll.scrollHeight > scroll.clientHeight;
-	  if (!(dx && canScrollX || dy && canScrollY)) { return }
-	
-	  // Webkit browsers on OS X abort momentum scrolls when the target
-	  // of the scroll event is removed from the scrollable element.
-	  // This hack (see related code in patchDisplay) makes sure the
-	  // element is kept around.
-	  if (dy && mac && webkit) {
-	    outer: for (var cur = e.target, view = display.view; cur != scroll; cur = cur.parentNode) {
-	      for (var i = 0; i < view.length; i++) {
-	        if (view[i].node == cur) {
-	          cm.display.currentWheelTarget = cur;
-	          break outer
-	        }
-	      }
-	    }
-	  }
-	
-	  // On some browsers, horizontal scrolling will cause redraws to
-	  // happen before the gutter has been realigned, causing it to
-	  // wriggle around in a most unseemly way. When we have an
-	  // estimated pixels/delta value, we just handle horizontal
-	  // scrolling entirely here. It'll be slightly off from native, but
-	  // better than glitching out.
-	  if (dx && !gecko && !presto && wheelPixelsPerUnit != null) {
-	    if (dy && canScrollY)
-	      { setScrollTop(cm, Math.max(0, Math.min(scroll.scrollTop + dy * wheelPixelsPerUnit, scroll.scrollHeight - scroll.clientHeight))); }
-	    setScrollLeft(cm, Math.max(0, Math.min(scroll.scrollLeft + dx * wheelPixelsPerUnit, scroll.scrollWidth - scroll.clientWidth)));
-	    // Only prevent default scrolling if vertical scrolling is
-	    // actually possible. Otherwise, it causes vertical scroll
-	    // jitter on OSX trackpads when deltaX is small and deltaY
-	    // is large (issue #3579)
-	    if (!dy || (dy && canScrollY))
-	      { e_preventDefault(e); }
-	    display.wheelStartX = null; // Abort measurement, if in progress
-	    return
-	  }
-	
-	  // 'Project' the visible viewport to cover the area that is being
-	  // scrolled into view (if we know enough to estimate it).
-	  if (dy && wheelPixelsPerUnit != null) {
-	    var pixels = dy * wheelPixelsPerUnit;
-	    var top = cm.doc.scrollTop, bot = top + display.wrapper.clientHeight;
-	    if (pixels < 0) { top = Math.max(0, top + pixels - 50); }
-	    else { bot = Math.min(cm.doc.height, bot + pixels + 50); }
-	    updateDisplaySimple(cm, {top: top, bottom: bot});
-	  }
-	
-	  if (wheelSamples < 20) {
-	    if (display.wheelStartX == null) {
-	      display.wheelStartX = scroll.scrollLeft; display.wheelStartY = scroll.scrollTop;
-	      display.wheelDX = dx; display.wheelDY = dy;
-	      setTimeout(function () {
-	        if (display.wheelStartX == null) { return }
-	        var movedX = scroll.scrollLeft - display.wheelStartX;
-	        var movedY = scroll.scrollTop - display.wheelStartY;
-	        var sample = (movedY && display.wheelDY && movedY / display.wheelDY) ||
-	          (movedX && display.wheelDX && movedX / display.wheelDX);
-	        display.wheelStartX = display.wheelStartY = null;
-	        if (!sample) { return }
-	        wheelPixelsPerUnit = (wheelPixelsPerUnit * wheelSamples + sample) / (wheelSamples + 1);
-	        ++wheelSamples;
-	      }, 200);
-	    } else {
-	      display.wheelDX += dx; display.wheelDY += dy;
-	    }
-	  }
 	}
 	
 	// SCROLLBARS
@@ -4584,137 +4620,10 @@
 	    node.setAttribute("cm-not-content", "true");
 	  }, function (pos, axis) {
 	    if (axis == "horizontal") { setScrollLeft(cm, pos); }
-	    else { setScrollTop(cm, pos); }
+	    else { updateScrollTop(cm, pos); }
 	  }, cm);
 	  if (cm.display.scrollbars.addClass)
 	    { addClass(cm.display.wrapper, cm.display.scrollbars.addClass); }
-	}
-	
-	// SCROLLING THINGS INTO VIEW
-	
-	// If an editor sits on the top or bottom of the window, partially
-	// scrolled out of view, this ensures that the cursor is visible.
-	function maybeScrollWindow(cm, rect) {
-	  if (signalDOMEvent(cm, "scrollCursorIntoView")) { return }
-	
-	  var display = cm.display, box = display.sizer.getBoundingClientRect(), doScroll = null;
-	  if (rect.top + box.top < 0) { doScroll = true; }
-	  else if (rect.bottom + box.top > (window.innerHeight || document.documentElement.clientHeight)) { doScroll = false; }
-	  if (doScroll != null && !phantom) {
-	    var scrollNode = elt("div", "\u200b", null, ("position: absolute;\n                         top: " + (rect.top - display.viewOffset - paddingTop(cm.display)) + "px;\n                         height: " + (rect.bottom - rect.top + scrollGap(cm) + display.barHeight) + "px;\n                         left: " + (rect.left) + "px; width: " + (Math.max(2, rect.right - rect.left)) + "px;"));
-	    cm.display.lineSpace.appendChild(scrollNode);
-	    scrollNode.scrollIntoView(doScroll);
-	    cm.display.lineSpace.removeChild(scrollNode);
-	  }
-	}
-	
-	// Scroll a given position into view (immediately), verifying that
-	// it actually became visible (as line heights are accurately
-	// measured, the position of something may 'drift' during drawing).
-	function scrollPosIntoView(cm, pos, end, margin) {
-	  if (margin == null) { margin = 0; }
-	  var rect;
-	  for (var limit = 0; limit < 5; limit++) {
-	    var changed = false;
-	    var coords = cursorCoords(cm, pos);
-	    var endCoords = !end || end == pos ? coords : cursorCoords(cm, end);
-	    rect = {left: Math.min(coords.left, endCoords.left),
-	            top: Math.min(coords.top, endCoords.top) - margin,
-	            right: Math.max(coords.left, endCoords.left),
-	            bottom: Math.max(coords.bottom, endCoords.bottom) + margin};
-	    var scrollPos = calculateScrollPos(cm, rect);
-	    var startTop = cm.doc.scrollTop, startLeft = cm.doc.scrollLeft;
-	    if (scrollPos.scrollTop != null) {
-	      setScrollTop(cm, scrollPos.scrollTop);
-	      if (Math.abs(cm.doc.scrollTop - startTop) > 1) { changed = true; }
-	    }
-	    if (scrollPos.scrollLeft != null) {
-	      setScrollLeft(cm, scrollPos.scrollLeft);
-	      if (Math.abs(cm.doc.scrollLeft - startLeft) > 1) { changed = true; }
-	    }
-	    if (!changed) { break }
-	  }
-	  return rect
-	}
-	
-	// Scroll a given set of coordinates into view (immediately).
-	function scrollIntoView(cm, rect) {
-	  var scrollPos = calculateScrollPos(cm, rect);
-	  if (scrollPos.scrollTop != null) { setScrollTop(cm, scrollPos.scrollTop); }
-	  if (scrollPos.scrollLeft != null) { setScrollLeft(cm, scrollPos.scrollLeft); }
-	}
-	
-	// Calculate a new scroll position needed to scroll the given
-	// rectangle into view. Returns an object with scrollTop and
-	// scrollLeft properties. When these are undefined, the
-	// vertical/horizontal position does not need to be adjusted.
-	function calculateScrollPos(cm, rect) {
-	  var display = cm.display, snapMargin = textHeight(cm.display);
-	  if (rect.top < 0) { rect.top = 0; }
-	  var screentop = cm.curOp && cm.curOp.scrollTop != null ? cm.curOp.scrollTop : display.scroller.scrollTop;
-	  var screen = displayHeight(cm), result = {};
-	  if (rect.bottom - rect.top > screen) { rect.bottom = rect.top + screen; }
-	  var docBottom = cm.doc.height + paddingVert(display);
-	  var atTop = rect.top < snapMargin, atBottom = rect.bottom > docBottom - snapMargin;
-	  if (rect.top < screentop) {
-	    result.scrollTop = atTop ? 0 : rect.top;
-	  } else if (rect.bottom > screentop + screen) {
-	    var newTop = Math.min(rect.top, (atBottom ? docBottom : rect.bottom) - screen);
-	    if (newTop != screentop) { result.scrollTop = newTop; }
-	  }
-	
-	  var screenleft = cm.curOp && cm.curOp.scrollLeft != null ? cm.curOp.scrollLeft : display.scroller.scrollLeft;
-	  var screenw = displayWidth(cm) - (cm.options.fixedGutter ? display.gutters.offsetWidth : 0);
-	  var tooWide = rect.right - rect.left > screenw;
-	  if (tooWide) { rect.right = rect.left + screenw; }
-	  if (rect.left < 10)
-	    { result.scrollLeft = 0; }
-	  else if (rect.left < screenleft)
-	    { result.scrollLeft = Math.max(0, rect.left - (tooWide ? 0 : 10)); }
-	  else if (rect.right > screenw + screenleft - 3)
-	    { result.scrollLeft = rect.right + (tooWide ? 0 : 10) - screenw; }
-	  return result
-	}
-	
-	// Store a relative adjustment to the scroll position in the current
-	// operation (to be applied when the operation finishes).
-	function addToScrollPos(cm, left, top) {
-	  if (left != null || top != null) { resolveScrollToPos(cm); }
-	  if (left != null)
-	    { cm.curOp.scrollLeft = (cm.curOp.scrollLeft == null ? cm.doc.scrollLeft : cm.curOp.scrollLeft) + left; }
-	  if (top != null)
-	    { cm.curOp.scrollTop = (cm.curOp.scrollTop == null ? cm.doc.scrollTop : cm.curOp.scrollTop) + top; }
-	}
-	
-	// Make sure that at the end of the operation the current cursor is
-	// shown.
-	function ensureCursorVisible(cm) {
-	  resolveScrollToPos(cm);
-	  var cur = cm.getCursor(), from = cur, to = cur;
-	  if (!cm.options.lineWrapping) {
-	    from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
-	    to = Pos(cur.line, cur.ch + 1);
-	  }
-	  cm.curOp.scrollToPos = {from: from, to: to, margin: cm.options.cursorScrollMargin};
-	}
-	
-	// When an operation has its scrollToPos property set, and another
-	// scroll action is applied before the end of the operation, this
-	// 'simulates' scrolling that position into view in a cheap way, so
-	// that the effect of intermediate scroll commands is not ignored.
-	function resolveScrollToPos(cm) {
-	  var range$$1 = cm.curOp.scrollToPos;
-	  if (range$$1) {
-	    cm.curOp.scrollToPos = null;
-	    var from = estimateCoords(cm, range$$1.from), to = estimateCoords(cm, range$$1.to);
-	    var sPos = calculateScrollPos(cm, {
-	      left: Math.min(from.left, to.left),
-	      top: Math.min(from.top, to.top) - range$$1.margin,
-	      right: Math.max(from.right, to.right),
-	      bottom: Math.max(from.bottom, to.bottom) + range$$1.margin
-	    });
-	    cm.scrollTo(sPos.scrollLeft, sPos.scrollTop);
-	  }
 	}
 	
 	// Operations are used to wrap a series of changes to the editor
@@ -4845,17 +4754,9 @@
 	    { display.wheelStartX = display.wheelStartY = null; }
 	
 	  // Propagate the scroll position to the actual DOM scroller
-	  if (op.scrollTop != null && (display.scroller.scrollTop != op.scrollTop || op.forceScroll)) {
-	    doc.scrollTop = Math.max(0, Math.min(display.scroller.scrollHeight - display.scroller.clientHeight, op.scrollTop));
-	    display.scrollbars.setScrollTop(doc.scrollTop);
-	    display.scroller.scrollTop = doc.scrollTop;
-	  }
-	  if (op.scrollLeft != null && (display.scroller.scrollLeft != op.scrollLeft || op.forceScroll)) {
-	    doc.scrollLeft = Math.max(0, Math.min(display.scroller.scrollWidth - display.scroller.clientWidth, op.scrollLeft));
-	    display.scrollbars.setScrollLeft(doc.scrollLeft);
-	    display.scroller.scrollLeft = doc.scrollLeft;
-	    alignHorizontally(cm);
-	  }
+	  if (op.scrollTop != null) { setScrollTop(cm, op.scrollTop, op.forceScroll); }
+	
+	  if (op.scrollLeft != null) { setScrollLeft(cm, op.scrollLeft, true, true); }
 	  // If we need to scroll a specific position into view, do so.
 	  if (op.scrollToPos) {
 	    var rect = scrollPosIntoView(cm, clipPos(doc, op.scrollToPos.from),
@@ -5149,6 +5050,36 @@
 	  }
 	}
 	
+	function selectionSnapshot(cm) {
+	  if (cm.hasFocus()) { return null }
+	  var active = activeElt();
+	  if (!active || !contains(cm.display.lineDiv, active)) { return null }
+	  var result = {activeElt: active};
+	  if (window.getSelection) {
+	    var sel = window.getSelection();
+	    if (sel.anchorNode && sel.extend && contains(cm.display.lineDiv, sel.anchorNode)) {
+	      result.anchorNode = sel.anchorNode;
+	      result.anchorOffset = sel.anchorOffset;
+	      result.focusNode = sel.focusNode;
+	      result.focusOffset = sel.focusOffset;
+	    }
+	  }
+	  return result
+	}
+	
+	function restoreSelection(snapshot) {
+	  if (!snapshot || !snapshot.activeElt || snapshot.activeElt == activeElt()) { return }
+	  snapshot.activeElt.focus();
+	  if (snapshot.anchorNode && contains(document.body, snapshot.anchorNode) && contains(document.body, snapshot.focusNode)) {
+	    var sel = window.getSelection(), range$$1 = document.createRange();
+	    range$$1.setEnd(snapshot.anchorNode, snapshot.anchorOffset);
+	    range$$1.collapse(false);
+	    sel.removeAllRanges();
+	    sel.addRange(range$$1);
+	    sel.extend(snapshot.focusNode, snapshot.focusOffset);
+	  }
+	}
+	
 	// Does the actual updating of the line display. Bails out
 	// (returning false) when there is nothing to be done and forced is
 	// false.
@@ -5198,14 +5129,14 @@
 	
 	  // For big changes, we hide the enclosing element during the
 	  // update, since that speeds up the operations on most browsers.
-	  var focused = activeElt();
+	  var selSnapshot = selectionSnapshot(cm);
 	  if (toUpdate > 4) { display.lineDiv.style.display = "none"; }
 	  patchDisplay(cm, display.updateLineNumbers, update.dims);
 	  if (toUpdate > 4) { display.lineDiv.style.display = ""; }
 	  display.renderedView = display.view;
 	  // There might have been a widget with a focused element that got
 	  // hidden or updated, if so re-focus it.
-	  if (focused && activeElt() != focused && focused.offsetHeight) { focused.focus(); }
+	  restoreSelection(selSnapshot);
 	
 	  // Prevent selection and cursors from interfering with the scroll
 	  // width and height.
@@ -5350,6 +5281,117 @@
 	  } else if (found > -1 && !options.lineNumbers) {
 	    options.gutters = options.gutters.slice(0);
 	    options.gutters.splice(found, 1);
+	  }
+	}
+	
+	// Since the delta values reported on mouse wheel events are
+	// unstandardized between browsers and even browser versions, and
+	// generally horribly unpredictable, this code starts by measuring
+	// the scroll effect that the first few mouse wheel events have,
+	// and, from that, detects the way it can convert deltas to pixel
+	// offsets afterwards.
+	//
+	// The reason we want to know the amount a wheel event will scroll
+	// is that it gives us a chance to update the display before the
+	// actual scrolling happens, reducing flickering.
+	
+	var wheelSamples = 0;
+	var wheelPixelsPerUnit = null;
+	// Fill in a browser-detected starting value on browsers where we
+	// know one. These don't have to be accurate -- the result of them
+	// being wrong would just be a slight flicker on the first wheel
+	// scroll (if it is large enough).
+	if (ie) { wheelPixelsPerUnit = -.53; }
+	else if (gecko) { wheelPixelsPerUnit = 15; }
+	else if (chrome) { wheelPixelsPerUnit = -.7; }
+	else if (safari) { wheelPixelsPerUnit = -1/3; }
+	
+	function wheelEventDelta(e) {
+	  var dx = e.wheelDeltaX, dy = e.wheelDeltaY;
+	  if (dx == null && e.detail && e.axis == e.HORIZONTAL_AXIS) { dx = e.detail; }
+	  if (dy == null && e.detail && e.axis == e.VERTICAL_AXIS) { dy = e.detail; }
+	  else if (dy == null) { dy = e.wheelDelta; }
+	  return {x: dx, y: dy}
+	}
+	function wheelEventPixels(e) {
+	  var delta = wheelEventDelta(e);
+	  delta.x *= wheelPixelsPerUnit;
+	  delta.y *= wheelPixelsPerUnit;
+	  return delta
+	}
+	
+	function onScrollWheel(cm, e) {
+	  var delta = wheelEventDelta(e), dx = delta.x, dy = delta.y;
+	
+	  var display = cm.display, scroll = display.scroller;
+	  // Quit if there's nothing to scroll here
+	  var canScrollX = scroll.scrollWidth > scroll.clientWidth;
+	  var canScrollY = scroll.scrollHeight > scroll.clientHeight;
+	  if (!(dx && canScrollX || dy && canScrollY)) { return }
+	
+	  // Webkit browsers on OS X abort momentum scrolls when the target
+	  // of the scroll event is removed from the scrollable element.
+	  // This hack (see related code in patchDisplay) makes sure the
+	  // element is kept around.
+	  if (dy && mac && webkit) {
+	    outer: for (var cur = e.target, view = display.view; cur != scroll; cur = cur.parentNode) {
+	      for (var i = 0; i < view.length; i++) {
+	        if (view[i].node == cur) {
+	          cm.display.currentWheelTarget = cur;
+	          break outer
+	        }
+	      }
+	    }
+	  }
+	
+	  // On some browsers, horizontal scrolling will cause redraws to
+	  // happen before the gutter has been realigned, causing it to
+	  // wriggle around in a most unseemly way. When we have an
+	  // estimated pixels/delta value, we just handle horizontal
+	  // scrolling entirely here. It'll be slightly off from native, but
+	  // better than glitching out.
+	  if (dx && !gecko && !presto && wheelPixelsPerUnit != null) {
+	    if (dy && canScrollY)
+	      { updateScrollTop(cm, Math.max(0, scroll.scrollTop + dy * wheelPixelsPerUnit)); }
+	    setScrollLeft(cm, Math.max(0, scroll.scrollLeft + dx * wheelPixelsPerUnit));
+	    // Only prevent default scrolling if vertical scrolling is
+	    // actually possible. Otherwise, it causes vertical scroll
+	    // jitter on OSX trackpads when deltaX is small and deltaY
+	    // is large (issue #3579)
+	    if (!dy || (dy && canScrollY))
+	      { e_preventDefault(e); }
+	    display.wheelStartX = null; // Abort measurement, if in progress
+	    return
+	  }
+	
+	  // 'Project' the visible viewport to cover the area that is being
+	  // scrolled into view (if we know enough to estimate it).
+	  if (dy && wheelPixelsPerUnit != null) {
+	    var pixels = dy * wheelPixelsPerUnit;
+	    var top = cm.doc.scrollTop, bot = top + display.wrapper.clientHeight;
+	    if (pixels < 0) { top = Math.max(0, top + pixels - 50); }
+	    else { bot = Math.min(cm.doc.height, bot + pixels + 50); }
+	    updateDisplaySimple(cm, {top: top, bottom: bot});
+	  }
+	
+	  if (wheelSamples < 20) {
+	    if (display.wheelStartX == null) {
+	      display.wheelStartX = scroll.scrollLeft; display.wheelStartY = scroll.scrollTop;
+	      display.wheelDX = dx; display.wheelDY = dy;
+	      setTimeout(function () {
+	        if (display.wheelStartX == null) { return }
+	        var movedX = scroll.scrollLeft - display.wheelStartX;
+	        var movedY = scroll.scrollTop - display.wheelStartY;
+	        var sample = (movedY && display.wheelDY && movedY / display.wheelDY) ||
+	          (movedX && display.wheelDX && movedX / display.wheelDX);
+	        display.wheelStartX = display.wheelStartY = null;
+	        if (!sample) { return }
+	        wheelPixelsPerUnit = (wheelPixelsPerUnit * wheelSamples + sample) / (wheelSamples + 1);
+	        ++wheelSamples;
+	      }, 200);
+	    } else {
+	      display.wheelDX += dx; display.wheelDY += dy;
+	    }
 	  }
 	}
 	
@@ -5949,7 +5991,7 @@
 	// Verify that the selection does not partially select any atomic
 	// marked ranges.
 	function reCheckSelection(doc) {
-	  setSelectionInner(doc, skipAtomicInSelection(doc, doc.sel, null, false), sel_dontScroll);
+	  setSelectionInner(doc, skipAtomicInSelection(doc, doc.sel, null, false));
 	}
 	
 	// Return a selection that does not partially select any atomic
@@ -6577,7 +6619,7 @@
 	
 	function adjustScrollWhenAboveVisible(cm, line, diff) {
 	  if (heightAtLine(line) < ((cm.curOp && cm.curOp.scrollTop) || cm.doc.scrollTop))
-	    { addToScrollPos(cm, null, diff); }
+	    { addToScrollTop(cm, diff); }
 	}
 	
 	function addLineWidget(doc, handle, node, options) {
@@ -6592,7 +6634,7 @@
 	    if (cm && !lineIsHidden(doc, line)) {
 	      var aboveVisible = heightAtLine(line) < doc.scrollTop;
 	      updateLineHeight(line, line.height + widgetHeight(widget));
-	      if (aboveVisible) { addToScrollPos(cm, null, widget.height); }
+	      if (aboveVisible) { addToScrollTop(cm, widget.height); }
 	      cm.curOp.forceUpdate = true;
 	    }
 	    return true
@@ -6940,7 +6982,7 @@
 	    var top = Pos(this.first, 0), last = this.first + this.size - 1;
 	    makeChange(this, {from: top, to: Pos(last, getLine(this, last).text.length),
 	                      text: this.splitLines(code), origin: "setValue", full: true}, true);
-	    if (this.cm) { this.cm.scrollTo(0, 0); }
+	    if (this.cm) { scrollToCoords(this.cm, 0, 0); }
 	    setSelection(this, simpleSelection(top), sel_dontScroll);
 	  }),
 	  replaceRange: function(code, from, to, origin) {
@@ -8585,7 +8627,7 @@
 	  // area, ensure viewport is updated when scrolling.
 	  on(d.scroller, "scroll", function () {
 	    if (d.scroller.clientHeight) {
-	      setScrollTop(cm, d.scroller.scrollTop);
+	      updateScrollTop(cm, d.scroller.scrollTop);
 	      setScrollLeft(cm, d.scroller.scrollLeft, true);
 	      signal(cm, "scroll", cm);
 	    }
@@ -9118,7 +9160,7 @@
 	        goals.push(headPos.left);
 	        var pos = findPosV(this$1, headPos, dir, unit);
 	        if (unit == "page" && range$$1 == doc.sel.primary())
-	          { addToScrollPos(this$1, null, charCoords(this$1, pos, "div").top - headPos.top); }
+	          { addToScrollTop(this$1, charCoords(this$1, pos, "div").top - headPos.top); }
 	        return pos
 	      }, sel_move);
 	      if (goals.length) { for (var i = 0; i < doc.sel.ranges.length; i++)
@@ -9155,11 +9197,7 @@
 	    hasFocus: function() { return this.display.input.getField() == activeElt() },
 	    isReadOnly: function() { return !!(this.options.readOnly || this.doc.cantEdit) },
 	
-	    scrollTo: methodOp(function(x, y) {
-	      if (x != null || y != null) { resolveScrollToPos(this); }
-	      if (x != null) { this.curOp.scrollLeft = x; }
-	      if (y != null) { this.curOp.scrollTop = y; }
-	    }),
+	    scrollTo: methodOp(function (x, y) { scrollToCoords(this, x, y); }),
 	    getScrollInfo: function() {
 	      var scroller = this.display.scroller;
 	      return {left: scroller.scrollLeft, top: scroller.scrollTop,
@@ -9181,16 +9219,9 @@
 	      range$$1.margin = margin || 0;
 	
 	      if (range$$1.from.line != null) {
-	        resolveScrollToPos(this);
-	        this.curOp.scrollToPos = range$$1;
+	        scrollToRange(this, range$$1);
 	      } else {
-	        var sPos = calculateScrollPos(this, {
-	          left: Math.min(range$$1.from.left, range$$1.to.left),
-	          top: Math.min(range$$1.from.top, range$$1.to.top) - range$$1.margin,
-	          right: Math.max(range$$1.from.right, range$$1.to.right),
-	          bottom: Math.max(range$$1.from.bottom, range$$1.to.bottom) + range$$1.margin
-	        });
-	        this.scrollTo(sPos.scrollLeft, sPos.scrollTop);
+	        scrollToCoordsRange(this, range$$1.from, range$$1.to, range$$1.margin);
 	      }
 	    }),
 	
@@ -9218,7 +9249,7 @@
 	      regChange(this);
 	      this.curOp.forceUpdate = true;
 	      clearCaches(this);
-	      this.scrollTo(this.doc.scrollLeft, this.doc.scrollTop);
+	      scrollToCoords(this, this.doc.scrollLeft, this.doc.scrollTop);
 	      updateGutterSpace(this);
 	      if (oldHeight == null || Math.abs(oldHeight - textHeight(this.display)) > .5)
 	        { estimateLineHeights(this); }
@@ -9231,7 +9262,7 @@
 	      attachDoc(this, doc);
 	      clearCaches(this);
 	      this.display.input.reset();
-	      this.scrollTo(doc.scrollLeft, doc.scrollTop);
+	      scrollToCoords(this, doc.scrollLeft, doc.scrollTop);
 	      this.curOp.forceScroll = true;
 	      signalLater(this, "swapDoc", this, old);
 	      return old
@@ -9986,7 +10017,7 @@
 	// Reset the input to correspond to the selection (or to be empty,
 	// when not typing and nothing is selected)
 	TextareaInput.prototype.reset = function (typing) {
-	  if (this.contextMenuPending) { return }
+	  if (this.contextMenuPending || this.composing) { return }
 	  var minimal, selected, cm = this.cm, doc = cm.doc;
 	  if (cm.somethingSelected()) {
 	    this.prevInput = "";
@@ -10351,7 +10382,7 @@
 	
 	addLegacyProps(CodeMirror$1);
 	
-	CodeMirror$1.version = "5.25.2";
+	CodeMirror$1.version = "5.26.0";
 	
 	return CodeMirror$1;
 	
@@ -10838,7 +10869,7 @@
 	  , toIObject      = __webpack_require__(24)
 	  , toPrimitive    = __webpack_require__(37)
 	  , has            = __webpack_require__(19)
-	  , IE8_DOM_DEFINE = __webpack_require__(162)
+	  , IE8_DOM_DEFINE = __webpack_require__(163)
 	  , gOPD           = Object.getOwnPropertyDescriptor;
 	
 	exports.f = __webpack_require__(12) ? gOPD : function getOwnPropertyDescriptor(O, P){
@@ -11437,10 +11468,10 @@
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Map     = __webpack_require__(178)
+	var Map     = __webpack_require__(179)
 	  , $export = __webpack_require__(1)
 	  , shared  = __webpack_require__(88)('metadata')
-	  , store   = shared.store || (shared.store = new (__webpack_require__(181)));
+	  , store   = shared.store || (shared.store = new (__webpack_require__(182)));
 	
 	var getOrCreateMetadataMap = function(target, targetKey, create){
 	  var targetMetadata = store.get(target);
@@ -11511,7 +11542,7 @@
 	    , toIndex             = __webpack_require__(57)
 	    , toPrimitive         = __webpack_require__(37)
 	    , has                 = __webpack_require__(19)
-	    , same                = __webpack_require__(175)
+	    , same                = __webpack_require__(176)
 	    , classof             = __webpack_require__(72)
 	    , isObject            = __webpack_require__(9)
 	    , toObject            = __webpack_require__(17)
@@ -11530,7 +11561,7 @@
 	    , $iterDetect         = __webpack_require__(85)
 	    , setSpecies          = __webpack_require__(56)
 	    , arrayFill           = __webpack_require__(101)
-	    , arrayCopyWithin     = __webpack_require__(155)
+	    , arrayCopyWithin     = __webpack_require__(156)
 	    , $DP                 = __webpack_require__(13)
 	    , $GOPD               = __webpack_require__(27)
 	    , dP                  = $DP.f
@@ -12260,9 +12291,9 @@
 	
 	'use strict'
 	
-	var base64 = __webpack_require__(543)
+	var base64 = __webpack_require__(542)
 	var ieee754 = __webpack_require__(561)
-	var isArray = __webpack_require__(537)
+	var isArray = __webpack_require__(536)
 	
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -14361,7 +14392,7 @@
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 	var anObject    = __webpack_require__(5)
-	  , dPs         = __webpack_require__(168)
+	  , dPs         = __webpack_require__(169)
 	  , enumBugKeys = __webpack_require__(104)
 	  , IE_PROTO    = __webpack_require__(116)('IE_PROTO')
 	  , Empty       = function(){ /* empty */ }
@@ -14407,7 +14438,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-	var $keys      = __webpack_require__(170)
+	var $keys      = __webpack_require__(171)
 	  , hiddenKeys = __webpack_require__(104).concat('length', 'prototype');
 	
 	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
@@ -14419,7 +14450,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys       = __webpack_require__(170)
+	var $keys       = __webpack_require__(171)
 	  , enumBugKeys = __webpack_require__(104);
 	
 	module.exports = Object.keys || function keys(O){
@@ -15281,7 +15312,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var ctx         = __webpack_require__(41)
-	  , call        = __webpack_require__(164)
+	  , call        = __webpack_require__(165)
 	  , isArrayIter = __webpack_require__(108)
 	  , anObject    = __webpack_require__(5)
 	  , toLength    = __webpack_require__(15)
@@ -15495,7 +15526,7 @@
 	__export(__webpack_require__(426));
 	__export(__webpack_require__(425));
 	__export(__webpack_require__(427));
-	__export(__webpack_require__(182));
+	__export(__webpack_require__(183));
 	__export(__webpack_require__(430));
 	__export(__webpack_require__(424));
 	__export(__webpack_require__(428));
@@ -17639,7 +17670,6 @@
 	        "namespace": C,
 	        "module": kw("module"),
 	        "enum": kw("module"),
-	        "type": kw("type"),
 	
 	        // scope modifiers
 	        "public": kw("modifier"),
@@ -17946,8 +17976,15 @@
 	    }
 	    if (type == "function") return cont(functiondef);
 	    if (type == "for") return cont(pushlex("form"), forspec, statement, poplex);
-	    if (type == "variable") return cont(pushlex("stat"), maybelabel);
-	    if (type == "switch") return cont(pushlex("form"), parenExpr, pushlex("}", "switch"), expect("{"),
+	    if (type == "variable") {
+	      if (isTS && value == "type") {
+	        cx.marked = "keyword"
+	        return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+	      } else {
+	        return cont(pushlex("stat"), maybelabel);
+	      }
+	    }
+	    if (type == "switch") return cont(pushlex("form"), parenExpr, expect("{"), pushlex("}", "switch"),
 	                                      block, poplex, poplex);
 	    if (type == "case") return cont(expression, expect(":"));
 	    if (type == "default") return cont(expect(":"));
@@ -17956,8 +17993,7 @@
 	    if (type == "class") return cont(pushlex("form"), className, poplex);
 	    if (type == "export") return cont(pushlex("stat"), afterExport, poplex);
 	    if (type == "import") return cont(pushlex("stat"), afterImport, poplex);
-	    if (type == "module") return cont(pushlex("form"), pattern, pushlex("}"), expect("{"), block, poplex, poplex)
-	    if (type == "type") return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+	    if (type == "module") return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex)
 	    if (type == "async") return cont(statement)
 	    if (value == "@") return cont(expression, statement)
 	    return pass(pushlex("stat"), expression, expect(";"), poplex);
@@ -18127,7 +18163,7 @@
 	  function typeexpr(type) {
 	    if (type == "variable") {cx.marked = "variable-3"; return cont(afterType);}
 	    if (type == "string" || type == "number" || type == "atom") return cont(afterType);
-	    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex)
+	    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex, afterType)
 	    if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType)
 	  }
 	  function maybeReturnType(type) {
@@ -18141,6 +18177,8 @@
 	      return cont(typeprop)
 	    } else if (type == ":") {
 	      return cont(typeexpr)
+	    } else if (type == "[") {
+	      return cont(expression, maybetype, expect("]"), typeprop)
 	    }
 	  }
 	  function typearg(type) {
@@ -18151,6 +18189,7 @@
 	    if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
 	    if (value == "|" || type == ".") return cont(typeexpr)
 	    if (type == "[") return cont(expect("]"), afterType)
+	    if (value == "extends") return cont(typeexpr)
 	  }
 	  function vardef() {
 	    return pass(pattern, maybetype, maybeAssign, vardefCont);
@@ -19570,7 +19609,7 @@
 	var global         = __webpack_require__(6)
 	  , core           = __webpack_require__(40)
 	  , LIBRARY        = __webpack_require__(51)
-	  , wksExt         = __webpack_require__(177)
+	  , wksExt         = __webpack_require__(178)
 	  , defineProperty = __webpack_require__(13).f;
 	module.exports = function(name){
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -19596,7 +19635,7 @@
 
 	'use strict';
 	var addToUnscopables = __webpack_require__(64)
-	  , step             = __webpack_require__(165)
+	  , step             = __webpack_require__(166)
 	  , Iterators        = __webpack_require__(66)
 	  , toIObject        = __webpack_require__(24);
 	
@@ -20268,7 +20307,7 @@
 	var _prodInvariant = __webpack_require__(7);
 	
 	var ReactPropTypesSecret = __webpack_require__(202);
-	var propTypesFactory = __webpack_require__(189);
+	var propTypesFactory = __webpack_require__(190);
 	
 	var React = __webpack_require__(63);
 	var PropTypes = propTypesFactory(React.isValidElement);
@@ -22389,6 +22428,26 @@
 
 /***/ }),
 /* 151 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	'use strict';
+	
+	var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+	
+	module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22397,7 +22456,7 @@
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22531,7 +22590,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -22937,7 +22996,6 @@
 	            ch == "{" && (cx.type == "at" || cx.type == "atBlock")) {
 	          // Dedent relative to current context.
 	          indent = Math.max(0, cx.indent - indentUnit);
-	          cx = cx.prev;
 	        }
 	      }
 	      return indent;
@@ -23008,7 +23066,7 @@
 	    "border-top-left-radius", "border-top-right-radius", "border-top-style",
 	    "border-top-width", "border-width", "bottom", "box-decoration-break",
 	    "box-shadow", "box-sizing", "break-after", "break-before", "break-inside",
-	    "caption-side", "clear", "clip", "color", "color-profile", "column-count",
+	    "caption-side", "caret-color", "clear", "clip", "color", "color-profile", "column-count",
 	    "column-fill", "column-gap", "column-rule", "column-rule-color",
 	    "column-rule-style", "column-rule-width", "column-span", "column-width",
 	    "columns", "content", "counter-increment", "counter-reset", "crop", "cue",
@@ -23029,7 +23087,7 @@
 	    "grid-row-start", "grid-template", "grid-template-areas", "grid-template-columns",
 	    "grid-template-rows", "hanging-punctuation", "height", "hyphens",
 	    "icon", "image-orientation", "image-rendering", "image-resolution",
-	    "inline-box-align", "justify-content", "left", "letter-spacing",
+	    "inline-box-align", "justify-content", "justify-items", "justify-self", "left", "letter-spacing",
 	    "line-break", "line-height", "line-stacking", "line-stacking-ruby",
 	    "line-stacking-shift", "line-stacking-strategy", "list-style",
 	    "list-style-image", "list-style-position", "list-style-type", "margin",
@@ -23044,7 +23102,7 @@
 	    "padding", "padding-bottom", "padding-left", "padding-right", "padding-top",
 	    "page", "page-break-after", "page-break-before", "page-break-inside",
 	    "page-policy", "pause", "pause-after", "pause-before", "perspective",
-	    "perspective-origin", "pitch", "pitch-range", "play-during", "position",
+	    "perspective-origin", "pitch", "pitch-range", "place-content", "place-items", "place-self", "play-during", "position",
 	    "presentation-level", "punctuation-trim", "quotes", "region-break-after",
 	    "region-break-before", "region-break-inside", "region-fragment",
 	    "rendering-intent", "resize", "rest", "rest-after", "rest-before", "richness",
@@ -23195,13 +23253,13 @@
 	    "s-resize", "sans-serif", "saturation", "scale", "scale3d", "scaleX", "scaleY", "scaleZ", "screen",
 	    "scroll", "scrollbar", "scroll-position", "se-resize", "searchfield",
 	    "searchfield-cancel-button", "searchfield-decoration",
-	    "searchfield-results-button", "searchfield-results-decoration",
+	    "searchfield-results-button", "searchfield-results-decoration", "self-start", "self-end",
 	    "semi-condensed", "semi-expanded", "separate", "serif", "show", "sidama",
 	    "simp-chinese-formal", "simp-chinese-informal", "single",
 	    "skew", "skewX", "skewY", "skip-white-space", "slide", "slider-horizontal",
 	    "slider-vertical", "sliderthumb-horizontal", "sliderthumb-vertical", "slow",
 	    "small", "small-caps", "small-caption", "smaller", "soft-light", "solid", "somali",
-	    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "spell-out", "square",
+	    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "space-evenly", "spell-out", "square",
 	    "square-button", "start", "static", "status-bar", "stretch", "stroke", "sub",
 	    "subpixel-antialiased", "super", "sw-resize", "symbolic", "symbols", "system-ui", "table",
 	    "table-caption", "table-cell", "table-column", "table-column-group",
@@ -23368,7 +23426,7 @@
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var cof = __webpack_require__(30);
@@ -23378,7 +23436,7 @@
 	};
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
@@ -23409,7 +23467,7 @@
 	};
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var forOf = __webpack_require__(65);
@@ -23422,7 +23480,7 @@
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var aFunction = __webpack_require__(20)
@@ -23455,7 +23513,7 @@
 	};
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23484,7 +23542,7 @@
 	};
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23496,7 +23554,7 @@
 	  , defined     = __webpack_require__(31)
 	  , forOf       = __webpack_require__(65)
 	  , $iterDefine = __webpack_require__(111)
-	  , step        = __webpack_require__(165)
+	  , step        = __webpack_require__(166)
 	  , setSpecies  = __webpack_require__(56)
 	  , DESCRIPTORS = __webpack_require__(12)
 	  , fastKey     = __webpack_require__(46).fastKey
@@ -23631,12 +23689,12 @@
 	};
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var classof = __webpack_require__(72)
-	  , from    = __webpack_require__(156);
+	  , from    = __webpack_require__(157);
 	module.exports = function(NAME){
 	  return function toJSON(){
 	    if(classof(this) != NAME)throw TypeError(NAME + "#toJSON isn't generic");
@@ -23645,7 +23703,7 @@
 	};
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23733,7 +23791,7 @@
 	};
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = !__webpack_require__(12) && !__webpack_require__(8)(function(){
@@ -23741,7 +23799,7 @@
 	});
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
@@ -23752,7 +23810,7 @@
 	};
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -23769,7 +23827,7 @@
 	};
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports) {
 
 	module.exports = function(done, value){
@@ -23777,7 +23835,7 @@
 	};
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports) {
 
 	// 20.2.2.20 Math.log1p(x)
@@ -23786,7 +23844,7 @@
 	};
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23824,7 +23882,7 @@
 	} : $assign;
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var dP       = __webpack_require__(13)
@@ -23842,7 +23900,7 @@
 	};
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -23867,7 +23925,7 @@
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var has          = __webpack_require__(19)
@@ -23889,7 +23947,7 @@
 	};
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getKeys   = __webpack_require__(54)
@@ -23910,7 +23968,7 @@
 	};
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// all object keys, includes non-enumerable and symbols
@@ -23925,7 +23983,7 @@
 	};
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $parseFloat = __webpack_require__(6).parseFloat
@@ -23938,7 +23996,7 @@
 	} : $parseFloat;
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $parseInt = __webpack_require__(6).parseInt
@@ -23952,7 +24010,7 @@
 	} : $parseInt;
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports) {
 
 	// 7.2.9 SameValue(x, y)
@@ -23961,7 +24019,7 @@
 	};
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-string-pad-start-end
@@ -23983,17 +24041,17 @@
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports.f = __webpack_require__(10);
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strong = __webpack_require__(159);
+	var strong = __webpack_require__(160);
 	
 	// 23.1 Map Objects
 	module.exports = __webpack_require__(80)('Map', function(get){
@@ -24011,7 +24069,7 @@
 	}, strong, true);
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 21.2.5.3 get RegExp.prototype.flags()
@@ -24021,11 +24079,11 @@
 	});
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strong = __webpack_require__(159);
+	var strong = __webpack_require__(160);
 	
 	// 23.2 Set Objects
 	module.exports = __webpack_require__(80)('Set', function(get){
@@ -24038,15 +24096,15 @@
 	}, strong);
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var each         = __webpack_require__(35)(0)
 	  , redefine     = __webpack_require__(22)
 	  , meta         = __webpack_require__(46)
-	  , assign       = __webpack_require__(167)
-	  , weak         = __webpack_require__(161)
+	  , assign       = __webpack_require__(168)
+	  , weak         = __webpack_require__(162)
 	  , isObject     = __webpack_require__(9)
 	  , getWeak      = meta.getWeak
 	  , isExtensible = Object.isExtensible
@@ -24099,7 +24157,7 @@
 	}
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24233,7 +24291,7 @@
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24322,7 +24380,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24353,7 +24411,7 @@
 	module.exports = focusNode;
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -24396,7 +24454,7 @@
 	module.exports = getActiveElement;
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -24851,8 +24909,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 187 */,
-/* 188 */
+/* 188 */,
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -25083,7 +25141,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -25107,26 +25165,6 @@
 	  var throwOnDirectAccess = false;
 	  return factory(isValidElement, throwOnDirectAccess);
 	};
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-	
-	'use strict';
-	
-	var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-	
-	module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
@@ -26026,8 +26064,8 @@
 	var ReactDOMSelection = __webpack_require__(469);
 	
 	var containsNode = __webpack_require__(433);
-	var focusNode = __webpack_require__(184);
-	var getActiveElement = __webpack_require__(185);
+	var focusNode = __webpack_require__(185);
+	var getActiveElement = __webpack_require__(186);
 	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -26170,7 +26208,7 @@
 	var ReactUpdates = __webpack_require__(34);
 	
 	var emptyObject = __webpack_require__(71);
-	var instantiateReactComponent = __webpack_require__(152);
+	var instantiateReactComponent = __webpack_require__(153);
 	var invariant = __webpack_require__(3);
 	var setInnerHTML = __webpack_require__(96);
 	var shouldUpdateReactComponent = __webpack_require__(141);
@@ -27997,7 +28035,7 @@
 	var invariant = __webpack_require__(3);
 	var warning = __webpack_require__(4);
 	
-	var ReactPropTypesSecret = __webpack_require__(190);
+	var ReactPropTypesSecret = __webpack_require__(151);
 	var checkPropTypes = __webpack_require__(446);
 	
 	module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -28304,6 +28342,20 @@
 	      return emptyFunction.thatReturnsNull;
 	    }
 	
+	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+	      var checker = arrayOfTypeCheckers[i];
+	      if (typeof checker !== 'function') {
+	        warning(
+	          false,
+	          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
+	          'received %s at index %s.',
+	          getPostfixForTypeWarning(checker),
+	          i
+	        );
+	        return emptyFunction.thatReturnsNull;
+	      }
+	    }
+	
 	    function validate(props, propName, componentName, location, propFullName) {
 	      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	        var checker = arrayOfTypeCheckers[i];
@@ -28436,6 +28488,9 @@
 	  // This handles more types than `getPropType`. Only used for error messages.
 	  // See `createPrimitiveTypeChecker`.
 	  function getPreciseType(propValue) {
+	    if (typeof propValue === 'undefined' || propValue === null) {
+	      return '' + propValue;
+	    }
 	    var propType = getPropType(propValue);
 	    if (propType === 'object') {
 	      if (propValue instanceof Date) {
@@ -28445,6 +28500,23 @@
 	      }
 	    }
 	    return propType;
+	  }
+	
+	  // Returns a string that is postfixed to a warning about an invalid type.
+	  // For example, "undefined" or "of type array"
+	  function getPostfixForTypeWarning(value) {
+	    var type = getPreciseType(value);
+	    switch (type) {
+	      case 'array':
+	      case 'object':
+	        return 'an ' + type;
+	      case 'boolean':
+	      case 'date':
+	      case 'regexp':
+	        return 'a ' + type;
+	      default:
+	        return type;
+	    }
 	  }
 	
 	  // Returns class name of the object, if any.
@@ -28888,7 +28960,7 @@
 	__webpack_require__(99);
 	__webpack_require__(100);
 	/** CSS */
-	__webpack_require__(153);
+	__webpack_require__(154);
 	/** HTML */
 	__webpack_require__(241);
 	/** Our function */
@@ -29148,7 +29220,7 @@
 	
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(18), __webpack_require__(100), __webpack_require__(99), __webpack_require__(153));
+	    mod(__webpack_require__(18), __webpack_require__(100), __webpack_require__(99), __webpack_require__(154));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);
 	  else // Plain browser env
@@ -29278,11 +29350,11 @@
 	        return state.token(stream, state);
 	      },
 	
-	      indent: function (state, textAfter) {
+	      indent: function (state, textAfter, line) {
 	        if (!state.localMode || /^\s*<\//.test(textAfter))
 	          return htmlMode.indent(state.htmlState, textAfter);
 	        else if (state.localMode.indent)
-	          return state.localMode.indent(state.localState, textAfter);
+	          return state.localMode.indent(state.localState, textAfter, line);
 	        else
 	          return CodeMirror.Pass;
 	      },
@@ -29450,7 +29522,7 @@
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 	var $export = __webpack_require__(1);
 	
-	$export($export.P, 'Array', {copyWithin: __webpack_require__(155)});
+	$export($export.P, 'Array', {copyWithin: __webpack_require__(156)});
 	
 	__webpack_require__(64)('copyWithin');
 
@@ -29557,7 +29629,7 @@
 	var ctx            = __webpack_require__(41)
 	  , $export        = __webpack_require__(1)
 	  , toObject       = __webpack_require__(17)
-	  , call           = __webpack_require__(164)
+	  , call           = __webpack_require__(165)
 	  , isArrayIter    = __webpack_require__(108)
 	  , toLength       = __webpack_require__(15)
 	  , createProperty = __webpack_require__(102)
@@ -29710,7 +29782,7 @@
 
 	'use strict';
 	var $export = __webpack_require__(1)
-	  , $reduce = __webpack_require__(157);
+	  , $reduce = __webpack_require__(158);
 	
 	$export($export.P + $export.F * !__webpack_require__(32)([].reduceRight, true), 'Array', {
 	  // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
@@ -29725,7 +29797,7 @@
 
 	'use strict';
 	var $export = __webpack_require__(1)
-	  , $reduce = __webpack_require__(157);
+	  , $reduce = __webpack_require__(158);
 	
 	$export($export.P + $export.F * !__webpack_require__(32)([].reduce, true), 'Array', {
 	  // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
@@ -29909,7 +29981,7 @@
 	// 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 	var $export = __webpack_require__(1);
 	
-	$export($export.P, 'Function', {bind: __webpack_require__(158)});
+	$export($export.P, 'Function', {bind: __webpack_require__(159)});
 
 /***/ }),
 /* 278 */
@@ -29965,7 +30037,7 @@
 
 	// 20.2.2.3 Math.acosh(x)
 	var $export = __webpack_require__(1)
-	  , log1p   = __webpack_require__(166)
+	  , log1p   = __webpack_require__(167)
 	  , sqrt    = Math.sqrt
 	  , $acosh  = Math.acosh;
 	
@@ -30166,7 +30238,7 @@
 	// 20.2.2.20 Math.log1p(x)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Math', {log1p: __webpack_require__(166)});
+	$export($export.S, 'Math', {log1p: __webpack_require__(167)});
 
 /***/ }),
 /* 292 */
@@ -30344,7 +30416,7 @@
 	// 20.1.2.3 Number.isInteger(number)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Number', {isInteger: __webpack_require__(163)});
+	$export($export.S, 'Number', {isInteger: __webpack_require__(164)});
 
 /***/ }),
 /* 301 */
@@ -30365,7 +30437,7 @@
 
 	// 20.1.2.5 Number.isSafeInteger(number)
 	var $export   = __webpack_require__(1)
-	  , isInteger = __webpack_require__(163)
+	  , isInteger = __webpack_require__(164)
 	  , abs       = Math.abs;
 	
 	$export($export.S, 'Number', {
@@ -30397,7 +30469,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export     = __webpack_require__(1)
-	  , $parseFloat = __webpack_require__(173);
+	  , $parseFloat = __webpack_require__(174);
 	// 20.1.2.12 Number.parseFloat(string)
 	$export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', {parseFloat: $parseFloat});
 
@@ -30406,7 +30478,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export   = __webpack_require__(1)
-	  , $parseInt = __webpack_require__(174);
+	  , $parseInt = __webpack_require__(175);
 	// 20.1.2.13 Number.parseInt(string, radix)
 	$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parseInt: $parseInt});
 
@@ -30417,7 +30489,7 @@
 	'use strict';
 	var $export      = __webpack_require__(1)
 	  , toInteger    = __webpack_require__(48)
-	  , aNumberValue = __webpack_require__(154)
+	  , aNumberValue = __webpack_require__(155)
 	  , repeat       = __webpack_require__(120)
 	  , $toFixed     = 1..toFixed
 	  , floor        = Math.floor
@@ -30535,7 +30607,7 @@
 	'use strict';
 	var $export      = __webpack_require__(1)
 	  , $fails       = __webpack_require__(8)
-	  , aNumberValue = __webpack_require__(154)
+	  , aNumberValue = __webpack_require__(155)
 	  , $toPrecision = 1..toPrecision;
 	
 	$export($export.P + $export.F * ($fails(function(){
@@ -30558,7 +30630,7 @@
 	// 19.1.3.1 Object.assign(target, source)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(167)});
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(168)});
 
 /***/ }),
 /* 310 */
@@ -30574,7 +30646,7 @@
 
 	var $export = __webpack_require__(1);
 	// 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-	$export($export.S + $export.F * !__webpack_require__(12), 'Object', {defineProperties: __webpack_require__(168)});
+	$export($export.S + $export.F * !__webpack_require__(12), 'Object', {defineProperties: __webpack_require__(169)});
 
 /***/ }),
 /* 312 */
@@ -30618,7 +30690,7 @@
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
 	__webpack_require__(36)('getOwnPropertyNames', function(){
-	  return __webpack_require__(169).f;
+	  return __webpack_require__(170).f;
 	});
 
 /***/ }),
@@ -30680,7 +30752,7 @@
 
 	// 19.1.3.10 Object.is(value1, value2)
 	var $export = __webpack_require__(1);
-	$export($export.S, 'Object', {is: __webpack_require__(175)});
+	$export($export.S, 'Object', {is: __webpack_require__(176)});
 
 /***/ }),
 /* 321 */
@@ -30752,7 +30824,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export     = __webpack_require__(1)
-	  , $parseFloat = __webpack_require__(173);
+	  , $parseFloat = __webpack_require__(174);
 	// 18.2.4 parseFloat(string)
 	$export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
 
@@ -30761,7 +30833,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export   = __webpack_require__(1)
-	  , $parseInt = __webpack_require__(174);
+	  , $parseInt = __webpack_require__(175);
 	// 18.2.5 parseInt(string, radix)
 	$export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
 
@@ -31101,7 +31173,7 @@
 	  , anObject   = __webpack_require__(5)
 	  , isObject   = __webpack_require__(9)
 	  , fails      = __webpack_require__(8)
-	  , bind       = __webpack_require__(158)
+	  , bind       = __webpack_require__(159)
 	  , rConstruct = (__webpack_require__(6).Reflect || {}).construct;
 	
 	// MS Edge supports only 2 arguments and argumentsList argument is optional
@@ -31308,7 +31380,7 @@
 	// 26.1.11 Reflect.ownKeys(target)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Reflect', {ownKeys: __webpack_require__(172)});
+	$export($export.S, 'Reflect', {ownKeys: __webpack_require__(173)});
 
 /***/ }),
 /* 340 */
@@ -31562,7 +31634,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	__webpack_require__(179);
+	__webpack_require__(180);
 	var anObject    = __webpack_require__(5)
 	  , $flags      = __webpack_require__(82)
 	  , DESCRIPTORS = __webpack_require__(12)
@@ -31935,7 +32007,7 @@
 	  , setToStringTag = __webpack_require__(67)
 	  , uid            = __webpack_require__(58)
 	  , wks            = __webpack_require__(10)
-	  , wksExt         = __webpack_require__(177)
+	  , wksExt         = __webpack_require__(178)
 	  , wksDefine      = __webpack_require__(124)
 	  , keyOf          = __webpack_require__(247)
 	  , enumKeys       = __webpack_require__(246)
@@ -31945,7 +32017,7 @@
 	  , toPrimitive    = __webpack_require__(37)
 	  , createDesc     = __webpack_require__(47)
 	  , _create        = __webpack_require__(52)
-	  , gOPNExt        = __webpack_require__(169)
+	  , gOPNExt        = __webpack_require__(170)
 	  , $GOPD          = __webpack_require__(27)
 	  , $DP            = __webpack_require__(13)
 	  , $keys          = __webpack_require__(54)
@@ -32313,7 +32385,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var weak = __webpack_require__(161);
+	var weak = __webpack_require__(162);
 	
 	// 23.4 WeakSet Objects
 	__webpack_require__(80)('WeakSet', function(get){
@@ -32380,7 +32452,7 @@
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var $export  = __webpack_require__(1);
 	
-	$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(160)('Map')});
+	$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(161)('Map')});
 
 /***/ }),
 /* 388 */
@@ -32496,7 +32568,7 @@
 
 	// https://github.com/tc39/proposal-object-values-entries
 	var $export  = __webpack_require__(1)
-	  , $entries = __webpack_require__(171)(true);
+	  , $entries = __webpack_require__(172)(true);
 	
 	$export($export.S, 'Object', {
 	  entries: function entries(it){
@@ -32510,7 +32582,7 @@
 
 	// https://github.com/tc39/proposal-object-getownpropertydescriptors
 	var $export        = __webpack_require__(1)
-	  , ownKeys        = __webpack_require__(172)
+	  , ownKeys        = __webpack_require__(173)
 	  , toIObject      = __webpack_require__(24)
 	  , gOPD           = __webpack_require__(27)
 	  , createProperty = __webpack_require__(102);
@@ -32580,7 +32652,7 @@
 
 	// https://github.com/tc39/proposal-object-values-entries
 	var $export = __webpack_require__(1)
-	  , $values = __webpack_require__(171)(false);
+	  , $values = __webpack_require__(172)(false);
 	
 	$export($export.S, 'Object', {
 	  values: function values(it){
@@ -32829,8 +32901,8 @@
 /* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Set                     = __webpack_require__(180)
-	  , from                    = __webpack_require__(156)
+	var Set                     = __webpack_require__(181)
+	  , from                    = __webpack_require__(157)
 	  , metadata                = __webpack_require__(42)
 	  , anObject                = __webpack_require__(5)
 	  , getPrototypeOf          = __webpack_require__(28)
@@ -32960,7 +33032,7 @@
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var $export  = __webpack_require__(1);
 	
-	$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(160)('Set')});
+	$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(161)('Set')});
 
 /***/ }),
 /* 410 */
@@ -33019,7 +33091,7 @@
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1)
-	  , $pad    = __webpack_require__(176);
+	  , $pad    = __webpack_require__(177);
 	
 	$export($export.P, 'String', {
 	  padEnd: function padEnd(maxLength /*, fillString = ' ' */){
@@ -33034,7 +33106,7 @@
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1)
-	  , $pad    = __webpack_require__(176);
+	  , $pad    = __webpack_require__(177);
 	
 	$export($export.P, 'String', {
 	  padStart: function padStart(maxLength /*, fillString = ' ' */){
@@ -33256,15 +33328,15 @@
 	__webpack_require__(126);
 	__webpack_require__(343);
 	__webpack_require__(348);
-	__webpack_require__(179);
+	__webpack_require__(180);
 	__webpack_require__(344);
 	__webpack_require__(345);
 	__webpack_require__(346);
 	__webpack_require__(347);
 	__webpack_require__(328);
-	__webpack_require__(178);
-	__webpack_require__(180);
+	__webpack_require__(179);
 	__webpack_require__(181);
+	__webpack_require__(182);
 	__webpack_require__(383);
 	__webpack_require__(372);
 	__webpack_require__(373);
@@ -33683,7 +33755,7 @@
 
 	"use strict";
 	var typestyle_1 = __webpack_require__(33);
-	var box_1 = __webpack_require__(182);
+	var box_1 = __webpack_require__(183);
 	/**
 	 * Recommended Page setup
 	 * - Sets up the body to be full size
@@ -35774,7 +35846,7 @@
 	if (process.env.NODE_ENV !== 'production') {
 	  var invariant = __webpack_require__(3);
 	  var warning = __webpack_require__(4);
-	  var ReactPropTypesSecret = __webpack_require__(190);
+	  var ReactPropTypesSecret = __webpack_require__(151);
 	  var loggedTypeFailures = {};
 	}
 	
@@ -35920,7 +35992,7 @@
 	
 	var ReactDOMComponentTree = __webpack_require__(14);
 	
-	var focusNode = __webpack_require__(184);
+	var focusNode = __webpack_require__(185);
 	
 	var AutoFocusUtils = {
 	  focusDOMComponent: function () {
@@ -37427,7 +37499,7 @@
 	
 	var ReactReconciler = __webpack_require__(62);
 	
-	var instantiateReactComponent = __webpack_require__(152);
+	var instantiateReactComponent = __webpack_require__(153);
 	var KeyEscapeUtils = __webpack_require__(131);
 	var shouldUpdateReactComponent = __webpack_require__(141);
 	var traverseAllChildren = __webpack_require__(210);
@@ -41571,7 +41643,7 @@
 	
 	var _assign = __webpack_require__(11);
 	
-	var EventListener = __webpack_require__(183);
+	var EventListener = __webpack_require__(184);
 	var ExecutionEnvironment = __webpack_require__(16);
 	var PooledClass = __webpack_require__(59);
 	var ReactDOMComponentTree = __webpack_require__(14);
@@ -43162,7 +43234,7 @@
 	var ReactInputSelection = __webpack_require__(199);
 	var SyntheticEvent = __webpack_require__(44);
 	
-	var getActiveElement = __webpack_require__(185);
+	var getActiveElement = __webpack_require__(186);
 	var isTextInputElement = __webpack_require__(208);
 	var shallowEqual = __webpack_require__(127);
 	
@@ -43354,7 +43426,7 @@
 	
 	var _prodInvariant = __webpack_require__(7);
 	
-	var EventListener = __webpack_require__(183);
+	var EventListener = __webpack_require__(184);
 	var EventPropagators = __webpack_require__(76);
 	var ReactDOMComponentTree = __webpack_require__(14);
 	var SyntheticAnimationEvent = __webpack_require__(490);
@@ -46104,7 +46176,7 @@
 	var _require = __webpack_require__(60),
 	    isValidElement = _require.isValidElement;
 	
-	var factory = __webpack_require__(189);
+	var factory = __webpack_require__(190);
 	
 	module.exports = factory(isValidElement);
 
@@ -48043,7 +48115,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var FreeStyle = __webpack_require__(186);
+	var FreeStyle = __webpack_require__(187);
 	/**
 	 * We need to do the following to *our* objects before passing to freestyle:
 	 * - For any `$nest` directive move up to FreeStyle style nesting
@@ -48102,7 +48174,7 @@
 	"use strict";
 	var formatting_1 = __webpack_require__(530);
 	var utilities_1 = __webpack_require__(217);
-	var FreeStyle = __webpack_require__(186);
+	var FreeStyle = __webpack_require__(187);
 	/**
 	 * Maintains a single stylesheet and keeps it in sync with requested styles
 	 */
@@ -48289,8 +48361,7 @@
 /* 533 */,
 /* 534 */,
 /* 535 */,
-/* 536 */,
-/* 537 */
+/* 536 */
 /***/ (function(module, exports) {
 
 	var toString = {}.toString;
@@ -48301,7 +48372,7 @@
 
 
 /***/ }),
-/* 538 */
+/* 537 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -51122,8 +51193,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 539 */,
-/* 540 */
+/* 538 */,
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51288,7 +51359,7 @@
 
 
 /***/ }),
-/* 541 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51430,7 +51501,7 @@
 
 
 /***/ }),
-/* 542 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -51444,7 +51515,7 @@
 
 
 /***/ }),
-/* 543 */
+/* 542 */
 /***/ (function(module, exports) {
 
 	'use strict'
@@ -51564,6 +51635,7 @@
 
 
 /***/ }),
+/* 543 */,
 /* 544 */,
 /* 545 */,
 /* 546 */,
@@ -52629,7 +52701,7 @@
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(538), __webpack_require__(39), __webpack_require__(151));
+			module.exports = factory(__webpack_require__(537), __webpack_require__(39), __webpack_require__(152));
 		else if(typeof define === 'function' && define.amd)
 			define(["mobx", "react", "react-dom"], factory);
 		else if(typeof exports === 'object')
@@ -54530,10 +54602,10 @@
 	                }
 	                nodes = [new _declaration2.default(nodes)];
 	            } else if (nodes.selector) {
-	                var Rule = __webpack_require__(541);
+	                var Rule = __webpack_require__(540);
 	                nodes = [new Rule(nodes)];
 	            } else if (nodes.name) {
-	                var AtRule = __webpack_require__(540);
+	                var AtRule = __webpack_require__(539);
 	                nodes = [new AtRule(nodes)];
 	            } else if (nodes.text) {
 	                nodes = [new _comment2.default(nodes)];
@@ -54566,10 +54638,10 @@
 	            var Root = __webpack_require__(568);
 	            fix = new Root();
 	        } else if (node.type === 'atrule') {
-	            var AtRule = __webpack_require__(540);
+	            var AtRule = __webpack_require__(539);
 	            fix = new AtRule();
 	        } else if (node.type === 'rule') {
-	            var Rule = __webpack_require__(541);
+	            var Rule = __webpack_require__(540);
 	            fix = new Rule();
 	        } else if (node.type === 'decl') {
 	            fix = new _declaration2.default();
@@ -57661,7 +57733,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	var escapeStringRegexp = __webpack_require__(658);
 	var ansiStyles = __webpack_require__(630);
-	var stripAnsi = __webpack_require__(750);
+	var stripAnsi = __webpack_require__(751);
 	var hasAnsi = __webpack_require__(661);
 	var supportsColor = __webpack_require__(634);
 	var defineProps = Object.defineProperties;
@@ -58070,7 +58142,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _supportsColor = __webpack_require__(751);
+	var _supportsColor = __webpack_require__(752);
 	
 	var _supportsColor2 = _interopRequireDefault(_supportsColor);
 	
@@ -58356,7 +58428,7 @@
 	
 	var _previousMap2 = _interopRequireDefault(_previousMap);
 	
-	var _path = __webpack_require__(188);
+	var _path = __webpack_require__(189);
 	
 	var _path2 = _interopRequireDefault(_path);
 	
@@ -60032,7 +60104,7 @@
 		get: assembleStyles
 	});
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(771)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(772)(module)))
 
 /***/ }),
 /* 631 */,
@@ -60270,11 +60342,11 @@
 	
 	var _jsBase = __webpack_require__(607);
 	
-	var _sourceMap = __webpack_require__(542);
+	var _sourceMap = __webpack_require__(541);
 	
 	var _sourceMap2 = _interopRequireDefault(_sourceMap);
 	
-	var _path = __webpack_require__(188);
+	var _path = __webpack_require__(189);
 	
 	var _path2 = _interopRequireDefault(_path);
 	
@@ -60598,7 +60670,7 @@
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
-	var _atRule = __webpack_require__(540);
+	var _atRule = __webpack_require__(539);
 	
 	var _atRule2 = _interopRequireDefault(_atRule);
 	
@@ -60606,7 +60678,7 @@
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _rule = __webpack_require__(541);
+	var _rule = __webpack_require__(540);
 	
 	var _rule2 = _interopRequireDefault(_rule);
 	
@@ -61122,7 +61194,7 @@
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
-	var _atRule = __webpack_require__(540);
+	var _atRule = __webpack_require__(539);
 	
 	var _atRule2 = _interopRequireDefault(_atRule);
 	
@@ -61138,7 +61210,7 @@
 	
 	var _list2 = _interopRequireDefault(_list);
 	
-	var _rule = __webpack_require__(541);
+	var _rule = __webpack_require__(540);
 	
 	var _rule2 = _interopRequireDefault(_rule);
 	
@@ -61408,15 +61480,15 @@
 	
 	var _jsBase = __webpack_require__(607);
 	
-	var _sourceMap = __webpack_require__(542);
+	var _sourceMap = __webpack_require__(541);
 	
 	var _sourceMap2 = _interopRequireDefault(_sourceMap);
 	
-	var _path = __webpack_require__(188);
+	var _path = __webpack_require__(189);
 	
 	var _path2 = _interopRequireDefault(_path);
 	
-	var _fs = __webpack_require__(773);
+	var _fs = __webpack_require__(774);
 	
 	var _fs2 = _interopRequireDefault(_fs);
 	
@@ -62117,7 +62189,8 @@
 /* 747 */,
 /* 748 */,
 /* 749 */,
-/* 750 */
+/* 750 */,
+/* 751 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62129,7 +62202,7 @@
 
 
 /***/ }),
-/* 751 */
+/* 752 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -62137,7 +62210,6 @@
 
 
 /***/ }),
-/* 752 */,
 /* 753 */,
 /* 754 */,
 /* 755 */,
@@ -62156,7 +62228,8 @@
 /* 768 */,
 /* 769 */,
 /* 770 */,
-/* 771 */
+/* 771 */,
+/* 772 */
 /***/ (function(module, exports) {
 
 	module.exports = function(module) {
@@ -62172,8 +62245,8 @@
 
 
 /***/ }),
-/* 772 */,
-/* 773 */
+/* 773 */,
+/* 774 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
