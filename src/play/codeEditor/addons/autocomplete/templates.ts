@@ -378,7 +378,7 @@ function onChange(cm: CodeMirror.Editor, textChanged: CodeMirror.EditorChange) {
             uninstall(cm);
         } else {
             var posChanged = markerChanged.find();
-            var newContent = cm.getDoc().getRange(posChanged.from(), posChanged.to());
+            var newContent = cm.getDoc().getRange(posChanged.from, posChanged.to);
             for (var i = 0; i < state.marked.length; i++) {
                 var marker = state.marked[i];
                 if (marker != markerChanged

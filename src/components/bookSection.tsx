@@ -63,11 +63,7 @@ namespace BookSectionStyles {
   });
 }
 
-export type TOCItem = {
-  display: string,
-  link: string,
-  prelude: string
-}
+export type TOCItem = { display: string, link: string, prelude: string }
 
 type BookSectionProps = {
   title: string,
