@@ -108,8 +108,14 @@ addFile('globals.d.ts', `
   }
 
   /** csx namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/gradient.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/background.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/border.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/gradient.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/lists.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/strings.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/transforms.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/internal/units.d.ts'), namespace: 'csx' })}
 
   /** csstips namespace */
   ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/box.d.ts'), namespace: 'csstips' })}
@@ -324,7 +330,7 @@ export function quickInfo(query: Types.QuickInfoQuery): Promise<Types.QuickInfoR
   var info = languageService.getQuickInfoAtPosition(query.filePath, query.position);
   var errors = positionErrors(query);
   if (!info && !errors.length) {
-    return Promise.resolve({ valid: false });
+    return Promise.resolve({ valid: false, errors: undefined });
   } else {
     return resolve({
       valid: true,
