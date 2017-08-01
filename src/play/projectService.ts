@@ -37,7 +37,7 @@ export function getPositionOfLineAndCharacter(filePath: string, line: number, ch
 // ADD all the context files
 // 
 //////////////////////
-addFile('lib.es6.d.ts', require('!raw!typescript/lib/lib.es6.d.ts'));
+addFile('lib.es6.d.ts', require('!raw-loader!typescript/lib/lib.es6.d.ts'));
 
 /** Utilityexport.d.ts file to a namespace */
 function wrapExternalModuleInNamespace(config: { content: string, namespace: string }): string {
@@ -63,18 +63,18 @@ fs.existsSync = function() {
  */
 
 /** React */
-addFile('node_modules/react/index.d.ts', require('!raw!@types/react/index.d.ts'));
+addFile('node_modules/react/index.d.ts', require('!raw-loader!@types/react/index.d.ts'));
 
 /** Typestyle namespace */
-const typestyleIndex: string = require('!raw!typestyle/lib/index.d.ts');
-const utilitiesIndex: string = require('!raw!typestyle/lib/internal/utilities.d.ts');
+const typestyleIndex: string = require('!raw-loader!typestyle/lib/index.d.ts');
+const utilitiesIndex: string = require('!raw-loader!typestyle/lib/internal/utilities.d.ts');
 addFile('node_modules/typestyle/index.d.ts', wrapExternalModuleInNamespace({
   content: typestyleIndex,
   namespace: 'typestyle'
 }));
 
 /** Typestyle globals */
-addFile('types.d.ts', makeGlobal(require('!raw!typestyle/lib/types.d.ts')));
+addFile('types.d.ts', makeGlobal(require('!raw-loader!typestyle/lib/types.d.ts')));
 
 /** TypeStyle named imports */
 addFile('globals.d.ts', `
@@ -108,18 +108,24 @@ addFile('globals.d.ts', `
   }
 
   /** csx namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/gradient.d.ts'), namespace: 'csx' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csx/lib/color.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/background.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/border.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/color.d.ts'), namespace: 'csx' })}  
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/gradient.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/lists.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/strings.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/transforms.d.ts'), namespace: 'csx' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csx/lib/internal/units.d.ts'), namespace: 'csx' })}
 
   /** csstips namespace */
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/box.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/display.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/flex.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/font.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/layer.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/normalize.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/page.d.ts'), namespace: 'csstips' })}
-  ${wrapExternalModuleInNamespace({ content: require('!raw!csstips/lib/scroll.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/box.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/display.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/flex.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/font.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/layer.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/normalize.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/page.d.ts'), namespace: 'csstips' })}
+  ${wrapExternalModuleInNamespace({ content: require('!raw-loader!csstips/lib/scroll.d.ts'), namespace: 'csstips' })}
 `);
 
 
@@ -324,7 +330,7 @@ export function quickInfo(query: Types.QuickInfoQuery): Promise<Types.QuickInfoR
   var info = languageService.getQuickInfoAtPosition(query.filePath, query.position);
   var errors = positionErrors(query);
   if (!info && !errors.length) {
-    return Promise.resolve({ valid: false });
+    return Promise.resolve({ valid: false, errors: null });
   } else {
     return resolve({
       valid: true,
