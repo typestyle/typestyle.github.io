@@ -27,6 +27,6 @@
 TypeStyle is simply just a `style` function with a handful of *simple* utilities that we cover nicely in the rest of the book. So don't need another hello world here. That said, the best samples are real world usages. Here are a few: 
 
 * [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/) Built with TypeStyle / CycleJS / TypeScript
-* [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](http://typestyle.io/play) are all built 100% with typestyle.
+* [This website, with docs](https://github.com/typestyle/typestyle.github.io) as well as [the playground](https://typestyle.github.io/play) are all built 100% with typestyle.
 * [alm.tools](http://alm.tools) and IDE designed to provide the best developer experience for TypeScript.
 * [https://wmaurer.github.io/cyclejs-fractals/](https://wmaurer.github.io/cyclejs-fractals) Built with TypeStyle / CycleJS / TypeScript

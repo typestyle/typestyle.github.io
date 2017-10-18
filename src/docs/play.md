@@ -2,7 +2,7 @@ We found the JavaScript playgrounds out there missing key features for a great T
 
 > ProTip: You *can* use typestyle in playgrounds as we also provide a `umd` build: e.g. https://unpkg.com/typestyle@0.22.0/umd/typestyle.js example http://codepen.io/basarat/pen/GNeyzX
 
-Introducing the TypeStyle playground : [http://typestyle.io/play/](http://typestyle.io/play/). It supports *full* demo development with:
+Introducing the TypeStyle playground : [https://typestyle.github.io/play/](https://typestyle.github.io/play/). It supports *full* demo development with:
 
 * JavaScript in the form of TypeScript
 * HTML in the form of React/JSX

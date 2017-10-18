@@ -1,5 +1,5 @@
 # typestyle.github.io
-Website for TypeStyle. Check it out [here](http://typestyle.github.io/).
+Website for TypeStyle. Check it out [here](https://typestyle.github.io/).
 
 [![Build Status](https://travis-ci.org/typestyle/typestyle.github.io.svg?branch=source)](https://travis-ci.org/typestyle/typestyle.github.io)
 

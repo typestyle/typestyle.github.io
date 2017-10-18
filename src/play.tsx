@@ -45,7 +45,7 @@ export class HeaderSmall extends React.Component<{}, {}> {
 
           <a
             className={style({ whiteSpace: 'nowrap', textDecoration: 'none', color: 'white', $nest: { '&:hover': { textDecoration: 'underline' } } })}
-            href="http://typestyle.io/#/play"
+            href="https://typestyle.github.io/#/play"
             target="_blank">
             <h4 className={style(csstips.margin(0))}>Help</h4>
           </a>

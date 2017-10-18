@@ -100,7 +100,7 @@ const anchorClass = style({
 
 <a 
   className={anchorClass} 
-  href='http://typestyle.io/' 
+  href='https://typestyle.github.io/' 
   target='_blank'>TypeStyle</a>;
 ```
 
