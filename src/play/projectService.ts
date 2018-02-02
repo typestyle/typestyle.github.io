@@ -86,6 +86,7 @@ addFile('globals.d.ts', `
     .filter(section => [
       'cssRaw',
       'style',
+      'stylesheet',
       'cssRule',
       'keyframes',
     ].some(namedImport => section.includes(namedImport)))

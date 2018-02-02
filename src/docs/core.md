@@ -8,6 +8,7 @@
 * [TIP: forceRenderStyles](/#/core/tip-forcerenderstyles-)
 * [TIP: Declaring new CSS stuff](/#/core/tip-declaring-new-css-stuff)
 * [TIP: Code Organization](/#/core/tip-code-organization)
+* [Stylesheets (v1.7.x)](/#/core/-stylesheet-)
 
 ## `style`
 At the heart of typestyle is the simple `style` function. It is the function you use to generate a CSS className. The signature of this function is super simple: 
@@ -245,7 +246,8 @@ const ooooClass = typestyle.style({
 ```
 
 ## `classes`
-CSS classes compose nicely (mostly). We have a function `classes` to make composing classes (essentially string concatenation) easier: 
+
+CSS classes compose nicely (mostly). We have a function `classes` to make composing classes (essentially string concatenation) easier:
 
 ```play
 const messageClass = style({
@@ -333,16 +335,17 @@ const scroll = style({
 
 ## TIP: `forceRenderStyles`
 
-Whenever you call `style` we go ahead and queue a CSS update for the next `requestAnimationFrame`. However on initial application you probably want to deterministically write the CSS right after writing the HTML to prevent an unsightly flash. An example is shown below: 
+Whenever you call `style` we go ahead and queue a CSS update for the next `requestAnimationFrame`. However on initial application you probably want to deterministically write the CSS right after writing the HTML to prevent an unsightly flash. An example is shown below:
 
 ```ts
 import {forceRenderStyles} from 'typestyle';
 
 ReactDOM.render(<MyApp/>);
 forceRenderStyles();
-``` 
+```
 
 ## TIP: Declaring new CSS stuff
+
 We protect against typos e.g. if you misspell a property like `color`: 
 
 ```play
@@ -360,6 +363,7 @@ However there might be vendor prefixes or non standard CSS Property (or even som
 But be sure to create an [issue with us](https://github.com/typestyle/typestyle/issues) so we can add to our `CSSProperties` to help future developers.
 
 ## TIP: Code Organization
+
 How you use the `style` function and organize the class names and style objects is really up to you. However it's good to get some guidance. With my colleages and OSS projects I've been using TypeScript namespaces: 
 
 ```play
@@ -386,6 +390,77 @@ const OnlyRedOnHover = ({text}) => <div className={MyStyles.onlyRedOnHoverClass}
 ```
 
 Also suffix `Class` for classes.
+
+
+## `stylesheet`
+
+Sometimes we need to define a whole lot of styles at once.  We have a helper function `stylesheet` (added in version 1.7.0) that makes defining several classes at once very simple.  For example:
+
+```play
+const baseButton = {
+  border: 'solid thin lightgray',
+  borderRadius: 2,
+  color: 'white',
+  padding: '4px 10px'
+}
+
+const css = stylesheet({
+  component: {
+      display: 'flex'
+  },
+  primaryButton: {
+      backgroundColor: 'darkblue',
+      ...baseButton
+  },
+  secondaryButton: {
+      backgroundColor: 'teal',
+      ...baseButton
+  }
+});
+
+<div className={css.component}>
+  <button className={css.primaryButton}>Primary</button>
+  <button className={css.secondaryButton}>Secondary</button>
+</div>
+```
+
+In this example, we are using `stylesheet` to create three different TypeStyle classes: component, primaryButton, and secondaryButton.  The resulting `css` object is a dictionary of the key provided (primaryButton for example) linked to the generated css class. 
+
+Each class can be defined with the same properties as `style` including $nest.  As a bonus, each generated class is automatically prefixed as if it had been declared with $debugName.  Without using stylesheet, we would have had to write this:
+
+```play
+namespace css {
+  const baseButton = {
+    border: 'solid thin lightgray',
+    borderRadius: 2,
+    color: 'white',
+    padding: '4px 10px'
+  }
+
+  export const component = style({
+    $debugName: 'component',
+    display: 'flex'
+  }, baseButton);
+
+  export const primaryButton = style({
+    $debugName: 'primaryButton',
+    backgroundColor: 'darkblue',
+  }, baseButton);
+
+  export const secondaryButton = style({
+    $debugName: 'secondaryButton',
+    backgroundColor: 'teal',
+  }, baseButton);
+}
+
+<div className={css.component}>
+  <button className={css.primaryButton}>Primary</button>
+  <button className={css.secondaryButton}>Secondary</button>
+</div>
+```
+
+While there are certain advantages to both namespacing and `stylesheet`, The `stylesheet` function requires less typing and also works when building a project without TypeScript.
+
 
 That's it for the core of TypeStyle. Simple right!
 

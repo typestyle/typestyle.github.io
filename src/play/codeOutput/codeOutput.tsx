@@ -17,6 +17,7 @@ import * as csstips from 'csstips';
 const ensureImport = csx || csstips;
 const {
   style,
+  stylesheet,
   cssRaw,
   keyframes,
   cssRule,
