@@ -28,7 +28,7 @@
     "@types/escape-html": "0.0.19",
     "@types/history": "^2.0.39",
     "@types/marked": "0.0.28",
-    "@types/node": "^6.0.46",
+    "@types/node": "^9.4.0",
     "@types/react": "0.14.43",
     "@types/react-dom": "0.14.18",
     "@types/react-router": "2.0.38",
@@ -50,11 +50,11 @@
     "react-dom": "15.3.2",
     "react-router": "3.0.0",
     "source-map-support": "0.4.3",
-    "ts-loader": "^1.1.0",
+    "ts-loader": "^3.4.0",
     "ts-node": "^3.3.0",
-    "typescript": "2.3.2",
+    "typescript": "2.7.1",
     "typestyle": "1.7.0",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }

@@ -8,7 +8,7 @@ import Path = ts.Path;
 import LineIndex = liner.LineIndex;
 let unorderedRemoveItem = ts.unorderedRemoveItem;
 interface ILineInfo extends liner.ILineInfo { }
-let createFileMap = ts.createFileMap;
+let createMap = ts.createMap;
 /** BAS : a function I added, useful as we are working without true fs host */
 const toSimplePath = (fileName: string): Path => toPath(fileName, '', (x) => x);
 /** our compiler settings for simple tokenization */
@@ -237,7 +237,7 @@ export class TextChange {
 
 export class LSHost implements ts.LanguageServiceHost {
     ls: ts.LanguageService;
-    filenameToScript: ts.FileMap<ScriptInfo>;
+    filenameToScript: ts.Map<ScriptInfo>;
     roots: ScriptInfo[] = [];
 
     /**
@@ -246,10 +246,10 @@ export class LSHost implements ts.LanguageServiceHost {
      * - compilerOptions
      */
     constructor(public projectDirectory: string | undefined, public compilerOptions = defaultCompilerOptions) {
-        this.filenameToScript = createFileMap<ScriptInfo>();
+        this.filenameToScript = createMap();
     }
 
-    getDefaultLibFileName = () => null;
+    getDefaultLibFileName = () => '';
 
     getScriptSnapshot(filename: string): ts.IScriptSnapshot {
         const scriptInfo = this.getScriptInfo(filename);
@@ -290,20 +290,20 @@ export class LSHost implements ts.LanguageServiceHost {
 
     getScriptInfo(filename: string): ScriptInfo {
         const path = toSimplePath(filename);
-        let scriptInfo = this.filenameToScript.get(path);
+        let scriptInfo = this.filenameToScript[path];
         return scriptInfo;
     }
 
     addRoot(info: ScriptInfo) {
-        if (!this.filenameToScript.contains(info.path)) {
-            this.filenameToScript.set(info.path, info);
+        if (!this.filenameToScript.hasOwnProperty(info.path)) {
+            this.filenameToScript[info.path] = info;
             this.roots.push(info);
         }
     }
 
     removeRoot(info: ScriptInfo) {
-        if (!this.filenameToScript.contains(info.path)) {
-            this.filenameToScript.remove(info.path);
+        if (!this.filenameToScript[info.path]) {
+            delete this.filenameToScript[info.path]
             unorderedRemoveItem(this.roots, info)
         }
     }
@@ -323,7 +323,7 @@ export class LSHost implements ts.LanguageServiceHost {
      */
     addScript(filePath: string, contents: string) {
         let path = toSimplePath(filePath);
-        if (!this.filenameToScript.contains(path)) {
+        if (!this.filenameToScript[path]) {
             let info = new ScriptInfo(filePath, contents);
             this.addRoot(info);
         }
@@ -334,7 +334,7 @@ export class LSHost implements ts.LanguageServiceHost {
      */
     lineToTextSpan(filename: string, line: number): ts.TextSpan {
         const path = toSimplePath(filename);
-        const script: ScriptInfo = this.filenameToScript.get(path);
+        const script: ScriptInfo = this.filenameToScript[path];
         const index = script.snap().index;
 
         const lineInfo = index.lineNumberToInfo(line + 1);
@@ -355,7 +355,7 @@ export class LSHost implements ts.LanguageServiceHost {
      */
     lineOffsetToPosition(filename: string, line: number, offset: number): number {
         const path = toSimplePath(filename);
-        const script: ScriptInfo = this.filenameToScript.get(path);
+        const script: ScriptInfo = this.filenameToScript[path];
         const index = script.snap().index;
 
         const lineInfo = index.lineNumberToInfo(line);
@@ -369,7 +369,7 @@ export class LSHost implements ts.LanguageServiceHost {
      */
     positionToLineOffset(filename: string, position: number): ILineInfo {
         const path = toSimplePath(filename);
-        const script: ScriptInfo = this.filenameToScript.get(path);
+        const script: ScriptInfo = this.filenameToScript[path];
         const index = script.snap().index;
         const lineOffset = index.charOffsetToLineNumberAndPos(position);
         return { line: lineOffset.line, offset: lineOffset.offset + 1 };

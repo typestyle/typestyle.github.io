@@ -63,7 +63,7 @@ export function renderMatchedSegments(result: string, query: string): JSX.Elemen
     let matched = getMatchedSegments(result, query);
     let matchedStyle = {fontWeight:'bold', color:'#66d9ef'};
     return matched.map((item, i) => {
-        return <span key={i} style={item.matched?matchedStyle:{}}>{item.str}</span>;
+        return <span key={i} style={item.matched ? matchedStyle: {} as any}>{item.str}</span>;
     });
 }
 

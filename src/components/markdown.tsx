@@ -12,15 +12,15 @@ import { getPlaygroundLink } from '../play/srcLoader';
 import * as CodeMirror from 'codemirror';
 cssRaw(require('codemirror/lib/codemirror.css'));
 cssRaw(require('codemirror/theme/monokai.css'));
-require('codemirror/addon/runmode/runmode');
+import 'codemirror/addon/runmode/runmode';
 /** JSX */
-require('codemirror/mode/jsx/jsx');
-require('codemirror/mode/javascript/javascript');
-require('codemirror/mode/xml/xml');
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/xml/xml';
 /** CSS */
-require('codemirror/mode/css/css');
+import 'codemirror/mode/css/css';
 /** HTML */
-require('codemirror/mode/htmlmixed/htmlmixed');
+import 'codemirror/mode/htmlmixed/htmlmixed';
 /** Our function */
 function highlightCodeWithMode(args: { code: string, mode: string }) {
   // console.log({ code }); // DEBUG
