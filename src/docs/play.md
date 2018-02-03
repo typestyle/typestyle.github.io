@@ -1,6 +1,6 @@
 We found the JavaScript playgrounds out there missing key features for a great TypeScript experience.
 
-> ProTip: You *can* use typestyle in playgrounds as we also provide a `umd` build: e.g. https://unpkg.com/typestyle@0.22.0/umd/typestyle.js example http://codepen.io/basarat/pen/GNeyzX
+> ProTip: You *can* use typestyle in playgrounds as we also provide a `umd` build: e.g. https://unpkg.com/typestyle/umd/typestyle.js example http://codepen.io/basarat/pen/GNeyzX
 
 Introducing the TypeStyle playground : [https://typestyle.github.io/play/](https://typestyle.github.io/play/). It supports *full* demo development with:
 
@@ -19,11 +19,13 @@ Here is the hello world:
 ## Features
 
 ### Autocomplete
+
 `ctrl + space`
 
 ![](/images/book/play/autocomplete.png)
 
 ### Errors
+
 We do continuous linting (TypeScript is really just the world's most powerful JavaScript linter). The first error is shown inline so you don't need to use your mouse much.
 
 ![](/images/book/play/error.png)
@@ -33,6 +35,7 @@ We do continuous linting (TypeScript is really just the world's most powerful Ja
 The url is always kept in sync with the code so you can share it around at any point you want.
 
 ## Compilation Context
+
 We put the following variables into the compilation context (and runtime) for you so that you don't need to do anything special
 
 * `typestyle`: The complete `"typestyle"` module
@@ -49,6 +52,7 @@ const HelloWorld = () => <div>Hello World</div>;
 ```
 
 ## Output
+
 The last JSX expression that gets evaluated in the code gets rendered to the output window. You are free to write any other TypeScript code before that if you want.
 
 ```play
@@ -62,7 +66,7 @@ let message = "Hello World!";
 
 ## Root
 
-> We cover more of `csx` / `csstips` and the concepts of mixins and flexbox and all that jazz in other sections of the book. This is just a quick look to demonstrate the playground.  
+> We cover more of `csx` / `csstips` and the concepts of mixins and flexbox and all that jazz in other sections of the book. This is just a quick look to demonstrate the playground.
 
 The output is rendered in a container that has `position: relative`. So you can attach to it with handy dandy `csx.fillParent` e.g.
 
