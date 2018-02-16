@@ -3,7 +3,8 @@
 * [Concept: Interpolation / Pseudo classes / Pseudo elements](/#/core/concept-interpolation)
 * [Concept: Media Queries](/#/core/concept-media-queries)
 * [Concept: Keyframes / Animations](/#/core/concept-keyframes)
-* [Concept: Composing classes / Customizable components / Theming](/#/core/-classes-)
+* [Concept: Composing classes / Customizable components](/#/core/-classes-)
+* [Concept: Theming](/#/core/concept-theming)
 * [Concept: Fallbacks](/#/core/concept-fallbacks)
 * [TIP: forceRenderStyles](/#/core/tip-forcerenderstyles-)
 * [TIP: Declaring new CSS stuff](/#/core/tip-declaring-new-css-stuff)
@@ -270,7 +271,7 @@ const Message = (props:{className?:string,text:string}) => {
 </div>
 ```
 
-> You can use `className` to allow *full* customization of any of your components (something that can't be done with style attributes). Using `className`/`classes` also solves one of the hardest problems of CSS in JS i.e. external themeability.
+> You can use `className` to allow *full* customization of any of your components (something that can't be done with style attributes). Using `className`/`classes`.
 
 Also `classes` safely ignores any *falsy* values so you can *optionally* merge classes if you need to: 
 
@@ -307,6 +308,74 @@ const Message = (props:{className?:string,text:string}) => {
   <Message text="World" className={style({color:'red !important'})}/>
 </div>
 ```
+
+## Concept: Theming 
+
+Since its just JavaScript you can easily use JS modules with variables to change component sytes. e.g. 
+
+* `styles.ts`
+```ts
+import { types } from 'typestyle';
+
+// For simple customizations
+export namespace Colors {
+  export let buttonCore = 'white';
+}
+
+// For complete customizations
+export namespace Overrides {
+  export let buttonOverrides: types.NestedCSSPropertyes = {};
+}
+```
+* `button.tsx` that can be themed 
+```ts
+import { Colors, Overrides } from './style';
+import { style } from 'typestyle';
+import * as React from 'react';
+
+namespace ButtonStyles {
+  export const buttonClass = style({
+    color: Colors.buttonCore
+  }, Overrides.buttonOverrides);
+}
+
+export const Button = ({text})=> <button className={ButtonStyles.buttonClass}>
+  {text}
+</button>;
+```
+* Some `myTheme.ts`
+```ts
+import { Colors, Overrides } from './style';
+
+// Simple customizations 
+Colors.buttonCore = 'red';
+
+// Complex customizations
+Overrides.buttonOverrides = {
+  backgroundColor: 'blue';
+};
+```
+
+Then a default use of the button would be simply: 
+
+```ts
+// Application Logic
+import {Button} from './button';
+<Button text="hello"/>;
+```
+
+And if you load `myTheme` in your application *at any point before importing `button`* you get the themed button: 
+```ts
+// Theme the application 
+import './myTheme';
+
+
+// Application Logic
+import {Button} from './button';
+<Button text="hello"/>;
+```
+
+You can have as many Theme files with as much customization as you want.
 
 ## Concept: Fallbacks
 There are two kinds of fallbacks in CSS and both are supported:
