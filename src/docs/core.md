@@ -531,5 +531,4 @@ namespace css {
 While there are certain advantages to both namespacing and `stylesheet`, The `stylesheet` function requires less typing and also works when building a project without TypeScript.
 
 
-That's it for the core of TypeStyle. Simple, right?
-
+That's it for the core of TypeStyle. Simple!
