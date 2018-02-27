@@ -314,6 +314,7 @@ const Message = (props:{className?:string,text:string}) => {
 Since its just JavaScript you can easily use JS modules with variables to change component sytes. e.g. 
 
 * `styles.ts`
+
 ```ts
 import { types } from 'typestyle';
 
@@ -327,7 +328,9 @@ export namespace Overrides {
   export let buttonOverrides: types.NestedCSSPropertyes = {};
 }
 ```
+
 * `button.tsx` that can be themed 
+
 ```ts
 import { Colors, Overrides } from './style';
 import { style } from 'typestyle';
@@ -343,8 +346,10 @@ export const Button = ({text})=> <button className={ButtonStyles.buttonClass}>
   {text}
 </button>;
 ```
+
 * Some `myTheme.ts`
-```ts
+
+```js
 import { Colors, Overrides } from './style';
 
 // Simple customizations 
@@ -365,6 +370,7 @@ import {Button} from './button';
 ```
 
 And if you load `myTheme` in your application *at any point before importing `button`* you get the themed button: 
+
 ```ts
 // Theme the application 
 import './myTheme';
