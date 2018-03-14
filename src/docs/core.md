@@ -424,7 +424,8 @@ forceRenderStyles();
 We protect against typos e.g. if you misspell a property like `color`: 
 
 ```play
-style({colour: 'red'}) // TypeScript Error: unknown prop `colour`
+style({colour: 'red'}); // TypeScript Error: unknown prop `colour`
+<div/>
 ```
 However there might be vendor prefixes or non standard CSS Property (or even some property we missed) that you might want to use. It is super easy to augment our types simply following the standard TypeScript pattern shown below:
 
