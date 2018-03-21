@@ -227,6 +227,18 @@ const sizeChangingClass = style(
 <h1 className={sizeChangingClass}>Hello world</h1>
 ```
 
+You can use a raw nested media query as well for any non-standard queries you might want to make: 
+
+```js
+const className = style({
+  $nest: {
+    '@media screen and (-webkit-min-device-pixel-ratio: 0)': {
+      color: 'red'
+    }
+  }
+});
+```
+
 ## Concept: Keyframes
 
 Keyframes in CSS must be named and defined at the root level (much like class names). Fortunately just like `style` lets you not worry about that *global namespace*, the `keyframes` function takes keyframes and generates an *animation name* that you can then use in a style. Here is a simple example: 
