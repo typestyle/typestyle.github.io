@@ -5,6 +5,7 @@
 * [content](/#/advanced/-content-)
 * [Google Fonts](/#/advanced/google-fonts)
 * [$debugName](/#/advanced/-debugname-)
+* [Multiple instances](/#/core/multiple-instances)
 
 ## Concept: Deduping
 It is safe to call `style` with the same object strucure again and again (e.g. from within a react render function). `style` doesn't generate new CSS if it's not required, this is shown below:
@@ -257,3 +258,25 @@ const className = style({
 ```
 
 Note that this name is purely for debugging convinience and has no impact on any of the other logic (e.g. deduping).
+
+## Multiple instances
+The core `style` function is simply a handle to a single instance of `TypeStyle.style`.
+
+You can create multiple instances of TypeStyle using the `createTypeStyle` function. There are two ways to use this function: 
+
+* You can use this to create a TypeStyle instance if you just want to *collect* the generated CSS. 
+
+```js
+const instance = typestyle.createTypeStyle();
+instance.style({ color : 'red' }); // Will not write a stylesheet anywhere. 
+const styles = instance.getStyles(); // Write these styles somewhere. You can write them to a tag or a file or wherever. 
+```
+
+* You can pass in a style tag and this typestyle instance will write the styles to that tag. 
+
+```js
+const tag = document.createElement('style');
+document.head.appendChild(tag);
+const instance = typestyle.createTypeStyle(tag);
+instance.style({ color : 'red' }); // Will write to the tag you created
+```
