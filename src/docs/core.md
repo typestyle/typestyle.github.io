@@ -9,7 +9,7 @@
 * [TIP: forceRenderStyles](/#/core/tip-forcerenderstyles-)
 * [TIP: Declaring new CSS stuff](/#/core/tip-declaring-new-css-stuff)
 * [TIP: Code Organization](/#/core/tip-code-organization)
-* [Stylesheets (v1.7.x)](/#/core/-stylesheet-)
+* [Stylesheets](/#/core/stylesheet)
 
 ## `style`
 At the heart of typestyle is the simple `style` function. It is the function you use to generate a CSS className. The signature of this function is super simple: 
