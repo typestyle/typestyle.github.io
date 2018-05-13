@@ -141,7 +141,7 @@ const some = style(
 ```
 
 ## Concept: Ensuring a unique selector
-In certain browser scenarios e.g. `placeholder` styling (the only one we have experienced for now) you need to ensure that each selector gets its own body e.g. 
+For certain browser scenarios you need to have a unique selector with its own body. The only use case we have experienced for now are browser specific pseudo selectors. For example for `placeholder` styling, having multiple browser specific selectors does not work (even though its valid CSS): 
 
 ```css
 /** Does not work */
