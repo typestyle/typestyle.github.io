@@ -81,6 +81,10 @@ h1 {
 
 > Protip `csstips.normalize()` uses this function internally to actually add `normalize.css`. More on this later.
 
+## Limitations
+
+These functions alter the global CSS for the page. If you're using server side rendering, be sure all usage of these functions lives in a file that's always executed. Otherwise, a server side rendered page will look different than one rendered by the client. As a general rule of thumb, put them, on a file that's included by `app.tsx` or a similar entry point.
+
 ## Advantages of these functions over loaders 
 
 * Works seemlessly in a nodejs enviroment (example use cases are nodejs testing / server side rendering) whereas `require('./someCss.css')` does not without additional setup.
