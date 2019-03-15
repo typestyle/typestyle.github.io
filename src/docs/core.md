@@ -323,7 +323,7 @@ const Message = (props:{className?:string,text:string}) => {
 
 ## Concept: Theming 
 
-Since its just JavaScript you can easily use JS modules with variables to change component sytes. e.g. 
+Since its just JavaScript you can easily use JS modules with variables to change component styles. e.g. 
 
 * `styles.ts`
 
