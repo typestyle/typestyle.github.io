@@ -6,7 +6,7 @@ The DOM `style` attribute is not enough to cater for things like pseudo states a
 
 # Utilities
 
-TypeStyle core is actually **very** small (~1k) and you are free to use just that. However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. So we provide utilities that are mentioned next.
+TypeStyle core is actually **very** small (~6k gz) and you are free to use just that. However this guide and TypeStyle is designed to be approachable by both beginner and expert CSS devs. So we provide utilities that are mentioned next.
 
 # About `csx`
 Provided as a separate library (`npm install csx`):
