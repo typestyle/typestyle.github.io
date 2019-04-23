@@ -20,6 +20,7 @@
 * [TypeStyle by @basarat is a fantastic #CSS in #javascript lib. Effectively CSS modules wrapped in JS/TS  and excellent DX.](https://twitter.com/SteveALee/status/858255868139319296)
 * [TypeStyle by @notoriousb1t and @basarat is the perfect CSS-in-TS library. Small, elegant and strongly typed ;)](https://twitter.com/ale_burato/status/899165879849684992)
 * [TypeStyle looks like the typed CSS-in-JS solution I was looking for. If you can spare 30 minutes, do yourself a favor and watch the videos. Great work!](https://twitter.com/frontsideair/status/1019491595224276992)
+* [Last time I used CSS modules I got frustrated by the lack of type safety - lately I've been using (and loving) TypeStyle](https://twitter.com/muelvenables/status/1119369238286725120)
 
 * [Add yours 🌹!](https://twitter.com/intent/tweet?text=Super%20simple%20maintainable%20%23CSS%20with%20%23TypeStyle%3A%20https%3A%2F%2Ftypestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9)
 
