@@ -1,5 +1,6 @@
 
 * [I haven't been this giggly-happy about a library in a long time!!!](https://twitter.com/andrestaltz/status/788665551325454337)
+* [A type-safe CSS-in-JS library like no other - TypeStyle](https://twitter.com/areknawo/status/1135643283688964096) / [Blog post](https://areknawo.com/a-different-approach-to-css-in-js/)
 * [Rad idea!](https://twitter.com/iammerrick/status/788784672314576897)
 * [What a fantastic #css resource](https://twitter.com/zbrianw/status/792177209490313217)
 * [This is the CSS framework I have wanted to exist for the past 5 years.](https://twitter.com/jeffwhelpley/status/802275885353054208)
