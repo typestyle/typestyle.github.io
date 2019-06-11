@@ -337,7 +337,7 @@ export namespace Colors {
 
 // For complete customizations
 export namespace Overrides {
-  export let buttonOverrides: types.NestedCSSPropertyes = {};
+  export let buttonOverrides: types.NestedCSSProperties = {};
 }
 ```
 
