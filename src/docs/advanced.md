@@ -257,7 +257,7 @@ const className = style({
 </div>;
 ```
 
-Note that this name is purely for debugging convinience and has no impact on any of the other logic (e.g. deduping).
+Note that this name is purely for debugging convenience and has no impact on any of the other logic (e.g. deduping).
 
 ## Multiple instances
 The core `style` function is simply a handle to a single instance of `TypeStyle.style`.
