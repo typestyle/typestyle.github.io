@@ -34,7 +34,7 @@
     "@types/react-router": "2.0.38",
     "babel-polyfill": "^6.9.1",
     "byots": "^2.1.0-dev.20161101.22.10",
-    "codemirror": "^5.20.2",
+    "codemirror": "^5.58.2",
     "css-to-typestyle": "^0.0.9",
     "csstips": "^0.2.2",
     "csx": "^8.5.0",
