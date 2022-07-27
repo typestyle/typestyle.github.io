@@ -72,46 +72,63 @@ const anchorClass = style({
   }
 })
 
-ReactDOM.render(<cp.Content>
-  <Header />
-  <cp.ContentVerticalContentMargined style={{ padding: '20px 10px 10px 10px' }}>
+class App extends React.Component<{}, {}> {
+  refs: {
+    ads: any;
+  }
+  componentDidMount() {
+    const addNode = ReactDOM.findDOMNode(this.refs.ads);
+    const s = document.createElement("script");
+    s.id = "_carbonads_js";
+    s.src = "//cdn.carbonads.com/carbon.js?serve=CEAIP23L&placement=typestylegithubio";
+    addNode.appendChild(s);
+  }
 
-    {/** The github links */}
-    <cp.ContentVerticalContentMargined>
-      <cp.ContentVerticalCentered>
-        <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
-      </cp.ContentVerticalCentered>
+  render() {
+    return (<cp.Content>
+      <Header />
+      <cp.ContentVerticalContentMargined style={{ padding: '20px 10px 10px 10px' }}>
 
-      <div style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
-        <a href="https://github.com/typestyle/typestyle/stargazers" target="_blank" className={anchorClass}>Powered by your github 🌟s.</a> <a
-          className={anchorClass}
-          href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
-          target="_blank">
-          Don't forget to share 🌹
-          </a>
-      </div>
-    </cp.ContentVerticalContentMargined>
+        {/** The github links */}
+        <cp.ContentVerticalContentMargined>
+          <cp.ContentVerticalCentered>
+            <iframe src="https://ghbtns.com/github-btn.html?user=typestyle&repo=typestyle&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe>
+          </cp.ContentVerticalCentered>
 
-    {/** Input for doc search */}
-    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth(900))}>
-      <input id="doc-search-input" placeholder="Search Docs" className={SearchInputStyles.inputClass} />
-    </cp.Content>
+          <div style={{ color: cp.colors.text, textAlign: 'center', lineHeight: '30px' }}>
+            <a href="https://github.com/typestyle/typestyle/stargazers" target="_blank" className={anchorClass}>Powered by your github 🌟s.</a> <a
+              className={anchorClass}
+              href="https://twitter.com/intent/tweet?text=Maintainable%20%23CSS%20has%20never%20been%20as%20easy%20as%20with%20%23TypeStyle%3A%20typestyle.github.io%0A%0A%23JavaScript%20%23TypeScript%20%40basarat%20%F0%9F%8C%B9"
+              target="_blank">
+              Don't forget to share 🌹
+            </a>
+          </div>
+        </cp.ContentVerticalContentMargined>
 
-    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth('100%'))}>
-      {renderRoutes()}
-    </cp.Content>
-    
-    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
-      <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAIP23L&placement=typestylegithubio" id="_carbonads_js"></script>
-    </cp.Content>
+        {/** Input for doc search */}
+        <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth(900))}>
+          <input id="doc-search-input" placeholder="Search Docs" className={SearchInputStyles.inputClass} />
+        </cp.Content>
 
-    <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
-      <cp.MarkDown markdown={'[Found a bug? Send us a PR ❤️](https://github.com/typestyle/typestyle.github.io/tree/source/src/docs)'} />
-    </cp.Content>
+        <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.maxWidth('100%'))}>
+          {renderRoutes()}
+        </cp.Content>
 
-  </cp.ContentVerticalContentMargined>
+        <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
+          <div ref="ads" />
+        </cp.Content>
 
-</cp.Content>, document.getElementById('app-root'));
+        <cp.Content className={style(csstips.horizontallyCenterSelf, csstips.horizontallyCenterChildren, csstips.maxWidth(900))}>
+          <cp.MarkDown markdown={'[Found a bug? Send us a PR ❤️](https://github.com/typestyle/typestyle.github.io/tree/source/src/docs)'} />
+        </cp.Content>
+
+      </cp.ContentVerticalContentMargined>
+
+    </cp.Content>);
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app-root'));
 
 /** Loaded in our index.html */
 declare var docsearch: any;
