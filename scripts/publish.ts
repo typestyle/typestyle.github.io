@@ -9,7 +9,7 @@ ghpages.publish(path.resolve(__dirname + '/../public'), {
 
   /** Branch */
   branch: 'master',
-  repo: 'https://' + process.env.GH_TOKEN + '@github.com/typestyle/typestyle.github.io.git',
+  repo: 'https://' + process.env.GITHUB_TOKEN + '@github.com/typestyle/typestyle.github.io.git',
 
   /** User */
   user: {
