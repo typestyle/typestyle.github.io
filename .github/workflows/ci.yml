@@ -8,6 +8,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm install
-    - run: npm run publish
+    - run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        npm run publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
