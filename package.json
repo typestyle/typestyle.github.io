@@ -50,11 +50,11 @@
     "react-dom": "15.3.2",
     "react-router": "3.0.0",
     "source-map-support": "0.4.3",
-    "ts-loader": "^3.4.0",
+    "ts-loader": "^9.4.2",
     "ts-node": "^3.3.0",
     "typescript": "2.7.1",
     "typestyle": "1.7.0",
-    "webpack": "^3.10.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^2.11.1"
   }
 }
